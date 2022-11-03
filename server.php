@@ -41,10 +41,18 @@ catch(Exception $e) {
           //row data
           $pfnumber=$row['pf_number'];
           $pass=$row['password'];
-    
+          $fname=$row['firstname'];
+          $lname=$row['lastname'];
+          $mail=$row['email'];
+          $phone=$row['phone'];
+          
           //sessions
           $_SESSION['pfno'] = $pfnumber;
-          $_SESSION['password'] = $pass;      
+          $_SESSION['password'] = $pass; 
+          $_SESSION['fname'] = $fname; 
+          $_SESSION['lname'] = $lname; 
+          $_SESSION['email'] = $mail; 
+          $_SESSION['tel'] = $phone; 
           $_SESSION['success'] = "You are now logged in";
     
           header('location: dashboard.php');
