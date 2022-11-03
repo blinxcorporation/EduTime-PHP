@@ -50,7 +50,9 @@ $lname = $_SESSION['lname'];
 
 <h1><?php echo $fname ." ".$lname?></h1>
 
-
+<?php
+include './components/footer.php';
+?>
 <!--Script-->
 <?php
 include "./components/script.php";
