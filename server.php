@@ -6,7 +6,6 @@ session_start();
 // ini_set('display_startup_errors', '1');
 // error_reporting(E_ALL);
 
-
 //##############################///
 // connect to the database
 try{
@@ -18,5 +17,44 @@ catch(Exception $e) {
   // echo 'Message: ' .$e->getMessage();
   echo 'Database Connection Failed.';
 }
+
+    // LOGIN STAFF
+    if (isset($_POST['login_btn'])) {
+      $username = $_POST['pfNumber'];
+      $password = $_POST['password'];
+
+      if (empty($username)) {
+        array_push($errors, "Username is required");
+      }
+      if (empty($password)) {
+        array_push($errors, "Password is required");
+      }
+
+      if (count($errors) == 0) {
+        $encrypted_password = md5($password);
+        $login_query = "SELECT * FROM lecturers WHERE `pf_number`='$username' AND `password`='$encrypted_password'";
+        $results = mysqli_query($db, $login_query);
+
+        if (mysqli_num_rows($results) == 1) {
+          $row = mysqli_fetch_assoc($results);
+        // end generate random alphanumeric character
+          //row data
+          $pfnumber=$row['pf_number'];
+          $pass=$row['password'];
+    
+          //sessions
+          $_SESSION['pfno'] = $pfnumber;
+          $_SESSION['password'] = $pass;      
+          $_SESSION['success'] = "You are now logged in";
+    
+          header('location: dashboard.php');
+        }else{
+          array_push($errors, "Incorrect Username or Password");
+          header('location: index.php');
+        }
+      }
+    }
+
+
 ob_end_flush();
 ?>
