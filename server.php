@@ -55,7 +55,7 @@ catch(Exception $e) {
           $_SESSION['tel'] = $phone; 
           $_SESSION['success'] = "You are now logged in";
     
-          header('location: dashboard.php');
+          header('location: ./dashboard/index.php');
         }else{
           array_push($errors, "Incorrect Username or Password");
           header('location: index.php');
