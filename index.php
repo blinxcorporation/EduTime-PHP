@@ -8,7 +8,7 @@ include 'server.php';
    <?php
    include './components/head.php';
    ?>
-    <title>Maseno || Timetabling</title>
+    <title>Maseno | Timetabling</title>
   </head>
   
 <body style="background-color: #d2d6de;">
@@ -18,7 +18,7 @@ include 'server.php';
 <div class="col-md-3"></div>
 <div class="col-md-6 text-center text-light" style="background-color:#00a7d0">
 <img src="./static/images/logo.png"  class="img-fluid" height="120" width="120"/>
-    <h2 class="text-center">Staff Login Page</h2>
+    <h2 class="text-center">Staff Login</h2>
 </div>
 <div class="col-md-3"></div>
 
@@ -38,11 +38,15 @@ include 'server.php';
   </div>
   
   <div class="row">
+  <div class="col-md-4">
+  <a name="reset_password_btn" class="btn btn-warning text-light btn-block">Forgot Password?</a>
+  </div>
+  <div class="col-md-4"></div>
     <div class="col-md-4">
-    <button type="submit" name="login_btn" class="btn btn-primary btn-block">Submit</button>
+    <button type="submit" name="login_btn" class="btn btn-info btn-block">Sign In</button>
     </div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+  
+    
   </div>
 </form>
 </div>
