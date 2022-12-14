@@ -1,1 +1,1 @@
-# varsity-timetabling-php
+# university timetabling-php
