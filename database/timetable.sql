@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 16, 2022 at 09:14 PM
+-- Generation Time: Dec 16, 2022 at 09:23 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -206,16 +206,18 @@ INSERT INTO `school_details` (`id`, `school_id`, `school_name`) VALUES
 CREATE TABLE `unit_details` (
   `id` int(11) NOT NULL,
   `unit_code` varchar(20) NOT NULL,
-  `unit_name` varchar(100) NOT NULL
+  `unit_name` varchar(100) NOT NULL,
+  `unit_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `unit_details`
 --
 
-INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`) VALUES
-(1, 'CIT 401', 'Software Project Management'),
-(2, 'CIT 411', 'Distributed Systems');
+INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`) VALUES
+(1, 'CIT 401', 'Software Project Management', 'Theory'),
+(2, 'CIT 409', 'Information Technology Project I', 'Practical'),
+(3, 'CIT 411', 'Distributed Systems', 'Theory');
 
 --
 -- Indexes for dumped tables
