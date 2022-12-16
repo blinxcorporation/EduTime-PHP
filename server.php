@@ -32,7 +32,7 @@ catch(Exception $e) {
 
       if (count($errors) == 0) {
         $encrypted_password = md5($password);
-        $login_query = "SELECT * FROM lecturers WHERE `pf_number`='$username' AND `password`='$encrypted_password'";
+        $login_query = "SELECT * FROM lecturer_details WHERE `pf_number`='$username' AND `password`='$encrypted_password'";
         $results = mysqli_query($db, $login_query);
 
         if (mysqli_num_rows($results) == 1) {
@@ -48,7 +48,6 @@ catch(Exception $e) {
           
           //sessions
           $_SESSION['pfno'] = $pfnumber;
-          $_SESSION['password'] = $pass; 
           $_SESSION['fname'] = $fname; 
           $_SESSION['lname'] = $lname; 
           $_SESSION['email'] = $mail; 
