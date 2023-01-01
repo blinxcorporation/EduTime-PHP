@@ -10,7 +10,6 @@ session_start();
 // connect to the database
 try{
 $db = mysqli_connect('localhost', 'benson', 'benson', 'timetable');
-//$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 // echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
