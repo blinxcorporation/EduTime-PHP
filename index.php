@@ -15,17 +15,19 @@ include 'server.php';
 <div class="container">
 
 <div class="row mt-4">
-<div class="col-md-3"></div>
-<div class="col-md-6 text-center text-light" style="background-color:#00a7d0">
+
+<div class="col-lg-4"></div>
+<div class="col-lg-4 text-center text-light" style="background-color:#00a7d0">
 <img src="./static/images/logo.png"  class="img-fluid" height="120" width="120"/>
     <h2 class="text-center">Staff Login</h2>
 </div>
-<div class="col-md-3"></div>
-
+<div class="col-lg-4"></div>
+</div>
 
 <!--Login form -->
-<div class="col-lg-3"></div>
-<div class="col-lg-6 p-4" style="background-color:#ffff">
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-4 p-4" style="background-color:#ffff">
 <form method="POST" action="server.php">
   <div class="form-group">
     <label for="exampleInputEmail1">PF Number</label>
@@ -50,7 +52,9 @@ include 'server.php';
   </div>
 </form>
 </div>
-<div class="col-lg-3"></div>
+<div class="col-lg-4"></div>
+
+
 </div>
 </div>
 
