@@ -54,8 +54,11 @@ include 'server.php';
 </div>
 </div>
 
-
+<?php
+include "./components/footer.php";
+?>
     <!-- Optional JavaScript -->
+
 <?php
 include "./components/script.php";
 ?>
