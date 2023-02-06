@@ -26,8 +26,8 @@ include 'server.php';
 
 <!--Login form -->
 <div class="row">
-<div class="col-lg-4"></div>
-<div class="col-lg-4 p-4" style="background-color:#ffff">
+<div class="col-md-4"></div>
+<div class="col-md-4 p-4" style="background-color:#ffff">
 <form method="POST" action="server.php">
   <div class="form-group">
     <label for="exampleInputEmail1">PF Number</label>
@@ -52,7 +52,7 @@ include 'server.php';
   </div>
 </form>
 </div>
-<div class="col-lg-4"></div>
+<div class="col-md-4"></div>
 
 
 </div>
