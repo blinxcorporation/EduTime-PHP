@@ -11,7 +11,7 @@ include 'server.php';
     <title>Maseno | Timetabling</title>
   </head>
   
-<body style="background-color: #d2d6de;">
+<body>
 <div class="container">
 
 <div class="row mt-5 ml-1 mr-1">
