@@ -33,10 +33,17 @@ include 'server.php';
     <input type="text" name="pfNumber" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="PF Number">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <label for="exampleInputPassword1">Password</label><br>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
   </div>
+  <div class="form-check mb-2">
+  <input class="form-check-input" type="checkbox" value="checked" id="togglePasswordCheckBox">
+  <label class="form-check-label" for="showPass">
+    Show password
+  </label>
+</div>
   
+
   <div class="row">
   <div class="col-md-5">
   <a name="reset_password_btn" href="forgot-password.php" class="text-success m-2 btn-block">Forgot Password?</a>
@@ -60,5 +67,6 @@ include 'server.php';
 <?php
 include "./components/script.php";
 ?>
+
   </body>
 </html>
