@@ -12,22 +12,22 @@ include 'server.php';
   </head>
   
 <body style="background-color: #d2d6de;">
-<div class="container">
+<div class="container-fluid">
 
-<div class="row mt-4">
+<div class="row mt-5">
 
-<div class="col-md-3"></div>
-<div class="col-md-6 text-center text-light" style="background-color:#00a7d0">
+<div class="col-md-4"></div>
+<div class="col-md-4 mt-5 text-center text-light" style="background-color:#00a7d0">
 <img src="./static/images/logo.png"  class="img-fluid" height="120" width="120"/>
     <h2 class="text-center">Staff Login</h2>
 </div>
-<div class="col-md-3"></div>
+<div class="col-md-4"></div>
 </div>
 
 <!--Login form -->
 <div class="row">
-<div class="col-md-3"></div>
-<div class="col-md-6 p-4" style="background-color:#ffff">
+<div class="col-md-4"></div>
+<div class="col-md-4 p-4" style="background-color:#ffff">
 <form method="POST" action="server.php">
   <div class="form-group">
     <label for="exampleInputEmail1">PF Number</label>
@@ -47,12 +47,10 @@ include 'server.php';
     <div class="col-md-5">
     <button type="submit" name="login_btn" class="btn btn-info btn-block">Sign In</button>
     </div>
-  
-    
   </div>
 </form>
 </div>
-<div class="col-md-3"></div>
+<div class="col-md-4"></div>
 
 
 </div>
