@@ -16,18 +16,18 @@ include 'server.php';
 
 <div class="row mt-4">
 
-<div class="col-lg-4"></div>
-<div class="col-lg-4 text-center text-light" style="background-color:#00a7d0">
+<div class="col-md-3"></div>
+<div class="col-md-6 text-center text-light" style="background-color:#00a7d0">
 <img src="./static/images/logo.png"  class="img-fluid" height="120" width="120"/>
     <h2 class="text-center">Staff Login</h2>
 </div>
-<div class="col-lg-4"></div>
+<div class="col-md-3"></div>
 </div>
 
 <!--Login form -->
 <div class="row">
-<div class="col-md-4"></div>
-<div class="col-md-4 p-4" style="background-color:#ffff">
+<div class="col-md-3"></div>
+<div class="col-md-6 p-4" style="background-color:#ffff">
 <form method="POST" action="server.php">
   <div class="form-group">
     <label for="exampleInputEmail1">PF Number</label>
@@ -40,11 +40,11 @@ include 'server.php';
   </div>
   
   <div class="row">
-  <div class="col-md-4">
-  <a name="reset_password_btn" class="btn btn-warning text-light btn-block">Forgot Password?</a>
+  <div class="col-md-5">
+  <a name="reset_password_btn" href="forgot-password.php" class="text-success m-2 btn-block">Forgot Password?</a>
   </div>
-  <div class="col-md-4"></div>
-    <div class="col-md-4">
+  <div class="col-md-2"></div>
+    <div class="col-md-5">
     <button type="submit" name="login_btn" class="btn btn-info btn-block">Sign In</button>
     </div>
   
@@ -52,15 +52,13 @@ include 'server.php';
   </div>
 </form>
 </div>
-<div class="col-md-4"></div>
+<div class="col-md-3"></div>
 
 
 </div>
 </div>
 
-<?php
-include "./components/footer.php";
-?>
+
     <!-- Optional JavaScript -->
 
 <?php
