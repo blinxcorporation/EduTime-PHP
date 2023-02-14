@@ -12,27 +12,25 @@ include 'server.php';
   </head>
   
 <body style="background-color: #d2d6de;">
-<div class="container-fluid">
+<div class="container">
 
-<div class="row mt-5">
-
-<div class="col-md-4"></div>
-<div class="col-md-4 mt-5 text-center text-light" style="background-color:#00a7d0">
+<div class="row mt-5 ml-1 mr-1">
+<div class="col-md-3"></div>
+<div class="col-md-6 mt-5 text-center text-light" style="background-color:#00a7d0">
 <img src="./static/images/logo.png"  class="img-fluid" height="120" width="120"/>
     <h2 class="text-center">Staff Login</h2>
 </div>
-<div class="col-md-4"></div>
+<div class="col-md-3"></div>
 </div>
 
 <!--Login form -->
-<div class="row">
-<div class="col-md-4"></div>
-<div class="col-md-4 p-4" style="background-color:#ffff">
+<div class="row ml-1 mr-1 mb-4">
+<div class="col-md-3"></div>
+<div class="col-md-6 p-3" style="background-color:#ffff">
 <form method="POST" action="server.php">
   <div class="form-group">
     <label for="exampleInputEmail1">PF Number</label>
     <input type="text" name="pfNumber" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="PF Number">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
@@ -50,7 +48,7 @@ include 'server.php';
   </div>
 </form>
 </div>
-<div class="col-md-4"></div>
+<div class="col-md-3"></div>
 
 
 </div>
