@@ -9,6 +9,8 @@
 
 </footer>
 <!-- Footer -->
+
+<!--get current year script-->
 <script>
     //Update Year on the copyright section
 const year = new Date().getFullYear();
