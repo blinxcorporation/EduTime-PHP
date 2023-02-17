@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2023 at 09:23 PM
+-- Generation Time: Feb 17, 2023 at 06:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -223,6 +223,33 @@ INSERT INTO `school_details` (`id`, `school_id`, `school_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `semester_details`
+--
+
+CREATE TABLE `semester_details` (
+  `id` int(11) NOT NULL,
+  `semester_id` varchar(20) NOT NULL,
+  `semester_name` varchar(50) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `semester_details`
+--
+
+INSERT INTO `semester_details` (`id`, `semester_id`, `semester_name`, `date_added`) VALUES
+(1, 'Y1S1', 'Year 1 Semester 1', '2023-02-17 05:19:33'),
+(2, 'Y1S2', 'Year 1 Semester 2', '2023-02-17 05:19:33'),
+(3, 'Y2S1', 'Year 2 Semester 1', '2023-02-17 05:19:53'),
+(4, 'Y2S2', 'Year 2 Semester 2', '2023-02-17 05:19:53'),
+(5, 'Y3S1', 'Year 3 Semester 1', '2023-02-17 05:20:16'),
+(6, 'Y3S2', 'Year 3 Semester 2', '2023-02-17 05:20:16'),
+(7, 'Y4S1', 'Year 4 Semester 1', '2023-02-17 05:20:39'),
+(8, 'Y4S2', 'Year 4 Semester 2', '2023-02-17 05:20:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `time_slot_details`
 --
 
@@ -265,7 +292,7 @@ CREATE TABLE `unit_details` (
 
 INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `active`) VALUES
 (1, 'CIT 401', 'Software Project Management', 'Theory', 1),
-(2, 'CIT 409', 'Information Technology Project I', 'Practical', 1),
+(2, 'CIT 409', 'Information Technology Project I', 'ICT-Practical', 1),
 (3, 'CIT 411', 'Distributed Systems', 'Theory', 1);
 
 -- --------------------------------------------------------
@@ -288,7 +315,29 @@ CREATE TABLE `unit_room_allocation_details` (
 --
 
 INSERT INTO `unit_room_allocation_details` (`id`, `room_id`, `unit_id`, `time_slot_id`, `weekday_id`, `date_allocated`) VALUES
-(1, 'room01', 'CIT 401', 'SLT001', 'day01', '2023-02-13 15:12:39');
+(1, 'room01', 'CIT 401', 'SLT001', 'day01', '2023-02-13 15:12:39'),
+(2, 'room02', 'CIT 411', 'SLT004', 'day04', '2023-02-17 05:05:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unit_semester_details`
+--
+
+CREATE TABLE `unit_semester_details` (
+  `id` int(11) NOT NULL,
+  `unit_id` varchar(20) NOT NULL,
+  `semester_id` varchar(20) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit_semester_details`
+--
+
+INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added`) VALUES
+(1, 'CIT 401', 'Y4S1', '2023-02-17 08:25:51'),
+(2, 'CIT 409', 'Y4S1', '2023-02-17 08:25:51');
 
 -- --------------------------------------------------------
 
@@ -436,6 +485,13 @@ ALTER TABLE `school_details`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `semester_details`
+--
+ALTER TABLE `semester_details`
+  ADD PRIMARY KEY (`semester_id`),
+  ADD KEY `sid` (`id`);
+
+--
 -- Indexes for table `time_slot_details`
 --
 ALTER TABLE `time_slot_details`
@@ -459,6 +515,14 @@ ALTER TABLE `unit_room_allocation_details`
   ADD KEY `stime_slot` (`time_slot_id`),
   ADD KEY `day_of_the_week` (`weekday_id`),
   ADD KEY `weekday_id` (`weekday_id`);
+
+--
+-- Indexes for table `unit_semester_details`
+--
+ALTER TABLE `unit_semester_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unitid` (`unit_id`),
+  ADD KEY `semid` (`semester_id`);
 
 --
 -- Indexes for table `user_details`
@@ -531,6 +595,12 @@ ALTER TABLE `room_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `semester_details`
+--
+ALTER TABLE `semester_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `time_slot_details`
 --
 ALTER TABLE `time_slot_details`
@@ -540,7 +610,13 @@ ALTER TABLE `time_slot_details`
 -- AUTO_INCREMENT for table `unit_room_allocation_details`
 --
 ALTER TABLE `unit_room_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `unit_semester_details`
+--
+ALTER TABLE `unit_semester_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_details`
@@ -594,6 +670,13 @@ ALTER TABLE `unit_room_allocation_details`
   ADD CONSTRAINT `room` FOREIGN KEY (`room_id`) REFERENCES `room_details` (`room_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stime_slot` FOREIGN KEY (`time_slot_id`) REFERENCES `time_slot_details` (`slot_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `unit` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `unit_semester_details`
+--
+ALTER TABLE `unit_semester_details`
+  ADD CONSTRAINT `sem` FOREIGN KEY (`semester_id`) REFERENCES `semester_details` (`semester_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `unitdd` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_role_details`
