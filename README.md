@@ -1,7 +1,7 @@
 # University Timetabling System
 
 ##### Note: Chairperson(Department Chair) and Timetable Coordinator are still lecturers only with more priviledges to the system.
-
+git s
 ## Admin logs in and adds:
 
 - Deans/Chairpersons/Coordinators/Lecturers
