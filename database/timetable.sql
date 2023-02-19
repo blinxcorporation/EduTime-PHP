@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 17, 2023 at 06:59 AM
+-- Generation Time: Feb 19, 2023 at 10:55 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -298,25 +298,26 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `active
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unit_room_allocation_details`
+-- Table structure for table `unit_room_time_day_allocation_details`
 --
 
-CREATE TABLE `unit_room_allocation_details` (
+CREATE TABLE `unit_room_time_day_allocation_details` (
   `id` int(11) NOT NULL,
   `room_id` varchar(20) NOT NULL,
   `unit_id` varchar(20) NOT NULL,
   `time_slot_id` varchar(20) NOT NULL,
   `weekday_id` varchar(20) NOT NULL,
+  `lecturer_id` varchar(20) NOT NULL,
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `unit_room_allocation_details`
+-- Dumping data for table `unit_room_time_day_allocation_details`
 --
 
-INSERT INTO `unit_room_allocation_details` (`id`, `room_id`, `unit_id`, `time_slot_id`, `weekday_id`, `date_allocated`) VALUES
-(1, 'room01', 'CIT 401', 'SLT001', 'day01', '2023-02-13 15:12:39'),
-(2, 'room02', 'CIT 411', 'SLT004', 'day04', '2023-02-17 05:05:05');
+INSERT INTO `unit_room_time_day_allocation_details` (`id`, `room_id`, `unit_id`, `time_slot_id`, `weekday_id`, `lecturer_id`, `date_allocated`) VALUES
+(1, 'room01', 'CIT 401', 'SLT001', 'day01', 'PF01', '2023-02-13 15:12:39'),
+(2, 'room02', 'CIT 411', 'SLT004', 'day04', 'PF02', '2023-02-17 05:05:05');
 
 -- --------------------------------------------------------
 
@@ -506,15 +507,16 @@ ALTER TABLE `unit_details`
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `unit_room_allocation_details`
+-- Indexes for table `unit_room_time_day_allocation_details`
 --
-ALTER TABLE `unit_room_allocation_details`
+ALTER TABLE `unit_room_time_day_allocation_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `room` (`room_id`),
   ADD KEY `unit` (`unit_id`),
   ADD KEY `stime_slot` (`time_slot_id`),
   ADD KEY `day_of_the_week` (`weekday_id`),
-  ADD KEY `weekday_id` (`weekday_id`);
+  ADD KEY `weekday_id` (`weekday_id`),
+  ADD KEY `leciddd` (`lecturer_id`);
 
 --
 -- Indexes for table `unit_semester_details`
@@ -607,9 +609,9 @@ ALTER TABLE `time_slot_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `unit_room_allocation_details`
+-- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
-ALTER TABLE `unit_room_allocation_details`
+ALTER TABLE `unit_room_time_day_allocation_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -663,10 +665,11 @@ ALTER TABLE `school_department_details`
   ADD CONSTRAINT `schid` FOREIGN KEY (`school_id`) REFERENCES `school_details` (`school_id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `unit_room_allocation_details`
+-- Constraints for table `unit_room_time_day_allocation_details`
 --
-ALTER TABLE `unit_room_allocation_details`
+ALTER TABLE `unit_room_time_day_allocation_details`
   ADD CONSTRAINT `day_id` FOREIGN KEY (`weekday_id`) REFERENCES `week_day_details` (`week_day_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lecID` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON UPDATE CASCADE,
   ADD CONSTRAINT `room` FOREIGN KEY (`room_id`) REFERENCES `room_details` (`room_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `stime_slot` FOREIGN KEY (`time_slot_id`) REFERENCES `time_slot_details` (`slot_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `unit` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON UPDATE CASCADE;
