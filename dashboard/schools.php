@@ -192,22 +192,21 @@ include '../assets/components/header.php';
           <!-- ============================================================== -->
           <!-- Start Page Content -->
           <!-- ============================================================== -->
-          <div class="row">
-            <div class="col-12">
+    <div class="row">
+      <div class="col-12">
 
-                  <div class="card">
-                <div class="card-body">
-   
-                  <h5 class="card-title">List of Schools</h5>
-                  <input type='button' value='Add a School' name='open-school-modal-btn' class='btn btn-primary float-end open-school-modal-btn m-2'>
-                  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-  <thead>
+            <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">List of Schools</h5>
+            <input type='button' value='Add a School' name='open-school-modal-btn' class='btn btn-primary float-end open-school-modal-btn m-2'>
+            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+<thead>
     <tr>
     <th>School ID</th>
-                          <th>School Name</th>
-                          <th>Short Form</th>
-                          <th>Date Added</th>
-                          <th>Action</th>
+    <th>School Name</th>
+    <th>Short Form</th>
+    <th>Date Added</th>
+    <th>Action</th>
     </tr>
   </thead>
   <tbody>
