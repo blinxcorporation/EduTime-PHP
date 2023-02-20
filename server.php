@@ -13,7 +13,7 @@ $errors = array();
 
 // LOGIN STAFF
 if (isset($_POST['login_btn'])) {
-  $username = $_POST['pf_number'];
+  $username = trim($_POST['pf_number']);
   $password = $_POST['staff_password'];
 
   if (empty($username)) {
@@ -24,72 +24,30 @@ if (isset($_POST['login_btn'])) {
   }
 
   if (count($errors) == 0) {
-    // generate a random salt
-    $salt = "acd40505fd3d8b1d6cf58ad7916ade92176b33d1b11bcf75f01151f84694f4ef802862b2";
+    $encrypted_password = md5($username).sha1($password);
 
-    // create the hashed password
-    $hashed_password = hash('sha256', $salt.$password);
+    $login_query = "SELECT * FROM user_details WHERE `pf_number`='$username' AND `user_password`='$encrypted_password'";
+    $results = mysqli_query($db, $login_query);
 
-    // prepare the SQL statement
-    $stmt = $db->prepare("SELECT * FROM user_details WHERE pf_number=?");
-    $stmt->bind_param("s", $username);
+    if (mysqli_num_rows($results) == 1) {
+      $row = mysqli_fetch_assoc($results);
 
-    // execute the SQL statement
-    $stmt->execute();
+      //sessions
+      $_SESSION['pfno'] = $row['pf_number'];
+      $_SESSION['fname'] = $row['user_firstname'];
+      $_SESSION['lname'] = $row['user_lastname'];
+      $_SESSION['email'] = $row['user_email'];
+      $_SESSION['tel'] = $row['user_phone'];
+      $_SESSION['success'] = "You are now logged in";
 
-    // get the result set
-    $result = $stmt->get_result();
-
-    // check if the user exists
-    if ($result->num_rows == 1) {
-      // get the user's record
-      $row = $result->fetch_assoc();
-
-      // verify the password
-      if (hash_equals($row['user_password'], hash('sha256', $salt.$password))) {
-        // row data
-        $pfnumber = $row['pf_number'];
-        $fname = $row['user_firstname'];
-        $lname = $row['user_lastname'];
-        $mail = $row['user_email'];
-        $phone = $row['user_phone'];
-
-        // set session variables
-        $_SESSION['pfno'] = $pfnumber;
-        $_SESSION['fname'] = $fname; 
-        $_SESSION['lname'] = $lname; 
-        $_SESSION['email'] = $mail; 
-        $_SESSION['tel'] = $phone; 
-        $_SESSION['success'] = "You are now logged in";
-
-        // redirect to the dashboard
-        header('location: ./dashboard/index.php');
-        exit;
-      } else {
-        // password is incorrect
-        array_push($errors, "Incorrect Username or Password");
-      }
-    } else {
-      // user does not exist
+      header('location: ./dashboard/index.php');
+    }else{
       array_push($errors, "Incorrect Username or Password");
+      header('location: index.php');
     }
-
-    // close the prepared statement
-    $stmt->close();
   }
 }
 
-// close the database connection
-mysqli_close($db);
-
-// output any errors
-if (count($errors) > 0) {
-  echo "<ul>";
-  foreach ($errors as $error) {
-    echo "<li>$error</li>";
-  }
-  echo "</ul>";
-}
 
 ob_end_flush();
 ?>

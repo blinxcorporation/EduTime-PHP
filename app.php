@@ -1,9 +1,9 @@
 <?php
-  $password = "Maseno@2023";
-  $salt = "acd40505fd3d8b1d6cf58ad7916ade92176b33d1b11bcf75f01151f84694f4ef802862b2";
-// echo $salt;
-  // create the hashed password
-  $hashed_password = hash('sha256', $salt.$password);
+$username="PF05";
+$password = "Maseno@2023";
 
-echo $hashed_password;
+  // create the hashed password
+$encrypted_password = md5($username).sha1($password);
+
+echo $encrypted_password;
 ?>

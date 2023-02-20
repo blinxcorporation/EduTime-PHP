@@ -251,8 +251,8 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                > Profile  <img
-                    src="../assets/images/users/d2.jpg"
+                > Profile <img
+                    src="../assets/images/users/default.jpg"
                     alt="user"
                     class="rounded-circle"
                     width="31"
