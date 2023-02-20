@@ -74,13 +74,13 @@ include '../assets/components/header.php';
           <div class="row p-3">
             <!-- Column -->
             <div class="col-md-4">
-              <a href="./index.php">
+              <a href="./schools.php">
               <div class="card card-hover">
                 <div class="box bg-cyan text-center">
                   <h1 class="font-light text-white">
                     <i class="mdi mdi-view-dashboard"></i>
                   </h1>
-                  <h6 class="text-white">Dashboard</h6>
+                  <h6 class="text-white">Schools</h6>
                 </div>
               </div>
               </a>
