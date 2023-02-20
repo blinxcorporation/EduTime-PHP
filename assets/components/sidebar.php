@@ -27,7 +27,15 @@
                 >
               </li>
             
-
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="departments.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-school"></i
+                  ><span class="hide-menu">Departments</span></a
+                >
+              </li>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
