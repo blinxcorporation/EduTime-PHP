@@ -39,7 +39,7 @@
               <!-- Logo text -->
               <span class="logo-text ms-2">
                 <!-- dark Logo text -->
-             <h2>WKEO <span style="color:#0693e3;">ADMIN</span></h2>
+             <h2>EDU<span style="color:#0693e3;">TIME</span></h2>
               </span>
 
             </a>

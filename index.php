@@ -30,11 +30,11 @@ include 'server.php';
 <form method="POST" action="server.php">
   <div class="form-group">
     <label for="exampleInputEmail1">PF Number</label>
-    <input type="text" name="pfNumber" class="form-control" id="pf-number" aria-describedby="emailHelp" placeholder="PF Number" required>
+    <input type="text" name="pf_number" class="form-control" id="pf-number" aria-describedby="emailHelp" placeholder="PF Number" required>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label><br>
-    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+    <input type="password" name="staff_password" class="form-control" id="password" placeholder="Password" required>
     <div id="message-length" style="color:red"></div>
     <div id="message-uppercase" style="color:red"></div>
     <div id="message-lowercase" style="color:red"></div>

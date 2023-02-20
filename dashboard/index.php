@@ -9,7 +9,7 @@ $mail = $_SESSION['emailaddress'];
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Dashboard | WKEO </title>
+  <title>Dashboard | EDUTIME </title>
 <?php
 include '../assets/components/header.php';
 ?>
