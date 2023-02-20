@@ -1,6 +1,6 @@
 <?php
 include '../server.php';
-
+$errors = array();
 $pfno = $_SESSION['pfno'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
@@ -8,88 +8,49 @@ $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
 // Update School Details
-if (isset($_POST['update-School-details-btn'])) {
-  $username = $_POST['username'];
-  $fname = $_POST['fname'];
-  $mname = $_POST['mname'];
-  $lname = $_POST['lname'];
-  $emailAddress = $_POST['mail'];
-  $phoneNum= $_POST['phonenum'];
-  $college= $_POST['college'];
+if (isset($_POST['update-school-details-btn'])) {
+  $school_id = $_POST['sch_id'];
+  $school_name = $_POST['sch_name'];
+  $school_short_form = $_POST['sch_short_form'];
 
-  $course= $_POST['course'];
-  $duration= $_POST['duration'];
-  $start_date= $_POST['start_date'];
-  $end_date= $_POST['end_date'];
-  $yearofstudy= $_POST['yearofstudy'];
-  $sem= $_POST['sem'];
+//Data Validation
+  if (empty($school_id)) {
+  	array_push($errors, "School ID is required");
+  }
+  if (empty($school_name)) {
+  	array_push($errors, "School Name is required");
+  }
+  if (empty($school_short_form)) {
+  	array_push($errors, "School Short Form is required");
+  }
 
-  if (empty($username)) {
-  	array_push($errors, "Username is required");
-  }
-  if (empty($fname)) {
-  	array_push($errors, "First Name is required");
-  }
-  if (empty($lname)) {
-  	array_push($errors, "Last Name is required");
-  }
-  if (empty($emailAddress)) {
-  	array_push($errors, "Email is required");
-  }
-  if (empty($phoneNum)) {
-  	array_push($errors, "Phone number is required");
-  }
-  if (empty($college)) {
-  	array_push($errors, "College is required");
-  }
-  if (empty($course)) {
-  	array_push($errors, "Course is required");
-  }
-  if (empty($duration)) {
-  	array_push($errors, "Duration is required");
-  }
-  if (empty($start_date)) {
-  	array_push($errors, "Start Date is required");
-  }
-  if (empty( $end_date)) {
-  	array_push($errors, "End Date is required");
-  }
-  if (empty($yearofstudy)) {
-  	array_push($errors, "Year of is required");
-  }
-  if (empty($sem)) {
-  	array_push($errors, "Semester is required");
-  }
 
   if (count($errors) == 0) {
-  	$School_data_update_query = "UPDATE `School_details` SET `School_username`='$username',`School_firstname`='$fname',`School_middlename`='$mname',`School_lastname`='$lname',`School_email`='$emailAddress',`School_phone`='$phoneNum' WHERE `School_username` ='$username' ";
-  	$results = mysqli_query($db, $School_data_update_query);
+  	$school_data_update_query = "UPDATE `school_details` SET `school_name`='$school_name',`school_shortform`='$school_short_form' WHERE `school_id` ='$school_id' ";
+  	$results = mysqli_query($db, $school_data_update_query);
 
-    $college_data_update_query = "UPDATE `School_institution_details` SET `institution_name`='$college',`course_name`='$course',`course_duration`='$duration',`start_date`='$start_date',`end_date`='$end_date',`yearOfStudy`='$yearofstudy',`currentSemester`='$sem' WHERE `School_id` = '$username'";
-  	$results = mysqli_query($db, $college_data_update_query);
-
-  	  header('location: Schools.php');
+  	header('location: schools.php');
   	}else{
-  		array_push($errors, "Unable to push updates");
-      header('location: Schools.php');
+  	array_push($errors, "Unable to push updates");
+    header('location: schools.php');
   	}
   }
 
   // Delete School Details
-  if (isset($_POST['delete-School-btn'])) {
-    $SchoolID = $_POST['School_id'];
+  if (isset($_POST['delete-school-btn'])) {
+    $schoolID = $_POST['school_id'];
     
-    if (empty($SchoolID)) {
+    if (empty($schoolID)) {
       array_push($errors, "School ID is required");
     }
     if (count($errors) == 0) {
-        $School_data_delete_query = "DELETE FROM `School_details` WHERE `School_username`='$SchoolID' ";
-        $results = mysqli_query($db, $School_data_delete_query);
+        $school_data_delete_query = "DELETE FROM `school_details` WHERE `school_id`='$schoolID' ";
+        $results = mysqli_query($db, $school_data_delete_query);
 
-          header('location: Schools.php');
+          header('location: schools.php');
         }else{
           array_push($errors, "Unable to delete user");
-          header('location: Schools.php');
+          header('location: schools.php');
         }
     }
 ?>
@@ -268,14 +229,14 @@ include '../assets/components/header.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this user?</p>
+        <p>Are you sure you want to delete this school?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" hidden  class="form-control" id="SchoolID" required readonly name='School_id'>
+            <input type="text" hidden  class="form-control" id="schoolID" required readonly name='school_id'>
           </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No Cancel</button>
-        <button type="submit" name='delete-School-btn' class="btn btn-danger">Yes Delete!</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
+        <button type="submit" name='delete-school-btn' class="btn btn-danger">Yes,Delete!</button>
       </div>
         </form>
       </div>
@@ -310,7 +271,7 @@ include '../assets/components/header.php';
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-School-details-btn">Update Details</button>
+        <button type="submit" class="btn btn-info" name="update-school-details-btn">Update Details</button>
       </div>
         </form>
       </div>
@@ -380,11 +341,10 @@ function editSchoolModal() {
     deleteBtn.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let Schoolid = deleteBtn.dataset.id;
+      let schoolid = deleteBtn.dataset.id;
   
-      document.getElementById("SchoolID").value = Schoolid;
-   
-  
+      document.getElementById("schoolID").value = schoolid;
+     
       deleteSchoolModal();
     });
   });
