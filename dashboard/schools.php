@@ -194,29 +194,24 @@ include '../assets/components/header.php';
           <!-- ============================================================== -->
           <div class="row">
             <div class="col-12">
-           
+
                   <div class="card">
                 <div class="card-body">
    
                   <h5 class="card-title">List of Schools</h5>
                   <input type='button' value='Add a School' name='open-school-modal-btn' class='btn btn-primary float-end open-school-modal-btn m-2'>
-                  <div class="table-responsive">
-
-                    <table
-                      id="zero_config"
-                      class="table table-striped table-bordered"
-                    >
-                   
-                      <thead>
-                        <tr>
-                          <th>School ID</th>
+                  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+    <th>School ID</th>
                           <th>School Name</th>
                           <th>Short Form</th>
                           <th>Date Added</th>
                           <th>Action</th>
-                        </tr>
-                      </thead>
-                      <?php
+    </tr>
+  </thead>
+  <tbody>
+  <?php
   if($_SESSION['pfno']){
       $data_fetch_query = "SELECT * FROM `school_details`";
       $data_result = mysqli_query($db, $data_fetch_query);
@@ -252,18 +247,17 @@ include '../assets/components/header.php';
       }
 
 ?>
-        </tbody>
-                      <tfoot>
-                        <tr>
-                        <th>School ID</th>
+  </tbody>
+  <tfoot>
+    <tr>
+    <th>School ID</th>
                           <th>School Name</th>
                           <th>Short Form</th>
                           <th>Date Added</th>
                           <th>Action</th>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
+    </tr>
+  </tfoot>
+</table>
                 </div>
               </div>
             </div>
@@ -415,6 +409,13 @@ include '../assets/components/header.php';
     </script>
 
 <script>
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+
+
+
 //add School details modal code
 function openSchoolModal() {
   $("#addSchoolModal").modal("show");
