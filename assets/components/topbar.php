@@ -251,7 +251,9 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                > Profile <img
+                > <?php
+                echo  $_SESSION['fname']." ".$_SESSION['lname']; 
+                ?> <img
                     src="../assets/images/users/default.jpg"
                     alt="user"
                     class="rounded-circle"
@@ -263,16 +265,16 @@
                   aria-labelledby="navbarDropdown"
                 >
                   <a class="dropdown-item" href="javascript:void(0)"
-                    style="color:black;"><i class="mdi mdi-account me-1 ms-1"></i> <?php echo $name; ?></a
+                    style="color:black;"><i class="mdi mdi-account me-1 ms-1"></i> <?php echo $_SESSION['role_name'];; ?></a
                   >
                   <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-email me-1 ms-1"></i><?php echo $mail; ?></a
+                    ><i class="mdi mdi-email me-1 ms-1"></i><?php echo $_SESSION['email']; ?></a
                   >
                   <a class="dropdown-item" href="javascript:void(0)"
                     ><i class="mdi mdi-settings me-1 ms-1"></i> Profile</a
                   >
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="../logout.php"
+                  <a class="dropdown-item  text-danger" href="../logout.php"
                     ><i class="fa fa-power-off me-1 ms-1"></i> Logout</a
                   >
                 
