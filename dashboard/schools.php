@@ -1,6 +1,20 @@
 <?php
 include '../server.php';
-$errors = array();
+if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
+  // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
+  session_destroy();
+  header("location: ../index.php"); // replace 'login.php' with the URL of your login page
+  exit;
+}
+
+if (!isset($_SESSION['role_name']) || $_SESSION['role_name'] !== 'Admin') {
+  // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
+  header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
+  exit;
+}
+
+
+
 $pfno = $_SESSION['pfno'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
@@ -9,6 +23,7 @@ $mail = $_SESSION['email'];
 
 // Update School Details
 if (isset($_POST['update-school-details-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
   $school_id = $_POST['sch_id'];
   $school_name = $_POST['sch_name'];
   $school_short_form = $_POST['sch_short_form'];
@@ -35,9 +50,11 @@ if (isset($_POST['update-school-details-btn'])) {
     header('location: schools.php');
   	}
   }
+}
 
   // Delete School Details
   if (isset($_POST['delete-school-btn'])) {
+    if ($_SESSION['role_name'] == 'Admin'){
     $schoolID = $_POST['school_id'];
     
     if (empty($schoolID)) {
@@ -53,6 +70,7 @@ if (isset($_POST['update-school-details-btn'])) {
           header('location: schools.php');
         }
     }
+  }
 ?>
 
 

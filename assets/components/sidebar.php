@@ -13,17 +13,33 @@
                   ><span class="hide-menu">Dashboard</span></a
                 >
               </li>
-        
-           
+              <?php
+                       if ($_SESSION['role_name'] == 'Admin'){
+                        // display the HTML code if the session variable 'role_name' is set to 'Admin'
+                        ?>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="students.php"
+                  href="schools.php"
                   aria-expanded="false"
-                  ><i class="mdi mdi-account"></i
-                  ><span class="hide-menu">Students</span></a
+                  ><i class="mdi mdi-school"></i
+                  ><span class="hide-menu">Schools</span></a
                 >
               </li>
+            
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="users.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-account"></i
+                  ><span class="hide-menu">Users</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"

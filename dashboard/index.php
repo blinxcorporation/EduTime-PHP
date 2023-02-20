@@ -1,7 +1,14 @@
 <?php
 include '../server.php';
 
-$name = $_SESSION['fname'] . " ".$_SESSION['lname'];
+if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
+  // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
+  session_destroy();
+  header("location: ../index.php"); // replace 'login.php' with the URL of your login page
+  exit;
+}
+
+$name = $_SESSION['salutation'] . " ".$_SESSION['lname'];
 $username = $_SESSION['username'];
 $mail = $_SESSION['emailaddress'];
 ?>
@@ -73,34 +80,41 @@ include '../assets/components/header.php';
           <!-- ============================================================== -->
           <div class="row p-3">
             <!-- Column -->
-            <div class="col-md-4">
-              <a href="./schools.php">
-              <div class="card card-hover">
+            <?php
+    if ($_SESSION['role_name'] == 'Admin'){
+    // display the HTML code if the session variable 'role_name' is set to 'Admin'
+    ?>
+    <div class="col-md-4">
+        <a href="./schools.php">
+            <div class="card card-hover">
                 <div class="box bg-cyan text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-view-dashboard"></i>
-                  </h1>
-                  <h6 class="text-white">Schools</h6>
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-view-dashboard"></i>
+                    </h1>
+                    <h6 class="text-white">Schools</h6>
                 </div>
-              </div>
-              </a>
             </div>
+        </a>
+    </div>
+
             <!-- Column -->
         
             <!-- Column -->
             <div class="col-md-4">
-              <a href="./students.php">
+              <a href="./users.php">
               <div class="card card-hover">
                 <div class="box bg-danger text-center">
                   <h1 class="font-light text-white">
                     <i class="mdi mdi-account-box"></i>
                   </h1>
-                  <h6 class="text-white">Students</h6>
+                  <h6 class="text-white">Users</h6>
                 </div>
               </div>
             </a>
             </div>
-      
+            <?php
+}
+?>
             <!-- Column -->
             <div class="col-md-4">
             <a href="./add-admin.php">
@@ -121,7 +135,7 @@ include '../assets/components/header.php';
 <div class="row p-3">
             <!-- Column -->
             <div class="col-md-4">
-              <a href=".//add-student.php">
+              <a href="./add-student.php">
               <div class="card card-hover">
                 <div class="box bg-warning text-center">
                   <h1 class="font-light text-white">

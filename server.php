@@ -11,6 +11,8 @@ try {
 
 $errors = array();
 
+
+
 // LOGIN STAFF
 if (isset($_POST['login_btn'])) {
   $username = trim($_POST['pf_number']);
@@ -33,6 +35,7 @@ if (isset($_POST['login_btn'])) {
       $row = mysqli_fetch_assoc($results);
       //sessions
       $_SESSION['pfno'] = $row['pf_number'];
+      $_SESSION['salutation'] = $row['user_title'];
       $_SESSION['fname'] = $row['user_firstname'];
       $_SESSION['lname'] = $row['user_lastname'];
       $_SESSION['email'] = $row['user_email'];

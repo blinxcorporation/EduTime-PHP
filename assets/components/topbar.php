@@ -1,4 +1,5 @@
-         <!-- ============================================================== -->
+      
+       <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
     <div class="preloader">
@@ -83,19 +84,39 @@
                   aria-expanded="false"
                 >
                   <span class="d-none d-md-block"
-                    >Create New <i class="fa fa-angle-down"></i
+                    >Add New .. <i class="fa fa-angle-down"></i
                   ></span>
                   <span class="d-block d-md-none"
                     ><i class="fa fa-plus"></i
                   ></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="add-student.php">Add A Student</a></li>
-                  <li><a class="dropdown-item" href="add-admin.php">Add an Admin</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="budget.php">Add a Budget</a>
-                  </li>
+                  <?php
+                      if ($_SESSION['role_name'] == 'Admin'){
+                        // display the HTML code if the session variable 'role_name' is set to 'Admin'
+                        ?>
+                  <li><a class="dropdown-item" href="add-student.php">Add a School</a></li>
+                  <?php
+                      }
+                  ?>
+                  <?php
+                       if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
+                        // display the HTML code if the session variable 'role_name' is set to 'Admin'
+                        ?>
+                  <li><a class="dropdown-item" href="add-admin.php">Add a Department</a></li>
+                  <?php
+                       }
+                  ?>
+
+                <?php
+                       if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Chairperson'){
+                        // display the HTML code if the session variable 'role_name' is set to 'Admin'
+                        ?>
+                  <li><a class="dropdown-item" href="add-admin.php">Add a Course</a></li>
+
+                  <?php
+                       }
+                  ?>
                 </ul>
               </li>
               <!-- ============================================================== -->
@@ -252,7 +273,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 > <?php
-                echo  $_SESSION['fname']." ".$_SESSION['lname']; 
+                echo  $_SESSION['salutation']." ".$_SESSION['lname']; 
                 ?> <img
                     src="../assets/images/users/default.jpg"
                     alt="user"
