@@ -14,8 +14,6 @@ if (!isset($_SESSION['role_name']) || $_SESSION['role_name'] !== 'Admin') {
   exit;
 }
 
-
-
 $pfno = $_SESSION['pfno'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
@@ -40,36 +38,89 @@ if (isset($_POST['update-school-details-btn'])) {
   	array_push($errors, "School Short Form is required");
   }
 
+if (count($errors) == 0) {
+  $school_data_update_query = "UPDATE `school_details` SET `school_name`='$school_name',`school_shortform`='$school_short_form' WHERE `school_id` ='$school_id' ";
+  $results = mysqli_query($db, $school_data_update_query);
 
-  if (count($errors) == 0) {
-  	$school_data_update_query = "UPDATE `school_details` SET `school_name`='$school_name',`school_shortform`='$school_short_form' WHERE `school_id` ='$school_id' ";
-  	$results = mysqli_query($db, $school_data_update_query);
-
-  	header('location: schools.php');
-  	}else{
-  	array_push($errors, "Unable to push updates");
-    header('location: schools.php');
-  	}
+  header('location: schools.php');
+  }else{
+  array_push($errors, "Unable to push updates");
+  header('location: schools.php');
   }
+}
 }
 
   // Delete School Details
-  if (isset($_POST['delete-school-btn'])) {
-    if ($_SESSION['role_name'] == 'Admin'){
-    $schoolID = $_POST['school_id'];
-    
-    if (empty($schoolID)) {
-      array_push($errors, "School ID is required");
-    }
-    if (count($errors) == 0) {
-        $school_data_delete_query = "DELETE FROM `school_details` WHERE `school_id`='$schoolID' ";
-        $results = mysqli_query($db, $school_data_delete_query);
+if (isset($_POST['delete-school-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
+  $schoolID = $_POST['school_id'];
+  
+  if (empty($schoolID)) {
+    array_push($errors, "School ID is required");
+  }
+  if (count($errors) == 0) {
+      $school_data_delete_query = "DELETE FROM `school_details` WHERE `school_id`='$schoolID' ";
+      $results = mysqli_query($db, $school_data_delete_query);
 
-          header('location: schools.php');
-        }else{
-          array_push($errors, "Unable to delete user");
-          header('location: schools.php');
-        }
+        header('location: schools.php');
+      }else{
+        array_push($errors, "Unable to delete user");
+        header('location: schools.php');
+      }
+  }
+}
+
+//create a slug
+function slugify($string) {
+  $slug = preg_replace('/[^\p{L}\p{N}]+/u', '-', $string);
+  $slug = trim($slug, '-');
+  $slug = mb_strtoupper($slug);
+
+  return $slug;
+}
+
+// Define function to generate primary key for faculties of universities
+function generate_faculty_id($university_id, $faculty_name) {
+  // Convert university ID to uppercase and remove any non-alphanumeric characters
+  $university_id = preg_replace("/[^A-Za-z0-9]/", '', strtoupper($university_id));
+  
+  // Convert faculty name to lowercase and remove any non-alphanumeric characters
+  $faculty_name = slugify(preg_replace("/[^A-Za-z0-9]/", '', strtoupper($faculty_name)));
+  
+  // Generate primary key by concatenating university ID and faculty name
+  $faculty_id = $university_id . '_' . $faculty_name;
+  
+  return $faculty_id;
+}
+
+function capitalizeWords($string) {
+  return ucwords(strtolower($string));
+}
+
+//add school
+if (isset($_POST['add-school-btn'])) {
+  $sch_name = $_POST['school_name'];
+  $sch_short_name = $_POST['school_short_form'];
+
+  if (empty($sch_name)) {
+    array_push($errors, "School name is required");
+  }
+  if (empty($sch_short_name)) {
+    array_push($errors, "School name short form is required");
+  }
+  
+  if (count($errors) == 0) {
+    // Example usage of generate_faculty_id function
+    $university_id = 'MSU';
+    $faculty_id = generate_faculty_id($university_id,$slug);
+
+    $add_sch_query = "INSERT INTO `school_details`(`school_id`, `school_name`, `school_shortform`) VALUES ('$faculty_id','$sch_name','$sch_short_name')";
+    $results = mysqli_query($db, $add_sch_query);
+
+      header('location: ./schools.php');
+    }else{
+      array_push($errors, "Incorrect Username or Password");
+      header('location: ./schools.php');
     }
   }
 ?>
@@ -319,15 +370,15 @@ include '../assets/components/header.php';
         <form method="POST" action="">
         <div class="form-group">
             <label for="recipient-name" readonly class="col-form-label">School Name:</label>
-            <input type="text" name="sch_name"  class="form-control" id="sch_name" required placeholder="e.g School of Computing and Informatics">
+            <input type="text" name="school_name"  class="form-control" id="sch_name" required placeholder="e.g Computing and Informatics">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Short Form:</label>
-            <input type="text" name="sch_short_form" class="form-control" id="sch_short_form" required placeholder="e.g Computing">
+            <input type="text" name="school_short_form" class="form-control" id="sch_short_form" required placeholder="e.g Computing">
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="update-school-details-btn">Submit</button>
+        <button type="submit" class="btn btn-info" name="add-school-btn">Submit</button>
       </div>
         </form>
       </div>
