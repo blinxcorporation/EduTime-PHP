@@ -11,8 +11,6 @@ try {
 
 $errors = array();
 
-
-
 // LOGIN STAFF
 if (isset($_POST['login_btn'])) {
   $username = trim($_POST['pf_number']);

@@ -26,16 +26,26 @@
                   ><span class="hide-menu">Schools</span></a
                 >
               </li>
-            
+              <?php
+                   }
+              ?>
+
+              <?php
+               if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
+              ?>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="departments.php"
                   aria-expanded="false"
-                  ><i class="mdi mdi-school"></i
+                  ><i class="mdi mdi-chair-school"></i
                   ><span class="hide-menu">Departments</span></a
                 >
               </li>
+              <?php
+                   }
+              ?>
+
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -45,9 +55,7 @@
                   ><span class="hide-menu">Users</span></a
                 >
               </li>
-              <?php
-                   }
-              ?>
+            
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"

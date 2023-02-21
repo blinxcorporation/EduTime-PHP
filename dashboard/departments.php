@@ -1,14 +1,7 @@
 <?php
 include '../server.php';
-if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
-  // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
-  session_destroy();
-  header("location: ../index.php"); // replace 'login.php' with the URL of your login page
-  exit;
-}
-
 //deny access to schools.php if user is not an admin
-if (!isset($_SESSION['role_name']) || $_SESSION['role_name'] !== 'Admin') {
+if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Dean' || $_SESSION['role_name'] !== 'Admin') {
   // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
@@ -20,52 +13,49 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-// Update School Details
-if (isset($_POST['update-school-details-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $school_id = $_POST['sch_id'];
-  $school_name = $_POST['sch_name'];
-  $school_short_form = $_POST['sch_short_form'];
+// Update Department Details
+if (isset($_POST['update-department-details-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
+  $department_id = $_POST['dpt_id'];
+  $department_name = $_POST['dpt_name'];
+
 
 //Data Validation
-  if (empty($school_id)) {
-  	array_push($errors, "School ID is required");
+  if (empty($department_id)) {
+  	array_push($errors, "Department ID is required");
   }
-  if (empty($school_name)) {
-  	array_push($errors, "School Name is required");
-  }
-  if (empty($school_short_form)) {
-  	array_push($errors, "School Short Form is required");
+  if (empty($department_name)) {
+  	array_push($errors, "Department Name is required");
   }
 
 if (count($errors) == 0) {
-  $school_data_update_query = "UPDATE `school_details` SET `school_name`='$school_name',`school_shortform`='$school_short_form' WHERE `school_id` ='$school_id' ";
-  $results = mysqli_query($db, $school_data_update_query);
+  $department_data_update_query = "UPDATE `department_details` SET `department_name`='$department_name' WHERE `department_id` ='$department_id' ";
+  $results = mysqli_query($db, $department_data_update_query);
 
-  header('location: schools.php');
+  header('location: departments.php');
   }else{
   array_push($errors, "Unable to push updates");
-  header('location: schools.php');
+  header('location: departments.php');
   }
 }
 }
 
-  // Delete School Details
-if (isset($_POST['delete-school-btn'])) {
+  // Delete department Details
+if (isset($_POST['delete-department-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $schoolID = $_POST['school_id'];
+  $departmentID = $_POST['department_id'];
   
-  if (empty($schoolID)) {
-    array_push($errors, "School ID is required");
+  if (empty($departmentID)) {
+    array_push($errors, "Department ID is required");
   }
   if (count($errors) == 0) {
-      $school_data_delete_query = "DELETE FROM `school_details` WHERE `school_id`='$schoolID' ";
-      $results = mysqli_query($db, $school_data_delete_query);
+      $dpt_data_delete_query = "DELETE FROM `department_details` WHERE `department_id`='$departmentID' ";
+      $results = mysqli_query($db, $dpt_data_delete_query);
 
-        header('location: schools.php');
+        header('location: departments.php');
       }else{
         array_push($errors, "Unable to delete user");
-        header('location: schools.php');
+        header('location: departments.php');
       }
   }
 }
@@ -198,41 +188,38 @@ include '../assets/components/header.php';
             <div class="card">
           <div class="card-body">
             <h5 class="card-title">List of Departments</h5>
-            <input type='button' value='Add a School' name='open-school-modal-btn' class='btn btn-primary float-end open-school-modal-btn m-2'>
+            <input type='button' value='Add a Department' name='open-department-modal-btn' class='btn btn-primary float-end open-department-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
     <th>Department ID</th>
     <th>Department Name</th>
-    <th>Short Form</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <?php
-  if($_SESSION['pfno']){
+  if($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
       $data_fetch_query = "SELECT * FROM `department_details`";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
-              $school_id = $row['school_id'];
-              $school_name = $row['school_name'];
-              $school_shrtname = $row['school_shortform'];
+              $department_id = $row['department_id'];
+              $department_name = $row['department_name'];
               $date_created = $row['date_created'];
 
 
 
-      echo "<tr> <td>" .$school_id.  "</td>";
-      echo "<td>" .$school_name."</td>";
-      echo "<td>" .$school_shrtname."</td>";
+      echo "<tr> <td>" .$department_id.  "</td>";
+      echo "<td>" .$department_name."</td>";
       echo "<td>" .$date_created."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
-      <input  type='text' hidden name='School_id' value='$school_id'>
-      <input type='submit' data-schid='$school_id'  data-schname='$school_name'   data-schshort='$school_shrtname'  value='Edit Details' name='edit-School-btn' class='btn btn-success edit-School-modal-btn m-2'>
-      <input type='submit' data-id= '$school_id' value='Delete School'  class='btn btn-danger deleteSchoolBtn'>
+      <input  type='text' hidden name='Department_id' value='$department_id'>
+      <input type='submit' data-dptid='$department_id'  data-dptname='$department_name'  value='Edit Details' name='edit-department-btn' class='btn btn-success edit-department-modal-btn m-2'>
+      <input type='submit' data-id= '$department_id' value='Delete Department'  class='btn btn-danger deleteDepartmentBtn'>
       </form>
       </td> </tr>";
       }
@@ -251,7 +238,6 @@ include '../assets/components/header.php';
     <tr>
     <th>Department ID</th>
     <th>Department Name</th>
-    <th>Short Form</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -284,7 +270,7 @@ include '../assets/components/header.php';
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-    <div class="modal" id='deleteSchoolModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+    <div class="modal" id='deleteDepartmentModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -296,14 +282,14 @@ include '../assets/components/header.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this school?</p>
+        <p>Are you sure you want to delete this Department?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" hidden  class="form-control" id="schoolID" required readonly name='school_id'>
+            <input type="text" hidden  class="form-control" id="departmentID" required readonly name='department_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-school-btn' class="btn btn-danger">Yes,Delete!</button>
+        <button type="submit" name='delete-department-btn' class="btn btn-danger">Yes,Delete!</button>
       </div>
         </form>
       </div>
@@ -315,32 +301,28 @@ include '../assets/components/header.php';
 </div>
 
 
-<!--edit school details-->
-<div class="modal fade" id="editSchoolModal" tabindex="-1" role="dialog" aria-labelledby="editSchoolModalLabel" aria-hidden="true">
+<!--edit Department details-->
+<div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editSchoolModalLabel">Edit School Details</h5>
+        <h5 class="modal-title" id="editDepartmentModalLabel">Edit Department Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form method="POST" action="">
+        
+            <input type="text" readonly hidden name="dpt_id"  class="form-control" id="dpt_id" required>
+          
         <div class="form-group">
-            <input type="text" readonly hidden name="sch_id"  class="form-control" id="sch_id" required>
-          </div>
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">School Name:</label>
-            <input type="text" name="sch_name"  class="form-control" id="sch_name" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Short Form:</label>
-            <input type="text" name="sch_short_form" class="form-control" id="sch_short_form" required>
+            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
+            <input type="text" name="dpt_name"  class="form-control" id="dpt_name" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-school-details-btn">Update Details</button>
+        <button type="submit" class="btn btn-info" name="update-department-details-btn">Update Details</button>
       </div>
         </form>
       </div>
@@ -349,12 +331,12 @@ include '../assets/components/header.php';
   </div>
 </div>
 
-<!-- add new School-->
-<div class="modal fade" id="addSchoolModal" tabindex="-1" role="dialog" aria-labelledby="addSchoolModalLabel" aria-hidden="true">
+<!-- add new Department-->
+<div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addSchoolModalLabel">Add a School</h5>
+        <h5 class="modal-title" id="addDepartmentModalLabel">Add a Department</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -362,16 +344,12 @@ include '../assets/components/header.php';
       <div class="modal-body">
         <form method="POST" action="">
         <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">School Name:</label>
-            <input type="text" name="school_name"  class="form-control" id="sch_name" required placeholder="e.g Computing and Informatics">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Short Form:</label>
-            <input type="text" name="school_short_form" class="form-control" id="sch_short_form" required placeholder="e.g Computing">
+            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
+            <input type="text" name="department_name"  class="form-control" id="dpt_name" required placeholder="e.g Information Technology">
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="add-school-btn">Submit</button>
+        <button type="submit" class="btn btn-info" name="add-department-btn">Submit</button>
       </div>
         </form>
       </div>
@@ -415,56 +393,54 @@ $(document).ready(function () {
 
 
 
-//add School details modal code
-function openSchoolModal() {
-  $("#addSchoolModal").modal("show");
+//add Department details modal code
+function openDepartmentModal() {
+  $("#addDepartmentModal").modal("show");
 }
-let openAddSchoolModalBtn = document.querySelector(".open-school-modal-btn");
 
-openAddSchoolModalBtn.addEventListener("click", function (e) {
+let openAddDepartmentModalBtn = document.querySelector(".open-department-modal-btn");
+
+openAddDepartmentModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  openSchoolModal();
+  openDepartmentModal();
 });
 
 
 
-//edit School details modal code
-function editSchoolModal() {
-    $("#editSchoolModal").modal("show");
+//edit Department details modal code
+function editDepartmentModal() {
+    $("#editDepartmentModal").modal("show");
   }
-  let editButtons = document.querySelectorAll(".edit-School-modal-btn");
+  let editButtons = document.querySelectorAll(".edit-department-modal-btn");
   editButtons.forEach(function (editButton) {
     editButton.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let schoolid = editButton.dataset.schid;
-      let sch_name = editButton.dataset.schname;
-      let sch_short_name = editButton.dataset.schshort;
+      let departmentid = editButton.dataset.dptid;
+      let dpt_name = editButton.dataset.dptname;
 
+      document.getElementById("dpt_id").value = departmentid ;
+      document.getElementById("dpt_name").value = dpt_name;
 
-      document.getElementById("sch_id").value = schoolid ;
-      document.getElementById("sch_name").value = sch_name;
-      document.getElementById("sch_short_form").value = sch_short_name;
-
-      editSchoolModal();
+      editDepartmentModal();
     });
   });
 
 
-  //delete School modal query
-    function deleteSchoolModal() {
-    $("#deleteSchoolModal").modal("show");
+  //delete Department modal query
+    function deleteDepartmentModal() {
+    $("#deleteDepartmentModal").modal("show");
   }
-  let deleteBtns = document.querySelectorAll(".deleteSchoolBtn");
+  let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
   deleteBtns.forEach(function (deleteBtn) {
     deleteBtn.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let schoolid = deleteBtn.dataset.id;
+      let dptid = deleteBtn.dataset.id;
   
-      document.getElementById("schoolID").value = schoolid;
+      document.getElementById("departmentID").value = dptid;
      
-      deleteSchoolModal();
+      deleteDepartmentModal();
     });
   });
 
