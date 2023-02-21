@@ -42,6 +42,26 @@ if (isset($_POST['login_btn'])) {
       $_SESSION['role_name']=$row['role_name'];
       $_SESSION['success'] = "You are now logged in";
 
+
+
+   // set session cookie parameters
+   session_set_cookie_params(0, '/', '', true, true);
+
+   // secure the session cookie
+
+  //  Set session.cookie_secure = 1 to ensure that the session cookie is only sent over HTTPS.
+   ini_set('session.cookie_secure', 1);
+  //  Set session.cookie_httponly = 1 to ensure that the session cookie is not accessible through client-side scripts.
+   ini_set('session.cookie_httponly', 1);
+  //  Set session.use_only_cookies = 1 to ensure that the session ID is only transmitted via cookies.
+   ini_set('session.use_only_cookies', 1);
+  //  Set session.cookie_lifetime = 0 to ensure that the session cookie expires when the browser is closed.
+   ini_set('session.cookie_lifetime', 0);
+
+  //  Use session_regenerate_id() to generate a new session ID on every page load.
+   session_regenerate_id();
+
+
       header('location: ./dashboard/index.php');
     }else{
       array_push($errors, "Incorrect Username or Password");
