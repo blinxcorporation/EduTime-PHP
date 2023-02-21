@@ -42,8 +42,6 @@ if (isset($_POST['login_btn'])) {
       $_SESSION['role_name']=$row['role_name'];
       $_SESSION['success'] = "You are now logged in";
 
-
-
    // set session cookie parameters
    session_set_cookie_params(0, '/', '', true, true);
 
