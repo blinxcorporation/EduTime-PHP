@@ -60,43 +60,16 @@ if (isset($_POST['delete-department-btn'])) {
   }
 }
 
-//create a slug
-function slugify($string) {
-  $slug = preg_replace('/[^\p{L}\p{N}]+/u', '-', $string);
-  $slug = trim($slug, '-');
-  $slug = mb_strtoupper($slug);
-
-  return $slug;
-}
-
-// Define function to generate primary key for faculties of universities
-function generate_faculty_id($university_id, $faculty_name) {
-  // Convert university ID to uppercase and remove any non-alphanumeric characters
-  $university_id = preg_replace("/[^A-Za-z0-9]/", '', strtoupper($university_id));
-  
-  // Convert faculty name to lowercase and remove any non-alphanumeric characters
-  $faculty_name = slugify(preg_replace("/[^A-Za-z0-9]/", '', strtoupper($faculty_name)));
-  
-  // Generate primary key by concatenating university ID and faculty name
-  $faculty_id = $university_id . '_' . $faculty_name;
-  
-  return $faculty_id;
-}
-
 function capitalizeWords($string) {
   return ucwords(strtolower($string));
 }
 
-//add school
-if (isset($_POST['add-school-btn'])) {
-  $sch_name = $_POST['school_name'];
-  $sch_short_name = $_POST['school_short_form'];
+//add department
+if (isset($_POST['add-sdepartment-btn'])) {
+  $dpt_name = $_POST['department_name'];
 
-  if (empty($sch_name)) {
-    array_push($errors, "School name is required");
-  }
-  if (empty($sch_short_name)) {
-    array_push($errors, "School name short form is required");
+  if (empty($dpt_name)) {
+    array_push($errors, "Department name is required");
   }
   
   if (count($errors) == 0) {
@@ -343,6 +316,22 @@ include '../assets/components/header.php';
       </div>
       <div class="modal-body">
         <form method="POST" action="">
+        <div class="form-group">
+    <label for="exampleFormControlSelect1">Select School</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="username">
+<option value="">Select School</option>
+<?php $sql=mysqli_query($db,"select * from school_details");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['school_id']);?>"><?php echo htmlentities($rw['school_name']);?></option>
+<?php
+}
+?>
+
+</select>
+    </select>
+  </div>
+
         <div class="form-group">
             <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
             <input type="text" name="department_name"  class="form-control" id="dpt_name" required placeholder="e.g Information Technology">
