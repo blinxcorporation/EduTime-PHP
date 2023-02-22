@@ -323,7 +323,7 @@ include '../assets/components/header.php';
 <?php $sql=mysqli_query($db,"select * from school_details");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['school_id']);?>"><?php echo htmlentities($rw['school_name']);?></option>
+  <option value="<?php echo htmlentities($rw['school_id']);?>">School of <?php echo htmlentities($rw['school_name']);?></option>
 <?php
 }
 ?>
