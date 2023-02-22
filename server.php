@@ -11,6 +11,11 @@ try {
 
 $errors = array();
 
+// Redirect to HTTPS if not already on HTTPS
+// if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+//   header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+//   exit();
+// }
 // LOGIN STAFF
 if (isset($_POST['login_btn'])) {
   $username = trim($_POST['pf_number']);
@@ -45,8 +50,6 @@ if (isset($_POST['login_btn'])) {
    // set session cookie parameters
    session_set_cookie_params(0, '/', '', true, true);
 
-   // secure the session cookie
-
   //  Set session.cookie_secure = 1 to ensure that the session cookie is only sent over HTTPS.
    ini_set('session.cookie_secure', 1);
   //  Set session.cookie_httponly = 1 to ensure that the session cookie is not accessible through client-side scripts.
@@ -58,7 +61,6 @@ if (isset($_POST['login_btn'])) {
 
   //  Use session_regenerate_id() to generate a new session ID on every page load.
    session_regenerate_id();
-
 
       header('location: ./dashboard/index.php');
     }else{
