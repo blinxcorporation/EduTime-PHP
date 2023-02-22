@@ -112,7 +112,7 @@ if (isset($_POST['add-school-btn'])) {
   if (count($errors) == 0) {
     // Example usage of generate_faculty_id function
     $university_id = 'MSU';
-    $faculty_id = generate_faculty_id($university_id,$slug);
+    $faculty_id = generate_faculty_id($university_id,$sch_short_name);
 
     $add_sch_query = "INSERT INTO `school_details`(`school_id`, `school_name`, `school_shortform`) VALUES ('$faculty_id','$sch_name','$sch_short_name')";
     $results = mysqli_query($db, $add_sch_query);

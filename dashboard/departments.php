@@ -66,6 +66,7 @@ function capitalizeWords($string) {
 
 //add department
 if (isset($_POST['add-sdepartment-btn'])) {
+  $school_id = $_POST['uni_schools'];
   $dpt_name = $_POST['department_name'];
 
   if (empty($dpt_name)) {
@@ -318,7 +319,7 @@ include '../assets/components/header.php';
         <form method="POST" action="">
         <div class="form-group">
     <label for="exampleFormControlSelect1">Select School</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="username">
+    <select class="form-control" id="exampleFormControlSelect1" name="uni_schools">
 <option value="">Select School</option>
 <?php $sql=mysqli_query($db,"select * from school_details");
 while ($rw=mysqli_fetch_array($sql)) {
