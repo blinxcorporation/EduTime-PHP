@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2023 at 12:32 PM
+-- Generation Time: Feb 22, 2023 at 12:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -55,14 +55,6 @@ CREATE TABLE `department_course_details` (
   `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `department_course_details`
---
-
-INSERT INTO `department_course_details` (`id`, `department_id`, `course_id`, `date_added`) VALUES
-(1, 'DPT01', 'CRS01', '2023-02-16 19:41:52'),
-(2, 'DPT02', 'CRS02', '2023-02-16 19:41:52');
-
 -- --------------------------------------------------------
 
 --
@@ -71,17 +63,18 @@ INSERT INTO `department_course_details` (`id`, `department_id`, `course_id`, `da
 
 CREATE TABLE `department_details` (
   `id` int(11) NOT NULL,
-  `department_id` varchar(20) NOT NULL,
-  `department_name` varchar(255) NOT NULL
+  `department_id` varchar(100) NOT NULL,
+  `department_name` varchar(255) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `department_details`
 --
 
-INSERT INTO `department_details` (`id`, `department_id`, `department_name`) VALUES
-(1, 'DPT01', 'Information Technology'),
-(2, 'DPT02', 'Computer Science');
+INSERT INTO `department_details` (`id`, `department_id`, `department_name`, `date_created`) VALUES
+(1, 'MSUCCE677', 'Computer Science', '2023-02-22 10:44:23'),
+(2, 'MSUCGY852', 'Information Technology', '2023-02-22 10:42:34');
 
 -- --------------------------------------------------------
 
@@ -95,14 +88,6 @@ CREATE TABLE `lecturer_department_details` (
   `lecturer_id` varchar(20) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `lecturer_department_details`
---
-
-INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`, `date_created`) VALUES
-(1, 'DPT01', 'PF01', '2023-02-16 19:59:56'),
-(2, 'DPT01', 'PF02', '2023-02-16 19:59:56');
 
 -- --------------------------------------------------------
 
@@ -187,8 +172,8 @@ INSERT INTO `room_details` (`id`, `room_id`, `room_name`, `room_type`, `room_cap
 
 CREATE TABLE `school_department_details` (
   `id` int(11) NOT NULL,
-  `school_id` varchar(20) NOT NULL,
-  `department_id` varchar(20) NOT NULL,
+  `school_id` varchar(100) NOT NULL,
+  `department_id` varchar(100) NOT NULL,
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -197,8 +182,8 @@ CREATE TABLE `school_department_details` (
 --
 
 INSERT INTO `school_department_details` (`id`, `school_id`, `department_id`, `date_updated`) VALUES
-(1, 'SCH01', 'DPT01', '2023-02-16 20:12:45'),
-(2, 'SCH01', 'DPT02', '2023-02-16 20:12:45');
+(1, 'MSU_COMPUTING', 'MSUCGY852', '2023-02-22 10:42:34'),
+(2, 'MSU_COMPUTING', 'MSUCCE677', '2023-02-22 10:44:24');
 
 -- --------------------------------------------------------
 
@@ -208,17 +193,29 @@ INSERT INTO `school_department_details` (`id`, `school_id`, `department_id`, `da
 
 CREATE TABLE `school_details` (
   `id` int(11) NOT NULL,
-  `school_id` varchar(20) NOT NULL,
-  `school_name` varchar(255) NOT NULL
+  `school_id` varchar(100) NOT NULL,
+  `school_name` varchar(255) NOT NULL,
+  `school_shortform` varchar(255) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `school_details`
 --
 
-INSERT INTO `school_details` (`id`, `school_id`, `school_name`) VALUES
-(1, 'SCH01', 'School of Computing and Informatics'),
-(2, 'SCH02', 'School of Medicine');
+INSERT INTO `school_details` (`id`, `school_id`, `school_name`, `school_shortform`, `date_created`) VALUES
+(11, 'MSU_AGRICULTURE', 'Agriculture,Food Security and Environmental Sciences', 'Agriculture', '2023-02-20 20:42:28'),
+(6, 'MSU_ARTS', 'Arts and Social Sciences', 'Arts', '2023-02-20 20:20:11'),
+(7, 'MSU_BUSINESS', 'Business and Economics', 'Business', '2023-02-20 20:23:28'),
+(1, 'MSU_COMPUTING', 'Computing and Informatics', 'Computing', '2023-02-20 19:57:41'),
+(2, 'MSU_DEVELOPMENT', 'Development and Strategic Planning', 'Development', '2023-02-20 19:57:50'),
+(3, 'MSU_EDUCATION', 'Education', 'Education', '2023-02-20 19:58:24'),
+(12, 'MSU_MATHEMATICS', 'Mathematics, Statistics and Actuarial Sciences', 'Mathematics', '2023-02-22 10:30:41'),
+(8, 'MSU_NURSING', 'Nursing', 'Nursing', '2023-02-20 20:24:14'),
+(4, 'MSU_PHARMACY', 'Pharmacy', 'Pharmacy', '2023-02-20 19:59:02'),
+(9, 'MSU_PHYSICAL', 'Physical and Biological Studies', 'Physical', '2023-02-20 20:31:34'),
+(5, 'MSU_PLANNING', 'Planning and Architecture', 'Planning', '2023-02-20 19:59:44'),
+(10, 'MSU_PUBLICHEALTH', 'Public Health and Community Development', 'Public Health', '2023-02-20 20:38:10');
 
 -- --------------------------------------------------------
 
@@ -363,11 +360,12 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `date_created`) VALUES
-(1, 'PF01', 'Dr', ' Titus ', 'Muhambe', 'muhambemukhisa@gmail.com', 785412562, '1f13116d6035df7ec880eb8a32ac8c4e', '2022-12-16 19:57:25'),
-(2, 'PF02', 'Madam', 'Violet', 'Settim', 'violetsettim@gmail.com', 752452868, '1f13116d6035df7ec880eb8a32ac8c4e', '2022-12-16 19:58:26'),
-(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'oongesamuel12@gmail.com', 752452868, '1f13116d6035df7ec880eb8a32ac8c4e', '2022-12-16 20:49:58'),
-(4, 'PF04', 'Mr', 'Isaac', 'Owino', 'owino@maseno.ac.ke', 785412541, '1f13116d6035df7ec880eb8a32ac8c4e', '2022-12-16 20:55:14'),
-(5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, '8821fe54f8b9828c97081d56666b6cc9', '2023-02-16 20:17:16');
+(1, 'PF01', 'Dr', ' Titus ', 'Muhambe', 'muhambemukhisa@gmail.com', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
+(2, 'PF02', 'Madam', 'Violet', 'Settim', 'violetsettim@gmail.com', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
+(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'oongesamuel12@gmail.com', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
+(4, 'PF04', 'Mr', 'Isaac', 'Owino', 'owino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
+(5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
+(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'calvinsotieno@maseno.ac.ke', 758413462, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-21 11:11:02');
 
 -- --------------------------------------------------------
 
@@ -387,7 +385,9 @@ CREATE TABLE `user_role_details` (
 --
 
 INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VALUES
-(1, 'PF01', 'role003', '2023-02-16 20:22:49');
+(1, 'PF01', 'role004', '2023-02-16 20:22:49'),
+(2, 'PF05', 'role001', '2023-02-20 14:39:11'),
+(3, 'PF06', 'role005', '2023-02-21 10:12:55');
 
 -- --------------------------------------------------------
 
@@ -483,7 +483,7 @@ ALTER TABLE `school_department_details`
 --
 ALTER TABLE `school_details`
   ADD PRIMARY KEY (`school_id`),
-  ADD KEY `id` (`id`);
+  ADD KEY `schidddd` (`id`);
 
 --
 -- Indexes for table `semester_details`
@@ -513,10 +513,10 @@ ALTER TABLE `unit_room_time_day_allocation_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `room` (`room_id`),
   ADD KEY `unit` (`unit_id`),
-  ADD KEY `stime_slot` (`time_slot_id`),
   ADD KEY `day_of_the_week` (`weekday_id`),
   ADD KEY `weekday_id` (`weekday_id`),
-  ADD KEY `leciddd` (`lecturer_id`);
+  ADD KEY `leciddd` (`lecturer_id`),
+  ADD KEY `stime_slot` (`time_slot_id`);
 
 --
 -- Indexes for table `unit_semester_details`
@@ -597,6 +597,18 @@ ALTER TABLE `room_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `school_department_details`
+--
+ALTER TABLE `school_department_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `school_details`
+--
+ALTER TABLE `school_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `semester_details`
 --
 ALTER TABLE `semester_details`
@@ -624,7 +636,7 @@ ALTER TABLE `unit_semester_details`
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `week_day_details`
@@ -640,53 +652,53 @@ ALTER TABLE `week_day_details`
 -- Constraints for table `department_course_details`
 --
 ALTER TABLE `department_course_details`
-  ADD CONSTRAINT `course` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `dpt` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `course` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `dpt` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lecturer_department_details`
 --
 ALTER TABLE `lecturer_department_details`
-  ADD CONSTRAINT `dptiid` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `lid` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `dptiid` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lid` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  ADD CONSTRAINT `lec_id` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `unit_id` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `lec_id` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `unit_id` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `school_department_details`
 --
 ALTER TABLE `school_department_details`
-  ADD CONSTRAINT `dptid` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `schid` FOREIGN KEY (`school_id`) REFERENCES `school_details` (`school_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `dptid` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `schid` FOREIGN KEY (`school_id`) REFERENCES `school_details` (`school_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  ADD CONSTRAINT `day_id` FOREIGN KEY (`weekday_id`) REFERENCES `week_day_details` (`week_day_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `lecID` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `room` FOREIGN KEY (`room_id`) REFERENCES `room_details` (`room_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `stime_slot` FOREIGN KEY (`time_slot_id`) REFERENCES `time_slot_details` (`slot_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `unit` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `day_id` FOREIGN KEY (`weekday_id`) REFERENCES `week_day_details` (`week_day_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lecID` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `room` FOREIGN KEY (`room_id`) REFERENCES `room_details` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `stime_slot` FOREIGN KEY (`time_slot_id`) REFERENCES `time_slot_details` (`slot_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `unit` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit_semester_details`
 --
 ALTER TABLE `unit_semester_details`
-  ADD CONSTRAINT `sem` FOREIGN KEY (`semester_id`) REFERENCES `semester_details` (`semester_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `unitdd` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `sem` FOREIGN KEY (`semester_id`) REFERENCES `semester_details` (`semester_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `unitdd` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_role_details`
 --
 ALTER TABLE `user_role_details`
-  ADD CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `role_details` (`role_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`pf_number`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `role_details` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
