@@ -64,27 +64,60 @@ function capitalizeWords($string) {
   return ucwords(strtolower($string));
 }
 
+function generate_department_id($faculty_name, $department_name) {
+  // Convert faculty and department names to uppercase
+  $faculty_name = strtoupper($faculty_name);
+  $department_name = strtoupper($department_name);
+
+  // Remove any non-alphabetic characters from the faculty and department names
+  $faculty_name = preg_replace('/[^A-Z]/', '', $faculty_name);
+  $department_name = preg_replace('/[^A-Z]/', '', $department_name);
+
+  // Extract the first two letters of the faculty name and the last two letters of the department name
+  $faculty_code = substr($faculty_name, 0, 4);
+  $department_code = substr($department_name, -2);
+
+  // Generate a random 3-digit number between 100 and 999
+  $random_number = rand(100, 999);
+
+  // Combine the faculty code, department code, and random number to form the department ID
+  $department_id = $faculty_code . $department_code . $random_number;
+
+  // Return the department ID
+  return $department_id;
+}
+
+
+
 //add department
-if (isset($_POST['add-sdepartment-btn'])) {
+if (isset($_POST['add-department-btn'])) {
   $school_id = $_POST['uni_schools'];
   $dpt_name = $_POST['department_name'];
 
+  if (empty($school_id)) {
+    array_push($errors, "School ID is required");
+  }
   if (empty($dpt_name)) {
     array_push($errors, "Department name is required");
   }
   
   if (count($errors) == 0) {
-    // Example usage of generate_faculty_id function
-    $university_id = 'MSU';
-    $faculty_id = generate_faculty_id($university_id,$slug);
+    // Example usage of generate_dpt_id function
 
-    $add_sch_query = "INSERT INTO `school_details`(`school_id`, `school_name`, `school_shortform`) VALUES ('$faculty_id','$sch_name','$sch_short_name')";
-    $results = mysqli_query($db, $add_sch_query);
+    //generate department id
+$department_id = generate_department_id($school_id, $dpt_name);
 
-      header('location: ./schools.php');
+    $add_dpt_query = "INSERT INTO `department_details`(`department_id`, `department_name`) VALUES ('$department_id','$dpt_name')";
+    $results = mysqli_query($db, $add_dpt_query);
+
+    //link sch with dpt
+    $add_sch_dpt_query = "INSERT INTO `school_department_details`(`school_id`, `department_id`) VALUES ('$school_id','$department_id')";
+    $results_sch_dpt = mysqli_query($db, $add_sch_dpt_query);
+
+      header('location: ./departments.php');
     }else{
       array_push($errors, "Incorrect Username or Password");
-      header('location: ./schools.php');
+      header('location: ./departments.php');
     }
   }
 ?>
