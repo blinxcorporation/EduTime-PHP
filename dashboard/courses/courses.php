@@ -1,7 +1,7 @@
 <?php
-include '../server.php';
+include '.../server.php';
 //deny access to schools.php if user is not an admin
-if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
+if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Dean' || $_SESSION['role_name'] !== 'Admin') {
   // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
@@ -201,31 +201,25 @@ include '../assets/components/header.php';
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
-    <th>School Name</th>
-    <th>Department Name</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <?php
-  if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_course_details.department_id = department_details.department_id INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id INNER JOIN school_details ON school_details.school_id =school_department_details.school_id  ";
+  if($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Chairperson'){
+      $data_fetch_query = "SELECT * FROM `course_details`";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
               $course_id = $row['course_id'];
               $course_name = $row['course_name'];
-              $school_name = $row['school_name'];
-              $department_name = $row['department_name'];
               $date_created = $row['date_added'];
 
 
 
       echo "<tr> <td>" .$course_id.  "</td>";
       echo "<td>" .$course_name."</td>";
-      echo "<td>" .$school_name."</td>";
-      echo "<td>" .$department_name."</td>";
       echo "<td>" .$date_created."</td>";
       echo "<td>
         
@@ -251,8 +245,6 @@ include '../assets/components/header.php';
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
-    <th>School Name</th>
-    <th>Department Name</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
