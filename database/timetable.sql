@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2023 at 12:09 PM
+-- Generation Time: Mar 01, 2023 at 12:05 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -31,6 +31,8 @@ CREATE TABLE `course_details` (
   `id` int(11) NOT NULL,
   `course_id` varchar(20) NOT NULL,
   `course_name` varchar(255) NOT NULL,
+  `course_shortform` varchar(100) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `date_added` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,9 +40,11 @@ CREATE TABLE `course_details` (
 -- Dumping data for table `course_details`
 --
 
-INSERT INTO `course_details` (`id`, `course_id`, `course_name`, `date_added`) VALUES
-(1, 'CRS01', 'Bachelor of Science in Information Technology', '2023-02-16 19:37:50'),
-(2, 'CRS02', 'Bachelor of Science in Computer Science', '2023-02-16 19:37:50');
+INSERT INTO `course_details` (`id`, `course_id`, `course_name`, `course_shortform`, `active`, `date_added`) VALUES
+(1, 'CRS_CCS', 'Bachelor of Science in Computer Science', 'CCS', 1, '2023-02-28 15:24:27'),
+(2, 'CRS_CCT', 'Bachelor of Science in Computer Technology', 'CCT', 1, '2023-02-28 15:24:36'),
+(3, 'CRS_IS', 'Bachelor of Science in Information Systems', 'IS', 1, '2023-02-28 15:40:09'),
+(4, 'CRS_IT', 'Bachelor of Science in Information Technology', 'IT', 1, '2023-02-28 15:27:38');
 
 -- --------------------------------------------------------
 
@@ -50,10 +54,20 @@ INSERT INTO `course_details` (`id`, `course_id`, `course_name`, `date_added`) VA
 
 CREATE TABLE `department_course_details` (
   `id` int(11) NOT NULL,
-  `department_id` varchar(20) NOT NULL,
-  `course_id` varchar(20) NOT NULL,
+  `department_id` varchar(100) NOT NULL,
+  `course_id` varchar(100) NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `department_course_details`
+--
+
+INSERT INTO `department_course_details` (`id`, `department_id`, `course_id`, `date_added`) VALUES
+(1, 'DPT_COMPUTERSCIENCE', 'CRS_CCS', '2023-02-28 15:24:27'),
+(2, 'DPT_COMPUTERSCIENCE', 'CRS_CCT', '2023-02-28 15:24:37'),
+(5, 'DPT_INFORMATIONTECHNOLOGY', 'CRS_IT', '2023-02-28 15:27:38'),
+(7, 'DPT_INFORMATIONTECHNOLOGY', 'CRS_IS', '2023-02-28 15:40:10');
 
 -- --------------------------------------------------------
 
@@ -73,8 +87,8 @@ CREATE TABLE `department_details` (
 --
 
 INSERT INTO `department_details` (`id`, `department_id`, `department_name`, `date_created`) VALUES
-(1, 'MSUCCE677', 'Computer Science', '2023-02-22 10:44:23'),
-(2, 'MSUCGY852', 'Information Technology', '2023-02-22 10:42:34');
+(2, 'DPT_COMPUTERSCIENCE', 'Computer Science', '2023-02-28 15:15:48'),
+(1, 'DPT_INFORMATIONTECHNOLOGY', 'Information Technology', '2023-02-28 15:15:22');
 
 -- --------------------------------------------------------
 
@@ -128,10 +142,8 @@ CREATE TABLE `role_details` (
 
 INSERT INTO `role_details` (`id`, `role_id`, `role_name`) VALUES
 (1, 'role001', 'Admin'),
-(2, 'role002', 'Coordinator'),
-(3, 'role003', 'Lecturer'),
-(4, 'role004', 'Chairperson'),
-(5, 'role005', 'Dean');
+(3, 'role002', 'Lecturer'),
+(4, 'role003', 'Chairperson');
 
 -- --------------------------------------------------------
 
@@ -182,8 +194,8 @@ CREATE TABLE `school_department_details` (
 --
 
 INSERT INTO `school_department_details` (`id`, `school_id`, `department_id`, `date_updated`) VALUES
-(1, 'MSU_COMPUTING', 'MSUCGY852', '2023-02-22 10:42:34'),
-(2, 'MSU_COMPUTING', 'MSUCCE677', '2023-02-22 10:44:24');
+(1, 'MSU_COMPUTING', 'DPT_INFORMATIONTECHNOLOGY', '2023-02-28 15:15:22'),
+(2, 'MSU_COMPUTING', 'DPT_COMPUTERSCIENCE', '2023-02-28 15:15:48');
 
 -- --------------------------------------------------------
 
@@ -272,6 +284,26 @@ INSERT INTO `time_slot_details` (`id`, `slot_id`, `start_time`, `end_time`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `unit_course_details`
+--
+
+CREATE TABLE `unit_course_details` (
+  `id` int(11) NOT NULL,
+  `unit_id` varchar(100) NOT NULL,
+  `course_id` varchar(100) NOT NULL,
+  `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit_course_details`
+--
+
+INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`) VALUES
+(1, 'CIT 401', 'CRS_IT', '2023-02-28 18:20:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `unit_details`
 --
 
@@ -280,17 +312,18 @@ CREATE TABLE `unit_details` (
   `unit_code` varchar(20) NOT NULL,
   `unit_name` varchar(100) NOT NULL,
   `unit_type` varchar(50) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 1
+  `unit_active` tinyint(1) NOT NULL DEFAULT 1,
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `unit_details`
 --
 
-INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `active`) VALUES
-(1, 'CIT 401', 'Software Project Management', 'Theory', 1),
-(2, 'CIT 409', 'Information Technology Project I', 'ICT-Practical', 1),
-(3, 'CIT 411', 'Distributed Systems', 'Theory', 1);
+INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_active`, `date_added`) VALUES
+(1, 'CIT 401', 'Software Project Management', 'Theory', 1, '2023-02-28 23:34:19'),
+(2, 'CIT 409', 'Information Technology Project I', 'ICT-Practical', 1, '2023-02-28 23:34:19'),
+(3, 'CIT 411', 'Distributed Systems', 'Theory', 1, '2023-02-28 23:34:19');
 
 -- --------------------------------------------------------
 
@@ -385,9 +418,8 @@ CREATE TABLE `user_role_details` (
 --
 
 INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VALUES
-(1, 'PF01', 'role004', '2023-02-16 20:22:49'),
-(2, 'PF05', 'role001', '2023-02-20 14:39:11'),
-(3, 'PF06', 'role005', '2023-02-21 10:12:55');
+(1, 'PF01', 'role003', '2023-02-16 20:22:49'),
+(2, 'PF05', 'role001', '2023-02-20 14:39:11');
 
 -- --------------------------------------------------------
 
@@ -422,6 +454,8 @@ INSERT INTO `week_day_details` (`id`, `week_day_id`, `week_day`, `date_added`) V
 --
 ALTER TABLE `course_details`
   ADD PRIMARY KEY (`course_id`),
+  ADD UNIQUE KEY `course_name` (`course_name`),
+  ADD UNIQUE KEY `course_shortform` (`course_shortform`),
   ADD KEY `idd` (`id`);
 
 --
@@ -429,7 +463,7 @@ ALTER TABLE `course_details`
 --
 ALTER TABLE `department_course_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `course` (`course_id`),
+  ADD UNIQUE KEY `course_id` (`course_id`),
   ADD KEY `dpt` (`department_id`);
 
 --
@@ -437,6 +471,7 @@ ALTER TABLE `department_course_details`
 --
 ALTER TABLE `department_details`
   ADD PRIMARY KEY (`department_id`),
+  ADD UNIQUE KEY `department_name` (`department_name`),
   ADD KEY `id` (`id`);
 
 --
@@ -475,7 +510,7 @@ ALTER TABLE `room_details`
 --
 ALTER TABLE `school_department_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idd` (`department_id`),
+  ADD UNIQUE KEY `department_id` (`department_id`),
   ADD KEY `id` (`school_id`);
 
 --
@@ -498,6 +533,14 @@ ALTER TABLE `semester_details`
 ALTER TABLE `time_slot_details`
   ADD PRIMARY KEY (`slot_id`),
   ADD KEY `iddd` (`id`);
+
+--
+-- Indexes for table `unit_course_details`
+--
+ALTER TABLE `unit_course_details`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uid` (`unit_id`),
+  ADD KEY `cid` (`course_id`);
 
 --
 -- Indexes for table `unit_details`
@@ -558,19 +601,19 @@ ALTER TABLE `week_day_details`
 -- AUTO_INCREMENT for table `course_details`
 --
 ALTER TABLE `course_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `department_course_details`
 --
 ALTER TABLE `department_course_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `department_details`
 --
 ALTER TABLE `department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `lecturer_department_details`
@@ -600,7 +643,7 @@ ALTER TABLE `room_details`
 -- AUTO_INCREMENT for table `school_department_details`
 --
 ALTER TABLE `school_department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `school_details`
@@ -619,6 +662,12 @@ ALTER TABLE `semester_details`
 --
 ALTER TABLE `time_slot_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `unit_course_details`
+--
+ALTER TABLE `unit_course_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
@@ -652,7 +701,7 @@ ALTER TABLE `week_day_details`
 -- Constraints for table `department_course_details`
 --
 ALTER TABLE `department_course_details`
-  ADD CONSTRAINT `course` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `courses` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dpt` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -675,6 +724,13 @@ ALTER TABLE `lecturer_unit_details`
 ALTER TABLE `school_department_details`
   ADD CONSTRAINT `dptid` FOREIGN KEY (`department_id`) REFERENCES `department_details` (`department_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `schid` FOREIGN KEY (`school_id`) REFERENCES `school_details` (`school_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `unit_course_details`
+--
+ALTER TABLE `unit_course_details`
+  ADD CONSTRAINT `crsids` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `unitsidddd` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit_room_time_day_allocation_details`
