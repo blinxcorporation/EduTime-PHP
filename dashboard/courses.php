@@ -195,14 +195,14 @@ include '../assets/components/header.php';
             <div class="card">
           <div class="card-body">
             <h5 class="card-title">List of Courses</h5>
-            <input type='button' value='Add a Course' name='open-course-modal-btn' class='btn btn-primary float-end open-department-modal-btn m-2'>
+            <input type='button' value='Add a Course' name='open-course-modal-btn' class='btn btn-primary float-end open-course-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
-    <th>School Name</th>
-    <th>Department Name</th>
+    <th>School</th>
+    <th>Department</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -251,8 +251,8 @@ include '../assets/components/header.php';
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
-    <th>School Name</th>
-    <th>Department Name</th>
+    <th>School</th>
+    <th>Department</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -285,7 +285,9 @@ include '../assets/components/header.php';
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-    <div class="modal" id='deleteDepartmentModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+
+    <!-- delete course modal-->
+    <div class="modal" id='deleteCourseModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -297,10 +299,10 @@ include '../assets/components/header.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this Department?</p>
+        <p>Are you sure you want to delete this Course?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" hidden  class="form-control" id="departmentID" required readonly name='department_id'>
+            <input type="text" hidden  class="form-control" id="courseID" required readonly name='course_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
@@ -316,12 +318,12 @@ include '../assets/components/header.php';
 </div>
 
 
-<!--edit Department details-->
-<div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
+<!--edit Course details-->
+<div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="editCourseModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editDepartmentModalLabel">Edit Department Details</h5>
+        <h5 class="modal-title" id="editCourseModalLabel">Edit Course Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -329,15 +331,15 @@ include '../assets/components/header.php';
       <div class="modal-body">
         <form method="POST" action="">
         
-            <input type="text" readonly hidden name="dpt_id"  class="form-control" id="dpt_id" required>
+            <input type="text" readonly hidden name="crs_id"  class="form-control" id="crs_id" required>
           
         <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <input type="text" name="dpt_name"  class="form-control" id="dpt_name" required>
+            <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
+            <input type="text" name="crs_name"  class="form-control" id="crs_name" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-department-details-btn">Update Details</button>
+        <button type="submit" class="btn btn-info" name="update-course-details-btn">Update Details</button>
       </div>
         </form>
       </div>
@@ -346,48 +348,78 @@ include '../assets/components/header.php';
   </div>
 </div>
 
-<!-- add new Department-->
-<div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
+<!-- add new Course-->
+<div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addDepartmentModalLabel">Add a Department</h5>
+        <h5 class="modal-title" id="addCourseModalLabel">Add a Course</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <form method="POST" action="">
-        <div class="form-group">
-    <label for="exampleFormControlSelect1">Select School</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="uni_schools">
-<option value="">Select School</option>
-<?php $sql=mysqli_query($db,"select * from school_details");
-while ($rw=mysqli_fetch_array($sql)) {
-  ?>
-  <option value="<?php echo htmlentities($rw['school_id']);?>">School of <?php echo htmlentities($rw['school_name']);?></option>
-<?php
-}
-?>
 
-</select>
-    </select>
-  </div>
+<!-- Add an onchange event to the school select element -->
+<div class="form-group">
+  <label for="uni_school_id">Select School</label>
+  <select class="form-control" id="uni_school_id" name="uni_schools" onchange="getDepartments()">
+    <option value="">Select school..</option>
+    <?php 
+    // Retrieve the schools from the database
+    $sql=mysqli_query($db,"select * from school_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['school_id']);?>">School of <?php echo htmlentities($rw['school_name']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+</div>
 
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <input type="text" name="department_name"  class="form-control" id="dpt_name" required placeholder="e.g Information Technology">
-          </div>
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="add-department-btn">Submit</button>
-      </div>
-        </form>
-      </div>
-     
+<!-- Add a new div to display the departments -->
+<div class="form-group" id="department_div">
+  <!-- Add a hidden field to store the selected school id -->
+<input type="hidden" id="selected_school_id" name="selected_school_id" value="">
+  <label for="uni_department_id">Select Department</label>
+  <select class="form-control" id="uni_department_id" name="uni_departments">
+    <option value="">Select Department..</option>
+
+    <?php 
+// Get the selected school id
+$selectedSchoolId = $_GET['selected_school_id'];
+
+    // Retrieve the schools from the database
+    $sql=mysqli_query($db,"SELECT * FROM department_details INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id WHERE school_department_details.school_id ='$selectedSchoolId' ");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['department_id']);?>">Department of <?php echo htmlentities($rw['department_name']);?></option>
+    <?php
+    }
+    ?>
+      
+  </select>
+</div>
+
+
+
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
+          <input type="text" name="Course_name"  class="form-control" id="crs_name" required placeholder="e.g Bachelor of Science in Information Technology">
+        </div>
+        <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+      <button type="submit" class="btn btn-info" name="add-course-btn">Submit</button>
     </div>
+      </form>
+    </div>
+    
   </div>
 </div>
+</div>
+
 
 
     <!-- ============================================================== -->
@@ -422,58 +454,72 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
 
-
-
-//add Department details modal code
-function openDepartmentModal() {
-  $("#addDepartmentModal").modal("show");
+//add Course details modal code
+function openCourseModal() {
+  $("#addCourseModal").modal("show");
 }
-
-let openAddDepartmentModalBtn = document.querySelector(".open-department-modal-btn");
-
-openAddDepartmentModalBtn.addEventListener("click", function (e) {
+let openAddCourseModalBtn = document.querySelector(".open-course-modal-btn");
+openAddCourseModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  openDepartmentModal();
+  openCourseModal();
 });
 
+function getDepartments() {
+    // Get the selected school id
+    var selectedSchoolId = document.getElementById("uni_school_id").value;
+    // alert(selectedSchoolId)
+    // Set the selected school id in the hidden field
+    document.getElementById("selected_school_id").value = selectedSchoolId;
+    
+    // Make an AJAX request to retrieve the departments
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "departments.php?department_id=" + selectedSchoolId, true);
+    xhr.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Update the department select element
+            console.log(this.responseText);
+            document.getElementById("uni_department_id").innerHTML = this.responseText;
+        }
+    };
+    xhr.send();
+}
 
-
-//edit Department details modal code
-function editDepartmentModal() {
-    $("#editDepartmentModal").modal("show");
-  }
-  let editButtons = document.querySelectorAll(".edit-department-modal-btn");
-  editButtons.forEach(function (editButton) {
-    editButton.addEventListener("click", function (e) {
-      e.preventDefault();
+// //edit Department details modal code
+// function editDepartmentModal() {
+//     $("#editDepartmentModal").modal("show");
+//   }
+//   let editButtons = document.querySelectorAll(".edit-department-modal-btn");
+//   editButtons.forEach(function (editButton) {
+//     editButton.addEventListener("click", function (e) {
+//       e.preventDefault();
   
-      let departmentid = editButton.dataset.dptid;
-      let dpt_name = editButton.dataset.dptname;
+//       let departmentid = editButton.dataset.dptid;
+//       let dpt_name = editButton.dataset.dptname;
 
-      document.getElementById("dpt_id").value = departmentid ;
-      document.getElementById("dpt_name").value = dpt_name;
+//       document.getElementById("dpt_id").value = departmentid ;
+//       document.getElementById("dpt_name").value = dpt_name;
 
-      editDepartmentModal();
-    });
-  });
+//       editDepartmentModal();
+//     });
+//   });
 
 
   //delete Department modal query
-    function deleteDepartmentModal() {
-    $("#deleteDepartmentModal").modal("show");
-  }
-  let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
-  deleteBtns.forEach(function (deleteBtn) {
-    deleteBtn.addEventListener("click", function (e) {
-      e.preventDefault();
+  //   function deleteDepartmentModal() {
+  //   $("#deleteDepartmentModal").modal("show");
+  // }
+  // let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
+  // deleteBtns.forEach(function (deleteBtn) {
+  //   deleteBtn.addEventListener("click", function (e) {
+  //     e.preventDefault();
   
-      let dptid = deleteBtn.dataset.id;
+  //     let dptid = deleteBtn.dataset.id;
   
-      document.getElementById("departmentID").value = dptid;
+  //     document.getElementById("departmentID").value = dptid;
      
-      deleteDepartmentModal();
-    });
-  });
+  //     deleteDepartmentModal();
+  //   });
+  // });
 
   </script>
 
