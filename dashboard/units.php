@@ -117,7 +117,7 @@ if (isset($_POST['add-course-btn'])) {
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Courses | EDUTIME</title>
+  <title>Units| EDUTIME</title>
   <?php
 include '../assets/components/header.php';
 ?>
@@ -155,13 +155,13 @@ include '../assets/components/header.php';
         <div class="page-breadcrumb pt-5">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Course Details</h4>
+              <h4 class="page-title">Units Details</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Courses
+                      Units
                     </li>
 
                   </ol>
@@ -185,15 +185,14 @@ include '../assets/components/header.php';
 
             <div class="card">
           <div class="card-body">
-            <h5 class="card-title">List of Courses</h5>
-            <input type='button' value='Add a Course' name='open-course-modal-btn' class='btn btn-primary float-end open-course-modal-btn m-2'>
+            <h5 class="card-title">List of Units</h5>
+            <input type='button' value='Add a Unit' name='open-unit-modal-btn' class='btn btn-primary float-end open-unit-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
-    <th>Course ID</th>
-    <th>Course Name</th>
-    <th>Short Form</th>
-    <th>Department</th>
+    <th>Unit ID</th>
+    <th>Unit Name</th>
+    <th>Status</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -201,31 +200,29 @@ include '../assets/components/header.php';
   <tbody>
   <?php
   if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_course_details.department_id = department_details.department_id INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id INNER JOIN school_details ON school_details.school_id =school_department_details.school_id ";
+      $data_fetch_query = "SELECT * FROM `unit_details`";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
+              $unit_id = $row['unit_code'];
+              $unit_name = $row['unit_name'];
+              $unit_type = $row['unit_type'];
+              $unit_active = $row['unit_active'];//string (1,0)
               $course_id = $row['course_id'];
-              $course_name = $row['course_name'];
-              $shortname = $row['course_shortform'];
-              $school_name = $row['school_name'];
-              $department_id = $row['department_id'];
-              $department_name = $row['department_name'];
-              $date_created = $row['date_added'];
+              $date_added = $row['date_added'];
+              $unit_status= ($unit_active) ? "Active" : "Inactive";
 
-      echo "<tr> <td>" .$course_id.  "</td>";
-      echo "<td>" .$course_name."</td>";
-      echo "<td>" .$shortname."</td>";
-      echo "<td>" .$department_name."</td>";
-      echo "<td>" .$date_created."</td>";
-      echo "<td>
-        
-      <form method ='POST' action=''>
-      <input  type='text' hidden name='course_id' value='$course_id'>
-      <input type='submit' data-crsid='$course_id'  data-crsname='$course_name' data-crs_short_name='$shortname' data-crs_dpt_id='$department_id' value='Edit Details' name='edit-course-btn' class='btn btn-success edit-course-modal-btn m-2'>
-      <input type='submit' data-id= '$course_id' value='Delete Course'  class='btn btn-danger deleteCourseBtn'>
-      </form>
-      </td> </tr>";
+                echo "<tr> <td>" .$unit_id.  "</td>";
+                echo "<td>" .$unit_name."</td>";
+                echo "<td>" .$unit_status."</td>";
+                echo "<td>" .$date_added."</td>";
+                echo "<td>
+                <form method ='POST' action=''>
+                <input  type='text' hidden name='unit_id' value='$unit_id'>
+                <input type='submit' data-unit_id='$unit_id'  data-unit_name='$unit_name' value='Edit Details' name='edit-unit-btn' class='btn btn-success edit-unit-modal-btn m-2'>
+                <input type='submit' data-id= '$unit_id' value='Delete Unit'  class='btn btn-danger deleteUnitBtn'>
+                </form>
+                </td> </tr>";
       }
       
       }else{
@@ -240,10 +237,9 @@ include '../assets/components/header.php';
   </tbody>
   <tfoot>
     <tr>
-    <th>Course ID</th>
-    <th>Course Name</th>
-    <th>Short Form</th>
-    <th>Department</th>
+    <th>Unit ID</th>
+    <th>Unit Name</th>
+    <th>Status</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
