@@ -40,22 +40,22 @@ if (count($errors) == 0) {
 }
 }
 
-  // Delete department Details
-if (isset($_POST['delete-department-btn'])) {
+  // Delete course Details
+if (isset($_POST['delete-course-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $departmentID = $_POST['department_id'];
+  $courseID = $_POST['course_id'];
   
-  if (empty($departmentID)) {
-    array_push($errors, "Department ID is required");
+  if (empty($courseID)) {
+    array_push($errors, "Course ID is required");
   }
   if (count($errors) == 0) {
-      $dpt_data_delete_query = "DELETE FROM `department_details` WHERE `department_id`='$departmentID' ";
-      $results = mysqli_query($db, $dpt_data_delete_query);
+      $crs_data_delete_query = "DELETE FROM `course_details` WHERE `course_id`='$courseID' ";
+      $results = mysqli_query($db, $crs_data_delete_query);
 
-        header('location: departments.php');
+        header('location: courses.php');
       }else{
         array_push($errors, "Unable to delete user");
-        header('location: departments.php');
+        header('location: courses.php');
       }
   }
 }
@@ -281,11 +281,11 @@ include '../assets/components/header.php';
         <p>Are you sure you want to delete this Course?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" hidden  class="form-control" id="courseID" required readonly name='course_id'>
+            <input type="text"  hidden class="form-control" id="courseID" required readonly name='course_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-department-btn' class="btn btn-danger">Yes,Delete!</button>
+        <button type="submit" name='delete-course-btn' class="btn btn-danger">Yes,Delete!</button>
       </div>
         </form>
       </div>
@@ -444,22 +444,22 @@ openAddCourseModalBtn.addEventListener("click", function (e) {
 //   });
 
 
-  //delete Department modal query
-  //   function deleteDepartmentModal() {
-  //   $("#deleteDepartmentModal").modal("show");
-  // }
-  // let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
-  // deleteBtns.forEach(function (deleteBtn) {
-  //   deleteBtn.addEventListener("click", function (e) {
-  //     e.preventDefault();
+  // delete Course modal query
+    function deleteCourseModal() {
+    $("#deleteCourseModal").modal("show");
+  }
+  let deleteBtns = document.querySelectorAll(".deleteCourseBtn");
+  deleteBtns.forEach(function (deleteBtn) {
+    deleteBtn.addEventListener("click", function (e) {
+      e.preventDefault();
   
-  //     let dptid = deleteBtn.dataset.id;
+      let crsid = deleteBtn.dataset.id;
   
-  //     document.getElementById("departmentID").value = dptid;
+      document.getElementById("courseID").value = crsid;
      
-  //     deleteDepartmentModal();
-  //   });
-  // });
+      deleteCourseModal();
+    });
+  });
 
   </script>
 
