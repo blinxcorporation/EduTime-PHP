@@ -100,7 +100,7 @@
                       }
                   ?>
                   <?php
-                       if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
+                       if ($_SESSION['role_name'] == 'Admin'){
                         // display the HTML code if the session variable 'role_name' is set to 'Admin'
                         ?>
                   <li><a class="dropdown-item" href="add-admin.php">Add a Department</a></li>
@@ -109,7 +109,7 @@
                   ?>
 
                 <?php
-                       if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Chairperson'){
+                       if ($_SESSION['role_name'] == 'Admin'){
                         // display the HTML code if the session variable 'role_name' is set to 'Admin'
                         ?>
                   <li><a class="dropdown-item" href="add-admin.php">Add a Course</a></li>
@@ -273,7 +273,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 > <?php
-                echo  $_SESSION['salutation']." ".$_SESSION['lname']; 
+                echo  $_SESSION['salutation']." ".$_SESSION['fname']." ".$_SESSION['lname']; 
                 ?> <img
                     src="../assets/images/users/default.jpg"
                     alt="user"
@@ -286,7 +286,7 @@
                   aria-labelledby="navbarDropdown"
                 >
                   <a class="dropdown-item" href="javascript:void(0)"
-                    style="color:black;"><i class="mdi mdi-account me-1 ms-1"></i> <?php echo $_SESSION['role_name'];; ?></a
+                    style="color:black;"><i class="mdi mdi-account me-1 ms-1"></i> <?php echo $_SESSION['role_name']; ?></a
                   >
                   <a class="dropdown-item" href="javascript:void(0)"
                     ><i class="mdi mdi-email me-1 ms-1"></i><?php echo $_SESSION['email']; ?></a

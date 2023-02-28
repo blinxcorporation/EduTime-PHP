@@ -16,6 +16,7 @@ $errors = array();
 //   header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 //   exit();
 // }
+
 // LOGIN STAFF
 if (isset($_POST['login_btn'])) {
   $username = trim($_POST['pf_number']);
@@ -62,7 +63,7 @@ if (isset($_POST['login_btn'])) {
   //  Use session_regenerate_id() to generate a new session ID on every page load.
    session_regenerate_id();
 
-      header('location: ./dashboard/index.php');
+      header('location: ./dashboard/');
     }else{
       array_push($errors, "Incorrect Username or Password");
       header('location: index.php');

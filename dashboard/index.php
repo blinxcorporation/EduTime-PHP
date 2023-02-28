@@ -9,8 +9,8 @@ if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
 }
 
 $name = $_SESSION['salutation'] . " ".$_SESSION['lname'];
-$username = $_SESSION['username'];
-$mail = $_SESSION['emailaddress'];
+$role_name = $_SESSION['role_name'];
+$mail = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +61,6 @@ include '../assets/components/header.php';
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item p-4"><a href="#">Home</a></li>
-                   
                   </ol>
                 </nav>
               </div>
@@ -81,7 +80,7 @@ include '../assets/components/header.php';
           <div class="row p-3">
             <!-- Column -->
             <?php
-    if ($_SESSION['role_name'] == 'Admin'){
+    if ($_SESSION['role_name'] === 'Admin'){
     // display the HTML code if the session variable 'role_name' is set to 'Admin'
     ?>
     <div class="col-md-4">
@@ -97,85 +96,80 @@ include '../assets/components/header.php';
         </a>
     </div>
 
+    <div class="col-md-4">
+        <a href="./departments.php">
+            <div class="card card-hover">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-chair-school"></i>
+                    </h1>
+                    <h6 class="text-white">Departments</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="./courses.php">
+            <div class="card card-hover">
+                <div class="box bg-info text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-school"></i>
+                    </h1>
+                    <h6 class="text-white">Courses</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="./units.php">
+            <div class="card card-hover">
+                <div class="box bg-secondary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-book"></i>
+                    </h1>
+                    <h6 class="text-white">Units</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="./semesters.php">
+            <div class="card card-hover">
+                <div class="box bg-orange text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-clock"></i>
+                    </h1>
+                    <h6 class="text-white">Semesters</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="./users.php">
+            <div class="card card-hover">
+                <div class="box bg-success text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-account"></i>
+                    </h1>
+                    <h6 class="text-light">Users</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
             <!-- Column -->
         
-            <!-- Column -->
-            <div class="col-md-4">
-              <a href="./users.php">
-              <div class="card card-hover">
-                <div class="box bg-danger text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-account-box"></i>
-                  </h1>
-                  <h6 class="text-white">Users</h6>
-                </div>
-              </div>
-            </a>
-            </div>
-            <?php
+ 
+<?php
 }
 ?>
-            <!-- Column -->
-            <div class="col-md-4">
-            <a href="./add-admin.php">
-              <div class="card card-hover">
-                <div class="box bg-success text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-account-key"></i>
-                  </h1>
-                  <h6 class="text-white">Add an Admin</h6>
-                </div>
-              </div>
-            </div>
-
 </div>
 
 
 
-<div class="row p-3">
-            <!-- Column -->
-            <div class="col-md-4">
-              <a href="./add-student.php">
-              <div class="card card-hover">
-                <div class="box bg-warning text-center">
-                  <h1 class="font-light text-white">
-                    <i class=" mdi mdi-account-box"></i>
-                  </h1>
-                  <h6 class="text-white">Add a Student</h6>
-                </div>
-              </div>
-              </a>
-            </div>
-            <!-- Column -->
-        
-            <!-- Column -->
-            <div class="col-md-4">
-              <a href="./admin.php">
-              <div class="card card-hover">
-                <div class="box bg-primary text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-security"></i>
-                  </h1>
-                  <h6 class="text-white">List of Admins</h6>
-                </div>
-              </div>
-            </a>
-            </div>
-      
-            <!-- Column -->
-            <div class="col-md-4">
-            <a href="./budget.php">
-              <div class="card card-hover">
-                <div class="box bg-info text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-wallet"></i>
-                  </h1>
-                  <h6 class="text-white">Budget</h6>
-                </div>
-              </div>
-            </div>
-
-</div>
 
 
 
