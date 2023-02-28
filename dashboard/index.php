@@ -88,7 +88,7 @@ include '../assets/components/header.php';
             <div class="card card-hover">
                 <div class="box bg-cyan text-center">
                     <h1 class="font-light text-white">
-                        <i class="mdi mdi-view-dashboard"></i>
+                        <i class="mdi mdi-school"></i>
                     </h1>
                     <h6 class="text-white">Schools</h6>
                 </div>
