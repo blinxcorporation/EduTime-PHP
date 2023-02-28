@@ -209,8 +209,8 @@ include '../assets/components/header.php';
       echo "<td>
         
       <form method ='POST' action=''>
-      <input  type='text' hidden name='Course_id' value='$course_id'>
-      <input type='submit' data-crsid='$course_id'  data-crsname='$course_name'  value='Edit Details' name='edit-course-btn' class='btn btn-success edit-course-modal-btn m-2'>
+      <input  type='text' hidden name='course_id' value='$course_id'>
+      <input type='submit' data-crsid='$course_id'  data-crsname='$course_name' data-crs_short_name='$shortname' data-crs_dpt_name='$department_name' value='Edit Details' name='edit-course-btn' class='btn btn-success edit-course-modal-btn m-2'>
       <input type='submit' data-id= '$course_id' value='Delete Course'  class='btn btn-danger deleteCourseBtn'>
       </form>
       </td> </tr>";
@@ -309,12 +309,30 @@ include '../assets/components/header.php';
       </div>
       <div class="modal-body">
         <form method="POST" action="">
-        
-            <input type="text" readonly hidden name="crs_id"  class="form-control" id="crs_id" required>
-          
+        <input type="text" readonly hidden name="crs_id"  class="form-control" id="crs_id" required>
+        <div class="form-group">
+            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
+            <!-- <input type="text" name="crs_dpt_name"  class="form-control" id="crs_dpt_name" required> -->
+            <select class="form-control" id="crs_dpt_name" name="crs_dpt_name" required>
+    <option value="">Select Department..</option>
+    <?php 
+    // Retrieve the departments from the database
+    $sql=mysqli_query($db,"select * from department_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['department_id']);?>">Department of <?php echo htmlentities($rw['department_name']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+          </div>
         <div class="form-group">
             <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
             <input type="text" name="crs_name"  class="form-control" id="crs_name" required>
+          </div>
+        <div class="form-group">
+            <label for="recipient-name" readonly class="col-form-label">Short Name:</label>
+            <input type="text" name="crs_short_name"  class="form-control" id="crs_short_name" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -340,8 +358,6 @@ include '../assets/components/header.php';
 
       <div class="modal-body">
         <form method="POST" action="">
-
-<!-- Add an onchange event to the department select element -->
 <div class="form-group">
   <label for="uni_department_id">Select Department:</label>
   <select class="form-control" id="uni_department_id" name="uni_departments" required>
@@ -357,8 +373,6 @@ include '../assets/components/header.php';
     ?>
   </select>
 </div>
-
-
       <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
           <input type="text" name="course_name"  class="form-control" id="crs_name" required placeholder="e.g Bachelor of Science in Information Technology">
@@ -422,26 +436,28 @@ openAddCourseModalBtn.addEventListener("click", function (e) {
   openCourseModal();
 });
 
-
-
-// //edit Department details modal code
-// function editDepartmentModal() {
-//     $("#editDepartmentModal").modal("show");
-//   }
-//   let editButtons = document.querySelectorAll(".edit-department-modal-btn");
-//   editButtons.forEach(function (editButton) {
-//     editButton.addEventListener("click", function (e) {
-//       e.preventDefault();
+// //edit Course details modal code
+function editCourseModal() {
+    $("#editCourseModal").modal("show");
+  }
+  let editButtons = document.querySelectorAll(".edit-course-modal-btn");
+  editButtons.forEach(function (editButton) {
+    editButton.addEventListener("click", function (e) {
+      e.preventDefault();
   
-//       let departmentid = editButton.dataset.dptid;
-//       let dpt_name = editButton.dataset.dptname;
+      let crsid = editButton.dataset.crsid;
+      let crs_name = editButton.dataset.crsname;
+      let crs_shortname = editButton.dataset.crs_short_name;
+      let crs_dptname = editButton.dataset.crs_dpt_name;
 
-//       document.getElementById("dpt_id").value = departmentid ;
-//       document.getElementById("dpt_name").value = dpt_name;
+      document.getElementById("crs_id").value = crsid;
+      document.getElementById("crs_dpt_name").value = crs_dptname;
+      document.getElementById("crs_name").value = crs_name;
+      document.getElementById("crs_short_name").value = crs_shortname;
 
-//       editDepartmentModal();
-//     });
-//   });
+      editCourseModal();
+    });
+  });
 
 
   // delete Course modal query
