@@ -13,29 +13,40 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-// Update Department Details
-if (isset($_POST['update-department-details-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
-  $department_id = $_POST['dpt_id'];
-  $department_name = $_POST['dpt_name'];
+// Update Course Details
+if (isset($_POST['update-course-details-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
+  $crs_id = $_POST['crs_id'];
+  $department_id = $_POST['crs_dpt_id'];
+  $course_name = $_POST['crs_name'];
+  $course_short_name = $_POST['crs_short_name'];
 
 
 //Data Validation
+  if (empty($crs_id)) {
+  	array_push($errors, "Course ID is required");
+  }
   if (empty($department_id)) {
   	array_push($errors, "Department ID is required");
   }
-  if (empty($department_name)) {
-  	array_push($errors, "Department Name is required");
+  if (empty($course_name)) {
+  	array_push($errors, "Course Name is required");
+  }
+  if (empty($course_short_name)) {
+  	array_push($errors, "Course Short Name is required");
   }
 
 if (count($errors) == 0) {
-  $department_data_update_query = "UPDATE `department_details` SET `department_name`='$department_name' WHERE `department_id` ='$department_id' ";
-  $results = mysqli_query($db, $department_data_update_query);
+  $course_data_update_query = "UPDATE `course_details` SET `course_name`='$course_name',`course_shortform`='$course_short_name' WHERE `course_id` ='$crs_id'";
+  $results = mysqli_query($db, $course_data_update_query);
 
-  header('location: departments.php');
+  $crs_dpt_update_query = "UPDATE `department_course_details` SET `department_id`='$department_id' WHERE `course_id` ='$crs_id'";
+  $results = mysqli_query($db, $crs_dpt_update_query);
+
+  header('location: courses.php');
   }else{
   array_push($errors, "Unable to push updates");
-  header('location: departments.php');
+  header('location: courses.php');
   }
 }
 }
@@ -310,11 +321,10 @@ include '../assets/components/header.php';
       </div>
       <div class="modal-body">
         <form method="POST" action="">
-        <input type="text" readonly hidden name="crs_id"  class="form-control" id="crs_id" required>
+        <input type="text" readonly  name="crs_id"  class="form-control" id="crs_id" required>
         <div class="form-group">
             <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <!-- <input type="text" name="crs_dpt_name"  class="form-control" id="crs_dpt_name" required> -->
-            <select class="form-control" id="crs_dpt_id" name="crs_dpt_name" value="" required>
+            <select class="form-control" id="crs_dpt_id" name="crs_dpt_id" value="" required>
     <option value="">Select Department..</option>
     <?php 
     // Retrieve the departments from the database
@@ -455,14 +465,12 @@ function editCourseModal() {
       document.getElementById("crs_name").value = crs_name;
       document.getElementById("crs_short_name").value = crs_shortname;
       document.getElementById("crs_dpt_id").value = crs_dptname;
-// console.log(document.getElementById("crs_dpt_id").value);
-      // pre-select the option in the dropdown menu
 
+      // pre-select the option in the dropdown menu
       const select = document.querySelector('#crs_dpt_id');
       // console.log(select)
       select.value = crs_dptname;
    
-
       editCourseModal();
     });
   });
