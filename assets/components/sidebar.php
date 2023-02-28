@@ -31,7 +31,7 @@
               ?>
 
               <?php
-               if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
+               if ($_SESSION['role_name'] == 'Admin'){
               ?>
               <li class="sidebar-item">
                 <a
@@ -46,7 +46,7 @@
                    }
               ?>
               <?php
-               if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'  || $_SESSION['role_name'] == 'Chairperson'){
+               if ($_SESSION['role_name'] == 'Admin'){
               ?>
               <li class="sidebar-item">
                 <a
@@ -61,7 +61,7 @@
                    }
               ?>
               <?php
-               if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'  || $_SESSION['role_name'] == 'Chairperson'){
+               if ($_SESSION['role_name'] == 'Admin'){
               ?>
               <li class="sidebar-item">
                 <a
@@ -76,6 +76,9 @@
                    }
               ?>
 
+              <?php
+                if ($_SESSION['role_name'] == 'Admin'){
+              ?>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -85,6 +88,9 @@
                   ><span class="hide-menu">Users</span></a
                 >
               </li>
+              <?php
+                   }
+              ?>
               <li class="sidebar-item mt-4">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
