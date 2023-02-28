@@ -65,6 +65,7 @@ function capitalizeWords($string) {
 }
 
 function generate_department_id($faculty_name, $department_name) {
+  $dpt_prefix = 'DPT';
   // Convert faculty and department names to uppercase
   $faculty_name = strtoupper($faculty_name);
   $department_name = strtoupper($department_name);
@@ -73,15 +74,17 @@ function generate_department_id($faculty_name, $department_name) {
   $faculty_name = preg_replace('/[^A-Z]/', '', $faculty_name);
   $department_name = preg_replace('/[^A-Z]/', '', $department_name);
 
+  function slugify($string) {
+    return strtoupper(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
+}
+
+
   // Extract the first two letters of the faculty name and the last two letters of the department name
   $faculty_code = substr($faculty_name, 0, 4);
-  $department_code = substr($department_name, -2);
+  $department_code = slugify($department_name);
 
-  // Generate a random 3-digit number between 100 and 999
-  $random_number = rand(100, 999);
-
-  // Combine the faculty code, department code, and random number to form the department ID
-  $department_id = $faculty_code . $department_code . $random_number;
+  // Combine the faculty code, department code to form the department ID
+  $department_id = $dpt_prefix."_". $department_code;
 
   // Return the department ID
   return $department_id;

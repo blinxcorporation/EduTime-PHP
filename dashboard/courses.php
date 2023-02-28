@@ -60,64 +60,44 @@ if (isset($_POST['delete-department-btn'])) {
   }
 }
 
-function capitalizeWords($string) {
-  return ucwords(strtolower($string));
+function generate_course_id($department_id,$course_name) {
+  $crs_prefix = 'CRS';
+  $course_id =strtoupper($crs_prefix."_".$course_name);
+  return $course_id;
 }
 
-function generate_department_id($faculty_name, $department_name) {
-  // Convert faculty and department names to uppercase
-  $faculty_name = strtoupper($faculty_name);
-  $department_name = strtoupper($department_name);
+//add course
+if (isset($_POST['add-course-btn'])) {
+  $department_id = $_POST['uni_departments'];
+  $crs_name = $_POST['course_name'];
+  $crs_short_name = $_POST['crs_short_name'];
 
-  // Remove any non-alphabetic characters from the faculty and department names
-  $faculty_name = preg_replace('/[^A-Z]/', '', $faculty_name);
-  $department_name = preg_replace('/[^A-Z]/', '', $department_name);
-
-  // Extract the first two letters of the faculty name and the last two letters of the department name
-  $faculty_code = substr($faculty_name, 0, 4);
-  $department_code = substr($department_name, -2);
-
-  // Generate a random 3-digit number between 100 and 999
-  $random_number = rand(100, 999);
-
-  // Combine the faculty code, department code, and random number to form the department ID
-  $department_id = $faculty_code . $department_code . $random_number;
-
-  // Return the department ID
-  return $department_id;
-}
-
-
-
-//add department
-if (isset($_POST['add-department-btn'])) {
-  $school_id = $_POST['uni_schools'];
-  $dpt_name = $_POST['department_name'];
-
-  if (empty($school_id)) {
-    array_push($errors, "School ID is required");
+  if (empty($department_id)) {
+    array_push($errors, "Department ID is required");
   }
-  if (empty($dpt_name)) {
-    array_push($errors, "Department name is required");
+  if (empty($crs_name)) {
+    array_push($errors, "Course name is required");
+  }
+  if (empty($crs_short_name)) {
+    array_push($errors, "Course short name is required");
   }
   
   if (count($errors) == 0) {
-    // Example usage of generate_dpt_id function
 
     //generate department id
-$department_id = generate_department_id($school_id, $dpt_name);
+    $course_id = generate_course_id($department_id,$crs_short_name);
 
-    $add_dpt_query = "INSERT INTO `department_details`(`department_id`, `department_name`) VALUES ('$department_id','$dpt_name')";
-    $results = mysqli_query($db, $add_dpt_query);
+    $add_crs_query = "INSERT INTO `course_details`(`course_id`, `course_name`,`course_shortform`) VALUES ('$course_id','$crs_name','$crs_short_name')";
+    $results = mysqli_query($db, $add_crs_query);
 
-    //link sch with dpt
-    $add_sch_dpt_query = "INSERT INTO `school_department_details`(`school_id`, `department_id`) VALUES ('$school_id','$department_id')";
-    $results_sch_dpt = mysqli_query($db, $add_sch_dpt_query);
+    //link crs with department
+    $add_dpt_crs_query = "INSERT INTO `department_course_details`(`department_id`, `course_id`) VALUES ('$department_id','$course_id')";
+    $results_dpt_crs_dpt = mysqli_query($db, $add_dpt_crs_query);
 
-      header('location: ./departments.php');
+      header('location: ./courses.php');
     }else{
       array_push($errors, "Incorrect Username or Password");
-      header('location: ./departments.php');
+      header('location: ./courses.php');
     }
   }
 ?>
@@ -201,7 +181,7 @@ include '../assets/components/header.php';
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
-    <th>School</th>
+    <th>Short Form</th>
     <th>Department</th>
     <th>Date Added</th>
     <th>Action</th>
@@ -210,21 +190,20 @@ include '../assets/components/header.php';
   <tbody>
   <?php
   if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_course_details.department_id = department_details.department_id INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id INNER JOIN school_details ON school_details.school_id =school_department_details.school_id  ";
+      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_course_details.department_id = department_details.department_id INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id INNER JOIN school_details ON school_details.school_id =school_department_details.school_id LIMIT 10 ";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
               $course_id = $row['course_id'];
               $course_name = $row['course_name'];
+              $shortname = $row['course_shortform'];
               $school_name = $row['school_name'];
               $department_name = $row['department_name'];
               $date_created = $row['date_added'];
 
-
-
       echo "<tr> <td>" .$course_id.  "</td>";
       echo "<td>" .$course_name."</td>";
-      echo "<td>" .$school_name."</td>";
+      echo "<td>" .$shortname."</td>";
       echo "<td>" .$department_name."</td>";
       echo "<td>" .$date_created."</td>";
       echo "<td>
@@ -251,7 +230,7 @@ include '../assets/components/header.php';
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
-    <th>School</th>
+    <th>Short Form</th>
     <th>Department</th>
     <th>Date Added</th>
     <th>Action</th>
@@ -362,52 +341,31 @@ include '../assets/components/header.php';
       <div class="modal-body">
         <form method="POST" action="">
 
-<!-- Add an onchange event to the school select element -->
+<!-- Add an onchange event to the department select element -->
 <div class="form-group">
-  <label for="uni_school_id">Select School</label>
-  <select class="form-control" id="uni_school_id" name="uni_schools" onchange="getDepartments()">
-    <option value="">Select school..</option>
-    <?php 
-    // Retrieve the schools from the database
-    $sql=mysqli_query($db,"select * from school_details");
-    while ($rw=mysqli_fetch_array($sql)) {
-    ?>
-    <option value="<?php echo htmlentities($rw['school_id']);?>">School of <?php echo htmlentities($rw['school_name']);?></option>
-    <?php
-    }
-    ?>
-  </select>
-</div>
-
-<!-- Add a new div to display the departments -->
-<div class="form-group" id="department_div">
-  <!-- Add a hidden field to store the selected school id -->
-<input type="hidden" id="selected_school_id" name="selected_school_id" value="">
-  <label for="uni_department_id">Select Department</label>
-  <select class="form-control" id="uni_department_id" name="uni_departments">
+  <label for="uni_department_id">Select Department:</label>
+  <select class="form-control" id="uni_department_id" name="uni_departments" required>
     <option value="">Select Department..</option>
-
     <?php 
-// Get the selected school id
-$selectedSchoolId = $_GET['selected_school_id'];
-
-    // Retrieve the schools from the database
-    $sql=mysqli_query($db,"SELECT * FROM department_details INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id WHERE school_department_details.school_id ='$selectedSchoolId' ");
+    // Retrieve the departments from the database
+    $sql=mysqli_query($db,"select * from department_details");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
     <option value="<?php echo htmlentities($rw['department_id']);?>">Department of <?php echo htmlentities($rw['department_name']);?></option>
     <?php
     }
     ?>
-      
   </select>
 </div>
 
 
-
       <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
-          <input type="text" name="Course_name"  class="form-control" id="crs_name" required placeholder="e.g Bachelor of Science in Information Technology">
+          <input type="text" name="course_name"  class="form-control" id="crs_name" required placeholder="e.g Bachelor of Science in Information Technology">
+        </div>
+        <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Short Name:</label>
+          <input type="text" name="crs_short_name"  class="form-control" id="crs_short_name" required placeholder="e.g IT">
         </div>
         <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
@@ -464,25 +422,7 @@ openAddCourseModalBtn.addEventListener("click", function (e) {
   openCourseModal();
 });
 
-function getDepartments() {
-    // Get the selected school id
-    var selectedSchoolId = document.getElementById("uni_school_id").value;
-    // alert(selectedSchoolId)
-    // Set the selected school id in the hidden field
-    document.getElementById("selected_school_id").value = selectedSchoolId;
-    
-    // Make an AJAX request to retrieve the departments
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "departments.php?department_id=" + selectedSchoolId, true);
-    xhr.onreadystatechange = function() {
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            // Update the department select element
-            console.log(this.responseText);
-            document.getElementById("uni_department_id").innerHTML = this.responseText;
-        }
-    };
-    xhr.send();
-}
+
 
 // //edit Department details modal code
 // function editDepartmentModal() {
