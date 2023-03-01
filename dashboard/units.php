@@ -21,7 +21,7 @@ if (isset($_POST['update-unit-details-btn'])) {
   $unit_name = $_POST['unit_name'];
   $unit_type = $_POST['unit_type'];
   $uni_semester_id = $_POST['uni_semester_id'];
-  $unit_status = $_POST['unit_status_id'];
+  $unit_status = (int)$_POST['unit_status_id'];
 
 //Data Validation
   if (empty($crs_id)) {
@@ -89,8 +89,10 @@ if (isset($_POST['add-unit-btn'])) {
   $unit_code = $_POST['unit_code'];
   $unit_name = $_POST['unit_name'];
   $unit_type = $_POST['unit_type'];
-  $unit_status = $_POST['unit_status'];
+  $unit_status = (int)$_POST['unit_status'];
   $sem_id = $_POST['uni_semester_id'];
+
+
 
   if (empty($unit_code)) {
     array_push($errors, "Unit ID is required");
@@ -234,7 +236,7 @@ include '../assets/components/header.php';
               $date_added = $row['date_added'];
               $semester_id = $row['semester_id'];
               $semester_name = $row['semester_name'];
-              $unit_status= ($unit_active) ? "Active" : "Inactive";
+              $unit_status= ($unit_active) ? "Active" : "In-Active";
 
                 echo "<tr> <td>" .$unit_id.  "</td>";
                 echo "<td>" .$unit_name."</td>";
@@ -334,7 +336,6 @@ include '../assets/components/header.php';
   </div>
 </div>
 
-
 <!--edit Unit details-->
 <div class="modal fade" id="editUnitModal" tabindex="-1" role="dialog" aria-labelledby="editUnitModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -401,7 +402,7 @@ include '../assets/components/header.php';
           <select class="form-control" id="unit_status_id" name="unit_status_id" required>
           <option selected>select status...</option>
           <option value="1">Active</option>
-          <option value="0">In-Active</option>
+          <option value="2">In-Active</option>
           
     </select>
         </div>
@@ -557,7 +558,6 @@ function editUnitModal() {
       let unit_name = editButton.dataset.unit_name;
       let unit_type = editButton.dataset.unit_type;
       let unit_status = editButton.dataset.unit_status;
-console.log(typeof unit_status);
       let course_id = editButton.dataset.course_id;
       let sem_id = editButton.dataset.sem_id;
       let sem_name = editButton.dataset.sem_name;
@@ -585,7 +585,7 @@ console.log(typeof unit_status);
     const status_select = document.querySelector('#unit_status_id');
     // alert(typeof parseInt(unit_status));
       status_select.value = unit_status;
-      // alert(typeof unit_status)
+      alert(unit_status)
    
       editUnitModal();
     });
