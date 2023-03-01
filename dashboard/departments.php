@@ -54,7 +54,7 @@ if (isset($_POST['delete-department-btn'])) {
 
         header('location: departments.php');
       }else{
-        array_push($errors, "Unable to delete user");
+        array_push($errors, "Unable to delete department");
         header('location: departments.php');
       }
   }

@@ -64,7 +64,7 @@ if (isset($_POST['delete-school-btn'])) {
 
         header('location: schools.php');
       }else{
-        array_push($errors, "Unable to delete user");
+        array_push($errors, "Unable to delete school");
         header('location: schools.php');
       }
   }

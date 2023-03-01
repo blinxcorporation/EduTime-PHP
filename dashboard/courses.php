@@ -65,7 +65,7 @@ if (isset($_POST['delete-course-btn'])) {
 
         header('location: courses.php');
       }else{
-        array_push($errors, "Unable to delete user");
+        array_push($errors, "Unable to delete Course");
         header('location: courses.php');
       }
   }
