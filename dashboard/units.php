@@ -23,6 +23,14 @@ if (isset($_POST['update-unit-details-btn'])) {
   $uni_semester_id = $_POST['uni_semester_id'];
   $unit_status = (int)$_POST['unit_status_id'];
 
+
+  if($unit_status == '1' ){
+    $boolean_value_as_int = 1;
+  }else if($unit_status == '0'){
+    $boolean_value_as_int = 2;
+  }
+
+
 //Data Validation
   if (empty($crs_id)) {
   	array_push($errors, "Course ID is required");
@@ -45,7 +53,7 @@ if (isset($_POST['update-unit-details-btn'])) {
 
 
 if (count($errors) == 0) {
-  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$unit_status' WHERE `unit_code` = '$unit_code' ";
+  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$boolean_value_as_int' WHERE `unit_code` = '$unit_code' ";
   $unit_results = mysqli_query($db, $unit_data_update_query);
 
   $unit_crs_update_query = "UPDATE `unit_course_details` SET `course_id`='$crs_id' WHERE `unit_id` = '$unit_code' ";
@@ -585,7 +593,7 @@ function editUnitModal() {
     const status_select = document.querySelector('#unit_status_id');
     // alert(typeof parseInt(unit_status));
       status_select.value = unit_status;
-      alert(unit_status)
+      // alert(unit_status)
    
       editUnitModal();
     });
