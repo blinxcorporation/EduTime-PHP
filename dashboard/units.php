@@ -200,6 +200,7 @@ include '../assets/components/header.php';
     <th>Unit Name</th>
     <th>Status</th>
     <th>Course</th>
+    <th>Semester</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -207,7 +208,7 @@ include '../assets/components/header.php';
   <tbody>
   <?php
   if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON unit_course_details.course_id = course_details.course_id";
+      $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON unit_course_details.course_id = course_details.course_id INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id ";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
@@ -218,17 +219,20 @@ include '../assets/components/header.php';
               $course_id = $row['course_id'];
               $course_short_name = $row['course_shortform'];
               $date_added = $row['date_added'];
+              $semester_id = $row['semester_id'];
+              $semester_name = $row['semester_name'];
               $unit_status= ($unit_active) ? "Active" : "Inactive";
 
                 echo "<tr> <td>" .$unit_id.  "</td>";
                 echo "<td>" .$unit_name."</td>";
                 echo "<td>" .$unit_status."</td>";
                 echo "<td>" .$course_short_name."</td>";
+                echo "<td>" .$semester_id."</td>";
                 echo "<td>" .$date_added."</td>";
                 echo "<td>
                 <form method ='POST' action=''>
                 <input  type='text' hidden name='unit_id' value='$unit_id'>
-                <input type='submit' data-unit_id='$unit_id'  data-unit_name='$unit_name' value='Edit Details' name='edit-unit-btn' class='btn btn-success edit-unit-modal-btn m-2'>
+                <input type='submit' data-id='$unit_id'  data-unit_name='$unit_name' data-unit_type='$unit_type' data-unit_status='$unit_active' data-course_id='$course_id' data-sem_id='$semester_id' data-sem_name='$semester_name'  value='Edit Details' name='edit-unit-btn' class='btn btn-success edit-unit-modal-btn m-2'>
                 <input type='submit' data-id= '$unit_id' value='Delete Unit'  class='btn btn-danger deleteUnitBtn'>
                 </form>
                 </td> </tr>";
@@ -250,6 +254,7 @@ include '../assets/components/header.php';
     <th>Unit Name</th>
     <th>Status</th>
     <th>Course</th>
+    <th>Semester</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -315,52 +320,88 @@ include '../assets/components/header.php';
 </div>
 
 
-<!--edit Course details-->
-<div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="editCourseModalLabel" aria-hidden="true">
+<!--edit Unit details-->
+<div class="modal fade" id="editUnitModal" tabindex="-1" role="dialog" aria-labelledby="editUnitModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editCourseModalLabel">Edit Course Details</h5>
+        <h5 class="modal-title" id="editUnitModalLabel">Edit Unit Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <form method="POST" action="">
-        <input type="text" readonly  name="crs_id"  class="form-control" id="crs_id" required>
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <select class="form-control" id="crs_dpt_id" name="crs_dpt_id" value="" required>
-    <option value="">Select Department..</option>
+<div class="form-group">
+  <label for="uni_course_id">Select Course:</label>
+  <select class="form-control" id="uni_course_id" name="uni_course_id" required>
+    <option value="">Select Course..</option>
     <?php 
     // Retrieve the departments from the database
-    $sql=mysqli_query($db,"select * from department_details");
+    $sql=mysqli_query($db,"select * from course_details");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
-    <option value="<?php echo htmlentities($rw['department_id']);?>">Department of <?php echo htmlentities($rw['department_name']);?></option>
+    <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
     <?php
     }
     ?>
   </select>
-          </div>
+</div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Code:</label>
+          <input type="text" name="unit_code"  class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
+        </div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Name:</label>
+          <input type="text" name="unit_name"  class="form-control" id="unit_name_id" required placeholder="e.g Software Project Management">
+        </div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Type:</label>
+          <select class="form-control" id="unit_type_id" name="unit_type" required>
+          <option value="" selected>Select Unit Type...</option>
+          <option value="Theory">Theory</option>
+          <option value="ICT-Practical">ICT-Practical</option>
+          <option value="CHEM-Practical">CHEM-Practical</option>
+          <option value="BIO-Practical">BIO-Practical</option>
+          <option value="PHY-Practical">PHY-Practical</option>
+    </select>
+        </div>
         <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
-            <input type="text" name="crs_name"  class="form-control" id="crs_name" required>
-          </div>
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Short Name:</label>
-            <input type="text" name="crs_short_name"  class="form-control" id="crs_short_name" required>
-          </div>
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-course-details-btn">Update Details</button>
-      </div>
-        </form>
-      </div>
-     
+  <label for="uni_semester_id">Select Semester:</label>
+  <select class="form-control" id="uni_semester_id" name="uni_semester_id" required>
+    <option value="">Select Semester..</option>
+    <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from semester_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['semester_id']);?>"><?php echo htmlentities($rw['semester_name']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+</div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Status:</label>
+          <select class="form-control" id="unit_status_id" name="unit_status" required>
+          <option value="" selected>select status...</option>
+          <option value="1">Active</option>
+          <option value="0">In-Active</option>
+    </select>
+        </div>
+   
+        <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+      <button type="submit" class="btn btn-info" name="edit-unit-btn">Submit</button>
     </div>
+      </form>
+    </div>
+    
   </div>
 </div>
+</div>
+
 
 <!-- add new unit-->
 <div class="modal fade" id="addUnitModal" tabindex="-1" role="dialog" aria-labelledby="addUnitModalLabel" aria-hidden="true">
@@ -488,31 +529,48 @@ openAddUnitModalBtn.addEventListener("click", function (e) {
   openUnitModal();
 });
 
-// //edit Course details modal code
-function editCourseModal() {
-    $("#editCourseModal").modal("show");
+// //edit Unit details modal code
+function editUnitModal() {
+    $("#editUnitModal").modal("show");
   }
-  let editButtons = document.querySelectorAll(".edit-course-modal-btn");
+  let editButtons = document.querySelectorAll(".edit-unit-modal-btn");
   editButtons.forEach(function (editButton) {
     editButton.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let crsid = editButton.dataset.crsid;
-      let crs_name = editButton.dataset.crsname;
-      let crs_shortname = editButton.dataset.crs_short_name;
-      let crs_dptname = editButton.dataset.crs_dpt_id;
+      let unitid = editButton.dataset.id;
+      let unit_name = editButton.dataset.unit_name;
+      let unit_type = editButton.dataset.unit_type;
+      let unit_status = editButton.dataset.unit_status;
+      let course_id = editButton.dataset.course_id;
+      let sem_id = editButton.dataset.sem_id;
+      let sem_name = editButton.dataset.sem_name;
 
-      document.getElementById("crs_id").value = crsid;
-      document.getElementById("crs_name").value = crs_name;
-      document.getElementById("crs_short_name").value = crs_shortname;
-      document.getElementById("crs_dpt_id").value = crs_dptname;
-
+      document.getElementById("uni_course_id").value = course_id;
       // pre-select the option in the dropdown menu
-      const select = document.querySelector('#crs_dpt_id');
-      // console.log(select)
-      select.value = crs_dptname;
+      const course_select = document.querySelector('#uni_course_id');
+      course_select.value = course_id;
+
+      document.getElementById("unit_code_id").value = unitid;
+      document.getElementById("unit_name_id").value = unit_name;
+
+      document.getElementById("unit_type_id").value = unit_type;
+        // pre-select the option in the dropdown menu
+      const type_select = document.querySelector('#unit_type_id');
+      type_select.value = unit_type;
+
+      document.getElementById("uni_semester_id").value = sem_id;
+    // pre-select the option in the dropdown menu
+    const sem_select = document.querySelector('#uni_semester_id');
+      sem_select.value = sem_id;
+
+      document.getElementById("unit_status_id").value = unit_status;
+    // pre-select the option in the dropdown menu
+    const status_select = document.querySelector('#unit_status_id');
+      status_select.value = unit_status;
+
    
-      editCourseModal();
+      editUnitModal();
     });
   });
 
