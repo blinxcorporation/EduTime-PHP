@@ -71,46 +71,52 @@ if (isset($_POST['delete-course-btn'])) {
   }
 }
 
-function generate_course_id($department_id,$course_name) {
-  $crs_prefix = 'CRS';
-  $course_id =strtoupper($crs_prefix."_".$course_name);
-  return $course_id;
-}
+//add unit
+if (isset($_POST['add-unit-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
+  $course_id = $_POST['uni_course_id'];
+  $unit_code = $_POST['unit_code'];
+  $unit_name = $_POST['unit_name'];
+  $unit_type = $_POST['unit_type'];
+  $unit_status = $_POST['unit_status'];
+  $sem_id = $_POST['uni_semester_id'];
 
-//add course
-if (isset($_POST['add-course-btn'])) {
-  $department_id = $_POST['uni_departments'];
-  $crs_name = $_POST['course_name'];
-  $crs_short_name = $_POST['crs_short_name'];
+  if (empty($unit_code)) {
+    array_push($errors, "Unit ID is required");
+  }
+  if (empty($unit_name)) {
+    array_push($errors, "Unit Name is required");
+  }
+  if (empty($unit_type)) {
+    array_push($errors, "Unit Type is required");
+  }
+  if (empty($unit_status)) {
+    array_push($errors, "Unit Status is required");
+  }
+  if (empty($sem_id)) {
+    array_push($errors, "Sem ID is required");
+  }
 
-  if (empty($department_id)) {
-    array_push($errors, "Department ID is required");
-  }
-  if (empty($crs_name)) {
-    array_push($errors, "Course name is required");
-  }
-  if (empty($crs_short_name)) {
-    array_push($errors, "Course short name is required");
-  }
   
   if (count($errors) == 0) {
+    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$unit_status')";
+    $results = mysqli_query($db, $add_unit_query);
 
-    //generate department id
-    $course_id = generate_course_id($department_id,$crs_short_name);
+    // //link unit with course
+    $add_crs_unit_query = "INSERT INTO `unit_course_details`(`unit_id`, `course_id`) VALUES ('$unit_code','$course_id')";
+    $results_crs_unit = mysqli_query($db, $add_crs_unit_query);
 
-    $add_crs_query = "INSERT INTO `course_details`(`course_id`, `course_name`,`course_shortform`) VALUES ('$course_id','$crs_name','$crs_short_name')";
-    $results = mysqli_query($db, $add_crs_query);
+    // //link unit with semester
+    $add_crs_sem_query = "INSERT INTO `unit_semester_details`(`unit_id`, `semester_id`) VALUES ('$unit_code','$sem_id')";
+    $results_crs_unit = mysqli_query($db, $add_crs_sem_query);
 
-    //link crs with department
-    $add_dpt_crs_query = "INSERT INTO `department_course_details`(`department_id`, `course_id`) VALUES ('$department_id','$course_id')";
-    $results_dpt_crs_dpt = mysqli_query($db, $add_dpt_crs_query);
-
-      header('location: ./courses.php');
+      header('location: ./units.php');
     }else{
       array_push($errors, "Incorrect Username or Password");
-      header('location: ./courses.php');
+      header('location: ./units.php');
     }
   }
+}
 ?>
 
 
@@ -356,12 +362,12 @@ include '../assets/components/header.php';
   </div>
 </div>
 
-<!-- add new Course-->
-<div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+<!-- add new unit-->
+<div class="modal fade" id="addUnitModal" tabindex="-1" role="dialog" aria-labelledby="addUnitModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addCourseModalLabel">Add a Course</h5>
+        <h5 class="modal-title" id="addUnitModalLabel">Add a Unit</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -370,31 +376,66 @@ include '../assets/components/header.php';
       <div class="modal-body">
         <form method="POST" action="">
 <div class="form-group">
-  <label for="uni_department_id">Select Department:</label>
-  <select class="form-control" id="uni_department_id" name="uni_departments" required>
-    <option value="">Select Department..</option>
+  <label for="uni_course_id">Select Course:</label>
+  <select class="form-control" id="uni_course_id" name="uni_course_id" required>
+    <option value="">Select Course..</option>
     <?php 
     // Retrieve the departments from the database
-    $sql=mysqli_query($db,"select * from department_details");
+    $sql=mysqli_query($db,"select * from course_details");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
-    <option value="<?php echo htmlentities($rw['department_id']);?>">Department of <?php echo htmlentities($rw['department_name']);?></option>
+    <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
     <?php
     }
     ?>
   </select>
 </div>
       <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
-          <input type="text" name="course_name"  class="form-control" id="crs_name" required placeholder="e.g Bachelor of Science in Information Technology">
+          <label for="recipient-name" readonly class="col-form-label">Unit Code:</label>
+          <input type="text" name="unit_code"  class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
+        </div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Name:</label>
+          <input type="text" name="unit_name"  class="form-control" id="unit_name_id" required placeholder="e.g Software Project Management">
+        </div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Type:</label>
+          <select class="form-control" id="unit_type_id" name="unit_type" required>
+          <option value="" selected>Select Unit Type...</option>
+          <option value="Theory">Theory</option>
+          <option value="ICT-Practical">ICT-Practical</option>
+          <option value="CHEM-Practical">CHEM-Practical</option>
+          <option value="BIO-Practical">BIO-Practical</option>
+          <option value="PHY-Practical">PHY-Practical</option>
+    </select>
         </div>
         <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Short Name:</label>
-          <input type="text" name="crs_short_name"  class="form-control" id="crs_short_name" required placeholder="e.g IT">
+  <label for="uni_semester_id">Select Semester:</label>
+  <select class="form-control" id="uni_semester_id" name="uni_semester_id" required>
+    <option value="">Select Semester..</option>
+    <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from semester_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['semester_id']);?>"><?php echo htmlentities($rw['semester_name']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+</div>
+      <div class="form-group">
+          <label for="recipient-name" readonly class="col-form-label">Unit Status:</label>
+          <select class="form-control" id="unit_status_id" name="unit_status" required>
+          <option value="" selected>select status...</option>
+          <option value="1">Active</option>
+          <option value="0">In-Active</option>
+    </select>
         </div>
+   
         <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-info" name="add-course-btn">Submit</button>
+      <button type="submit" class="btn btn-info" name="add-unit-btn">Submit</button>
     </div>
       </form>
     </div>
@@ -437,14 +478,14 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
 
-//add Course details modal code
-function openCourseModal() {
-  $("#addCourseModal").modal("show");
+//add Unite details modal code
+function openUnitModal() {
+  $("#addUnitModal").modal("show");
 }
-let openAddCourseModalBtn = document.querySelector(".open-course-modal-btn");
-openAddCourseModalBtn.addEventListener("click", function (e) {
+let openAddUnitModalBtn = document.querySelector(".open-unit-modal-btn");
+openAddUnitModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  openCourseModal();
+  openUnitModal();
 });
 
 // //edit Course details modal code
