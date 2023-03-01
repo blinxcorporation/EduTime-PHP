@@ -13,40 +13,51 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-// Update Course Details
-if (isset($_POST['update-course-details-btn'])) {
+// Update Unit Details
+if (isset($_POST['update-unit-details-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $crs_id = $_POST['crs_id'];
-  $department_id = $_POST['crs_dpt_id'];
-  $course_name = $_POST['crs_name'];
-  $course_short_name = $_POST['crs_short_name'];
-
+  $crs_id = $_POST['uni_course_id'];
+  $unit_code = $_POST['unit_code'];
+  $unit_name = $_POST['unit_name'];
+  $unit_type = $_POST['unit_type'];
+  $uni_semester_id = $_POST['uni_semester_id'];
+  $unit_status = $_POST['unit_status_id'];
 
 //Data Validation
   if (empty($crs_id)) {
   	array_push($errors, "Course ID is required");
   }
-  if (empty($department_id)) {
-  	array_push($errors, "Department ID is required");
+  if (empty($unit_code)) {
+  	array_push($errors, "Unit ID is required");
   }
-  if (empty($course_name)) {
-  	array_push($errors, "Course Name is required");
+  if (empty($unit_name)) {
+  	array_push($errors, "Unit Name is required");
   }
-  if (empty($course_short_name)) {
-  	array_push($errors, "Course Short Name is required");
+  if (empty($unit_type)) {
+  	array_push($errors, "Unit Type is required");
   }
+  if (empty($uni_semester_id)) {
+  	array_push($errors, "Unit Semester ID is required");
+  }
+  if (empty($unit_status)) {
+  	array_push($errors, "Unit Status is required");
+  }
+
 
 if (count($errors) == 0) {
-  $course_data_update_query = "UPDATE `course_details` SET `course_name`='$course_name',`course_shortform`='$course_short_name' WHERE `course_id` ='$crs_id'";
-  $results = mysqli_query($db, $course_data_update_query);
+  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$unit_status' WHERE `unit_code` = '$unit_code' ";
+  $unit_results = mysqli_query($db, $unit_data_update_query);
 
-  $crs_dpt_update_query = "UPDATE `department_course_details` SET `department_id`='$department_id' WHERE `course_id` ='$crs_id'";
-  $results = mysqli_query($db, $crs_dpt_update_query);
+  $unit_crs_update_query = "UPDATE `unit_course_details` SET `course_id`='$crs_id' WHERE `unit_id` = '$unit_code' ";
+  $unit_crs_results = mysqli_query($db, $unit_crs_update_query);
 
-  header('location: courses.php');
+  $unit_sem_update_query = "UPDATE `unit_semester_details` SET `semester_id`='$uni_semester_id' WHERE `unit_id` = '$unit_code' ";
+  $unit_sem_results = mysqli_query($db, $unit_sem_update_query);
+
+  header('location: units.php');
   }else{
-  array_push($errors, "Unable to push updates");
-  header('location: courses.php');
+  array_push($errors, "Unable to update unit details");
+  header('location: units.php');
   }
 }
 }
@@ -176,6 +187,7 @@ include '../assets/components/header.php';
             </div>
           </div>
         </div>
+  
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -198,6 +210,7 @@ include '../assets/components/header.php';
     <tr>
     <th>Unit ID</th>
     <th>Unit Name</th>
+    <th>Unit Type</th>
     <th>Status</th>
     <th>Course</th>
     <th>Semester</th>
@@ -225,6 +238,7 @@ include '../assets/components/header.php';
 
                 echo "<tr> <td>" .$unit_id.  "</td>";
                 echo "<td>" .$unit_name."</td>";
+                echo "<td>" .$unit_type."</td>";
                 echo "<td>" .$unit_status."</td>";
                 echo "<td>" .$course_short_name."</td>";
                 echo "<td>" .$semester_id."</td>";
@@ -252,6 +266,7 @@ include '../assets/components/header.php';
     <tr>
     <th>Unit ID</th>
     <th>Unit Name</th>
+    <th>Unit Type</th>
     <th>Status</th>
     <th>Course</th>
     <th>Semester</th>
@@ -349,8 +364,7 @@ include '../assets/components/header.php';
   </select>
 </div>
       <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Unit Code:</label>
-          <input type="text" name="unit_code"  class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
+          <input type="text" name="unit_code" readonly hidden  class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
         </div>
       <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Unit Name:</label>
@@ -384,16 +398,17 @@ include '../assets/components/header.php';
 </div>
       <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Unit Status:</label>
-          <select class="form-control" id="unit_status_id" name="unit_status" required>
-          <option value="" selected>select status...</option>
+          <select class="form-control" id="unit_status_id" name="unit_status_id" required>
+          <option selected>select status...</option>
           <option value="1">Active</option>
           <option value="0">In-Active</option>
+          
     </select>
         </div>
    
         <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-info" name="edit-unit-btn">Submit</button>
+      <button type="submit" class="btn btn-success" name="update-unit-details-btn">Update</button>
     </div>
       </form>
     </div>
@@ -519,7 +534,7 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
 
-//add Unite details modal code
+//add Unit details modal code
 function openUnitModal() {
   $("#addUnitModal").modal("show");
 }
@@ -542,6 +557,7 @@ function editUnitModal() {
       let unit_name = editButton.dataset.unit_name;
       let unit_type = editButton.dataset.unit_type;
       let unit_status = editButton.dataset.unit_status;
+console.log(typeof unit_status);
       let course_id = editButton.dataset.course_id;
       let sem_id = editButton.dataset.sem_id;
       let sem_name = editButton.dataset.sem_name;
@@ -567,8 +583,9 @@ function editUnitModal() {
       document.getElementById("unit_status_id").value = unit_status;
     // pre-select the option in the dropdown menu
     const status_select = document.querySelector('#unit_status_id');
+    // alert(typeof parseInt(unit_status));
       status_select.value = unit_status;
-
+      // alert(typeof unit_status)
    
       editUnitModal();
     });
@@ -580,7 +597,7 @@ function editUnitModal() {
     $("#deleteUnitModal").modal("show");
   }
   let deleteBtns = document.querySelectorAll(".deleteUnitBtn");
-  deleteBtns.forEach(function (deleteBtn) {
+  deleteBtns.forEach(function (deleteBtn) { value=""
     deleteBtn.addEventListener("click", function (e) {
       e.preventDefault();
   
