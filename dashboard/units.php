@@ -51,22 +51,22 @@ if (count($errors) == 0) {
 }
 }
 
-  // Delete course Details
-if (isset($_POST['delete-course-btn'])) {
+  // Delete unit Details
+if (isset($_POST['delete-unit-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $courseID = $_POST['course_id'];
+  $unitID = $_POST['unit_id'];
   
-  if (empty($courseID)) {
-    array_push($errors, "Course ID is required");
+  if (empty($unitID)) {
+    array_push($errors, "Unit ID is required");
   }
   if (count($errors) == 0) {
-      $crs_data_delete_query = "DELETE FROM `course_details` WHERE `course_id`='$courseID' ";
-      $results = mysqli_query($db, $crs_data_delete_query);
+      $unit_data_delete_query = "DELETE FROM `unit_details` WHERE `unit_code`='$unitID' ";
+      $results = mysqli_query($db, $unit_data_delete_query);
 
-        header('location: courses.php');
+        header('location: units.php');
       }else{
-        array_push($errors, "Unable to delete user");
-        header('location: courses.php');
+        array_push($errors, "Unable to delete unit");
+        header('location: units.php');
       }
   }
 }
@@ -283,8 +283,8 @@ include '../assets/components/header.php';
     <!-- End Wrapper -->
     <!-- ============================================================== -->
 
-    <!-- delete course modal-->
-    <div class="modal" id='deleteCourseModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+    <!-- delete Unit modal-->
+    <div class="modal" id='deleteUnitModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -296,14 +296,14 @@ include '../assets/components/header.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this Course?</p>
+        <p>Are you sure you want to delete this Unit?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text"  hidden class="form-control" id="courseID" required readonly name='course_id'>
+            <input type="text" hidden class="form-control" id="unitID" required readonly name='unit_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-course-btn' class="btn btn-danger">Yes,Delete!</button>
+        <button type="submit" name='delete-unit-btn' class="btn btn-danger">Yes,Delete!</button>
       </div>
         </form>
       </div>
@@ -517,20 +517,20 @@ function editCourseModal() {
   });
 
 
-  // delete Course modal query
-    function deleteCourseModal() {
-    $("#deleteCourseModal").modal("show");
+  // delete Unit modal query
+    function deleteUnitModal() {
+    $("#deleteUnitModal").modal("show");
   }
-  let deleteBtns = document.querySelectorAll(".deleteCourseBtn");
+  let deleteBtns = document.querySelectorAll(".deleteUnitBtn");
   deleteBtns.forEach(function (deleteBtn) {
     deleteBtn.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let crsid = deleteBtn.dataset.id;
+      let unit_id = deleteBtn.dataset.id;
   
-      document.getElementById("courseID").value = crsid;
+      document.getElementById("unitID").value = unit_id;
      
-      deleteCourseModal();
+      deleteUnitModal();
     });
   });
 
