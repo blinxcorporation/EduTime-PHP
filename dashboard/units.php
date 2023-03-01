@@ -224,8 +224,18 @@ include '../assets/components/header.php';
   if($_SESSION['role_name'] == 'Admin'){
       $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON unit_course_details.course_id = course_details.course_id INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id ";
       $data_result = mysqli_query($db, $data_fetch_query);
+
+      $sql = "SELECT COUNT(*) FROM unit_details";
+      $rslt = mysqli_query($db, $sql);
+      // Get the result
+      $row = mysqli_fetch_row($rslt);
+
+      // Get the number of rows
+      $num_rows = $row[0];
+
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
+              $id = $row['id'];
               $unit_id = $row['unit_code'];
               $unit_name = $row['unit_name'];
               $unit_type = $row['unit_type'];
@@ -235,7 +245,7 @@ include '../assets/components/header.php';
               $date_added = $row['date_added'];
               $semester_id = $row['semester_id'];
               $semester_name = $row['semester_name'];
-             
+
 
                 echo "<tr> <td>" .$unit_id.  "</td>";
                 echo "<td>" .$unit_name."</td>";
