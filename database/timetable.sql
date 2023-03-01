@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 01, 2023 at 06:44 PM
+-- Generation Time: Mar 01, 2023 at 10:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -328,6 +328,83 @@ CREATE TABLE `unit_course_details` (
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `unit_course_details`
+--
+
+INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`) VALUES
+(11, 'CIT 101', 'CRS_IT', '2023-03-01 19:26:18'),
+(12, 'CIT 103', 'CRS_IT', '2023-03-01 19:26:46'),
+(13, 'CIT 105', 'CRS_IT', '2023-03-01 19:27:11'),
+(14, 'CIT 107', 'CRS_IT', '2023-03-01 19:27:37'),
+(15, 'CIT 109', 'CRS_IT', '2023-03-01 19:28:05'),
+(16, 'CIT 111', 'CRS_IT', '2023-03-01 19:28:31'),
+(17, 'AEN 105', 'CRS_IT', '2023-03-01 19:28:56'),
+(18, 'PHT 112', 'CRS_IT', '2023-03-01 19:29:17'),
+(19, 'CIT 102', 'CRS_IT', '2023-03-01 19:29:55'),
+(20, 'CIT 104', 'CRS_IT', '2023-03-01 19:30:21'),
+(21, 'CIT 106', 'CRS_IT', '2023-03-01 19:30:47'),
+(22, 'CIT 108', 'CRS_IT', '2023-03-01 19:31:08'),
+(23, 'CIT 110', 'CRS_IT', '2023-03-01 19:31:31'),
+(24, 'CIT 112', 'CRS_IT', '2023-03-01 19:31:58'),
+(25, 'CIT 114', 'CRS_IT', '2023-03-01 19:32:22'),
+(26, 'CIT 116', 'CRS_IT', '2023-03-01 19:32:42'),
+(27, 'CIT 201', 'CRS_IT', '2023-03-01 19:33:13'),
+(28, 'CIT 203', 'CRS_IT', '2023-03-01 19:33:35'),
+(29, 'CIT 205', 'CRS_IT', '2023-03-01 19:33:58'),
+(30, 'CIT 207', 'CRS_IT', '2023-03-01 19:34:33'),
+(31, 'CIT 209', 'CRS_IT', '2023-03-01 19:34:52'),
+(32, 'CIT 211', 'CRS_IT', '2023-03-01 19:35:15'),
+(33, 'CIT 213', 'CRS_IT', '2023-03-01 19:35:47'),
+(34, 'CIT 215', 'CRS_IT', '2023-03-01 19:36:08'),
+(35, 'CIT 202', 'CRS_IT', '2023-03-01 19:36:55'),
+(36, 'CIT 204', 'CRS_IT', '2023-03-01 19:37:21'),
+(37, 'CIT 206', 'CRS_IT', '2023-03-01 19:37:55'),
+(38, 'CIT 208', 'CRS_IT', '2023-03-01 19:38:17'),
+(39, 'CIT 210', 'CRS_IT', '2023-03-01 19:38:44'),
+(40, 'CIT 212', 'CRS_IT', '2023-03-01 19:39:17'),
+(41, 'CIT 214', 'CRS_IT', '2023-03-01 19:39:39'),
+(42, 'CIT 216', 'CRS_IT', '2023-03-01 19:40:07'),
+(43, 'CIT 301', 'CRS_IT', '2023-03-01 19:40:41'),
+(44, 'CIT 305', 'CRS_IT', '2023-03-01 19:41:07'),
+(45, 'CIT 307', 'CRS_IT', '2023-03-01 19:41:30'),
+(46, 'CIT 309', 'CRS_IT', '2023-03-01 19:41:54'),
+(48, 'CIT 311', 'CRS_IT', '2023-03-01 19:42:44'),
+(49, 'CIT 313', 'CRS_IT', '2023-03-01 19:43:10'),
+(50, 'CIT 315', 'CRS_IT', '2023-03-01 19:43:49'),
+(51, 'CIT 317', 'CRS_IT', '2023-03-01 19:44:17'),
+(52, 'CIT 319', 'CRS_IT', '2023-03-01 19:44:38'),
+(53, 'CIT 302', 'CRS_IT', '2023-03-01 19:45:06'),
+(54, 'CIT 304', 'CRS_IT', '2023-03-01 19:45:27'),
+(55, 'CIT 312', 'CRS_IT', '2023-03-01 19:45:53'),
+(56, 'CIT 318', 'CRS_IT', '2023-03-01 19:46:24'),
+(57, 'CIT 306', 'CRS_IT', '2023-03-01 19:47:23'),
+(58, 'CIT 308', 'CRS_IT', '2023-03-01 19:47:49'),
+(59, 'CIT 310', 'CRS_IT', '2023-03-01 19:48:17'),
+(60, 'CIT 314', 'CRS_IT', '2023-03-01 19:48:39'),
+(61, 'CIT 316', 'CRS_IT', '2023-03-01 19:49:03'),
+(62, 'CIT 320', 'CRS_IT', '2023-03-01 19:49:25'),
+(63, 'CIT 322', 'CRS_IT', '2023-03-01 19:49:48'),
+(64, 'CIT 401', 'CRS_IT', '2023-03-01 19:51:06'),
+(65, 'CIT 405', 'CRS_IT', '2023-03-01 19:52:54'),
+(66, 'CIT 409', 'CRS_IT', '2023-03-01 19:53:36'),
+(67, 'CIT 411', 'CRS_IT', '2023-03-01 19:54:59'),
+(68, 'CIT 403', 'CRS_IT', '2023-03-01 19:55:21'),
+(69, 'CIT 407', 'CRS_IT', '2023-03-01 19:55:42'),
+(70, 'CIT 413', 'CRS_IT', '2023-03-01 19:56:09'),
+(71, 'CIT 415', 'CRS_IT', '2023-03-01 19:57:06'),
+(72, 'CIT 419', 'CRS_IT', '2023-03-01 19:58:04'),
+(73, 'ABA 424', 'CRS_IT', '2023-03-01 20:45:43'),
+(74, 'CIT 402', 'CRS_IT', '2023-03-01 20:46:11'),
+(76, 'CIT 406', 'CRS_IT', '2023-03-01 20:47:18'),
+(77, 'CIT 408', 'CRS_IT', '2023-03-01 20:48:06'),
+(78, 'CIT 410', 'CRS_IT', '2023-03-01 20:48:35'),
+(79, 'CIT 412', 'CRS_IT', '2023-03-01 20:49:03'),
+(80, 'CIT 414', 'CRS_IT', '2023-03-01 20:49:43'),
+(81, 'CIT 416', 'CRS_IT', '2023-03-01 20:50:14'),
+(82, 'CIT 418', 'CRS_IT', '2023-03-01 20:50:43'),
+(83, 'CIT 420', 'CRS_IT', '2023-03-01 20:51:08');
+
 -- --------------------------------------------------------
 
 --
@@ -339,9 +416,86 @@ CREATE TABLE `unit_details` (
   `unit_code` varchar(50) NOT NULL,
   `unit_name` varchar(100) NOT NULL,
   `unit_type` varchar(50) NOT NULL,
-  `unit_active` varchar(20) DEFAULT '0',
+  `unit_active` varchar(20) NOT NULL DEFAULT 'Active',
   `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit_details`
+--
+
+INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_active`, `date_added`) VALUES
+(63, 'ABA 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-01 20:45:43'),
+(7, 'AEN 105', 'Communication Skills', 'Theory', 'Active', '2023-03-01 19:28:56'),
+(1, 'CIT 101', 'Discrete Structures I', 'Theory', 'Active', '2023-03-01 19:26:18'),
+(9, 'CIT 102', 'Probability and statistics', 'Theory', 'Active', '2023-03-01 19:29:55'),
+(2, 'CIT 103', 'Mathematics for IT', 'Theory', 'Active', '2023-03-01 19:26:46'),
+(10, 'CIT 104', 'Computer Architecture', 'Theory', 'Active', '2023-03-01 19:30:21'),
+(3, 'CIT 105', 'Electrical Principles', 'Theory', 'Active', '2023-03-01 19:27:10'),
+(11, 'CIT 106', 'Linear Algebra', 'Theory', 'Active', '2023-03-01 19:30:47'),
+(4, 'CIT 107', 'Fundamentals of IT', 'Theory', 'Active', '2023-03-01 19:27:37'),
+(12, 'CIT 108', 'Object-Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-01 19:31:08'),
+(5, 'CIT 109', 'Computer Applications', 'Theory', 'Active', '2023-03-01 19:28:05'),
+(13, 'CIT 110', 'Platform technologies I', 'Theory', 'Active', '2023-03-01 19:31:31'),
+(6, 'CIT 111', 'Fundamentals of Programming', 'ICT-Practical', 'Active', '2023-03-01 19:28:31'),
+(14, 'CIT 112', 'Discrete Structures II', 'Theory', 'Active', '2023-03-01 19:31:57'),
+(15, 'CIT 114', 'System Analysis and Design', 'Theory', 'Active', '2023-03-01 19:32:22'),
+(16, 'CIT 116', 'Data communications', 'Theory', 'Active', '2023-03-01 19:32:42'),
+(17, 'CIT 201', 'Object-Oriented Programming II', 'ICT-Practical', 'Active', '2023-03-01 19:33:13'),
+(25, 'CIT 202', 'Computer Aided Design', 'ICT-Practical', 'Active', '2023-03-01 19:36:55'),
+(18, 'CIT 203', 'Data Structures and Algorithms', 'Theory', 'Active', '2023-03-01 19:33:35'),
+(26, 'CIT 204', 'Networking Administration and Management', 'Theory', 'Active', '2023-03-01 19:37:21'),
+(19, 'CIT 205', 'Computer Networks', 'Theory', 'Active', '2023-03-01 19:33:58'),
+(27, 'CIT 206', 'Research Methods and Technical Writing', 'Theory', 'Active', '2023-03-01 19:37:55'),
+(20, 'CIT 207', 'Web Systems and Technologies', 'ICT-Practical', 'Active', '2023-03-01 19:34:33'),
+(28, 'CIT 208', 'Group Project', 'ICT-Practical', 'Active', '2023-03-01 19:38:17'),
+(21, 'CIT 209', 'Unix Operating System Fundamentals', 'Theory', 'Active', '2023-03-01 19:34:52'),
+(29, 'CIT 210', 'Object Oriented Analysis and Design', 'Theory', 'Active', '2023-03-01 19:38:44'),
+(22, 'CIT 211', 'Event Driven Programming', 'ICT-Practical', 'Active', '2023-03-01 19:35:15'),
+(30, 'CIT 212', 'Computer Networks lab II', 'ICT-Practical', 'Active', '2023-03-01 19:39:17'),
+(23, 'CIT 213', 'Computer Networks Lab I', 'ICT-Practical', 'Active', '2023-03-01 19:35:47'),
+(31, 'CIT 214', 'Software Engineering', 'Theory', 'Active', '2023-03-01 19:39:39'),
+(24, 'CIT 215', 'Databases Systems', 'Theory', 'Active', '2023-03-01 19:36:08'),
+(32, 'CIT 216', 'System Administration and Management', 'Theory', 'Active', '2023-03-01 19:40:07'),
+(33, 'CIT 301', 'Design and Analysis of Algorithms', 'Theory', 'Active', '2023-03-01 19:40:41'),
+(43, 'CIT 302', 'Human Computer Interaction', 'Theory', 'Active', '2023-03-01 19:45:05'),
+(44, 'CIT 304', 'Integrative programming and technologies', 'Theory', 'Active', '2023-03-01 19:45:27'),
+(34, 'CIT 305', 'Advanced Database Systems', 'Theory', 'Active', '2023-03-01 19:41:07'),
+(47, 'CIT 306', 'Wireless and Mobile Computing', 'Theory', 'Active', '2023-03-01 19:47:23'),
+(35, 'CIT 307', 'Information Assurance and Security I', 'Theory', 'Active', '2023-03-01 19:41:30'),
+(48, 'CIT 308', 'Web systems and Technologies II', 'ICT-Practical', 'Active', '2023-03-01 19:47:49'),
+(36, 'CIT 309', 'IT Project I (Proposal Writing)', 'Theory', 'Active', '2023-03-01 19:41:54'),
+(49, 'CIT 310', 'Design Thinking and Human Centered Design', 'Theory', 'Active', '2023-03-01 19:48:17'),
+(38, 'CIT 311', 'Information Technology Control and Audit I', 'Theory', 'Active', '2023-03-01 19:42:44'),
+(45, 'CIT 312', 'Group Project (Project Implementation)', 'Theory', 'Active', '2023-03-01 19:45:53'),
+(39, 'CIT 313', 'Database Administration', 'Theory', 'Active', '2023-03-01 19:43:10'),
+(50, 'CIT 314', 'Mobile Programming', 'ICT-Practical', 'Active', '2023-03-01 19:48:39'),
+(40, 'CIT 315', 'Computer Networks Lab III', 'ICT-Practical', 'Active', '2023-03-01 19:43:49'),
+(51, 'CIT 316', 'Computer Graphics', 'Theory', 'Active', '2023-03-01 19:49:03'),
+(41, 'CIT 317', 'Multimedia and Graphics Systems', 'Theory', 'Active', '2023-03-01 19:44:16'),
+(46, 'CIT 318', 'Artificial Intelligence', 'Theory', 'Active', '2023-03-01 19:46:23'),
+(42, 'CIT 319', 'Software Testing and Measurement', 'Theory', 'Active', '2023-03-01 19:44:38'),
+(52, 'CIT 320', 'Simulation and Modelling', 'Theory', 'Active', '2023-03-01 19:49:25'),
+(53, 'CIT 322', 'Computer Networks Lab 4', 'ICT-Practical', 'Active', '2023-03-01 19:49:47'),
+(54, 'CIT 401', 'Software Project Management', 'Theory', 'Active', '2023-03-01 19:51:06'),
+(64, 'CIT 402', 'IT project II', 'ICT-Practical', 'Active', '2023-03-01 20:46:11'),
+(58, 'CIT 403', 'Management Information Systems', 'Theory', 'Active', '2023-03-01 19:55:21'),
+(55, 'CIT 405', 'E-Commerce', 'Theory', 'Active', '2023-03-01 19:52:54'),
+(65, 'CIT 406', 'Social and Professional Issues In IT', 'Theory', 'Active', '2023-03-01 20:47:17'),
+(59, 'CIT 407', 'IT and Society', 'Theory', 'Active', '2023-03-01 19:55:42'),
+(66, 'CIT 408', 'IT and Development', 'Theory', 'Active', '2023-03-01 20:48:05'),
+(56, 'CIT 409', 'IT Project ', 'Theory', 'Active', '2023-03-01 19:53:36'),
+(67, 'CIT 410', 'Mobile Technology Applications and M-Commerce', 'Theory', 'Active', '2023-03-01 20:48:35'),
+(57, 'CIT 411', 'Distributed Systems', 'Theory', 'Active', '2023-03-01 19:54:59'),
+(68, 'CIT 412', 'Mobile Embedded Hardware Platforms & Architectures', 'Theory', 'Active', '2023-03-01 20:49:03'),
+(60, 'CIT 413', 'Mobile Devices, Technologies, and Programming', 'ICT-Practical', 'Active', '2023-03-01 19:56:09'),
+(69, 'CIT 414', 'Cloud Computing and Emerging Applications', 'Theory', 'Active', '2023-03-01 20:49:43'),
+(61, 'CIT 415', 'Web Applications and Programming', 'ICT-Practical', 'Active', '2023-03-01 19:57:06'),
+(70, 'CIT 416', 'Network Security', 'Theory', 'Active', '2023-03-01 20:50:14'),
+(71, 'CIT 418', 'Authentication Protocols and Biometrics', 'Theory', 'Active', '2023-03-01 20:50:43'),
+(62, 'CIT 419', 'Content Development and Management', 'Theory', 'Active', '2023-03-01 19:58:04'),
+(72, 'CIT 420', 'Information Systems Innovations & New Technologies', 'Theory', 'Active', '2023-03-01 20:51:08'),
+(8, 'PHT 112', 'HIV/AIDS', 'Theory', 'Active', '2023-03-01 19:29:17');
 
 -- --------------------------------------------------------
 
@@ -371,6 +525,85 @@ CREATE TABLE `unit_semester_details` (
   `semester_id` varchar(20) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit_semester_details`
+--
+
+INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added`) VALUES
+(10, 'CIT 101', 'Y1S1', '2023-03-01 22:26:18'),
+(11, 'CIT 103', 'Y1S1', '2023-03-01 22:26:46'),
+(12, 'CIT 105', 'Y1S1', '2023-03-01 22:27:11'),
+(13, 'CIT 107', 'Y1S1', '2023-03-01 22:27:37'),
+(14, 'CIT 109', 'Y1S1', '2023-03-01 22:28:05'),
+(15, 'CIT 111', 'Y1S1', '2023-03-01 22:28:31'),
+(16, 'AEN 105', 'Y1S1', '2023-03-01 22:28:56'),
+(17, 'PHT 112', 'Y1S1', '2023-03-01 22:29:17'),
+(18, 'CIT 102', 'Y1S2', '2023-03-01 22:29:55'),
+(19, 'CIT 104', 'Y1S2', '2023-03-01 22:30:22'),
+(20, 'CIT 106', 'Y1S2', '2023-03-01 22:30:47'),
+(21, 'CIT 108', 'Y1S2', '2023-03-01 22:31:08'),
+(22, 'CIT 110', 'Y1S2', '2023-03-01 22:31:31'),
+(23, 'CIT 112', 'Y1S2', '2023-03-01 22:31:58'),
+(24, 'CIT 114', 'Y1S2', '2023-03-01 22:32:22'),
+(25, 'CIT 116', 'Y1S2', '2023-03-01 22:32:43'),
+(26, 'CIT 201', 'Y2S1', '2023-03-01 22:33:13'),
+(27, 'CIT 203', 'Y2S1', '2023-03-01 22:33:35'),
+(28, 'CIT 205', 'Y2S1', '2023-03-01 22:33:58'),
+(29, 'CIT 207', 'Y2S1', '2023-03-01 22:34:33'),
+(30, 'CIT 209', 'Y2S1', '2023-03-01 22:34:53'),
+(31, 'CIT 211', 'Y2S1', '2023-03-01 22:35:15'),
+(32, 'CIT 213', 'Y2S1', '2023-03-01 22:35:47'),
+(33, 'CIT 215', 'Y2S1', '2023-03-01 22:36:09'),
+(34, 'CIT 202', 'Y2S2', '2023-03-01 22:36:56'),
+(35, 'CIT 204', 'Y2S2', '2023-03-01 22:37:21'),
+(36, 'CIT 206', 'Y2S2', '2023-03-01 22:37:55'),
+(37, 'CIT 208', 'Y2S2', '2023-03-01 22:38:18'),
+(38, 'CIT 210', 'Y2S2', '2023-03-01 22:38:44'),
+(39, 'CIT 212', 'Y2S2', '2023-03-01 22:39:17'),
+(40, 'CIT 214', 'Y2S2', '2023-03-01 22:39:39'),
+(41, 'CIT 216', 'Y2S2', '2023-03-01 22:40:07'),
+(42, 'CIT 301', 'Y3S1', '2023-03-01 22:40:41'),
+(43, 'CIT 305', 'Y3S1', '2023-03-01 22:41:07'),
+(44, 'CIT 307', 'Y3S1', '2023-03-01 22:41:30'),
+(45, 'CIT 309', 'Y3S1', '2023-03-01 22:41:54'),
+(46, 'CIT 305', 'Y3S1', '2023-03-01 22:42:18'),
+(47, 'CIT 311', 'Y3S1', '2023-03-01 22:42:44'),
+(48, 'CIT 313', 'Y3S1', '2023-03-01 22:43:10'),
+(49, 'CIT 315', 'Y3S1', '2023-03-01 22:43:49'),
+(50, 'CIT 317', 'Y3S1', '2023-03-01 22:44:17'),
+(51, 'CIT 319', 'Y3S1', '2023-03-01 22:44:38'),
+(52, 'CIT 302', 'Y3S2', '2023-03-01 22:45:06'),
+(53, 'CIT 304', 'Y3S2', '2023-03-01 22:45:27'),
+(54, 'CIT 312', 'Y3S2', '2023-03-01 22:45:53'),
+(55, 'CIT 318', 'Y3S2', '2023-03-01 22:46:24'),
+(56, 'CIT 306', 'Y3S2', '2023-03-01 22:47:23'),
+(57, 'CIT 308', 'Y3S2', '2023-03-01 22:47:49'),
+(58, 'CIT 310', 'Y3S2', '2023-03-01 22:48:17'),
+(59, 'CIT 314', 'Y3S2', '2023-03-01 22:48:39'),
+(60, 'CIT 316', 'Y3S2', '2023-03-01 22:49:03'),
+(61, 'CIT 320', 'Y3S2', '2023-03-01 22:49:25'),
+(62, 'CIT 322', 'Y3S2', '2023-03-01 22:49:48'),
+(63, 'CIT 401', 'Y4S1', '2023-03-01 22:51:06'),
+(64, 'CIT 405', 'Y4S1', '2023-03-01 22:52:54'),
+(65, 'CIT 409', 'Y4S1', '2023-03-01 22:53:36'),
+(66, 'CIT 411', 'Y4S1', '2023-03-01 22:54:59'),
+(67, 'CIT 403', 'Y4S1', '2023-03-01 22:55:21'),
+(68, 'CIT 407', 'Y4S1', '2023-03-01 22:55:43'),
+(69, 'CIT 413', 'Y4S1', '2023-03-01 22:56:09'),
+(70, 'CIT 415', 'Y4S1', '2023-03-01 22:57:06'),
+(71, 'CIT 419', 'Y4S1', '2023-03-01 22:58:04'),
+(72, 'ABA 424', 'Y4S2', '2023-03-01 23:45:43'),
+(73, 'CIT 402', 'Y4S2', '2023-03-01 23:46:11'),
+(74, 'CIT 403', 'Y4S2', '2023-03-01 23:46:45'),
+(75, 'CIT 406', 'Y4S2', '2023-03-01 23:47:18'),
+(76, 'CIT 408', 'Y4S2', '2023-03-01 23:48:06'),
+(77, 'CIT 410', 'Y4S2', '2023-03-01 23:48:36'),
+(78, 'CIT 412', 'Y4S2', '2023-03-01 23:49:03'),
+(79, 'CIT 414', 'Y4S2', '2023-03-01 23:49:43'),
+(80, 'CIT 416', 'Y4S2', '2023-03-01 23:50:14'),
+(81, 'CIT 418', 'Y4S2', '2023-03-01 23:50:43'),
+(82, 'CIT 420', 'Y4S2', '2023-03-01 23:51:08');
 
 -- --------------------------------------------------------
 
@@ -697,13 +930,13 @@ ALTER TABLE `time_slot_details`
 -- AUTO_INCREMENT for table `unit_course_details`
 --
 ALTER TABLE `unit_course_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `unit_details`
 --
 ALTER TABLE `unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
@@ -715,7 +948,7 @@ ALTER TABLE `unit_room_time_day_allocation_details`
 -- AUTO_INCREMENT for table `unit_semester_details`
 --
 ALTER TABLE `unit_semester_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `user_details`
