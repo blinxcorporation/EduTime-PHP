@@ -23,13 +23,11 @@ if (isset($_POST['update-unit-details-btn'])) {
   $uni_semester_id = $_POST['uni_semester_id'];
   $unit_status = (int)$_POST['unit_status_id'];
 
-
   if($unit_status == '1' ){
     $boolean_value_as_int = 1;
   }else if($unit_status == '0'){
-    $boolean_value_as_int = 2;
+    $boolean_value_as_int = 0;
   }
-
 
 //Data Validation
   if (empty($crs_id)) {
@@ -50,7 +48,6 @@ if (isset($_POST['update-unit-details-btn'])) {
   if (empty($unit_status)) {
   	array_push($errors, "Unit Status is required");
   }
-
 
 if (count($errors) == 0) {
   $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$boolean_value_as_int' WHERE `unit_code` = '$unit_code' ";
@@ -97,10 +94,14 @@ if (isset($_POST['add-unit-btn'])) {
   $unit_code = $_POST['unit_code'];
   $unit_name = $_POST['unit_name'];
   $unit_type = $_POST['unit_type'];
-  $unit_status = (int)$_POST['unit_status'];
+  $unit_status = $_POST['unit_status'];
   $sem_id = $_POST['uni_semester_id'];
 
-
+  if($unit_status == '1' ){
+    $boolean_value_as_int = 1;
+  }else if($unit_status == '0'){
+    $boolean_value_as_int = 0;
+  }
 
   if (empty($unit_code)) {
     array_push($errors, "Unit ID is required");
@@ -120,7 +121,7 @@ if (isset($_POST['add-unit-btn'])) {
 
   
   if (count($errors) == 0) {
-    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$unit_status')";
+    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$boolean_value_as_int')";
     $results = mysqli_query($db, $add_unit_query);
 
     // //link unit with course
