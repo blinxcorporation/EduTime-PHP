@@ -414,7 +414,6 @@ $(document).ready(function () {
 });
 
 
-
 //add School details modal code
 function openSchoolModal() {
   $("#addSchoolModal").modal("show");
