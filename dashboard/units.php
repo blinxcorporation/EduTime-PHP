@@ -193,6 +193,7 @@ include '../assets/components/header.php';
     <th>Unit ID</th>
     <th>Unit Name</th>
     <th>Status</th>
+    <th>Course</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -200,7 +201,7 @@ include '../assets/components/header.php';
   <tbody>
   <?php
   if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `unit_details`";
+      $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON unit_course_details.course_id = course_details.course_id";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
@@ -209,12 +210,14 @@ include '../assets/components/header.php';
               $unit_type = $row['unit_type'];
               $unit_active = $row['unit_active'];//string (1,0)
               $course_id = $row['course_id'];
+              $course_short_name = $row['course_shortform'];
               $date_added = $row['date_added'];
               $unit_status= ($unit_active) ? "Active" : "Inactive";
 
                 echo "<tr> <td>" .$unit_id.  "</td>";
                 echo "<td>" .$unit_name."</td>";
                 echo "<td>" .$unit_status."</td>";
+                echo "<td>" .$course_short_name."</td>";
                 echo "<td>" .$date_added."</td>";
                 echo "<td>
                 <form method ='POST' action=''>
@@ -240,6 +243,7 @@ include '../assets/components/header.php';
     <th>Unit ID</th>
     <th>Unit Name</th>
     <th>Status</th>
+    <th>Course</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
