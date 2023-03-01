@@ -21,13 +21,8 @@ if (isset($_POST['update-unit-details-btn'])) {
   $unit_name = $_POST['unit_name'];
   $unit_type = $_POST['unit_type'];
   $uni_semester_id = $_POST['uni_semester_id'];
-  $unit_status = (int)$_POST['unit_status_id'];
+  $unit_status = $_POST['unit_status_id'];
 
-  if($unit_status == '1' ){
-    $boolean_value_as_int = 1;
-  }else if($unit_status == '0'){
-    $boolean_value_as_int = 0;
-  }
 
 //Data Validation
   if (empty($crs_id)) {
@@ -50,7 +45,7 @@ if (isset($_POST['update-unit-details-btn'])) {
   }
 
 if (count($errors) == 0) {
-  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$boolean_value_as_int' WHERE `unit_code` = '$unit_code' ";
+  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$unit_status' WHERE `unit_code` = '$unit_code' ";
   $unit_results = mysqli_query($db, $unit_data_update_query);
 
   $unit_crs_update_query = "UPDATE `unit_course_details` SET `course_id`='$crs_id' WHERE `unit_id` = '$unit_code' ";
@@ -97,11 +92,6 @@ if (isset($_POST['add-unit-btn'])) {
   $unit_status = $_POST['unit_status'];
   $sem_id = $_POST['uni_semester_id'];
 
-  if($unit_status == '1' ){
-    $boolean_value_as_int = 1;
-  }else if($unit_status == '0'){
-    $boolean_value_as_int = 0;
-  }
 
   if (empty($unit_code)) {
     array_push($errors, "Unit ID is required");
@@ -121,7 +111,7 @@ if (isset($_POST['add-unit-btn'])) {
 
   
   if (count($errors) == 0) {
-    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$boolean_value_as_int')";
+    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$unit_status')";
     $results = mysqli_query($db, $add_unit_query);
 
     // //link unit with course
@@ -245,12 +235,12 @@ include '../assets/components/header.php';
               $date_added = $row['date_added'];
               $semester_id = $row['semester_id'];
               $semester_name = $row['semester_name'];
-              $unit_status= ($unit_active) ? "Active" : "In-Active";
+             
 
                 echo "<tr> <td>" .$unit_id.  "</td>";
                 echo "<td>" .$unit_name."</td>";
                 echo "<td>" .$unit_type."</td>";
-                echo "<td>" .$unit_status."</td>";
+                echo "<td>" .$unit_active."</td>";
                 echo "<td>" .$course_short_name."</td>";
                 echo "<td>" .$semester_id."</td>";
                 echo "<td>" .$date_added."</td>";
@@ -410,8 +400,8 @@ include '../assets/components/header.php';
           <label for="recipient-name" readonly class="col-form-label">Unit Status:</label>
           <select class="form-control" id="unit_status_id" name="unit_status_id" required>
           <option selected>select status...</option>
-          <option value="1">Active</option>
-          <option value="2">In-Active</option>
+          <option value="Active">Active</option>
+          <option value="In-Active">In-Active</option>
           
     </select>
         </div>
@@ -494,8 +484,8 @@ include '../assets/components/header.php';
           <label for="recipient-name" readonly class="col-form-label">Unit Status:</label>
           <select class="form-control" id="unit_status_id" name="unit_status" required>
           <option value="" selected>select status...</option>
-          <option value="1">Active</option>
-          <option value="0">In-Active</option>
+          <option value="Active">Active</option>
+          <option value="In-Active">In-Active</option>
     </select>
         </div>
    
