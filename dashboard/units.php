@@ -386,6 +386,7 @@ include '../assets/components/header.php';
           <option value="" selected>Select Unit Type...</option>
           <option value="Theory">Theory</option>
           <option value="ICT-Practical">ICT-Practical</option>
+          <option value="ELECT-Practical">Electronics-Practical</option>
           <option value="CHEM-Practical">CHEM-Practical</option>
           <option value="BIO-Practical">BIO-Practical</option>
           <option value="PHY-Practical">PHY-Practical</option>
@@ -470,6 +471,7 @@ include '../assets/components/header.php';
           <option value="" selected>Select Unit Type...</option>
           <option value="Theory">Theory</option>
           <option value="ICT-Practical">ICT-Practical</option>
+          <option value="ELECT-Practical">Electronics-Practical</option>
           <option value="CHEM-Practical">CHEM-Practical</option>
           <option value="BIO-Practical">BIO-Practical</option>
           <option value="PHY-Practical">PHY-Practical</option>
