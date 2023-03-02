@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 02, 2023 at 09:40 AM
+-- Generation Time: Mar 02, 2023 at 01:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `academic_year` (
   `id` int(11) NOT NULL,
   `academic_year_id` varchar(100) NOT NULL,
-  `academic_year` varchar(100) NOT NULL
+  `academic_year` varchar(100) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `academic_year`
 --
 
-INSERT INTO `academic_year` (`id`, `academic_year_id`, `academic_year`) VALUES
-(1, 'YR_019_020', '2019/2020'),
-(2, 'YR_020_021', '2020/2021');
+INSERT INTO `academic_year` (`id`, `academic_year_id`, `academic_year`, `date_added`) VALUES
+(1, 'YR_019_020', '2019/2020', '2023-03-02 11:51:27'),
+(2, 'YR_020_021', '2020/2021', '2023-03-02 11:51:27');
 
 -- --------------------------------------------------------
 
@@ -157,6 +158,7 @@ CREATE TABLE `lecturer_unit_details` (
   `id` int(11) NOT NULL,
   `lecturer_id` varchar(20) NOT NULL,
   `unit_id` varchar(20) NOT NULL,
+  `academic_year_id` varchar(100) NOT NULL,
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1553,7 +1555,8 @@ ALTER TABLE `lecturer_department_details`
 ALTER TABLE `lecturer_unit_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `lecturer_id` (`lecturer_id`);
+  ADD KEY `lecturer_id` (`lecturer_id`),
+  ADD KEY `acdid` (`academic_year_id`);
 
 --
 -- Indexes for table `role_details`
@@ -1804,8 +1807,9 @@ ALTER TABLE `lecturer_department_details`
 -- Constraints for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
+  ADD CONSTRAINT `acadmyid` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`academic_year_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `lec_id` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `unit_id` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `unId_id` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `school_department_details`
