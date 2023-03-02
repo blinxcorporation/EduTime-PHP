@@ -147,6 +147,20 @@ include '../assets/components/header.php';
             </div>
         </a>
     </div>
+
+    <div class="col-md-4">
+        <a href="./academic-year.php">
+            <div class="card card-hover">
+                <div class="box bg-cyan text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-clock"></i>
+                    </h1>
+                    <h6 class="text-white">Academic Year</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
     <div class="col-md-4">
         <a href="./users.php">
             <div class="card card-hover">

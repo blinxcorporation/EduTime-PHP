@@ -75,7 +75,21 @@
               <?php
                    }
               ?>
-
+              <?php
+                if ($_SESSION['role_name'] == 'Admin'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="academic-year.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-clock"></i
+                  ><span class="hide-menu">Academic Year</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
               <?php
                 if ($_SESSION['role_name'] == 'Admin'){
               ?>
@@ -91,6 +105,7 @@
               <?php
                    }
               ?>
+           
               <li class="sidebar-item mt-4">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
