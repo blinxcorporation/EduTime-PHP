@@ -186,7 +186,7 @@ include '../assets/components/header.php';
             <div class="card">
           <div class="card-body">
             <h5 class="card-title">List of Academic Years</h5>
-            <input type='button' value='Add a Course' name='open-academic-year-btn' class='btn btn-primary float-end open-academic-year-modal-btn m-2'>
+            <input type='button' value='Add Academic Year' name='open-academic-year-btn' class='btn btn-primary float-end open-academic-year-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
@@ -280,7 +280,7 @@ include '../assets/components/header.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this Course?</p>
+        <p>Are you sure you want to delete this Academic Year?</p>
         <form method="POST" action="">
         <div class="form-group">
             <input type="text"  hidden class="form-control" id="courseID" required readonly name='course_id'>
@@ -346,42 +346,31 @@ include '../assets/components/header.php';
   </div>
 </div>
 
-<!-- add new Course-->
-<div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+<!-- add new Academic Year-->
+<div class="modal fade" id="addAcademicYearModal" tabindex="-1" role="dialog" aria-labelledby="addAcademicYearModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addCourseModalLabel">Add a Course</h5>
+        <h5 class="modal-title" id="addAcademicYearModalLabel">Add a Academic Year</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
         <form method="POST" action="">
-<div class="form-group">
-  <label for="uni_department_id">Select Department:</label>
-  <select class="form-control" id="uni_department_id" name="uni_departments" required>
-    <option value="">Select Department..</option>
-    <?php 
-    // Retrieve the departments from the database
-    $sql=mysqli_query($db,"select * from department_details");
-    while ($rw=mysqli_fetch_array($sql)) {
-    ?>
-    <option value="<?php echo htmlentities($rw['department_id']);?>">Department of <?php echo htmlentities($rw['department_name']);?></option>
-    <?php
-    }
-    ?>
-  </select>
-</div>
       <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Course Name:</label>
-          <input type="text" name="course_name"  class="form-control" id="crs_name" required placeholder="e.g Bachelor of Science in Information Technology">
-        </div>
-        <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Short Name:</label>
-          <input type="text" name="crs_short_name"  class="form-control" id="crs_short_name" required placeholder="e.g IT">
-        </div>
+      <div class="row">
+      <label for="academic year">Academic Year e.g (2019/2020)</label>
+    <div class="col-md-5">
+      <input type="number" class="form-control" placeholder="e.g 2019" name="acad_year_1" id="acad_year_1_id" min="1990" max="3099" required>
+    </div>
+    <div class="col-md-2">
+        <p style="font-size:24px;">/</p>
+</div>
+    <div class="col-md-5">
+    <input type="number" class="form-control" placeholder="e.g 2020" name="acad_year_2" id="acad_year_2_id" min="1991" max="3099" required>
+    </div>
+  </div>
         <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
       <button type="submit" class="btn btn-info" name="add-course-btn">Submit</button>
@@ -427,14 +416,14 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
 
-//add Course details modal code
-function openCourseModal() {
-  $("#addCourseModal").modal("show");
+//add academic year details modal code
+function openAcademicYearModal() {
+  $("#addAcademicYearModal").modal("show");
 }
-let openAddCourseModalBtn = document.querySelector(".open-course-modal-btn");
-openAddCourseModalBtn.addEventListener("click", function (e) {
+let openAcademicYearModalBtn = document.querySelector(".open-academic-year-modal-btn");
+openAcademicYearModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  openCourseModal();
+  openAcademicYearModal();
 });
 
 // //edit Course details modal code
