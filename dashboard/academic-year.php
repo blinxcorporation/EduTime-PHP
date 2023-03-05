@@ -51,22 +51,22 @@ if (count($errors) == 0) {
 }
 }
 
-  // Delete course Details
-if (isset($_POST['delete-course-btn'])) {
+  // Delete Academic Year Details
+if (isset($_POST['delete-academic-year-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $courseID = $_POST['course_id'];
+  $academic_year_id = $_POST['academic_year_id'];
   
-  if (empty($courseID)) {
-    array_push($errors, "Course ID is required");
+  if (empty($academic_year_id)) {
+    array_push($errors, "Academic Year ID is required");
   }
   if (count($errors) == 0) {
-      $crs_data_delete_query = "DELETE FROM `course_details` WHERE `course_id`='$courseID' ";
-      $results = mysqli_query($db, $crs_data_delete_query);
+      $academic_yr_data_delete_query = "DELETE FROM `academic_year` WHERE `academic_year_id`='$academic_year_id' ";
+      $results = mysqli_query($db, $academic_yr_data_delete_query);
 
-        header('location: courses.php');
+        header('location: academic-year.php');
       }else{
-        array_push($errors, "Unable to delete Course");
-        header('location: courses.php');
+        array_push($errors, "Unable to delete academic year");
+        header('location: academic-year.php');
       }
   }
 }
@@ -90,7 +90,6 @@ if (isset($_POST['add-academic-year-btn'])) {
   }
 
   if (count($errors) == 0) {
-
     //generate academic year id
     $academic_yr_id = generate_academic_year_id($year_1,$year_2);
     $academic_year = $year_1 ."/".$year_2;
@@ -117,7 +116,6 @@ include '../assets/components/header.php';
   </head>
 
   <body>
-
       <!-- ============================================================== -->
       <!-- Topbar header - style you can find in pages.scss -->
       <!-- ============================================================== -->
@@ -127,7 +125,6 @@ include '../assets/components/header.php';
       <!-- ============================================================== -->
       <!-- End Topbar header -->
       <!-- ============================================================== -->
-
 
       <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
@@ -208,7 +205,7 @@ include '../assets/components/header.php';
       <form method ='POST' action=''>
       <input  type='text' hidden name='course_id' value='$course_id'>
       <input type='submit' data-crsid='$course_id'  data-crsname='$course_name' data-crs_short_name='$shortname' data-crs_dpt_id='$department_id' value='Edit Details' name='edit-course-btn' class='btn btn-success edit-course-modal-btn m-2'>
-      <input type='submit' data-id= '$course_id' value='Delete Course'  class='btn btn-danger deleteCourseBtn'>
+      <input type='submit' data-id= '$year_id' value='Delete Academic Year'  class='btn btn-danger deleteAcademicYearBtn'>
       </form>
       </td> </tr>";
       }
@@ -260,8 +257,8 @@ include '../assets/components/header.php';
     <!-- End Wrapper -->
     <!-- ============================================================== -->
 
-    <!-- delete course modal-->
-    <div class="modal" id='deleteCourseModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+    <!-- delete academic year modal-->
+    <div class="modal" id='deleteAcademicYearModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -276,11 +273,11 @@ include '../assets/components/header.php';
         <p>Are you sure you want to delete this Academic Year?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text"  hidden class="form-control" id="courseID" required readonly name='course_id'>
+            <input type="text"  hidden class="form-control" id="academic_year_ID" required readonly name='academic_year_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-course-btn' class="btn btn-danger">Yes,Delete!</button>
+        <button type="submit" name='delete-academic-year-btn' class="btn btn-danger">Yes,Delete!</button>
       </div>
         </form>
       </div>
@@ -448,20 +445,20 @@ function editCourseModal() {
   });
 
 
-  // delete Course modal query
-    function deleteCourseModal() {
-    $("#deleteCourseModal").modal("show");
+  // delete Academic Year modal query
+    function deleteAcademicYearModal() {
+    $("#deleteAcademicYearModal").modal("show");
   }
-  let deleteBtns = document.querySelectorAll(".deleteCourseBtn");
+  let deleteBtns = document.querySelectorAll(".deleteAcademicYearBtn");
   deleteBtns.forEach(function (deleteBtn) {
     deleteBtn.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let crsid = deleteBtn.dataset.id;
+      let academic_yr_id = deleteBtn.dataset.id;
   
-      document.getElementById("courseID").value = crsid;
+      document.getElementById("academic_year_ID").value = academic_yr_id;
      
-      deleteCourseModal();
+      deleteAcademicYearModal();
     });
   });
 
