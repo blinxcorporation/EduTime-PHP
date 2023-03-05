@@ -71,44 +71,37 @@ if (isset($_POST['delete-course-btn'])) {
   }
 }
 
-function generate_course_id($department_id,$course_name) {
-  $crs_prefix = 'CRS';
-  $course_id =strtoupper($crs_prefix."_".$course_name);
-  return $course_id;
+function generate_academic_year_id($year1, $year2) {
+  $crs_prefix = 'YR';
+  $id =strtoupper($crs_prefix."_".$year1."_".$year2);
+  return $id;
 }
 
-//add course
-if (isset($_POST['add-course-btn'])) {
-  $department_id = $_POST['uni_departments'];
-  $crs_name = $_POST['course_name'];
-  $crs_short_name = $_POST['crs_short_name'];
+//add academic-year
+if (isset($_POST['add-academic-year-btn'])) {
+  $year_1 = $_POST['acad_year_1'];
+  $year_2 = $_POST['acad_year_2'];
 
-  if (empty($department_id)) {
-    array_push($errors, "Department ID is required");
+  if (empty($year_1)) {
+    array_push($errors, "Year 1 is required");
   }
-  if (empty($crs_name)) {
-    array_push($errors, "Course name is required");
+  if (empty($year_2)) {
+    array_push($errors, "Year 2 is required");
   }
-  if (empty($crs_short_name)) {
-    array_push($errors, "Course short name is required");
-  }
-  
+
   if (count($errors) == 0) {
 
-    //generate department id
-    $course_id = generate_course_id($department_id,$crs_short_name);
+    //generate academic year id
+    $academic_yr_id = generate_academic_year_id($year_1,$year_2);
+    $academic_year = $year_1 ."/".$year_2;
 
-    $add_crs_query = "INSERT INTO `course_details`(`course_id`, `course_name`,`course_shortform`) VALUES ('$course_id','$crs_name','$crs_short_name')";
-    $results = mysqli_query($db, $add_crs_query);
+    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`) VALUES ('$academic_yr_id','$academic_year')";
+    $results = mysqli_query($db, $add_academic_yr_query);
 
-    //link crs with department
-    $add_dpt_crs_query = "INSERT INTO `department_course_details`(`department_id`, `course_id`) VALUES ('$department_id','$course_id')";
-    $results_dpt_crs_dpt = mysqli_query($db, $add_dpt_crs_query);
-
-      header('location: ./courses.php');
+      header('location: ./academic-year.php');
     }else{
       array_push($errors, "Incorrect Username or Password");
-      header('location: ./courses.php');
+      header('location: ./academic-year.php');
     }
   }
 ?>
@@ -373,7 +366,7 @@ include '../assets/components/header.php';
   </div>
         <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-info" name="add-course-btn">Submit</button>
+      <button type="submit" class="btn btn-info" name="add-academic-year-btn">Submit</button>
     </div>
       </form>
     </div>
