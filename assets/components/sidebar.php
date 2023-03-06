@@ -105,6 +105,21 @@
               <?php
                    }
               ?>
+                 <?php
+               if ($_SESSION['role_name'] == 'Admin'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="rooms.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-window-open"></i
+                  ><span class="hide-menu">Rooms</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
               <?php
                 if ($_SESSION['role_name'] == 'Admin'){
               ?>
