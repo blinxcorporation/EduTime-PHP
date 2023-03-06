@@ -51,28 +51,36 @@ if (isset($_POST['add-room-btn'])) {
     }
   }
 
-// Update Semester Details
-if (isset($_POST['update-semester-details-btn'])) {
+// Update Room Details
+if (isset($_POST['update-room-details-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $semester_id = $_POST['sem_id'];
-  $semester_name = $_POST['sem_name'];
+  $room_id = $_POST['room_id'];
+  $room_name = $_POST['rm_name'];
+  $room_type = $_POST['room_type'];
+  $room_capacity = $_POST['room_capacity'];
 
 //Data Validation
-  if (empty($semester_id)) {
-  	array_push($errors, "Semester ID is required");
+  if (empty($room_id)) {
+  	array_push($errors, "Room ID is required");
   }
-  if (empty($semester_name)) {
-  	array_push($errors, "Semester Name is required");
+  if (empty($room_name)) {
+  	array_push($errors, "Room Name is required");
+  }
+  if (empty($room_type)) {
+  	array_push($errors, "Room Type is required");
+  }
+  if (empty($room_capacity)) {
+  	array_push($errors, "Room Capacity is required");
   }
 
 if (count($errors) == 0) {
-  $sem_data_update_query = "UPDATE `semester_details` SET `semester_name`='$semester_name' WHERE `semester_id`='$semester_id'";
-  $results = mysqli_query($db, $sem_data_update_query);
+  $room_data_update_query = "UPDATE `room_details` SET `room_name`='$room_name',`room_type_id`='$room_type',`room_capacity`='$room_capacity' WHERE `room_id`='$room_id'";
+  $results = mysqli_query($db, $room_data_update_query);
 
-  header('location: semesters.php');
+  header('location: rooms.php');
   }else{
-  array_push($errors, "Unable to push semester updates");
-  header('location: semesters.php');
+  array_push($errors, "Unable to push room updates");
+  header('location: rooms.php');
   }
 }
 }
@@ -190,6 +198,7 @@ include '../assets/components/header.php';
               $room_id = $row['room_id'];
               $room_name = $row['room_name'];
               $room_type = $row['room_type'];
+              $room_type_id = $row['room_type_id'];
               $room_capacity = $row['room_capacity'];
               $date_created = $row['date_added'];
 
@@ -202,7 +211,7 @@ include '../assets/components/header.php';
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='room_id' value='$room_id'>
-      <input type='submit' data-room_id='$room_id'  data-room_name='$room_name' data-room_type='$room_type' data-room_capacity='$room_capacity' value='Edit Details' name='edit-room-btn' class='btn btn-success edit-room-modal-btn m-2'>
+      <input type='submit' data-room_id='$room_id' data-room_name='$room_name' data-room_type='$room_type' data-room_type_id='$room_type_id' data-room_capacity='$room_capacity' value='Edit Details' name='edit-room-btn' class='btn btn-success edit-room-modal-btn m-2'>
       <input type='submit' data-id= '$room_id' value='Delete Room'  class='btn btn-danger deleteRoomBtn'>
       </form>
       </td> </tr>";
@@ -302,26 +311,43 @@ while ($rw=mysqli_fetch_array($sql)) {
   </div>
 </div>
 
-<!--edit Semester details-->
-<div class="modal fade" id="editSemesterModal" tabindex="-1" role="dialog" aria-labelledby="editSemesterModalLabel" aria-hidden="true">
+<!--edit Room details-->
+<div class="modal fade" id="editRoomModal" tabindex="-1" role="dialog" aria-labelledby="editRoomModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editSemesterModalLabel">Edit Semester Details</h5>
+        <h5 class="modal-title" id="editRoomModalLabel">Edit Room Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form method="POST" action="">
-            <input type="text" readonly name="sem_id" readonly hidden class="form-control" id="semester_id" required>
+            <input type="text"  name="room_id" readonly hidden class="form-control" id="room_id" required>
         <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Semester Name:</label>
-            <input type="text" name="sem_name"  class="form-control" id="semester_name_id" required>
+            <label for="recipient-name" readonly class="col-form-label">Room Name:</label>
+            <input type="text" name="rm_name"  class="form-control" id="rm_name_id" required>
+          </div>
+          <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Room Type</label>
+    <select class="form-control"  name="room_type" value="" id="rm_type">
+<option value="">Select Room Type</option>
+<?php $sql=mysqli_query($db,"select * from room_type_details");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['room_type_id']);?>"><?php echo htmlentities($rw['room_type']);?></option>
+<?php
+}
+?>
+    </select>
+  </div>
+  <div class="form-group">
+            <label for="recipient-name" readonly class="col-form-label">Room Capacity:</label>
+            <input type="number" name="room_capacity"  class="form-control" id="rm_capacity_id" required placeholder="e.g 60">
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-semester-details-btn">Update Details</button>
+        <button type="submit" class="btn btn-info" name="update-room-details-btn">Update Details</button>
       </div>
         </form>
       </div>
@@ -402,24 +428,36 @@ openAddRoomModalBtn.addEventListener("click", function (e) {
   openAddRoomModal();
 });
 
-//edit Semester details modal code
-// function editSemesterModal() {
-//     $("#editSemesterModal").modal("show");
-//   }
-//   let editButtons = document.querySelectorAll(".edit-semester-modal-btn");
-//   editButtons.forEach(function (editButton) {
-//     editButton.addEventListener("click", function (e) {
-//       e.preventDefault();
-  
-//       let sem_id = editButton.dataset.semid;
-//       let sem_name = editButton.dataset.sem_name;
+//edit Room details modal code
+function editRoomModal() {
+$("#editRoomModal").modal("show");
+}
+let editButtons = document.querySelectorAll(".edit-room-modal-btn");
 
-//       document.getElementById("semester_id").value = sem_id;
-//       document.getElementById("semester_name_id").value = sem_name;
+editButtons.forEach(function (editButton) {
+    editButton.addEventListener("click", function (e) {
+    e.preventDefault();
 
-//       editSemesterModal();
-//     });
-//   });
+    let room_id = editButton.dataset.room_id;
+    let room_name = editButton.dataset.room_name;
+    let room_type = editButton.dataset.room_type;
+    let room_type_id = editButton.dataset.room_type_id;
+    let room_capacity = editButton.dataset.room_capacity;
+
+    document.getElementById("room_id").value = room_id;
+    document.getElementById("rm_name_id").value = room_name;
+    document.getElementById("rm_capacity_id").value = room_capacity;
+
+    document.getElementById("rm_type").value = room_type_id;
+    // pre-select the option in the dropdown menu
+    const selectedRoom = document.querySelector('#rm_type');
+    // console.log(selectedRoom,"ERRORRRRR")
+    selectedRoom.value = room_type_id;
+
+
+    editRoomModal();
+    });
+});
 
 //   //delete Room modal query
 function deleteRoomModal() {
