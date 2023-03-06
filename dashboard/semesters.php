@@ -6,19 +6,42 @@ if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
 }
-
+//Get Session data
 $pfno = $_SESSION['pfno'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
+//add department
+if (isset($_POST['add-semester-btn'])) {
+  $sem_id = $_POST['semester_id'];
+  $sem_name = $_POST['semester_name'];
+
+  if (empty($sem_id)) {
+    array_push($errors, "Semester ID is required");
+  }
+  if (empty($sem_name)) {
+    array_push($errors, "Semester name is required");
+  }
+  
+  if (count($errors) == 0) {
+
+    $add_sem_query = "INSERT INTO `semester_details`(`semester_id`, `semester_name`) VALUES ('$sem_id','$sem_name')";
+    $results = mysqli_query($db, $add_sem_query);
+
+      header('location: ./semesters.php');
+    }else{
+      array_push($errors, "Incorrect Username or Password");
+      header('location: ./semesters.php');
+    }
+  }
+
 // Update Department Details
 if (isset($_POST['update-department-details-btn'])) {
   if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
   $department_id = $_POST['dpt_id'];
   $department_name = $_POST['dpt_name'];
-
 
 //Data Validation
   if (empty($department_id)) {
@@ -59,84 +82,17 @@ if (isset($_POST['delete-department-btn'])) {
       }
   }
 }
-
-function capitalizeWords($string) {
-  return ucwords(strtolower($string));
-}
-
-function generate_department_id($faculty_name, $department_name) {
-  $dpt_prefix = 'DPT';
-  // Convert faculty and department names to uppercase
-  $faculty_name = strtoupper($faculty_name);
-  $department_name = strtoupper($department_name);
-
-  // Remove any non-alphabetic characters from the faculty and department names
-  $faculty_name = preg_replace('/[^A-Z]/', '', $faculty_name);
-  $department_name = preg_replace('/[^A-Z]/', '', $department_name);
-
-  function slugify($string) {
-    return strtoupper(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
-}
-
-
-  // Extract the first two letters of the faculty name and the last two letters of the department name
-  $faculty_code = substr($faculty_name, 0, 4);
-  $department_code = slugify($department_name);
-
-  // Combine the faculty code, department code to form the department ID
-  $department_id = $dpt_prefix."_". $department_code;
-
-  // Return the department ID
-  return $department_id;
-}
-
-
-
-//add department
-if (isset($_POST['add-department-btn'])) {
-  $school_id = $_POST['uni_schools'];
-  $dpt_name = $_POST['department_name'];
-
-  if (empty($school_id)) {
-    array_push($errors, "School ID is required");
-  }
-  if (empty($dpt_name)) {
-    array_push($errors, "Department name is required");
-  }
-  
-  if (count($errors) == 0) {
-    // Example usage of generate_dpt_id function
-
-    //generate department id
-$department_id = generate_department_id($school_id, $dpt_name);
-
-    $add_dpt_query = "INSERT INTO `department_details`(`department_id`, `department_name`) VALUES ('$department_id','$dpt_name')";
-    $results = mysqli_query($db, $add_dpt_query);
-
-    //link sch with dpt
-    $add_sch_dpt_query = "INSERT INTO `school_department_details`(`school_id`, `department_id`) VALUES ('$school_id','$department_id')";
-    $results_sch_dpt = mysqli_query($db, $add_sch_dpt_query);
-
-      header('location: ./departments.php');
-    }else{
-      array_push($errors, "Incorrect Username or Password");
-      header('location: ./departments.php');
-    }
-  }
 ?>
-
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Departments | EDUTIME</title>
+  <title>Semesters | EDUTIME</title>
   <?php
 include '../assets/components/header.php';
 ?>
   </head>
-
   <body>
-
       <!-- ============================================================== -->
       <!-- Topbar header - style you can find in pages.scss -->
       <!-- ============================================================== -->
@@ -146,7 +102,6 @@ include '../assets/components/header.php';
       <!-- ============================================================== -->
       <!-- End Topbar header -->
       <!-- ============================================================== -->
-
 
       <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
@@ -167,13 +122,13 @@ include '../assets/components/header.php';
         <div class="page-breadcrumb pt-5">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Departments Details</h4>
+              <h4 class="page-title">Semester Details</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Departments
+                      Semesters
                     </li>
 
                   </ol>
@@ -197,13 +152,13 @@ include '../assets/components/header.php';
 
             <div class="card">
           <div class="card-body">
-            <h5 class="card-title">List of Departments</h5>
-            <input type='button' value='Add a Department' name='open-department-modal-btn' class='btn btn-primary float-end open-department-modal-btn m-2'>
+            <h5 class="card-title">List of Semesters</h5>
+            <input type='button' value='Add a Semester' name='open-semester-modal-btn' class='btn btn-primary float-end open-semester-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
-    <th>Department ID</th>
-    <th>Department Name</th>
+    <th>Semester ID</th>
+    <th>Semester Name</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -211,25 +166,23 @@ include '../assets/components/header.php';
   <tbody>
   <?php
   if($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
-      $data_fetch_query = "SELECT * FROM `department_details`";
+      $data_fetch_query = "SELECT * FROM `semester_details`";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
-              $department_id = $row['department_id'];
-              $department_name = $row['department_name'];
-              $date_created = $row['date_created'];
+              $semester_id = $row['semester_id'];
+              $semester_name = $row['semester_name'];
+              $date_created = $row['date_added'];
 
-
-
-      echo "<tr> <td>" .$department_id.  "</td>";
-      echo "<td>" .$department_name."</td>";
+      echo "<tr> <td>" .$semester_id.  "</td>";
+      echo "<td>" .$semester_name."</td>";
       echo "<td>" .$date_created."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
-      <input  type='text' hidden name='Department_id' value='$department_id'>
-      <input type='submit' data-dptid='$department_id'  data-dptname='$department_name'  value='Edit Details' name='edit-department-btn' class='btn btn-success edit-department-modal-btn m-2'>
-      <input type='submit' data-id= '$department_id' value='Delete Department'  class='btn btn-danger deleteDepartmentBtn'>
+      <input  type='text' hidden name='semester_id' value='$semester_id'>
+      <input type='submit' data-semid='$semester_id'  data-semname='$semester_name'  value='Edit Details' name='edit-semester-btn' class='btn btn-success edit-semester-modal-btn m-2'>
+      <input type='submit' data-id= '$semester_id' value='Delete Semester'  class='btn btn-danger deleteSemesterBtn'>
       </form>
       </td> </tr>";
       }
@@ -246,8 +199,8 @@ include '../assets/components/header.php';
   </tbody>
   <tfoot>
     <tr>
-    <th>Department ID</th>
-    <th>Department Name</th>
+    <th>Semester ID</th>
+    <th>Semester Name</th>
     <th>Date Added</th>
     <th>Action</th>
     </tr>
@@ -280,43 +233,44 @@ include '../assets/components/header.php';
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-    <div class="modal" id='deleteDepartmentModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+
+<!-- add new Semester-->
+<div class="modal fade" id="addSemesterModal" tabindex="-1" role="dialog" aria-labelledby="addSemesterModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+        <h5 class="modal-title" id="addSemesterModalLabel">Add a Semester</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       
-        <div class="modal-body">
-        <p>Are you sure you want to delete this Department?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" hidden  class="form-control" id="departmentID" required readonly name='department_id'>
+            <label for="recipient-name" readonly class="col-form-label">Semester ID:</label>
+            <input type="text" name="semester_id"  class="form-control" id="sem_id" required placeholder="e.g Y1S1">
           </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-department-btn' class="btn btn-danger">Yes,Delete!</button>
+        <div class="form-group">
+            <label for="recipient-name" readonly class="col-form-label">Semester Name:</label>
+            <input type="text" name="semester_name"  class="form-control" id="sem_name_id" required placeholder="e.g Year 1 Semester 1">
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-info" name="add-semester-btn">Submit</button>
       </div>
         </form>
-      </div>
-      
       </div>
      
     </div>
   </div>
 </div>
 
-
-<!--edit Department details-->
-<div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
+<!--edit Semester details-->
+<div class="modal fade" id="editSemesterModal" tabindex="-1" role="dialog" aria-labelledby="editSemesterModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editDepartmentModalLabel">Edit Department Details</h5>
+        <h5 class="modal-title" id="editSemesterModalLabel">Edit Semester Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -324,64 +278,49 @@ include '../assets/components/header.php';
       <div class="modal-body">
         <form method="POST" action="">
         
-            <input type="text" readonly hidden name="dpt_id"  class="form-control" id="dpt_id" required>
+            <input type="text" readonly hidden name="sem_id"  class="form-control" id="semester_id" required>
           
         <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <input type="text" name="dpt_name"  class="form-control" id="dpt_name" required>
+            <label for="recipient-name" readonly class="col-form-label">Semester Name:</label>
+            <input type="text" name="sem_name"  class="form-control" id="sem_name_id" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-department-details-btn">Update Details</button>
+        <button type="submit" class="btn btn-info" name="update-semester-details-btn">Update Details</button>
       </div>
         </form>
       </div>
-     
     </div>
   </div>
 </div>
 
-<!-- add new Department-->
-<div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addDepartmentModalLabel">Add a Department</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-        <div class="form-group">
-    <label for="exampleFormControlSelect1">Select School</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="uni_schools">
-<option value="">Select School</option>
-<?php $sql=mysqli_query($db,"select * from school_details");
-while ($rw=mysqli_fetch_array($sql)) {
-  ?>
-  <option value="<?php echo htmlentities($rw['school_id']);?>">School of <?php echo htmlentities($rw['school_name']);?></option>
-<?php
-}
-?>
-
-</select>
-    </select>
+<!--Delete semester model-->
+<div class="modal" id='deleteSemesterModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <input type="text" name="department_name"  class="form-control" id="dpt_name" required placeholder="e.g Information Technology">
-          </div>
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="add-department-btn">Submit</button>
+  <div class="modal-body">
+    
+    <div class="modal-body">
+    <p>Are you sure you want to delete this Semester?</p>
+    <form method="POST" action="">
+    <div class="form-group">
+        <input type="text" hidden  class="form-control" id="semesterID" required readonly name='semester_id'>
       </div>
-        </form>
-      </div>
-     
-    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
+    <button type="submit" name='delete-semester-btn' class="btn btn-danger">Yes,Delete!</button>
   </div>
+    </form>
+  </div>
+  </div>
+</div>
+</div>
 </div>
 
 
@@ -417,21 +356,16 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
 
-
-
-//add Department details modal code
-function openDepartmentModal() {
-  $("#addDepartmentModal").modal("show");
+//add Semester details modal code
+function openSemesterModal() {
+  $("#addSemesterModal").modal("show");
 }
+let openAddSemesterModalBtn = document.querySelector(".open-semester-modal-btn");
 
-let openAddDepartmentModalBtn = document.querySelector(".open-department-modal-btn");
-
-openAddDepartmentModalBtn.addEventListener("click", function (e) {
+openAddSemesterModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  openDepartmentModal();
+  openSemesterModal();
 });
-
-
 
 //edit Department details modal code
 function editDepartmentModal() {
