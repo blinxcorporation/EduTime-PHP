@@ -63,22 +63,22 @@ if (count($errors) == 0) {
 }
 }
 
-  // Delete department Details
-if (isset($_POST['delete-department-btn'])) {
+  // Delete semester Details
+if (isset($_POST['delete-semester-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $departmentID = $_POST['department_id'];
+  $semesterID = $_POST['semester_id'];
   
-  if (empty($departmentID)) {
-    array_push($errors, "Department ID is required");
+  if (empty($semesterID)) {
+    array_push($errors, "Semester ID is required");
   }
   if (count($errors) == 0) {
-      $dpt_data_delete_query = "DELETE FROM `department_details` WHERE `department_id`='$departmentID' ";
-      $results = mysqli_query($db, $dpt_data_delete_query);
+      $sem_data_delete_query = "DELETE FROM `semester_details` WHERE `semester_id`='$semesterID' ";
+      $results = mysqli_query($db, $sem_data_delete_query);
 
-        header('location: departments.php');
+        header('location: semesters.php');
       }else{
         array_push($errors, "Unable to delete department");
-        header('location: departments.php');
+        header('location: semesters.php');
       }
   }
 }
@@ -387,20 +387,20 @@ function editDepartmentModal() {
   });
 
 
-  //delete Department modal query
-    function deleteDepartmentModal() {
-    $("#deleteDepartmentModal").modal("show");
+  //delete Semester modal query
+    function deleteSemesterModal() {
+    $("#deleteSemesterModal").modal("show");
   }
-  let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
+  let deleteBtns = document.querySelectorAll(".deleteSemesterBtn");
   deleteBtns.forEach(function (deleteBtn) {
     deleteBtn.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let dptid = deleteBtn.dataset.id;
+      let sem_id = deleteBtn.dataset.id;
   
-      document.getElementById("departmentID").value = dptid;
+      document.getElementById("semesterID").value = sem_id;
      
-      deleteDepartmentModal();
+      deleteSemesterModal();
     });
   });
 
