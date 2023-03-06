@@ -13,6 +13,39 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
+function generate_academic_year_id($year1, $year2) {
+  $crs_prefix = 'YR';
+  $id =strtoupper($crs_prefix."_".$year1."_".$year2);
+  return $id;
+}
+
+//add academic-year
+if (isset($_POST['add-academic-year-btn'])) {
+  $year_1 = $_POST['year1'];
+  $year_2 = $_POST['year2'];
+
+  if (empty($year_1)) {
+    array_push($errors, "Year 1 is required");
+  }
+  if (empty($year_2)) {
+    array_push($errors, "Year 2 is required");
+  }
+
+  if (count($errors) == 0) {
+    //generate academic year id
+    $academic_yr_id = generate_academic_year_id($year_1,$year_2);
+    $academic_year = $year_1 ."/".$year_2;
+
+    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`) VALUES ('$academic_yr_id','$academic_year')";
+    $results = mysqli_query($db, $add_academic_yr_query);
+
+      header('location: ./academic-year.php');
+    }else{
+      array_push($errors, "Incorrect Username or Password");
+      header('location: ./academic-year.php');
+    }
+  }
+
 // Update Academic Year Details
 if (isset($_POST['update-academic-year-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
@@ -59,46 +92,13 @@ if (isset($_POST['delete-academic-year-btn'])) {
       }
   }
 }
-
-function generate_academic_year_id($year1, $year2) {
-  $crs_prefix = 'YR';
-  $id =strtoupper($crs_prefix."_".$year1."_".$year2);
-  return $id;
-}
-
-//add academic-year
-if (isset($_POST['add-academic-year-btn'])) {
-  $year_1 = $_POST['acad_year_1'];
-  $year_2 = $_POST['acad_year_2'];
-
-  if (empty($year_1)) {
-    array_push($errors, "Year 1 is required");
-  }
-  if (empty($year_2)) {
-    array_push($errors, "Year 2 is required");
-  }
-
-  if (count($errors) == 0) {
-    //generate academic year id
-    $academic_yr_id = generate_academic_year_id($year_1,$year_2);
-    $academic_year = $year_1 ."/".$year_2;
-
-    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`) VALUES ('$academic_yr_id','$academic_year')";
-    $results = mysqli_query($db, $add_academic_yr_query);
-
-      header('location: ./academic-year.php');
-    }else{
-      array_push($errors, "Incorrect Username or Password");
-      header('location: ./academic-year.php');
-    }
-  }
 ?>
 
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Academic-Year | EDUTIME</title>
+  <title>Academic Year | EDUTIME</title>
   <?php
 include '../assets/components/header.php';
 ?>
@@ -165,7 +165,7 @@ include '../assets/components/header.php';
             <div class="card">
           <div class="card-body">
             <h5 class="card-title">List of Academic Years</h5>
-            <input type='button' value='Add Academic Year' name='open-academic-year-btn' class='btn btn-primary float-end open-academic-year-modal-btn m-2'>
+            <input type='button' value='Add an Academic Year' name='open-academic-year-btn' class='btn btn-primary float-end open-academic-year-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
@@ -277,6 +277,82 @@ include '../assets/components/header.php';
   </div>
 </div>
 
+<!-- add new Academic Year-->
+<div
+  class="modal fade"
+  id="addAcademicYearModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addAcademicYearModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAcademicYearModalLabel">
+          Add an Academic Year
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="">
+          <div class="form-group">
+            <div class="row">
+              <label for="academic-year">Academic Year e.g (2019/2020)</label>
+              <div class="col-md-5">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="e.g 2019"
+                  name="year1"
+                  id="year1_id"
+                  required
+                />
+              </div>
+              <div class="col-md-2">
+                <p style="font-size: 24px">/</p>
+              </div>
+              <div class="col-md-5">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="e.g 2020"
+                  name="year2"
+                  id="year2_id"
+                  required
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  name="add-academic-year-btn"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--edit academic year details-->
 <div class="modal fade" id="editAcademicYearModal" tabindex="-1" role="dialog" aria-labelledby="editAcademicYearModalLabel" aria-hidden="true">
@@ -308,41 +384,8 @@ include '../assets/components/header.php';
 </div>
 </div>
 
-<!-- add new Academic Year-->
-<div class="modal fade" id="addAcademicYearModal" tabindex="-1" role="dialog" aria-labelledby="addAcademicYearModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addAcademicYearModalLabel">Add a Academic Year</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-      <div class="form-group">
-      <div class="row">
-      <label for="academic year">Academic Year e.g (2019/2020)</label>
-    <div class="col-md-5">
-      <input type="number" class="form-control" placeholder="e.g 2019" name="acad_year_1" id="acad_year_1_id" min="1990" max="3099" required>
-    </div>
-    <div class="col-md-2">
-        <p style="font-size:24px;">/</p>
-</div>
-    <div class="col-md-5">
-    <input type="number" class="form-control" placeholder="e.g 2020" name="acad_year_2" id="acad_year_2_id" min="1991" max="3099" required>
-    </div>
-  </div>
-        <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-info" name="add-academic-year-btn">Submit</button>
-    </div>
-      </form>
-    </div>
-    
-  </div>
-</div>
-</div>
+
+
 
 
 
