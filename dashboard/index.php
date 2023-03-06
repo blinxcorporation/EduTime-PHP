@@ -88,7 +88,7 @@ include '../assets/components/header.php';
             <div class="card card-hover">
                 <div class="box bg-cyan text-center">
                     <h1 class="font-light text-white">
-                        <i class="mdi mdi-school"></i>
+                        <i class="mdi mdi-book-open-page-variant"></i>
                     </h1>
                     <h6 class="text-white">Schools</h6>
                 </div>
@@ -101,7 +101,7 @@ include '../assets/components/header.php';
             <div class="card card-hover">
                 <div class="box bg-primary text-center">
                     <h1 class="font-light text-white">
-                        <i class="mdi mdi-chair-school"></i>
+                        <i class="mdi mdi-folder-multiple"></i>
                     </h1>
                     <h6 class="text-white">Departments</h6>
                 </div>
@@ -127,22 +127,9 @@ include '../assets/components/header.php';
             <div class="card card-hover">
                 <div class="box bg-secondary text-center">
                     <h1 class="font-light text-white">
-                        <i class="mdi mdi-book"></i>
+                        <i class="mdi mdi-vector-square"></i>
                     </h1>
                     <h6 class="text-white">Units</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-md-4">
-        <a href="./semesters.php">
-            <div class="card card-hover">
-                <div class="box bg-orange text-center">
-                    <h1 class="font-light text-white">
-                        <i class="mdi mdi-clock"></i>
-                    </h1>
-                    <h6 class="text-white">Semesters</h6>
                 </div>
             </div>
         </a>
@@ -153,7 +140,7 @@ include '../assets/components/header.php';
             <div class="card card-hover">
                 <div class="box bg-cyan text-center">
                     <h1 class="font-light text-white">
-                        <i class="mdi mdi-clock"></i>
+                        <i class="mdi mdi-calendar-range"></i>
                     </h1>
                     <h6 class="text-white">Academic Year</h6>
                 </div>
@@ -161,6 +148,19 @@ include '../assets/components/header.php';
         </a>
     </div>
 
+    <div class="col-md-4">
+        <a href="./semesters.php">
+            <div class="card card-hover">
+                <div class="box bg-orange text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-timetable"></i>
+                    </h1>
+                    <h6 class="text-white">Semesters</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+    
     <div class="col-md-4">
         <a href="./users.php">
             <div class="card card-hover">

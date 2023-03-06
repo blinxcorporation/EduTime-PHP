@@ -22,7 +22,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="schools.php"
                   aria-expanded="false"
-                  ><i class="mdi mdi-school"></i
+                  ><i class="mdi mdi-book-open-page-variant"></i
                   ><span class="hide-menu">Schools</span></a
                 >
               </li>
@@ -38,7 +38,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="departments.php"
                   aria-expanded="false"
-                  ><i class="mdi mdi-chair-school"></i
+                  ><i class="mdi mdi-folder-multiple"></i
                   ><span class="hide-menu">Departments</span></a
                 >
               </li>
@@ -68,7 +68,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="units.php"
                   aria-expanded="false"
-                  ><i class="mdi mdi-book"></i
+                  ><i class="mdi mdi-vector-square"></i
                   ><span class="hide-menu">Units</span></a
                 >
               </li>
@@ -83,8 +83,23 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="academic-year.php"
                   aria-expanded="false"
-                  ><i class="mdi mdi-clock"></i
+                  ><i class="mdi mdi-calendar-range"></i
                   ><span class="hide-menu">Academic Year</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
+                 <?php
+               if ($_SESSION['role_name'] == 'Admin'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="semesters.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-timetable"></i
+                  ><span class="hide-menu">Semesters</span></a
                 >
               </li>
               <?php
