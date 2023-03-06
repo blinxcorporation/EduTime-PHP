@@ -110,7 +110,7 @@ if (isset($_POST['room-delete-btn'])) {
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Rooms | EDUTIME</title>
+  <title>Course Groups | EDUTIME</title>
   <?php
 include '../assets/components/header.php';
 ?>
@@ -145,13 +145,13 @@ include '../assets/components/header.php';
         <div class="page-breadcrumb pt-5">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Room Details</h4>
+              <h4 class="page-title">Course Group Details</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Rooms
+                      Groups
                     </li>
 
                   </ol>
@@ -175,38 +175,40 @@ include '../assets/components/header.php';
 
             <div class="card">
           <div class="card-body">
-            <h5 class="card-title">List of Rooms</h5>
-            <input type='button' value='Add a Room' name='open-room-modal-btn' class='btn btn-primary float-end open-room-modal-btn m-2'>
+            <h5 class="card-title">Course Groups</h5>
+            <input type='button' value='Add a Course Group' name='open-course-group-modal-btn' class='btn btn-primary float-end open-course-group-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
-    <th>Room ID</th>
-    <th>Room Name</th>
-    <th>Room Type</th>
-    <th>Room Capacity</th>
-    <th>Date Added</th>
+    <th>Group ID</th>
+    <th>Course Name</th>
+    <th>Academic Year</th>
+    <th>Group Number</th>
+    <th>Date Updated</th>
     <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <?php
   if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `room_details` INNER JOIN room_type_details ON room_type_details.room_type_id = room_details.room_type_id";
+      $data_fetch_query = "SELECT * FROM `course_group_details` INNER JOIN course_details ON course_group_details.course_id = course_details.course_id INNER JOIN academic_year ON academic_year.academic_year_id = course_group_details.academic_year_id";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
-              $room_id = $row['room_id'];
-              $room_name = $row['room_name'];
-              $room_type = $row['room_type'];
-              $room_type_id = $row['room_type_id'];
-              $room_capacity = $row['room_capacity'];
-              $date_created = $row['date_added'];
+              $group_id = $row['group_id'];
+              $course_id = $row['course_id'];
+              $course_name = $row['course_name'];
+              $course_shortform = $row['course_shortform'];
+              $academic_year_id = $row['academic_year_id'];
+              $academic_year = $row['academic_year'];
+              $group_number = $row['group_number'];
+              $date_updated= $row['date_added'];
 
-      echo "<tr> <td>" .$room_id.  "</td>";
-      echo "<td>" .$room_name."</td>";
-      echo "<td>" .$room_type."</td>";
-      echo "<td>" .$room_capacity."</td>";
-      echo "<td>" .$date_created."</td>";
+      echo "<tr> <td>" .$group_id.  "</td>";
+      echo "<td>" .$course_shortform."</td>";
+      echo "<td>" .$academic_year."</td>";
+      echo "<td>" .$group_number."</td>";
+      echo "<td>" .$date_updated."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
@@ -229,11 +231,11 @@ include '../assets/components/header.php';
   </tbody>
   <tfoot>
     <tr>
-    <th>Room ID</th>
-    <th>Room Name</th>
-    <th>Room Type</th>
-    <th>Room Capacity</th>
-    <th>Date Added</th>
+    <th>Group ID</th>
+    <th>Course Name</th>
+    <th>Academic Year</th>
+    <th>Group Number</th>
+    <th>Date Updated</th>
     <th>Action</th>
     </tr>
   </tfoot>
@@ -266,43 +268,53 @@ include '../assets/components/header.php';
     <!-- End Wrapper -->
     <!-- ============================================================== -->
 
-<!-- add new Room-->
-<div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="addRoomModalLabel" aria-hidden="true">
+<!-- add new academic group-->
+<div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addRoomModalLabel">Add a Room</h5>
+        <h5 class="modal-title" id="addGroupModalLabel">Add a Group</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form method="POST" action="">
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Room Name:</label>
-            <input type="text" name="room_name"  class="form-control" id="room_name_id" required placeholder="e.g TB 1">
-          </div>
           <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Room Type</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="room_type_id">
-<option value="">Select Room Type</option>
-<?php $sql=mysqli_query($db,"select * from room_type_details");
+    <label for="exampleFormControlSelect1">Select a Course</label>
+    <select class="form-control" id="crs_id" name="course_id">
+<option value="">Select a Course</option>
+<?php $sql=mysqli_query($db,"select * from course_details");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['room_type_id']);?>"><?php echo htmlentities($rw['room_type']);?></option>
+  <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
+<?php
+}
+?>
+    </select>
+  </div>
+
+          <div class="form-group">
+    <label for="exampleFormControlSelect1">Select an Academic Year</label>
+    <select class="form-control" id="academic_yr_id" name="academic_yr_id">
+<option value="">Select Academic Year</option>
+<?php $sql=mysqli_query($db,"select * from academic_year");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
 <?php
 }
 ?>
     </select>
   </div>
   <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Room Capacity:</label>
-            <input type="number" name="room_capacity"  class="form-control" id="room_capacity_id" required placeholder="e.g 60">
+            <label for="recipient-name" readonly class="col-form-label">Group Number:</label>
+            <input type="number" name="group_capacity"  class="form-control" id="group_capacity_id" required placeholder="e.g 120">
           </div>
 
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="add-room-btn">Submit</button>
+        <button type="submit" class="btn btn-info" name="add-course-group-btn">Submit</button>
       </div>
         </form>
       </div>
@@ -418,14 +430,14 @@ $(document).ready(function () {
 });
 
 //add Room details modal code
-function openAddRoomModal() {
-  $("#addRoomModal").modal("show");
+function openAddGroupModal() {
+  $("#addGroupModal").modal("show");
 }
-let openAddRoomModalBtn = document.querySelector(".open-room-modal-btn");
+let openAddGroupModalBtn = document.querySelector(".open-course-group-modal-btn");
 
-openAddRoomModalBtn.addEventListener("click", function (e) {
+openAddGroupModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  openAddRoomModal();
+  openAddGroupModal();
 });
 
 //edit Room details modal code
