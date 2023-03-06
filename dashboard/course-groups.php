@@ -57,36 +57,37 @@ if (isset($_POST['add-course-group-btn'])) {
     }
   }
 
-// Update Room Details
-if (isset($_POST['update-room-details-btn'])) {
+// Update Group Details
+if (isset($_POST['update-course-group-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $room_id = $_POST['room_id'];
-  $room_name = $_POST['rm_name'];
-  $room_type = $_POST['room_type'];
-  $room_capacity = $_POST['room_capacity'];
+  $group_id = $_POST['group_id'];
+  $course_id = $_POST['course_id'];
+  $academic_year = $_POST['academic_yr'];
+  $group_capacity = $_POST['group_capacity'];
 
 //Data Validation
-  if (empty($room_id)) {
-  	array_push($errors, "Room ID is required");
+  if (empty($group_id)) {
+  	array_push($errors, "Group ID is required");
   }
-  if (empty($room_name)) {
-  	array_push($errors, "Room Name is required");
+  if (empty($course_id)) {
+  	array_push($errors, "Course ID is required");
   }
-  if (empty($room_type)) {
-  	array_push($errors, "Room Type is required");
+  if (empty($academic_year)) {
+  	array_push($errors, "Academic Year is required");
   }
-  if (empty($room_capacity)) {
-  	array_push($errors, "Room Capacity is required");
+  if (empty($group_capacity)) {
+  	array_push($errors, "Group Capacity is required");
   }
+
 
 if (count($errors) == 0) {
-  $room_data_update_query = "UPDATE `room_details` SET `room_name`='$room_name',`room_type_id`='$room_type',`room_capacity`='$room_capacity' WHERE `room_id`='$room_id'";
-  $results = mysqli_query($db, $room_data_update_query);
+  $group_data_update_query = "UPDATE `course_group_details` SET `course_id`='$course_id',`academic_year_id`='$academic_year',`group_number`='$group_capacity' WHERE `group_id`='$group_id'";
+  $results = mysqli_query($db, $group_data_update_query);
 
-  header('location: rooms.php');
+  header('location: course-groups.php');
   }else{
   array_push($errors, "Unable to push room updates");
-  header('location: rooms.php');
+  header('location: course-groups.php');
   }
 }
 }
@@ -329,46 +330,58 @@ while ($rw=mysqli_fetch_array($sql)) {
   </div>
 </div>
 
-<!--edit Room details-->
-<div class="modal fade" id="editRoomModal" tabindex="-1" role="dialog" aria-labelledby="editRoomModalLabel" aria-hidden="true">
+<!--edit Group details-->
+<div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editRoomModalLabel">Edit Room Details</h5>
+        <h5 class="modal-title" id="editGroupModalLabel">Edit Group Details:</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form method="POST" action="">
-            <input type="text"  name="room_id" readonly hidden class="form-control" id="room_id" required>
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Room Name:</label>
-            <input type="text" name="rm_name"  class="form-control" id="rm_name_id" required>
-          </div>
           <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Room Type</label>
-    <select class="form-control"  name="room_type" value="" id="rm_type">
-<option value="">Select Room Type</option>
-<?php $sql=mysqli_query($db,"select * from room_type_details");
+          <input type="text" name="group_id" readonly hidden class="form-control" id="groupID" required>
+    <label for="exampleFormControlSelect1">Select a Course</label>
+    <select class="form-control" id="courseId" name="course_id" value="">
+<option value="">Select a Course</option>
+<?php $sql=mysqli_query($db,"select * from course_details");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['room_type_id']);?>"><?php echo htmlentities($rw['room_type']);?></option>
+  <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
+<?php
+}
+?>
+    </select>
+  </div>
+
+          <div class="form-group">
+    <label for="exampleFormControlSelect1">Select an Academic Year</label>
+    <select class="form-control" id="academic_yr" name="academic_yr">
+<option value="">Select Academic Year</option>
+<?php $sql=mysqli_query($db,"select * from academic_year");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
 <?php
 }
 ?>
     </select>
   </div>
   <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Room Capacity:</label>
-            <input type="number" name="room_capacity"  class="form-control" id="rm_capacity_id" required placeholder="e.g 60">
+            <label for="recipient-name" readonly class="col-form-label">Group Number:</label>
+            <input type="number" name="group_capacity"  class="form-control" id="group_capacity" required placeholder="e.g 120">
           </div>
+
           <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-room-details-btn">Update Details</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-info" name="update-course-group-btn">Update Details</button>
       </div>
         </form>
       </div>
+     
     </div>
   </div>
 </div>
@@ -446,34 +459,35 @@ openAddGroupModalBtn.addEventListener("click", function (e) {
   openAddGroupModal();
 });
 
-//edit Room details modal code
-function editRoomModal() {
-$("#editRoomModal").modal("show");
+//edit group details modal code
+function editGroupModal() {
+$("#editGroupModal").modal("show");
 }
-let editButtons = document.querySelectorAll(".edit-room-modal-btn");
+let editButtons = document.querySelectorAll(".edit-course-group-modal-btn");
 
 editButtons.forEach(function (editButton) {
     editButton.addEventListener("click", function (e) {
     e.preventDefault();
 
-    let room_id = editButton.dataset.room_id;
-    let room_name = editButton.dataset.room_name;
-    let room_type = editButton.dataset.room_type;
-    let room_type_id = editButton.dataset.room_type_id;
-    let room_capacity = editButton.dataset.room_capacity;
+    let group_id = editButton.dataset.group_id;
+    let course_id = editButton.dataset.course_id;
+    let academic_year_id = editButton.dataset.academic_year_id;
+    let group_capacity = editButton.dataset.group_capacity;
 
-    document.getElementById("room_id").value = room_id;
-    document.getElementById("rm_name_id").value = room_name;
-    document.getElementById("rm_capacity_id").value = room_capacity;
+    document.getElementById("groupID").value = group_id;
 
-    document.getElementById("rm_type").value = room_type_id;
+    document.getElementById("courseId").value = course_id;
     // pre-select the option in the dropdown menu
-    const selectedRoom = document.querySelector('#rm_type');
-    // console.log(selectedRoom,"ERRORRRRR")
-    selectedRoom.value = room_type_id;
+    const selectedCourse = document.querySelector('#crs_id');
+    selectedCourse.value = course_id;
 
+    document.getElementById("academic_yr").value = academic_year_id;
+    // pre-select the option in the dropdown menu
+    const selectedAcademicYear = document.querySelector('#crs_id');
+    selectedAcademicYear.value = academic_year_id;
 
-    editRoomModal();
+    document.getElementById("group_capacity").value = group_capacity;
+    editGroupModal();
     });
 });
 
