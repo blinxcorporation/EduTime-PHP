@@ -13,41 +13,47 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-//Add Room
-//generate room id function
-function generate_room_id($room_name) {
-    // Slugify the room name
-    $slugified_name = strtoupper(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $room_name)));
-    // Add the prefix "RM_" to the slugified name
-    $room_id = "RM-" . $slugified_name;
+//Add group
+//generate group id function
+function generate_group_id($course_id) {
+    // Slugify the group name
+    $slugified_name = strtoupper(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $course_id)));
+    //Generate random number
+    $min = 10;
+    $max = 1000;
+    $random_number = rand($min, $max);
 
-    return $room_id;
+    // Add the prefix "GRP_" to the slugified name
+    $group_id = "GRP_" . $slugified_name."_".$random_number;
+
+    return $group_id;
 }
 
-if (isset($_POST['add-room-btn'])) {
-  $room_name = $_POST['room_name'];
-  $room_id = generate_room_id($room_name);
-  $room_type = $_POST['room_type_id'];
-  $room_capacity = $_POST['room_capacity'];
+if (isset($_POST['add-course-group-btn'])) {
+  $course_id = $_POST['course_id'];
+  $group_id = generate_group_id($course_id);
+  $academic_year = $_POST['academic_yr_id'];
+  $group_capacity = $_POST['group_capacity'];
  
-  if (empty($room_name)) {
-    array_push($errors, "Room Name is required");
+  if (empty($course_id)) {
+    array_push($errors, "Course ID is required");
   }
-  if (empty($room_type)) {
-    array_push($errors, "Room Type is required");
+  if (empty($academic_year)) {
+    array_push($errors, "Academic Year is required");
   }
-  if (empty($room_capacity)) {
-    array_push($errors, "Room Capacity is required");
+  if (empty($group_capacity)) {
+    array_push($errors, "Group Capacity is required");
   }
+
 
   if (count($errors) == 0) {
-    $add_room_query = "INSERT INTO `room_details`(`room_id`, `room_name`, `room_type_id`, `room_capacity`) VALUES ('$room_id','$room_name','$room_type','$room_capacity')";
-    $results = mysqli_query($db, $add_room_query );
+    $add_crs_grp_query = "INSERT INTO `course_group_details`(`group_id`, `course_id`, `academic_year_id`, `group_number`) VALUES ('$group_id','$course_id','$academic_year','$group_capacity')";
+    $results = mysqli_query($db,$add_crs_grp_query);
 
-      header('location: ./rooms.php');
+      header('location: ./course-groups.php');
     }else{
       array_push($errors, "Unable to add room");
-      header('location: ./rooms.php');
+      header('location: ./course-groups.php');
     }
   }
 
