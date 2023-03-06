@@ -77,22 +77,23 @@ if (count($errors) == 0) {
 }
 }
 
-  // Delete semester Details
-if (isset($_POST['delete-semester-btn'])) {
+  // Delete room Details
+if (isset($_POST['room-delete-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $semesterID = $_POST['semester_id'];
+  $roomID = $_POST['room_id'];
   
-  if (empty($semesterID)) {
-    array_push($errors, "Semester ID is required");
+  if (empty($roomID)) {
+    array_push($errors, "Room ID is required");
   }
-  if (count($errors) == 0) {
-      $sem_data_delete_query = "DELETE FROM `semester_details` WHERE `semester_id`='$semesterID' ";
-      $results = mysqli_query($db, $sem_data_delete_query);
 
-        header('location: semesters.php');
+  if (count($errors) == 0) {
+      $room_data_delete_query = "DELETE FROM `room_details` WHERE `room_id`='$roomID' ";
+      $results = mysqli_query($db, $room_data_delete_query);
+
+        header('location: rooms.php');
       }else{
-        array_push($errors, "Unable to delete department");
-        header('location: semesters.php');
+        array_push($errors, "Unable to delete this room");
+        header('location: rooms.php');
       }
   }
 }
@@ -328,8 +329,8 @@ while ($rw=mysqli_fetch_array($sql)) {
   </div>
 </div>
 
-<!--Delete semester model-->
-<div class="modal" id='deleteSemesterModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+<!--Delete Room model-->
+<div class="modal" id='deleteRoomModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
   <div class="modal-header">
@@ -341,14 +342,14 @@ while ($rw=mysqli_fetch_array($sql)) {
   <div class="modal-body">
     
     <div class="modal-body">
-    <p>Are you sure you want to delete this Semester?</p>
+    <p>Are you sure you want to delete this Room?</p>
     <form method="POST" action="">
     <div class="form-group">
-        <input type="text" hidden  class="form-control" id="semesterID" required readonly name='semester_id'>
+        <input type="text" class="form-control" id="roomID" required readonly hidden name='room_id'>
       </div>
     <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-    <button type="submit" name='delete-semester-btn' class="btn btn-danger">Yes,Delete!</button>
+    <button type="submit" name='room-delete-btn' class="btn btn-danger">Yes,Delete!</button>
   </div>
     </form>
   </div>
@@ -420,22 +421,23 @@ openAddRoomModalBtn.addEventListener("click", function (e) {
 //     });
 //   });
 
-//   //delete Semester modal query
-//     function deleteSemesterModal() {
-//     $("#deleteSemesterModal").modal("show");
-//   }
-//   let deleteBtns = document.querySelectorAll(".deleteSemesterBtn");
-//   deleteBtns.forEach(function (deleteBtn) {
-//     deleteBtn.addEventListener("click", function (e) {
-//       e.preventDefault();
-  
-//       let sem_id = deleteBtn.dataset.id;
-  
-//       document.getElementById("semesterID").value = sem_id;
-     
-//       deleteSemesterModal();
-//     });
-//   });
+//   //delete Room modal query
+function deleteRoomModal() {
+$("#deleteRoomModal").modal("show");
+}
+
+let deleteBtns = document.querySelectorAll(".deleteRoomBtn");
+deleteBtns.forEach(function (deleteBtn) {
+deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let room_id = deleteBtn.dataset.id;
+
+    document.getElementById("roomID").value = room_id;
+    
+    deleteRoomModal();
+});
+});
 
   </script>
 
