@@ -13,7 +13,7 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-//add department
+//add semester
 if (isset($_POST['add-semester-btn'])) {
   $sem_id = $_POST['semester_id'];
   $sem_name = $_POST['semester_name'];
@@ -26,7 +26,6 @@ if (isset($_POST['add-semester-btn'])) {
   }
   
   if (count($errors) == 0) {
-
     $add_sem_query = "INSERT INTO `semester_details`(`semester_id`, `semester_name`) VALUES ('$sem_id','$sem_name')";
     $results = mysqli_query($db, $add_sem_query);
 
@@ -37,28 +36,28 @@ if (isset($_POST['add-semester-btn'])) {
     }
   }
 
-// Update Department Details
-if (isset($_POST['update-department-details-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
-  $department_id = $_POST['dpt_id'];
-  $department_name = $_POST['dpt_name'];
+// Update Semester Details
+if (isset($_POST['update-semester-details-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
+  $semester_id = $_POST['sem_id'];
+  $semester_name = $_POST['sem_name'];
 
 //Data Validation
-  if (empty($department_id)) {
-  	array_push($errors, "Department ID is required");
+  if (empty($semester_id)) {
+  	array_push($errors, "Semester ID is required");
   }
-  if (empty($department_name)) {
-  	array_push($errors, "Department Name is required");
+  if (empty($semester_name)) {
+  	array_push($errors, "Semester Name is required");
   }
 
 if (count($errors) == 0) {
-  $department_data_update_query = "UPDATE `department_details` SET `department_name`='$department_name' WHERE `department_id` ='$department_id' ";
-  $results = mysqli_query($db, $department_data_update_query);
+  $sem_data_update_query = "UPDATE `semester_details` SET `semester_name`='$semester_name' WHERE `semester_id`='$semester_id'";
+  $results = mysqli_query($db, $sem_data_update_query);
 
-  header('location: departments.php');
+  header('location: semesters.php');
   }else{
-  array_push($errors, "Unable to push updates");
-  header('location: departments.php');
+  array_push($errors, "Unable to push semester updates");
+  header('location: semesters.php');
   }
 }
 }
@@ -181,7 +180,7 @@ include '../assets/components/header.php';
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='semester_id' value='$semester_id'>
-      <input type='submit' data-semid='$semester_id'  data-semname='$semester_name'  value='Edit Details' name='edit-semester-btn' class='btn btn-success edit-semester-modal-btn m-2'>
+      <input type='submit' data-semid='$semester_id'  data-sem_name='$semester_name'  value='Edit Details' name='edit-semester-btn' class='btn btn-success edit-semester-modal-btn m-2'>
       <input type='submit' data-id= '$semester_id' value='Delete Semester'  class='btn btn-danger deleteSemesterBtn'>
       </form>
       </td> </tr>";
@@ -277,12 +276,10 @@ include '../assets/components/header.php';
       </div>
       <div class="modal-body">
         <form method="POST" action="">
-        
-            <input type="text" readonly hidden name="sem_id"  class="form-control" id="semester_id" required>
-          
+            <input type="text" readonly name="sem_id" readonly hidden class="form-control" id="semester_id" required>
         <div class="form-group">
             <label for="recipient-name" readonly class="col-form-label">Semester Name:</label>
-            <input type="text" name="sem_name"  class="form-control" id="sem_name_id" required>
+            <input type="text" name="sem_name"  class="form-control" id="semester_name_id" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -367,25 +364,24 @@ openAddSemesterModalBtn.addEventListener("click", function (e) {
   openSemesterModal();
 });
 
-//edit Department details modal code
-function editDepartmentModal() {
-    $("#editDepartmentModal").modal("show");
+//edit Semester details modal code
+function editSemesterModal() {
+    $("#editSemesterModal").modal("show");
   }
-  let editButtons = document.querySelectorAll(".edit-department-modal-btn");
+  let editButtons = document.querySelectorAll(".edit-semester-modal-btn");
   editButtons.forEach(function (editButton) {
     editButton.addEventListener("click", function (e) {
       e.preventDefault();
   
-      let departmentid = editButton.dataset.dptid;
-      let dpt_name = editButton.dataset.dptname;
+      let sem_id = editButton.dataset.semid;
+      let sem_name = editButton.dataset.sem_name;
 
-      document.getElementById("dpt_id").value = departmentid ;
-      document.getElementById("dpt_name").value = dpt_name;
+      document.getElementById("semester_id").value = sem_id;
+      document.getElementById("semester_name_id").value = sem_name;
 
-      editDepartmentModal();
+      editSemesterModal();
     });
   });
-
 
   //delete Semester modal query
     function deleteSemesterModal() {
