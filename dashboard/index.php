@@ -173,6 +173,19 @@ include '../assets/components/header.php';
             </div>
         </a>
     </div>
+
+    <div class="col-md-4">
+        <a href="./course-groups.php">
+            <div class="card card-hover">
+                <div class="box bg-info text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-book-multiple"></i>
+                    </h1>
+                    <h6 class="text-white">Course Groups</h6>
+                </div>
+            </div>
+        </a>
+    </div>
     
     <div class="col-md-4">
         <a href="./users.php">
