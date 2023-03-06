@@ -19,7 +19,7 @@ function generate_room_id($room_name) {
     // Slugify the room name
     $slugified_name = strtoupper(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $room_name)));
     // Add the prefix "RM_" to the slugified name
-    $room_id = "RM_" . $slugified_name;
+    $room_id = "RM-" . $slugified_name;
 
     return $room_id;
 }
