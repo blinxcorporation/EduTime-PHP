@@ -188,6 +188,19 @@ include '../assets/components/header.php';
     </div>
     
     <div class="col-md-4">
+        <a href="./timeslots.php">
+            <div class="card card-hover">
+                <div class="box bg-secondary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-timer"></i>
+                    </h1>
+                    <h6 class="text-white">Timeslots</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="col-md-4">
         <a href="./users.php">
             <div class="card card-hover">
                 <div class="box bg-success text-center">

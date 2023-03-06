@@ -135,6 +135,21 @@
               <?php
                    }
               ?>
+                 <?php
+               if ($_SESSION['role_name'] == 'Admin'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="timeslots.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-timer"></i
+                  ><span class="hide-menu">Timeslots</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
               <?php
                 if ($_SESSION['role_name'] == 'Admin'){
               ?>
