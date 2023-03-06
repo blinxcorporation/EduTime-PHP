@@ -91,23 +91,23 @@ if (count($errors) == 0) {
 }
 }
 
-  // Delete room Details
-if (isset($_POST['room-delete-btn'])) {
+  // Delete course-group Details
+if (isset($_POST['course-group-delete-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $roomID = $_POST['room_id'];
+  $groupID = $_POST['group_id'];
   
-  if (empty($roomID)) {
-    array_push($errors, "Room ID is required");
+  if (empty($groupID)) {
+    array_push($errors, "Group ID is required");
   }
 
   if (count($errors) == 0) {
-      $room_data_delete_query = "DELETE FROM `room_details` WHERE `room_id`='$roomID' ";
-      $results = mysqli_query($db, $room_data_delete_query);
+      $group_data_delete_query = "DELETE FROM `course_group_details` WHERE `group_id`='$groupID' ";
+      $results = mysqli_query($db, $group_data_delete_query);
 
-        header('location: rooms.php');
+        header('location: course-groups.php');
       }else{
-        array_push($errors, "Unable to delete this room");
-        header('location: rooms.php');
+        array_push($errors, "Unable to delete this course group");
+        header('location: course-groups.php');
       }
   }
 }
@@ -218,9 +218,9 @@ include '../assets/components/header.php';
       echo "<td>
         
       <form method ='POST' action=''>
-      <input  type='text' hidden name='room_id' value='$room_id'>
-      <input type='submit' data-room_id='$room_id' data-room_name='$room_name' data-room_type='$room_type' data-room_type_id='$room_type_id' data-room_capacity='$room_capacity' value='Edit Details' name='edit-room-btn' class='btn btn-success edit-room-modal-btn m-2'>
-      <input type='submit' data-id= '$room_id' value='Delete Room'  class='btn btn-danger deleteRoomBtn'>
+      <input  type='text' hidden name='group_id' value='$group_id'>
+      <input type='submit' data-group_id='$group_id' data-course_id='$course_id' data-academic_year_id='$academic_year_id' data-group_capacity='$group_number' value='Edit Details' name='edit-course-group-btn' class='btn btn-success edit-course-group-modal-btn m-2'>
+      <input type='submit' data-id= '$group_id' value='Delete Group'  class='btn btn-danger deleteGroupBtn'>
       </form>
       </td> </tr>";
       }
@@ -373,8 +373,8 @@ while ($rw=mysqli_fetch_array($sql)) {
   </div>
 </div>
 
-<!--Delete Room model-->
-<div class="modal" id='deleteRoomModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+<!--Delete Group model-->
+<div class="modal" id='deleteGroupModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
   <div class="modal-header">
@@ -386,14 +386,14 @@ while ($rw=mysqli_fetch_array($sql)) {
   <div class="modal-body">
     
     <div class="modal-body">
-    <p>Are you sure you want to delete this Room?</p>
+    <p>Are you sure you want to delete this Group?</p>
     <form method="POST" action="">
     <div class="form-group">
-        <input type="text" class="form-control" id="roomID" required readonly hidden name='room_id'>
+        <input type="text" class="form-control" id="groupID" required hidden readonly name='group_id'>
       </div>
     <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-    <button type="submit" name='room-delete-btn' class="btn btn-danger">Yes,Delete!</button>
+    <button type="submit" name='course-group-delete-btn' class="btn btn-danger">Yes,Delete!</button>
   </div>
     </form>
   </div>
@@ -477,22 +477,22 @@ editButtons.forEach(function (editButton) {
     });
 });
 
-//   //delete Room modal query
-function deleteRoomModal() {
-$("#deleteRoomModal").modal("show");
+//   //delete Group modal query
+function deleteGroupModal() {
+$("#deleteGroupModal").modal("show");
 }
 
-let deleteBtns = document.querySelectorAll(".deleteRoomBtn");
+let deleteBtns = document.querySelectorAll(".deleteGroupBtn");
 deleteBtns.forEach(function (deleteBtn) {
-deleteBtn.addEventListener("click", function (e) {
-    e.preventDefault();
+  deleteBtn.addEventListener("click", function (e) {
+      e.preventDefault();
 
-    let room_id = deleteBtn.dataset.id;
+      let group_id = deleteBtn.dataset.id;
 
-    document.getElementById("roomID").value = room_id;
-    
-    deleteRoomModal();
-});
+      document.getElementById("groupID").value = group_id;
+      
+      deleteGroupModal();
+  });
 });
 
   </script>
