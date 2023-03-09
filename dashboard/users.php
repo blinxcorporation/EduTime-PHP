@@ -168,10 +168,7 @@ include '../assets/components/header.php';
                   <h5 class="card-title">List of Lecturers</h5>
                   <input type='button' value='Add a Lecturer' name='open-lecturer-btn' class='btn btn-primary float-end open-lecturer-modal-btn m-2' />
                   <div class="table-responsive">
-                    <table
-                      id="zero_config"
-                      class="table table-striped table-bordered"
-                    >
+                  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>PF Number</th>
@@ -504,6 +501,12 @@ include '../assets/components/header.php';
     </script>
 
 <script>
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+
+
 //add lecturer details modal code
 function openAddLecturerModal() {
   $("#addLecturerModal").modal("show");
