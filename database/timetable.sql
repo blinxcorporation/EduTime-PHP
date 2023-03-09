@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 08, 2023 at 08:50 PM
+-- Generation Time: Mar 09, 2023 at 10:15 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -89,7 +89,7 @@ CREATE TABLE `course_group_details` (
 --
 
 INSERT INTO `course_group_details` (`id`, `group_id`, `course_id`, `academic_year_id`, `group_number`, `date_added`) VALUES
-(1, 'GRP_CRS-IT_681', 'CRS_IT', 'YR_2019_2020', 42, '2023-03-06 15:03:42');
+(1, 'GRP_CRS-IT_681', 'CRS_IT', 'YR_2019_2020', 40, '2023-03-06 15:03:42');
 
 -- --------------------------------------------------------
 
@@ -144,10 +144,43 @@ INSERT INTO `department_details` (`id`, `department_id`, `department_name`, `dat
 
 CREATE TABLE `lecturer_department_details` (
   `id` int(11) NOT NULL,
-  `department_id` varchar(20) NOT NULL,
+  `department_id` varchar(100) NOT NULL,
   `lecturer_id` varchar(20) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `lecturer_department_details`
+--
+
+INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`, `date_created`) VALUES
+(1, 'DPT_INFORMATIONTECHNOLOGY', 'PF01', '2023-03-09 06:25:37'),
+(2, 'DPT_INFORMATIONTECHNOLOGY', 'PF02', '2023-03-09 06:25:37'),
+(3, 'DPT_INFORMATIONTECHNOLOGY', 'PF03', '2023-03-09 06:25:54'),
+(4, 'DPT_INFORMATIONTECHNOLOGY', 'PF04', '2023-03-09 06:25:54'),
+(6, 'DPT_COMPUTERSCIENCE', 'PF06', '2023-03-09 06:26:03'),
+(7, 'DPT_INFORMATIONTECHNOLOGY', 'PF07', '2023-03-09 07:32:22'),
+(8, 'DPT_INFORMATIONTECHNOLOGY', 'PF08', '2023-03-09 08:47:43'),
+(9, 'DPT_INFORMATIONTECHNOLOGY', 'PF09', '2023-03-09 08:52:02'),
+(10, 'DPT_INFORMATIONTECHNOLOGY', 'PF10', '2023-03-09 08:52:56'),
+(11, 'DPT_INFORMATIONTECHNOLOGY', 'PF11', '2023-03-09 08:54:16'),
+(12, 'DPT_INFORMATIONTECHNOLOGY', 'PF12', '2023-03-09 08:55:11'),
+(13, 'DPT_INFORMATIONTECHNOLOGY', 'PF13', '2023-03-09 08:56:09'),
+(14, 'DPT_INFORMATIONTECHNOLOGY', 'PF14', '2023-03-09 08:57:06'),
+(15, 'DPT_INFORMATIONTECHNOLOGY', 'PF15', '2023-03-09 08:58:03'),
+(16, 'DPT_INFORMATIONTECHNOLOGY', 'PF16', '2023-03-09 08:59:11'),
+(17, 'DPT_INFORMATIONTECHNOLOGY', 'PF17', '2023-03-09 09:00:18'),
+(18, 'DPT_INFORMATIONTECHNOLOGY', 'PF18', '2023-03-09 09:01:26'),
+(19, 'DPT_INFORMATIONTECHNOLOGY', 'PF19', '2023-03-09 09:02:24'),
+(20, 'DPT_COMPUTERSCIENCE', 'PF20', '2023-03-09 09:05:33'),
+(21, 'DPT_COMPUTERSCIENCE', 'PF21', '2023-03-09 09:07:02'),
+(22, 'DPT_COMPUTERSCIENCE', 'PF22', '2023-03-09 09:08:45'),
+(23, 'DPT_COMPUTERSCIENCE', 'PF23', '2023-03-09 09:09:42'),
+(24, 'DPT_COMPUTERSCIENCE', 'PF24', '2023-03-09 09:10:30'),
+(25, 'DPT_COMPUTERSCIENCE', 'PF25', '2023-03-09 09:11:20'),
+(26, 'DPT_COMPUTERSCIENCE', 'PF26', '2023-03-09 09:12:49'),
+(27, 'DPT_COMPUTERSCIENCE', 'PF27', '2023-03-09 09:14:03'),
+(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55');
 
 -- --------------------------------------------------------
 
@@ -181,8 +214,9 @@ CREATE TABLE `role_details` (
 
 INSERT INTO `role_details` (`id`, `role_id`, `role_name`) VALUES
 (1, 'role001', 'Admin'),
-(3, 'role002', 'Lecturer'),
-(4, 'role003', 'Chairperson');
+(2, 'role002', 'Lecturer'),
+(3, 'role003', 'Chairperson'),
+(4, 'role004', 'Dean');
 
 -- --------------------------------------------------------
 
@@ -341,7 +375,10 @@ CREATE TABLE `time_slot_details` (
 INSERT INTO `time_slot_details` (`id`, `slot_id`, `start_time`, `end_time`, `date_added`) VALUES
 (1, 'TM_0700_0900', '07:00:00', '09:00:00', '2023-03-06 19:45:30'),
 (2, 'TM_0900_1100', '09:00:00', '11:00:00', '2023-03-06 21:09:35'),
-(3, 'TM_1100_1300', '11:00:00', '13:00:00', '2023-03-06 21:17:04');
+(3, 'TM_1100_1300', '11:00:00', '13:00:00', '2023-03-06 21:17:04'),
+(4, 'TM_1300_1500', '13:00:00', '15:00:00', '2023-03-09 08:49:13'),
+(5, 'TM_1500_1700', '15:00:00', '17:00:00', '2023-03-09 08:49:44'),
+(7, 'TM_1700_1900', '17:00:00', '19:00:00', '2023-03-09 08:58:20');
 
 -- --------------------------------------------------------
 
@@ -1459,7 +1496,7 @@ CREATE TABLE `user_details` (
   `user_email` varchar(50) NOT NULL,
   `user_phone` int(20) NOT NULL,
   `user_password` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL
+  `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1467,12 +1504,34 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `date_created`) VALUES
-(1, 'PF01', 'Dr', ' Titus ', 'Muhambe', 'muhambemukhisa@gmail.com', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
-(2, 'PF02', 'Madam', 'Violet', 'Settim', 'violetsettim@gmail.com', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
-(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'oongesamuel12@gmail.com', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
-(4, 'PF04', 'Mr', 'Isaac', 'Owino', 'owino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
+(1, 'PF01', 'Dr', ' Titus ', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
+(2, 'PF02', 'Ms', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
+(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
+(4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
 (5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
-(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'calvinsotieno@maseno.ac.ke', 758413462, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-21 11:11:02');
+(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 758413462, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-21 11:11:02'),
+(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11c32ad76442ac5993e83143d2b11caaef510d4ce4 ', '2023-03-09 10:32:21'),
+(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, '064d02846ea32bf0214cbfa8b66cb1fdcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:47:42'),
+(9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:01'),
+(10, 'PF10', 'Mr', 'James', 'Chamwama', 'chamwama@maseno.ac.ke', 795824582, '31b90ee1a33da1431913c70021722926cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:56'),
+(11, 'PF11', 'Mr', 'Charles', 'Awuor', 'jumamark1234@gmail.com', 762854852, '511fae1765b80afceb29cf5fbcd15e17cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:54:16'),
+(12, 'PF12', 'Mr', 'Gabriel', 'Oliko', 'goliko2002@gmail.com', 752785245, '4f8977b865468be91c3cc666d03ee2f3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:55:11'),
+(13, 'PF13', 'Ms', 'Rennish', 'Mboya', 'rennishm@gmail.com', 752897412, '70642600a08efae11ab6d83b52e9a8e9cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:56:08'),
+(14, 'PF14', 'Mrs', 'Maurine', 'Awuor', 'cnyambuga@maseno.ac.ke', 741789547, '96777c2aa17ebbd8b84cfc25fd559714cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:57:06'),
+(15, 'PF15', 'Mr', 'Bethuel', 'Okelo', 'bethuel.okello@maseno.ac.ke', 723547858, '37267a49029c50f832ff1e3dc45bb44bcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:58:03'),
+(16, 'PF16', 'Mr', 'Michael', 'Wambwere', 'mwambwere@maseno.ac.ke', 712524789, '7b9b8b1311511a6bb0903dd2bdf5ef95cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:59:11'),
+(17, 'PF17', 'Mr', 'Moses', 'Wainaina', 'moses.wainaina@maseno.ac.ke', 798457585, '8a232e18e5696750da8543e323a1b363cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:00:17'),
+(18, 'PF18', 'Ms', 'Yvonne', 'Mwajuma', 'ymwajuma@maseno.ac.ke', 741256585, '85db1de2e3d332b956969dbbd7d8a21acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:01:26'),
+(19, 'PF19', 'Ms', 'Rose', 'Kapukha', 'rkapukha@maseno.ac.ke', 742789525, '8eb69cc52a93ea7b6281b674ecc65abacdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:02:23'),
+(20, 'PF20', 'Dr', 'Lilian', 'Wanzare', 'ldwanzare@maseno.ac.ke', 742156585, '2fa61c19d6975b56e0800bdca11358b6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:05:33'),
+(21, 'PF21', 'Dr', 'Sylvester', 'McOyowo', 'omcoyowo@maseno.ac.ke', 714257585, '64ff6aea6ca5f902a49fd8b387c55787cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:07:02'),
+(22, 'PF22', 'Dr', 'Henry', 'Okoyo', 'ookoyo@maseno.ac.ke', 712456257, 'd288a9980aaa616063101f3416b99dc4cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:08:45'),
+(23, 'PF23', 'Mr', 'Solomon', 'Nyabundi', 'solonyabs@gmail.com', 714256478, '3d5e0bb3323b7caf64dffce76a7bd092cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:09:42'),
+(24, 'PF24', 'Mr', 'Dickson', 'Amingo', 'omingodo@maseno.ac.ke', 762748595, '2c9b5b15a6d3cc951ca57c65e4966fd3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:10:30'),
+(25, 'PF25', 'Ms', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:11:20'),
+(26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:12:49'),
+(27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:02'),
+(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55');
 
 -- --------------------------------------------------------
 
@@ -1493,7 +1552,33 @@ CREATE TABLE `user_role_details` (
 
 INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VALUES
 (1, 'PF01', 'role003', '2023-02-16 20:22:49'),
-(2, 'PF05', 'role001', '2023-02-20 14:39:11');
+(2, 'PF05', 'role001', '2023-02-20 14:39:11'),
+(3, 'PF02', 'role002', '2023-03-09 06:21:30'),
+(4, 'PF03', 'role002', '2023-03-09 06:22:16'),
+(5, 'PF04', 'role002', '2023-03-09 06:22:53'),
+(6, 'PF06', 'role004', '2023-03-09 06:23:53'),
+(7, 'PF07', 'role002', '2023-03-09 07:32:21'),
+(8, 'PF08', 'role002', '2023-03-09 08:47:42'),
+(9, 'PF09', 'role002', '2023-03-09 08:52:01'),
+(10, 'PF10', 'role002', '2023-03-09 08:52:56'),
+(11, 'PF11', 'role002', '2023-03-09 08:54:16'),
+(12, 'PF12', 'role002', '2023-03-09 08:55:11'),
+(13, 'PF13', 'role002', '2023-03-09 08:56:09'),
+(14, 'PF14', 'role002', '2023-03-09 08:57:06'),
+(15, 'PF15', 'role002', '2023-03-09 08:58:03'),
+(16, 'PF16', 'role002', '2023-03-09 08:59:11'),
+(17, 'PF17', 'role002', '2023-03-09 09:00:17'),
+(18, 'PF18', 'role002', '2023-03-09 09:01:26'),
+(19, 'PF19', 'role002', '2023-03-09 09:02:24'),
+(20, 'PF20', 'role002', '2023-03-09 09:05:33'),
+(21, 'PF21', 'role002', '2023-03-09 09:07:02'),
+(22, 'PF22', 'role002', '2023-03-09 09:08:45'),
+(23, 'PF23', 'role002', '2023-03-09 09:09:42'),
+(24, 'PF24', 'role002', '2023-03-09 09:10:30'),
+(25, 'PF25', 'role002', '2023-03-09 09:11:20'),
+(26, 'PF26', 'role002', '2023-03-09 09:12:49'),
+(27, 'PF27', 'role002', '2023-03-09 09:14:02'),
+(28, 'PF28', 'role002', '2023-03-09 09:14:55');
 
 -- --------------------------------------------------------
 
@@ -1731,7 +1816,7 @@ ALTER TABLE `department_details`
 -- AUTO_INCREMENT for table `lecturer_department_details`
 --
 ALTER TABLE `lecturer_department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `lecturer_unit_details`
@@ -1743,7 +1828,7 @@ ALTER TABLE `lecturer_unit_details`
 -- AUTO_INCREMENT for table `role_details`
 --
 ALTER TABLE `role_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `room_details`
@@ -1779,7 +1864,7 @@ ALTER TABLE `semester_details`
 -- AUTO_INCREMENT for table `time_slot_details`
 --
 ALTER TABLE `time_slot_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `unit_course_details`
@@ -1809,7 +1894,13 @@ ALTER TABLE `unit_semester_details`
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `user_role_details`
+--
+ALTER TABLE `user_role_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `week_day_details`
