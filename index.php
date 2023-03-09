@@ -35,11 +35,6 @@ include 'server.php';
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label><br>
     <input type="password" name="staff_password" class="form-control" id="password" placeholder="Password" required>
-    <div id="message-length" style="color:red"></div>
-    <div id="message-uppercase" style="color:red"></div>
-    <div id="message-lowercase" style="color:red"></div>
-    <div id="message-number" style="color:red"></div>
-    <div id="message-special-char" style="color:red"></div>
   </div>
   <div class="form-check mb-2">
   <input class="form-check-input" type="checkbox" value="checked" id="togglePasswordCheckBox">
