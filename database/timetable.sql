@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2023 at 10:15 AM
+-- Generation Time: Mar 09, 2023 at 08:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -158,7 +158,6 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (2, 'DPT_INFORMATIONTECHNOLOGY', 'PF02', '2023-03-09 06:25:37'),
 (3, 'DPT_INFORMATIONTECHNOLOGY', 'PF03', '2023-03-09 06:25:54'),
 (4, 'DPT_INFORMATIONTECHNOLOGY', 'PF04', '2023-03-09 06:25:54'),
-(6, 'DPT_COMPUTERSCIENCE', 'PF06', '2023-03-09 06:26:03'),
 (7, 'DPT_INFORMATIONTECHNOLOGY', 'PF07', '2023-03-09 07:32:22'),
 (8, 'DPT_INFORMATIONTECHNOLOGY', 'PF08', '2023-03-09 08:47:43'),
 (9, 'DPT_INFORMATIONTECHNOLOGY', 'PF09', '2023-03-09 08:52:02'),
@@ -180,7 +179,8 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (25, 'DPT_COMPUTERSCIENCE', 'PF25', '2023-03-09 09:11:20'),
 (26, 'DPT_COMPUTERSCIENCE', 'PF26', '2023-03-09 09:12:49'),
 (27, 'DPT_COMPUTERSCIENCE', 'PF27', '2023-03-09 09:14:03'),
-(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55');
+(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55'),
+(29, 'DPT_COMPUTERSCIENCE', 'PF06', '2023-03-09 09:25:05');
 
 -- --------------------------------------------------------
 
@@ -1509,7 +1509,7 @@ INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `
 (3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
 (4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
 (5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
-(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 758413462, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-21 11:11:02'),
+(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:25:05'),
 (7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11c32ad76442ac5993e83143d2b11caaef510d4ce4 ', '2023-03-09 10:32:21'),
 (8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, '064d02846ea32bf0214cbfa8b66cb1fdcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:47:42'),
 (9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:01'),
@@ -1556,7 +1556,6 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (3, 'PF02', 'role002', '2023-03-09 06:21:30'),
 (4, 'PF03', 'role002', '2023-03-09 06:22:16'),
 (5, 'PF04', 'role002', '2023-03-09 06:22:53'),
-(6, 'PF06', 'role004', '2023-03-09 06:23:53'),
 (7, 'PF07', 'role002', '2023-03-09 07:32:21'),
 (8, 'PF08', 'role002', '2023-03-09 08:47:42'),
 (9, 'PF09', 'role002', '2023-03-09 08:52:01'),
@@ -1578,7 +1577,8 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (25, 'PF25', 'role002', '2023-03-09 09:11:20'),
 (26, 'PF26', 'role002', '2023-03-09 09:12:49'),
 (27, 'PF27', 'role002', '2023-03-09 09:14:02'),
-(28, 'PF28', 'role002', '2023-03-09 09:14:55');
+(28, 'PF28', 'role002', '2023-03-09 09:14:55'),
+(29, 'PF06', 'role004', '2023-03-09 09:25:05');
 
 -- --------------------------------------------------------
 
@@ -1816,7 +1816,7 @@ ALTER TABLE `department_details`
 -- AUTO_INCREMENT for table `lecturer_department_details`
 --
 ALTER TABLE `lecturer_department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `lecturer_unit_details`
@@ -1894,13 +1894,13 @@ ALTER TABLE `unit_semester_details`
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `user_role_details`
 --
 ALTER TABLE `user_role_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `week_day_details`
