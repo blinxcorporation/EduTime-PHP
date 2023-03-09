@@ -663,7 +663,6 @@ function comparePasswords() {
   return true;
 }
 
-
 //edit lecturer details modal code
 function updateLecturerModal() {
     $("#updateLecturerModal").modal("show");
@@ -696,13 +695,11 @@ function updateLecturerModal() {
       // console.log(select)
       role_select.value = user_role;
 
-
       document.getElementById("usr_dpt_id").value = user_department;
       // pre-select the option in the dropdown menu
       const dpt_select = document.querySelector('#usr_dpt_id');
       // console.log(select)
       dpt_select.value = user_department;
-
 
       updateLecturerModal();
     });
