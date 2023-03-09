@@ -53,49 +53,22 @@ if (isset($_POST['add-timeslot-btn'])) {
     }
   }
 
-// Update Academic Year Details
-if (isset($_POST['update-academic-year-btn'])) {
+  // Delete Timeslot Details
+if (isset($_POST['delete-timeslot-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
-  $academic_year_id = $_POST['academic_year_id'];
-  $academic_year = $_POST['academic_year'];
-
-//Data Validation
-  if (empty($academic_year_id)) {
-  	array_push($errors, "Academic Year ID is required");
-  }
-  if (empty($academic_year)) {
-  	array_push($errors, "Academic Year is required");
-  }
-
-if (count($errors) == 0) {
-  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year' WHERE `academic_year_id`='$academic_year_id'";
-  $results = mysqli_query($db, $academic_yr_update_query);
-
-
-  header('location: academic-year.php');
-  }else{
-  array_push($errors, "Unable to push updates");
-  header('location: academic-year.php');
-  }
-}
-}
-
-  // Delete Academic Year Details
-if (isset($_POST['delete-academic-year-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $academic_year_id = $_POST['academic_year_id'];
+  $time_slot_id = $_POST['timeSlot_id'];
   
-  if (empty($academic_year_id)) {
-    array_push($errors, "Academic Year ID is required");
+  if (empty($time_slot_id)) {
+    array_push($errors, "Timeslot ID is required");
   }
   if (count($errors) == 0) {
-      $academic_yr_data_delete_query = "DELETE FROM `academic_year` WHERE `academic_year_id`='$academic_year_id' ";
-      $results = mysqli_query($db, $academic_yr_data_delete_query);
+      $timeslot_data_delete_query = "DELETE FROM `time_slot_details` WHERE `slot_id`='$time_slot_id' ";
+      $results = mysqli_query($db, $timeslot_data_delete_query);
 
-        header('location: academic-year.php');
+        header('location: timeslots.php');
       }else{
         array_push($errors, "Unable to delete academic year");
-        header('location: academic-year.php');
+        header('location: timeslots.php');
       }
   }
 }
@@ -201,11 +174,12 @@ include '../assets/components/header.php';
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='slot_id' value='$slot_id'>
-      <input type='submit' data-id='$slot_id' data-start_time='$start_time' data-end_time='$end_time' value='Edit Details' name='edit-timeslot-btn' class='btn btn-success edit-timeslot-btn m-2'>
+     
       <input type='submit' data-id= '$slot_id' value='Delete Timeslot'  class='btn btn-danger deleteTimeslotBtn'>
       </form>
       </td> </tr>";
       }
+      // <input type='submit' data-id='$slot_id' data-start_time='$start_time' data-end_time='$end_time' value='Edit Details' name='edit-timeslot-btn' class='btn btn-success edit-timeslot-btn m-2'>
       
       }else{
       echo "<td>"."No Requests Found"."</td>";
@@ -267,14 +241,14 @@ include '../assets/components/header.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this Academic Year?</p>
+        <p>Are you sure you want to delete this Timeslot?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text"  hidden class="form-control" id="academic_year_ID" required readonly name='academic_year_id'>
+            <input type="text"   class="form-control" id="timeSlot_ID" required hidden readonly name='timeSlot_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-academic-year-btn' class="btn btn-danger">Yes,Delete!</button>
+        <button type="submit" name='delete-timeslot-btn' class="btn btn-danger">Yes,Delete!</button>
       </div>
         </form>
       </div>
@@ -367,7 +341,7 @@ include '../assets/components/header.php';
 </div>
 
 <!--edit academic year details-->
-<div class="modal fade" id="editAcademicYearModal" tabindex="-1" role="dialog" aria-labelledby="editAcademicYearModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="editAcademicYearModal" tabindex="-1" role="dialog" aria-labelledby="editAcademicYearModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -399,11 +373,7 @@ include '../assets/components/header.php';
     
   </div>
 </div>
-</div>
-
-
-
-
+</div> -->
 
 
     <!-- ============================================================== -->
@@ -469,21 +439,21 @@ openAddTimeslotModalBtn.addEventListener("click", function (e) {
 
 
   // delete Academic Year modal query
-  //   function deleteAcademicYearModal() {
-  //   $("#deleteAcademicYearModal").modal("show");
-  // }
-  // let deleteBtns = document.querySelectorAll(".deleteAcademicYearBtn");
-  // deleteBtns.forEach(function (deleteBtn) {
-  //   deleteBtn.addEventListener("click", function (e) {
-  //     e.preventDefault();
+    function deleteTimeslotModal() {
+    $("#deleteTimeslotModal").modal("show");
+  }
+  let deleteBtns = document.querySelectorAll(".deleteTimeslotBtn");
+  deleteBtns.forEach(function (deleteBtn) {
+    deleteBtn.addEventListener("click", function (e) {
+      e.preventDefault();
   
-  //     let academic_yr_id = deleteBtn.dataset.id;
+      let slot_id = deleteBtn.dataset.id;
   
-  //     document.getElementById("academic_year_ID").value = academic_yr_id;
+      document.getElementById("timeSlot_ID").value = slot_id;
      
-  //     deleteAcademicYearModal();
-  //   });
-  // });
+      deleteTimeslotModal();
+    });
+  });
 
   </script>
 
