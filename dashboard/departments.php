@@ -364,8 +364,6 @@ while ($rw=mysqli_fetch_array($sql)) {
 <?php
 }
 ?>
-
-</select>
     </select>
   </div>
 
@@ -417,21 +415,16 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
 
-
-
 //add Department details modal code
 function openDepartmentModal() {
   $("#addDepartmentModal").modal("show");
 }
 
 let openAddDepartmentModalBtn = document.querySelector(".open-department-modal-btn");
-
 openAddDepartmentModalBtn.addEventListener("click", function (e) {
   e.preventDefault();
   openDepartmentModal();
 });
-
-
 
 //edit Department details modal code
 function editDepartmentModal() {
@@ -451,7 +444,6 @@ function editDepartmentModal() {
       editDepartmentModal();
     });
   });
-
 
   //delete Department modal query
     function deleteDepartmentModal() {

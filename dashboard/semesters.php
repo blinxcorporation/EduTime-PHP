@@ -1,6 +1,6 @@
 <?php
 include '../server.php';
-//deny access to schools.php if user is not an admin
+//deny access to semesters.php if user is not an admin
 if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
   // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page

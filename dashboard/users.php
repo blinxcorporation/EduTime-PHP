@@ -1,29 +1,37 @@
 <?php
 include '../server.php';
-
+//deny access to users.php if user is not an admin
+if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
+  // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
+  header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
+  exit;
+}
+//Get Session data
+$pfno = $_SESSION['pfno'];
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
-$username = $_SESSION['username'];
-$mail = $_SESSION['emailaddress'];
+$mail = $_SESSION['email'];
 
-// Update User Details
-if (isset($_POST['update-user-details-btn'])) {
-  $username = $_POST['username'];
+// Register New User Details
+if (isset($_POST['add-lecturer-details-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
+  $username = $_POST['pf_number'];
+  $title = $_POST['user_title'];
   $fname = $_POST['fname'];
-  $mname = $_POST['mname'];
   $lname = $_POST['lname'];
   $emailAddress = $_POST['mail'];
   $phoneNum= $_POST['phonenum'];
-  $college= $_POST['college'];
-
-  $course= $_POST['course'];
-  $duration= $_POST['duration'];
-  $start_date= $_POST['start_date'];
-  $end_date= $_POST['end_date'];
-  $yearofstudy= $_POST['yearofstudy'];
-  $sem= $_POST['sem'];
+  $role_id= $_POST['user_roles'];
+  $dpt_id= $_POST['user_department'];
+  $password= $_POST['user_password'];
+  $confirmPassword= $_POST['user_confirm_password'];
 
   if (empty($username)) {
   	array_push($errors, "Username is required");
+  }
+  if (empty($title)) {
+  	array_push($errors, "Title is required");
   }
   if (empty($fname)) {
   	array_push($errors, "First Name is required");
@@ -37,59 +45,54 @@ if (isset($_POST['update-user-details-btn'])) {
   if (empty($phoneNum)) {
   	array_push($errors, "Phone number is required");
   }
-  if (empty($college)) {
-  	array_push($errors, "College is required");
+  if (empty($role_id)) {
+  	array_push($errors, "role is required");
   }
-  if (empty($course)) {
-  	array_push($errors, "Course is required");
+  if (empty($dpt_id)) {
+  	array_push($errors, "department is required");
   }
-  if (empty($duration)) {
-  	array_push($errors, "Duration is required");
-  }
-  if (empty($start_date)) {
-  	array_push($errors, "Start Date is required");
-  }
-  if (empty( $end_date)) {
-  	array_push($errors, "End Date is required");
-  }
-  if (empty($yearofstudy)) {
-  	array_push($errors, "Year of is required");
-  }
-  if (empty($sem)) {
-  	array_push($errors, "Semester is required");
+  if (empty($password)) { array_push($errors, "Password is required"); }
+  if (empty($confirmPassword)) { array_push($errors, "Please Confirm Password"); }
+
+  if ($password != $confirmPassword) {
+	array_push($errors, "The two passwords do not match");
   }
 
   if (count($errors) == 0) {
-  	$student_data_update_query = "UPDATE `student_details` SET `student_username`='$username',`student_firstname`='$fname',`student_middlename`='$mname',`student_lastname`='$lname',`student_email`='$emailAddress',`student_phone`='$phoneNum' WHERE `student_username` ='$username' ";
-  	$results = mysqli_query($db, $student_data_update_query);
+    $encrypted_password = md5($username).sha1($password);
+  	$lecturer_add_query = "INSERT INTO `user_details`(`pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`) VALUES ('$username','$title','$fname','$lname','$emailAddress','$phoneNum','$encrypted_password ')";
+  	$results = mysqli_query($db, $lecturer_add_query);
 
-    $college_data_update_query = "UPDATE `student_institution_details` SET `institution_name`='$college',`course_name`='$course',`course_duration`='$duration',`start_date`='$start_date',`end_date`='$end_date',`yearOfStudy`='$yearofstudy',`currentSemester`='$sem' WHERE `student_id` = '$username'";
-  	$results = mysqli_query($db, $college_data_update_query);
+    $user_role_query = "INSERT INTO `user_role_details`(`user_id`, `role_id`) VALUES ('$username','$role_id')";
+  	$results = mysqli_query($db, $user_role_query);
 
-  	  header('location: students.php');
+    $lec_dpt_query = "INSERT INTO `lecturer_department_details`(`department_id`, `lecturer_id`) VALUES ('$dpt_id','$username')";
+  	$results = mysqli_query($db, $lec_dpt_query);
+
+  	  header('location: users.php');
   	}else{
   		array_push($errors, "Unable to push updates");
-      header('location: students.php');
+      header('location: users.php');
   	}
   }
-
+}
   // Delete user Details
-  if (isset($_POST['delete-user-btn'])) {
-    $studentID = $_POST['student_id'];
+  // if (isset($_POST['delete-user-btn'])) {
+  //   $studentID = $_POST['student_id'];
     
-    if (empty($studentID)) {
-      array_push($errors, "Student ID is required");
-    }
-    if (count($errors) == 0) {
-        $student_data_delete_query = "DELETE FROM `student_details` WHERE `student_username`='$studentID' ";
-        $results = mysqli_query($db, $student_data_delete_query);
+  //   if (empty($studentID)) {
+  //     array_push($errors, "Student ID is required");
+  //   }
+  //   if (count($errors) == 0) {
+  //       $student_data_delete_query = "DELETE FROM `student_details` WHERE `student_username`='$studentID' ";
+  //       $results = mysqli_query($db, $student_data_delete_query);
 
-          header('location: students.php');
-        }else{
-          array_push($errors, "Unable to delete user");
-          header('location: students.php');
-        }
-    }
+  //         header('location: students.php');
+  //       }else{
+  //         array_push($errors, "Unable to delete user");
+  //         header('location: students.php');
+  //       }
+  //   }
 ?>
 
 
@@ -163,7 +166,7 @@ include '../assets/components/header.php';
                 <div class="card-body">
    
                   <h5 class="card-title">List of Lecturers</h5>
-
+                  <input type='button' value='Add a Lecturer' name='open-lecturer-btn' class='btn btn-primary float-end open-lecturer-modal-btn m-2' />
                   <div class="table-responsive">
                     <table
                       id="zero_config"
@@ -207,9 +210,9 @@ include '../assets/components/header.php';
       echo "<td>
         
       <form method ='POST' action=''>
-      <input  type='text' hidden name='student_id' value='$student_id'>
-      <input type='submit' data-id='$student_id' data-category='$category' data-fname='$fname' data-mname='$mname' data-lname='$lname' data-mail='$studentEmail' data-phone='$studentPhone' data-college='$institution_name' data-duration='$duration' data-yearofstudy='$yearOfStudy' data-sem='$semester' data-course='$course' data-start='$start_date' data-end='$end_date' value='Edit Details' name='edit-student-btn' class='btn btn-success edit-student-modal-btn m-2'>
-      <input type='submit' data-id= '$student_id' value='Delete Student'  class='btn btn-danger deleteStudentBtn'>
+      <input  type='text' hidden name='lecturer_id' value='$user_id'>
+      <input type='submit' data-id='$user_id' data-salutation='$salutation' data-department='$department' data-fname='$fname' data-lname='$lname' data-mail='$user_email' data-phone='$user_phone' data-user_role='$role' value='Edit Details' name='edit-lecturer-btn' class='btn btn-success edit-lecturer-modal-btn m-2'>
+      <input type='submit' data-id= '$user_id' value='Delete Lecturer'  class='btn btn-danger deleteLecturerBtn'>
       </form>
       </td> </tr>";
       }
@@ -295,11 +298,13 @@ include '../assets/components/header.php';
   </div>
 </div>
 
-<div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-labelledby="editStudentModalLabel" aria-hidden="true">
+
+<!--Add lecturer-->
+<div class="modal fade" id="addLecturerModal" tabindex="-1" role="dialog" aria-labelledby="addLecturerModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editStudentModalLabel">Edit Student Details</h5>
+        <h5 class="modal-title" id="addLecturerModalLabel">Add a Lecturer</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -307,65 +312,67 @@ include '../assets/components/header.php';
       <div class="modal-body">
         <form method="POST" action="">
         <div class="form-group">
-            <label for="recipient-name" hidden readonly class="col-form-label">Username:</label>
-            <input type="text" readonly hidden name="username"  class="form-control" id="username" required>
+            <label for="recipient-name" readonly class="col-form-label">PF Number:</label>
+            <input type="text" name="pf_number"  class="form-control" id="pf_number_id" placeholder="e.g PF00012 " required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" name="user_title" class="form-control" id="user_title" placeholder="e.g Dr, Mr " required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">First Name:</label>
-            <input type="text" name="fname" class="form-control" id="fname" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Middle Name:</label>
-            <input type="text" name="mname" class="form-control" id="mname">
+            <input type="text" name="fname" class="form-control" id="fname" placeholder="e.g Benson " required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Last Name:</label>
-            <input type="text" name="lname" class="form-control" id="lname" required>
+            <input type="text" name="lname" class="form-control" id="lname" placeholder="e.g Makau" required>
           </div>
-         
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Email:</label>
-            <input type="email" name="mail" class="form-control" id="mail" required>
+            <input type="email" name="mail" class="form-control" id="mail" placeholder="e.g xyz@maseno.ac.ke" required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Phone:</label>
-            <input type="text" name="phonenum" class="form-control" id="phonenum" required>
+            <input type="number" name="phonenum" class="form-control" id="phonenum" placeholder="e.g 0758413462" required>
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Category:</label>
-            <input type="text" name="category" class="form-control" id="category" required placeholder="University, College, Secondary, Others">
+          <label for="exampleFormControlSelect1">Select Role..</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="user_roles">
+                <option value="">Select Role..</option>
+                  <?php $sql=mysqli_query($db,"select * from role_details");
+                  while ($rw=mysqli_fetch_array($sql)) {
+                    ?>
+                    <option value="<?php echo htmlentities($rw['role_id']);?>"><?php echo htmlentities($rw['role_name']);?></option>
+                  <?php
+                  }
+                  ?>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select Department..</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="user_department">
+                <option value="">Select department..</option>
+                  <?php $sql=mysqli_query($db,"select * from department_details");
+                  while ($rw=mysqli_fetch_array($sql)) {
+                    ?>
+                    <option value="<?php echo htmlentities($rw['department_id']);?>"><?php echo htmlentities($rw['department_name']);?></option>
+                  <?php
+                  }
+                  ?>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Password:</label>
+            <input type="password" name="user_password" class="form-control" id="user_password" placeholder="Enter password" required>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Institution:</label>
-            <input type="text" name="college" class="form-control" id="college" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Course:</label>
-            <input type="text" name="course" class="form-control" id="course" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Duration:</label>
-            <input type="number" name="duration" class="form-control" id="duration" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Start Date:</label>
-            <input type="date" name="start_date" class="form-control" id="start_date" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">End Date:</label>
-            <input type="date" name="end_date" class="form-control" id="end_date" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Year of Study:</label>
-            <input type="number" name="yearofstudy" class="form-control" id="yearofstudy" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Current Semester:</label>
-            <input type="number" name="sem" class="form-control" id="semester" required>
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Confirm Password:</label>
+            <input type="password" name="user_confirm_password" class="form-control" id="user_confirm_password" placeholder="Enter confirm password" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-student-details-btn">Update Details</button>
+        <button type="submit" class="btn btn-info" name="add-lecturer-details-btn">Submit</button>
       </div>
         </form>
       </div>
@@ -373,8 +380,6 @@ include '../assets/components/header.php';
     </div>
   </div>
 </div>
-
-
 
     <!-- ============================================================== -->
     <!-- All Jquery -->
@@ -403,71 +408,52 @@ include '../assets/components/header.php';
     </script>
 
 <script>
-//edit student details modal code
-function editStudentModal() {
-    $("#editStudentModal").modal("show");
-  }
-  let editButtons = document.querySelectorAll(".edit-student-modal-btn");
-  editButtons.forEach(function (editButton) {
-    editButton.addEventListener("click", function (e) {
-      e.preventDefault();
+//add lecturer details modal code
+function openAddLecturerModal() {
+  $("#addLecturerModal").modal("show");
+}
+
+let openAddLecturerModalBtn = document.querySelector(".open-lecturer-modal-btn");
+openAddLecturerModalBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  openAddLecturerModal();
+});
+
+//edit Department details modal code
+// function editDepartmentModal() {
+//     $("#editDepartmentModal").modal("show");
+//   }
+//   let editButtons = document.querySelectorAll(".edit-department-modal-btn");
+//   editButtons.forEach(function (editButton) {
+//     editButton.addEventListener("click", function (e) {
+//       e.preventDefault();
   
-      let studentid = editButton.dataset.id;
-      let fname = editButton.dataset.fname;
-      let mname = editButton.dataset.mname;
-      let lname = editButton.dataset.lname;
-      let mail = editButton.dataset.mail;
-      let category = editButton.dataset.category;
+//       let departmentid = editButton.dataset.dptid;
+//       let dpt_name = editButton.dataset.dptname;
 
-      let phone = editButton.dataset.phone;
-      let college = editButton.dataset.college;
-      let duration = editButton.dataset.duration;
-      let yearofstudy = editButton.dataset.yearofstudy;
+//       document.getElementById("dpt_id").value = departmentid ;
+//       document.getElementById("dpt_name").value = dpt_name;
 
-      let sem = editButton.dataset.sem;
-      let course = editButton.dataset.course;
-      let start = editButton.dataset.start;
-      let end = editButton.dataset.end;
+//       editDepartmentModal();
+//     });
+//   });
 
-      document.getElementById("username").value = studentid;
-      document.getElementById("fname").value = fname;
-      document.getElementById("mname").value = mname;
-      document.getElementById("lname").value = lname;
-      document.getElementById("mail").value = mail;
-      document.getElementById("phonenum").value = phone;
-      document.getElementById("college").value = college;
-      document.getElementById("course").value = course;
-      document.getElementById("duration").value = duration;
-      document.getElementById("start_date").value = start;
-      document.getElementById("end_date").value = end;
-      document.getElementById("yearofstudy").value = yearofstudy;
-      document.getElementById("semester").value = sem;
-      document.getElementById("category").value = category;
-
-
-
-      editStudentModal();
-    });
-  });
-
-
-  //delete student modal query
-    function deleteStudentModal() {
-    $("#deleteStudentModal").modal("show");
-  }
-  let deleteBtns = document.querySelectorAll(".deleteStudentBtn");
-  deleteBtns.forEach(function (deleteBtn) {
-    deleteBtn.addEventListener("click", function (e) {
-      e.preventDefault();
+//   //delete Department modal query
+//     function deleteDepartmentModal() {
+//     $("#deleteDepartmentModal").modal("show");
+//   }
+//   let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
+//   deleteBtns.forEach(function (deleteBtn) {
+//     deleteBtn.addEventListener("click", function (e) {
+//       e.preventDefault();
   
-      let Studentid = deleteBtn.dataset.id;
+//       let dptid = deleteBtn.dataset.id;
   
-      document.getElementById("StudentID").value = Studentid;
-   
-  
-      deleteStudentModal();
-    });
-  });
+//       document.getElementById("departmentID").value = dptid;
+     
+//       deleteDepartmentModal();
+//     });
+//   });
 
   </script>
 
