@@ -5,8 +5,8 @@ $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $username = $_SESSION['username'];
 $mail = $_SESSION['emailaddress'];
 
-// Update Student Details
-if (isset($_POST['update-student-details-btn'])) {
+// Update User Details
+if (isset($_POST['update-user-details-btn'])) {
   $username = $_POST['username'];
   $fname = $_POST['fname'];
   $mname = $_POST['mname'];
@@ -73,8 +73,8 @@ if (isset($_POST['update-student-details-btn'])) {
   	}
   }
 
-  // Delete student Details
-  if (isset($_POST['delete-student-btn'])) {
+  // Delete user Details
+  if (isset($_POST['delete-user-btn'])) {
     $studentID = $_POST['student_id'];
     
     if (empty($studentID)) {
@@ -96,12 +96,11 @@ if (isset($_POST['update-student-details-btn'])) {
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Students | WKEO </title>
+  <title>Lecturers | EDUTIME </title>
   <?php
 include '../assets/components/header.php';
 ?>
   </head>
-
   <body>
 
       <!-- ============================================================== -->
@@ -134,13 +133,13 @@ include '../assets/components/header.php';
         <div class="page-breadcrumb pt-5">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Student Details</h4>
+              <h4 class="page-title">Lecturer Details</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Students
+                    Lecturers
                     </li>
                   </ol>
                 </nav>
@@ -163,7 +162,7 @@ include '../assets/components/header.php';
                   <div class="card">
                 <div class="card-body">
    
-                  <h5 class="card-title">List of Students</h5>
+                  <h5 class="card-title">List of Lecturers</h5>
 
                   <div class="table-responsive">
                     <table
@@ -172,53 +171,39 @@ include '../assets/components/header.php';
                     >
                       <thead>
                         <tr>
-                          <th>Student's Name</th>
-                          <th>Category</th>
-                          <th>Institution</th>
+                          <th>PF Number</th>
+                          <th>Full Name</th>
                           <th>Email</th>
-                          <th>Course</th>
-                          <th>Progress</th>
-                          <th>Start Date</th>
-                          <th>End Date</th>
+                          <th>Phone</th>
+                          <th>Role</th>
+                          <th>Department</th>
+                          <th>Date Added</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <?php
-  if($_SESSION['username']){
-      $data_fetch_query = "SELECT * FROM `student_details`";
+   if($_SESSION['role_name'] == 'Admin'){
+      $data_fetch_query = "SELECT * FROM `user_details` INNER JOIN user_role_details ON user_role_details.user_id =user_details.pf_number INNER JOIN role_details ON role_details.role_id = user_role_details.role_id INNER JOIN lecturer_department_details  ON lecturer_department_details.lecturer_id = user_role_details.user_id INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
-              $student_id = $row['student_username'];
-              $fname = $row['student_firstname'];
-              $mname = $row['student_middlename'];
-              $lname = $row['student_lastname'];
-              $studentEmail = $row['student_email'];
-              $studentPhone = $row['student_phone'];
+              $user_id = $row['pf_number'];
+              $salutation = $row['user_title'];
+              $fname = $row['user_firstname'];
+              $lname = $row['user_lastname'];
+              $user_email = $row['user_email'];
+              $user_phone = $row['user_phone'];
+              $role = $row['role_name'];
+              $department = $row['department_name'];
+              $date_created = $row['date_created'];
 
-              $data_fetch = "SELECT * FROM `student_institution_details` WHERE `student_id` ='$student_id'";
-              $result = mysqli_query($db, $data_fetch);
-              if ($result->num_rows > 0){
-                while($rw = $result->fetch_assoc()) {
-                  $institution_id= $rw["institution_id"];
-                  $category= $rw["category"];
-                  $institution_name= $rw["institution_name"];
-                  $duration= $rw["course_duration"];
-                  $yearOfStudy= $rw["yearOfStudy"];
-                  $semester= $rw["currentSemester"];
-                  $course= $rw["course_name"];
-                  $start_date= $rw["start_date"];
-                  $end_date= $rw["end_date"];
-                }}
-
-      echo "<tr> <td>" .$fname." ".$lname.  "</td>";
-      echo "<td>" .$category."</td>";
-      echo "<td>" .$institution_name."</td>";
-      echo "<td>" .$studentEmail."</td>";
-      echo "<td>" .$course."</td>";
-      echo "<td>" ."Year ".$yearOfStudy.","."Semester ".$semester."</td>";
-      echo "<td>" .$start_date."</td>";
-      echo "<td>" .$end_date."</td>";
+      echo "<tr> <td>" .$user_id.  "</td>";
+      echo "<td>" .$salutation." ".$fname." ".$lname."</td>";
+      echo "<td>" .$user_email."</td>";
+      echo "<td>" .$user_phone."</td>";
+      echo "<td>" .$role."</td>";
+      echo "<td>" .$department."</td>";
+      echo "<td>" .$date_created."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
@@ -241,14 +226,13 @@ include '../assets/components/header.php';
         </tbody>
                       <tfoot>
                         <tr>
-                        <th>Student's Name</th>
-                          <th>Category</th>
-                          <th>Institution</th>
+                        <th>PF Number</th>
+                          <th>Full Name</th>
                           <th>Email</th>
-                          <th>Course</th>
-                          <th>Progress</th>
-                          <th>Start Date</th>
-                          <th>End Date</th>
+                          <th>Phone</th>
+                          <th>Role</th>
+                          <th>Department</th>
+                          <th>Date Added</th>
                           <th>Action</th>
                         </tr>
                       </tfoot>

@@ -159,7 +159,7 @@
                   href="users.php"
                   aria-expanded="false"
                   ><i class="mdi mdi-account"></i
-                  ><span class="hide-menu">Users</span></a
+                  ><span class="hide-menu">Lecturers</span></a
                 >
               </li>
               <?php

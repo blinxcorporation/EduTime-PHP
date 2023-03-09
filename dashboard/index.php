@@ -207,7 +207,7 @@ include '../assets/components/header.php';
                     <h1 class="font-light text-white">
                         <i class="mdi mdi-account"></i>
                     </h1>
-                    <h6 class="text-light">Users</h6>
+                    <h6 class="text-light">Lecturers</h6>
                 </div>
             </div>
         </a>
