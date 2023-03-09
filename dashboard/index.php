@@ -226,6 +226,19 @@ include '../assets/components/header.php';
         </a>
     </div>
 
+    <div class="col-md-4">
+        <a href="./timetable.php">
+            <div class="card card-hover">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-calendar-clock"></i>
+                    </h1>
+                    <h6 class="text-light">Generate Timetable</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
             <!-- Column -->
         
  
