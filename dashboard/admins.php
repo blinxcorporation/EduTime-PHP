@@ -247,7 +247,7 @@ include '../assets/components/header.php';
       <form method ='POST' action=''>
       <input  type='text' hidden name='user_id' value='$user_id'>
       <input type='submit' data-id='$user_id' data-salutation='$salutation' data-fname='$fname' data-lname='$lname' data-mail='$user_email' data-phone='$user_phone' data-user_role='$role' value='Edit Details' name='edit-user-btn' class='btn btn-success edit-user-modal-btn m-2'>
-      <input type='submit' data-id= '$user_id' value='Delete Lecturer'  class='btn btn-danger deleteLecturerBtn'>
+      <input type='submit' data-id= '$user_id' value='Delete Admin'  class='btn btn-danger deleteUserBtn'>
       </form>
       </td> </tr>";
       }
@@ -303,7 +303,7 @@ include '../assets/components/header.php';
     <!-- ============================================================== -->
 
     <!--Delete Lec-->
-    <div class="modal" id='deleteLecturerModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+    <div class="modal" id='deleteUserModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
