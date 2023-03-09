@@ -104,8 +104,8 @@ if (isset($_POST['update-user-details-btn'])) {
   }
 
   if (count($errors) == 0) {
-  	$lecturer_update_query = "UPDATE `user_details` SET `user_title`='$title',`user_firstname`='$fname',`user_lastname`='$lname',`user_email`='$emailAddress',`user_phone`='$phoneNum' WHERE `pf_number`='$username'";
-  	$results = mysqli_query($db, $lecturer_update_query);
+  	$user_update_query = "UPDATE `user_details` SET `user_title`='$title',`user_firstname`='$fname',`user_lastname`='$lname',`user_email`='$emailAddress',`user_phone`='$phoneNum' WHERE `pf_number`='$username'";
+  	$results = mysqli_query($db, $user_update_query);
 
     $user_role_query = "UPDATE `user_role_details` SET `role_id`='$role_id' WHERE `user_id`='$username',";
   	$results = mysqli_query($db, $user_role_query);
@@ -669,11 +669,11 @@ function comparePasswords() {
   return true;
 }
 
-//edit lecturer details modal code
-function updateLecturerModal() {
-    $("#updateLecturerModal").modal("show");
+//edit update user modal details modal code
+function updateUserModal() {
+    $("#updateUserModal").modal("show");
   }
-  let editButtons = document.querySelectorAll(".edit-lecturer-modal-btn");
+  let editButtons = document.querySelectorAll(".edit-user-modal-btn");
   editButtons.forEach(function (editButton) {
     editButton.addEventListener("click", function (e) {
       e.preventDefault();
@@ -685,8 +685,6 @@ function updateLecturerModal() {
       let user_mail = editButton.dataset.mail;
       let user_phone = editButton.dataset.phone;
       let user_role = editButton.dataset.user_role;
-      let user_department = editButton.dataset.department;
-
 
       document.getElementById("pf_id").value = userid;
       document.getElementById("usr_title").value = user_title;
@@ -701,13 +699,7 @@ function updateLecturerModal() {
       // console.log(select)
       role_select.value = user_role;
 
-      document.getElementById("usr_dpt_id").value = user_department;
-      // pre-select the option in the dropdown menu
-      const dpt_select = document.querySelector('#usr_dpt_id');
-      // console.log(select)
-      dpt_select.value = user_department;
-
-      updateLecturerModal();
+      updateUserModal();
     });
   });
 
