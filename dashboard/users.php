@@ -76,6 +76,62 @@ if (isset($_POST['add-lecturer-details-btn'])) {
   	}
   }
 }
+
+// Update user details
+if (isset($_POST['update-lecturer-details-btn'])) {
+  if ($_SESSION['role_name'] == 'Admin'){
+  $username = $_POST['pf_number'];
+  $title = $_POST['user_title'];
+  $fname = $_POST['fname'];
+  $lname = $_POST['lname'];
+  $emailAddress = $_POST['mail'];
+  $phoneNum= $_POST['phonenum'];
+  $role_id= $_POST['user_roles'];
+  $dpt_id= $_POST['user_department'];
+
+  if (empty($username)) {
+  	array_push($errors, "Username is required");
+  }
+  if (empty($title)) {
+  	array_push($errors, "Title is required");
+  }
+  if (empty($fname)) {
+  	array_push($errors, "First Name is required");
+  }
+  if (empty($lname)) {
+  	array_push($errors, "Last Name is required");
+  }
+  if (empty($emailAddress)) {
+  	array_push($errors, "Email is required");
+  }
+  if (empty($phoneNum)) {
+  	array_push($errors, "Phone number is required");
+  }
+  if (empty($role_id)) {
+  	array_push($errors, "role is required");
+  }
+  if (empty($dpt_id)) {
+  	array_push($errors, "department is required");
+  }
+
+  if (count($errors) == 0) {
+  	$lecturer_update_query = "UPDATE `user_details` SET `user_title`='$title',`user_firstname`='$fname',`user_lastname`='$lname',`user_email`='$emailAddress',`user_phone`='$phoneNum' WHERE `pf_number`='$username'";
+  	$results = mysqli_query($db, $lecturer_update_query);
+
+    $user_role_query = "UPDATE `user_role_details` SET `role_id`='$role_id' WHERE `user_id`='$username',";
+  	$results = mysqli_query($db, $user_role_query);
+
+    $lec_dpt_query = "UPDATE `lecturer_department_details` SET `department_id`='$dpt_id' WHERE `lecturer_id`='$username'";
+  	$results = mysqli_query($db, $lec_dpt_query);
+
+  	  header('location: users.php');
+  	}else{
+  		array_push($errors, "Unable to push updates");
+      header('location: users.php');
+  	}
+  }
+}
+
   // Delete user Details
   if (isset($_POST['delete-lecturer-btn'])) {
     $lecturerID = $_POST['lecturer_id'];
