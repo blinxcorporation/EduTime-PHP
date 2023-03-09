@@ -165,6 +165,22 @@
               <?php
                    }
               ?>
+
+              <?php
+                if ($_SESSION['role_name'] == 'Admin'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="admins.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-account-key"></i
+                  ><span class="hide-menu">Admins</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
            
               <li class="sidebar-item mt-4">
                 <a
