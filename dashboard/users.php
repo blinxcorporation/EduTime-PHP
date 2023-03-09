@@ -77,22 +77,22 @@ if (isset($_POST['add-lecturer-details-btn'])) {
   }
 }
   // Delete user Details
-  // if (isset($_POST['delete-user-btn'])) {
-  //   $studentID = $_POST['student_id'];
+  if (isset($_POST['delete-lecturer-btn'])) {
+    $lecturerID = $_POST['lecturer_id'];
     
-  //   if (empty($studentID)) {
-  //     array_push($errors, "Student ID is required");
-  //   }
-  //   if (count($errors) == 0) {
-  //       $student_data_delete_query = "DELETE FROM `student_details` WHERE `student_username`='$studentID' ";
-  //       $results = mysqli_query($db, $student_data_delete_query);
+    if (empty($lecturerID)) {
+      array_push($errors, "Lecturer ID is required");
+    }
+    if (count($errors) == 0) {
+        $lec_delete_query = "DELETE FROM `user_details` WHERE `pf_number`='$lecturerID' ";
+        $results = mysqli_query($db, $lec_delete_query);
 
-  //         header('location: students.php');
-  //       }else{
-  //         array_push($errors, "Unable to delete user");
-  //         header('location: students.php');
-  //       }
-  //   }
+        header('location: users.php');
+      }else{
+        array_push($errors, "Unable to delete user");
+        header('location: users.php');
+        }
+    }
 ?>
 
 
@@ -268,7 +268,8 @@ include '../assets/components/header.php';
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-    <div class="modal" id='deleteStudentModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+
+    <div class="modal" id='deleteLecturerModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -283,11 +284,11 @@ include '../assets/components/header.php';
         <p>Are you sure you want to delete this user?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" hidden  class="form-control" id="StudentID" required readonly name='student_id'>
+            <input type="text" hidden  class="form-control" id="lecturerID" required readonly name='lecturer_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No Cancel</button>
-        <button type="submit" name='delete-student-btn' class="btn btn-danger">Yes Delete!</button>
+        <button type="submit" name='delete-lecturer-btn' class="btn btn-danger">Yes Delete!</button>
       </div>
         </form>
       </div>
@@ -604,22 +605,22 @@ function comparePasswords() {
 //     });
 //   });
 
-//   //delete Department modal query
-//     function deleteDepartmentModal() {
-//     $("#deleteDepartmentModal").modal("show");
-//   }
-//   let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
-//   deleteBtns.forEach(function (deleteBtn) {
-//     deleteBtn.addEventListener("click", function (e) {
-//       e.preventDefault();
+//   //delete Lecturer modal query
+    function deleteLecturerModal() {
+    $("#deleteLecturerModal").modal("show");
+  }
+  let deleteBtns = document.querySelectorAll(".deleteLecturerBtn");
+  deleteBtns.forEach(function (deleteBtn) {
+    deleteBtn.addEventListener("click", function (e) {
+      e.preventDefault();
   
-//       let dptid = deleteBtn.dataset.id;
+      let user_id = deleteBtn.dataset.id;
   
-//       document.getElementById("departmentID").value = dptid;
+      document.getElementById("lecturerID").value = user_id;
      
-//       deleteDepartmentModal();
-//     });
-//   });
+      deleteLecturerModal();
+    });
+  });
 
   </script>
 
