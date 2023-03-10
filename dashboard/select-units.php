@@ -200,19 +200,22 @@ if (isset($_POST['select-sem-btn'])) {
   
     if (count($errors) == 0) {
       $fetch_unit_query = "SELECT * FROM `unit_details`
-      INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code
-      INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id 
-      INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code 
-      INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id 
-      INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id 
-      INNER JOIN department_details ON department_details.department_id = department_course_details.department_id 
-      INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id 
-      LEFT JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code 
-      WHERE unit_details.unit_active = 'Active'
-      AND unit_semester_details.semester_id = '$sem_id' 
-      AND unit_course_details.course_id='$crs_id'
-      AND lecturer_department_details.lecturer_id='$pfno' 
-      AND lecturer_unit_details.unit_id IS NULL";
+    INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code
+    INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id 
+    INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code
+    INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id 
+    INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id 
+    INNER JOIN department_details ON department_details.department_id = department_course_details.department_id
+    INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id
+    LEFT JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
+    INNER JOIN academic_year ON academic_year.academic_year_id = lecturer_unit_details.academic_year_id
+    WHERE unit_details.unit_active = 'Active'
+    AND unit_semester_details.semester_id = '$sem_id'
+    AND unit_course_details.course_id='$crs_id'
+    AND lecturer_department_details.lecturer_id='$pfno' 
+    AND lecturer_unit_details.unit_id IS NULL
+    AND (lecturer_unit_details.academic_year_id = '$academic_year_id' OR lecturer_unit_details.academic_year_id IS NULL)
+      ";
 
       $data_result = mysqli_query($db, $fetch_unit_query);
 
