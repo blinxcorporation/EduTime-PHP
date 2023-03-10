@@ -13,129 +13,13 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-// Update Unit Details
-if (isset($_POST['update-unit-details-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $crs_id = $_POST['uni_course_id'];
-  $unit_code = $_POST['unit_code'];
-  $unit_name = $_POST['unit_name'];
-  $unit_type = $_POST['unit_type'];
-  $uni_semester_id = $_POST['uni_semester_id'];
-  $unit_status = $_POST['unit_status_id'];
-
-
-//Data Validation
-  if (empty($crs_id)) {
-  	array_push($errors, "Course ID is required");
-  }
-  if (empty($unit_code)) {
-  	array_push($errors, "Unit ID is required");
-  }
-  if (empty($unit_name)) {
-  	array_push($errors, "Unit Name is required");
-  }
-  if (empty($unit_type)) {
-  	array_push($errors, "Unit Type is required");
-  }
-  if (empty($uni_semester_id)) {
-  	array_push($errors, "Unit Semester ID is required");
-  }
-  if (empty($unit_status)) {
-  	array_push($errors, "Unit Status is required");
-  }
-
-if (count($errors) == 0) {
-  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$unit_status' WHERE `unit_code` = '$unit_code' ";
-  $unit_results = mysqli_query($db, $unit_data_update_query);
-
-  $unit_crs_update_query = "UPDATE `unit_course_details` SET `course_id`='$crs_id' WHERE `unit_id` = '$unit_code' ";
-  $unit_crs_results = mysqli_query($db, $unit_crs_update_query);
-
-  $unit_sem_update_query = "UPDATE `unit_semester_details` SET `semester_id`='$uni_semester_id' WHERE `unit_id` = '$unit_code' ";
-  $unit_sem_results = mysqli_query($db, $unit_sem_update_query);
-
-  header('location: units.php');
-  }else{
-  array_push($errors, "Unable to update unit details");
-  header('location: units.php');
-  }
-}
-}
-
-  // Delete unit Details
-if (isset($_POST['delete-unit-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $unitID = $_POST['unit_id'];
-  
-  if (empty($unitID)) {
-    array_push($errors, "Unit ID is required");
-  }
-  if (count($errors) == 0) {
-      $unit_data_delete_query = "DELETE FROM `unit_details` WHERE `unit_code`='$unitID' ";
-      $results = mysqli_query($db, $unit_data_delete_query);
-
-        header('location: units.php');
-      }else{
-        array_push($errors, "Unable to delete unit");
-        header('location: units.php');
-      }
-  }
-}
-
-//add unit
-if (isset($_POST['add-unit-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $course_id = $_POST['uni_course_id'];
-  $unit_code = $_POST['unit_code'];
-  $unit_name = $_POST['unit_name'];
-  $unit_type = $_POST['unit_type'];
-  $unit_status = $_POST['unit_status'];
-  $sem_id = $_POST['uni_semester_id'];
-
-
-  if (empty($unit_code)) {
-    array_push($errors, "Unit ID is required");
-  }
-  if (empty($unit_name)) {
-    array_push($errors, "Unit Name is required");
-  }
-  if (empty($unit_type)) {
-    array_push($errors, "Unit Type is required");
-  }
-  if (empty($unit_status)) {
-    array_push($errors, "Unit Status is required");
-  }
-  if (empty($sem_id)) {
-    array_push($errors, "Sem ID is required");
-  }
-
-  
-  if (count($errors) == 0) {
-    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$unit_status')";
-    $results = mysqli_query($db, $add_unit_query);
-
-    // //link unit with course
-    $add_crs_unit_query = "INSERT INTO `unit_course_details`(`unit_id`, `course_id`) VALUES ('$unit_code','$course_id')";
-    $results_crs_unit = mysqli_query($db, $add_crs_unit_query);
-
-    // //link unit with semester
-    $add_crs_sem_query = "INSERT INTO `unit_semester_details`(`unit_id`, `semester_id`) VALUES ('$unit_code','$sem_id')";
-    $results_crs_unit = mysqli_query($db, $add_crs_sem_query);
-
-      header('location: ./units.php');
-    }else{
-      array_push($errors, "Incorrect Username or Password");
-      header('location: ./units.php');
-    }
-  }
-}
 ?>
 
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Units| EDUTIME</title>
+  <title>Select Units| EDUTIME</title>
   <?php
 include '../assets/components/header.php';
 ?>
@@ -204,8 +88,29 @@ include '../assets/components/header.php';
 
             <div class="card">
           <div class="card-body">
-            <h5 class="card-title">List of Units</h5>
-            <input type='button' value='Add a Unit' name='open-unit-modal-btn' class='btn btn-primary float-end open-unit-modal-btn m-2'>
+            <h5 class="card-title" style="font-size:20px">Select Semester</h5>
+            <form method="POST" action="">
+                <div class="row">
+            <div class="form-group col-md-5">
+            <select class="form-control form-control-lg" id="uni_semester_id" name="uni_semester_id" required>
+    <option value="">Select Semester..</option>
+    <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from semester_details");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['semester_id']);?>"><?php echo htmlentities($rw['semester_name']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+            </div>
+            <div class="form-group col-md-7">
+                <input type="submit" name="select-sem-btn" class="btn btn-outline-success form-control-lg" value="View Units"  style="font-size:16px; font-weight:bold;"></input>  <strong style="font-size:16px">*Select a Semester to Diplay Active Units</strong>
+                </div>
+            </div>
+            </form>
+
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
@@ -221,9 +126,17 @@ include '../assets/components/header.php';
   </thead>
   <tbody>
   <?php
-  if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON unit_course_details.course_id = course_details.course_id INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id ";
-      $data_result = mysqli_query($db, $data_fetch_query);
+if (isset($_POST['select-sem-btn'])) {
+    if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
+    $sem_id = $_POST['uni_semester_id'];
+  
+    if (empty($sem_id)) {
+      array_push($errors, "Sem ID is required");
+    }
+  
+    if (count($errors) == 0) {
+      $fetch_unit_query = "SELECT * FROM `unit_details` INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id WHERE unit_details.unit_active = 'Active' AND unit_semester_details.semester_id = '$sem_id'";
+      $data_result = mysqli_query($db, $fetch_unit_query);
 
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
@@ -262,7 +175,8 @@ include '../assets/components/header.php';
       } else{
           echo "<td>"."No Data Found"."</td>";
       }
-
+    }
+}
 ?>
   </tbody>
   <tfoot>
