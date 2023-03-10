@@ -91,7 +91,7 @@ include '../assets/components/header.php';
                 <div class="row">
             <div class="form-group col-md-4">
             <label for="exampleInputPassword1" style="font-size:16px">Select Course:</label>
-            <select class="form-control form-control-lg" id="uni_semester_id" name="uni_semester_id" required>
+            <select class="form-control form-control-lg" id="course_id" name="course_id" required>
     <option value="">Select course..</option>
     <?php 
     // Retrieve the semesters from the database
@@ -133,13 +133,17 @@ include '../assets/components/header.php';
 if (isset($_POST['select-sem-btn'])) {
     if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
     $sem_id = $_POST['uni_semester_id'];
+    $crs_id= $_POST['course_id'];
   
     if (empty($sem_id)) {
       array_push($errors, "Sem ID is required");
     }
+    if (empty($crs_id)) {
+      array_push($errors, "Course ID is required");
+    }
   
     if (count($errors) == 0) {
-      $fetch_unit_query = "SELECT * FROM `unit_details` INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id  WHERE unit_details.unit_active = 'Active' AND unit_semester_details.semester_id = '$sem_id' AND lecturer_department_details.lecturer_id='$pfno'";
+      $fetch_unit_query = "SELECT * FROM `unit_details` INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id  WHERE unit_details.unit_active = 'Active' AND unit_semester_details.semester_id = '$sem_id' AND unit_course_details.course_id='$crs_id' AND lecturer_department_details.lecturer_id='$pfno'";
       $data_result = mysqli_query($db, $fetch_unit_query);
 
       if ($data_result->num_rows > 0){ while($row = $data_result->fetch_assoc())
