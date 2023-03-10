@@ -61,74 +61,6 @@ if (count($errors) == 0) {
   }
 }
 }
-
-  // Delete unit Details
-if (isset($_POST['delete-unit-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $unitID = $_POST['unit_id'];
-  
-  if (empty($unitID)) {
-    array_push($errors, "Unit ID is required");
-  }
-  if (count($errors) == 0) {
-      $unit_data_delete_query = "DELETE FROM `unit_details` WHERE `unit_code`='$unitID' ";
-      $results = mysqli_query($db, $unit_data_delete_query);
-
-        header('location: units.php');
-      }else{
-        array_push($errors, "Unable to delete unit");
-        header('location: units.php');
-      }
-  }
-}
-
-//add unit
-if (isset($_POST['add-unit-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $course_id = $_POST['uni_course_id'];
-  $unit_code = $_POST['unit_code'];
-  $unit_name = $_POST['unit_name'];
-  $unit_type = $_POST['unit_type'];
-  $unit_status = $_POST['unit_status'];
-  $sem_id = $_POST['uni_semester_id'];
-
-
-  if (empty($unit_code)) {
-    array_push($errors, "Unit ID is required");
-  }
-  if (empty($unit_name)) {
-    array_push($errors, "Unit Name is required");
-  }
-  if (empty($unit_type)) {
-    array_push($errors, "Unit Type is required");
-  }
-  if (empty($unit_status)) {
-    array_push($errors, "Unit Status is required");
-  }
-  if (empty($sem_id)) {
-    array_push($errors, "Sem ID is required");
-  }
-
-  
-  if (count($errors) == 0) {
-    $add_unit_query = "INSERT INTO `unit_details`(`unit_code`, `unit_name`, `unit_type`, `unit_active`) VALUES ('$unit_code','$unit_name','$unit_type','$unit_status')";
-    $results = mysqli_query($db, $add_unit_query);
-
-    // //link unit with course
-    $add_crs_unit_query = "INSERT INTO `unit_course_details`(`unit_id`, `course_id`) VALUES ('$unit_code','$course_id')";
-    $results_crs_unit = mysqli_query($db, $add_crs_unit_query);
-
-    // //link unit with semester
-    $add_crs_sem_query = "INSERT INTO `unit_semester_details`(`unit_id`, `semester_id`) VALUES ('$unit_code','$sem_id')";
-    $results_crs_unit = mysqli_query($db, $add_crs_sem_query);
-
-      header('location: ./units.php');
-    }else{
-      array_push($errors, "Incorrect Username or Password");
-      header('location: ./units.php');
-    }
-  }
-}
 ?>
 
 
@@ -305,43 +237,12 @@ include '../assets/components/header.php';
     <!-- End Wrapper -->
     <!-- ============================================================== -->
 
-    <!-- delete Unit modal-->
-    <div class="modal" id='deleteUnitModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-        <div class="modal-body">
-        <p>Are you sure you want to delete this Unit?</p>
-        <form method="POST" action="">
-        <div class="form-group">
-            <input type="text" hidden class="form-control" id="unitID" required readonly name='unit_id'>
-          </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-unit-btn' class="btn btn-danger">Yes,Delete!</button>
-      </div>
-        </form>
-      </div>
-      
-      </div>
-     
-    </div>
-  </div>
-</div>
-
 <!--edit Unit details-->
-<div class="modal fade" id="editUnitModal" tabindex="-1" role="dialog" aria-labelledby="editUnitModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateUnitStatusModal" tabindex="-1" role="dialog" aria-labelledby="updateUnitStatusModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUnitModalLabel">Edit Unit Details</h5>
+        <h5 class="modal-title" id="updateUnitStatusModalLabel">Edit Unit Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -349,27 +250,10 @@ include '../assets/components/header.php';
 
       <div class="modal-body">
         <form method="POST" action="">
-<div class="form-group">
-  <label for="uni_course_id">Select Course:</label>
-  <select class="form-control" id="uni_course_id" name="uni_course_id" required>
-    <option value="">Select Course..</option>
-    <?php 
-    // Retrieve the departments from the database
-    $sql=mysqli_query($db,"select * from course_details");
-    while ($rw=mysqli_fetch_array($sql)) {
-    ?>
-    <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
-    <?php
-    }
-    ?>
-  </select>
-</div>
-      <div class="form-group">
-          <input type="text" name="unit_code" readonly hidden  class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
-        </div>
+          <input type="text" name="unit_code" readonly hidden class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
       <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Unit Name:</label>
-          <input type="text" name="unit_name"  class="form-control" id="unit_name_id" required placeholder="e.g Software Project Management">
+          <input type="text" name="unit_name" readonly class="form-control" id="unit_name_id" required placeholder="e.g Software Project Management">
         </div>
       <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Unit Type:</label>
@@ -419,92 +303,6 @@ include '../assets/components/header.php';
 </div>
 </div>
 
-
-<!-- add new unit-->
-<div class="modal fade" id="addUnitModal" tabindex="-1" role="dialog" aria-labelledby="addUnitModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addUnitModalLabel">Add a Unit</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <form method="POST" action="">
-<div class="form-group">
-  <label for="uni_course_id">Select Course:</label>
-  <select class="form-control" id="uni_course_id" name="uni_course_id" required>
-    <option value="">Select Course..</option>
-    <?php 
-    // Retrieve the departments from the database
-    $sql=mysqli_query($db,"select * from course_details");
-    while ($rw=mysqli_fetch_array($sql)) {
-    ?>
-    <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
-    <?php
-    }
-    ?>
-  </select>
-</div>
-      <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Unit Code:</label>
-          <input type="text" name="unit_code"  class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
-        </div>
-      <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Unit Name:</label>
-          <input type="text" name="unit_name"  class="form-control" id="unit_name_id" required placeholder="e.g Software Project Management">
-        </div>
-      <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Unit Type:</label>
-          <select class="form-control" id="unit_type_id" name="unit_type" required>
-          <option value="" selected>Select Unit Type...</option>
-          <option value="Theory">Theory</option>
-          <option value="ICT-Practical">ICT-Practical</option>
-          <option value="ELECT-Practical">Electronics-Practical</option>
-          <option value="CHEM-Practical">CHEM-Practical</option>
-          <option value="BIO-Practical">BIO-Practical</option>
-          <option value="PHY-Practical">PHY-Practical</option>
-    </select>
-        </div>
-        <div class="form-group">
-  <label for="uni_semester_id">Select Semester:</label>
-  <select class="form-control" id="uni_semester_id" name="uni_semester_id" required>
-    <option value="">Select Semester..</option>
-    <?php 
-    // Retrieve the semesters from the database
-    $sql=mysqli_query($db,"select * from semester_details");
-    while ($rw=mysqli_fetch_array($sql)) {
-    ?>
-    <option value="<?php echo htmlentities($rw['semester_id']);?>"><?php echo htmlentities($rw['semester_name']);?></option>
-    <?php
-    }
-    ?>
-  </select>
-</div>
-      <div class="form-group">
-          <label for="recipient-name" readonly class="col-form-label">Unit Status:</label>
-          <select class="form-control" id="unit_status_id" name="unit_status" required>
-          <option value="" selected>select status...</option>
-          <option value="Active">Active</option>
-          <option value="In-Active">In-Active</option>
-    </select>
-        </div>
-   
-        <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-info" name="add-unit-btn">Submit</button>
-    </div>
-      </form>
-    </div>
-    
-  </div>
-</div>
-</div>
-
-
-
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -524,32 +322,15 @@ include '../assets/components/header.php';
     <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
-    <script>
-      /****************************************
-       *       Basic Table                   *
-       ****************************************/
-      $("#zero_config").DataTable();
-    </script>
 
 <script>
 $(document).ready(function () {
   $('#dtBasicExample').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
-
-//add Unit details modal code
-function openUnitModal() {
-  $("#addUnitModal").modal("show");
-}
-let openAddUnitModalBtn = document.querySelector(".open-unit-modal-btn");
-openAddUnitModalBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  openUnitModal();
-});
-
 // //edit Unit details modal code
-function editUnitModal() {
-    $("#editUnitModal").modal("show");
+function updateUnitStatusModal() {
+    $("#updateUnitStatusModal").modal("show");
   }
   let editButtons = document.querySelectorAll(".edit-unit-modal-btn");
   editButtons.forEach(function (editButton) {
@@ -560,57 +341,28 @@ function editUnitModal() {
       let unit_name = editButton.dataset.unit_name;
       let unit_type = editButton.dataset.unit_type;
       let unit_status = editButton.dataset.unit_status;
-      let course_id = editButton.dataset.course_id;
       let sem_id = editButton.dataset.sem_id;
-      let sem_name = editButton.dataset.sem_name;
-
-      document.getElementById("uni_course_id").value = course_id;
-      // pre-select the option in the dropdown menu
-      const course_select = document.querySelector('#uni_course_id');
-      course_select.value = course_id;
 
       document.getElementById("unit_code_id").value = unitid;
       document.getElementById("unit_name_id").value = unit_name;
 
       document.getElementById("unit_type_id").value = unit_type;
-        // pre-select the option in the dropdown menu
+    //     // pre-select the option in the dropdown menu
       const type_select = document.querySelector('#unit_type_id');
       type_select.value = unit_type;
 
       document.getElementById("uni_semester_id").value = sem_id;
-    // pre-select the option in the dropdown menu
+    // // pre-select the option in the dropdown menu
     const sem_select = document.querySelector('#uni_semester_id');
       sem_select.value = sem_id;
 
       document.getElementById("unit_status_id").value = unit_status;
-    // pre-select the option in the dropdown menu
+    // // pre-select the option in the dropdown menu
     const status_select = document.querySelector('#unit_status_id');
-    // alert(typeof parseInt(unit_status));
-      status_select.value = unit_status;
-      // alert(unit_status)
-   
-      editUnitModal();
+      status_select.value = unit_status;   
+    updateUnitStatusModal();
     });
   });
-
-
-  // delete Unit modal query
-    function deleteUnitModal() {
-    $("#deleteUnitModal").modal("show");
-  }
-  let deleteBtns = document.querySelectorAll(".deleteUnitBtn");
-  deleteBtns.forEach(function (deleteBtn) { value=""
-    deleteBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-  
-      let unit_id = deleteBtn.dataset.id;
-  
-      document.getElementById("unitID").value = unit_id;
-     
-      deleteUnitModal();
-    });
-  });
-
   </script>
 
   </body>
