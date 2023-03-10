@@ -15,19 +15,14 @@ $mail = $_SESSION['email'];
 
 // Update Unit Details
 if (isset($_POST['update-unit-details-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $crs_id = $_POST['uni_course_id'];
+  if ($_SESSION['role_name'] == 'Chairperson'){
   $unit_code = $_POST['unit_code'];
   $unit_name = $_POST['unit_name'];
   $unit_type = $_POST['unit_type'];
   $uni_semester_id = $_POST['uni_semester_id'];
   $unit_status = $_POST['unit_status_id'];
 
-
 //Data Validation
-  if (empty($crs_id)) {
-  	array_push($errors, "Course ID is required");
-  }
   if (empty($unit_code)) {
   	array_push($errors, "Unit ID is required");
   }
@@ -45,19 +40,16 @@ if (isset($_POST['update-unit-details-btn'])) {
   }
 
 if (count($errors) == 0) {
-  $unit_data_update_query = "UPDATE `unit_details` SET `unit_name`='$unit_name',`unit_type`='$unit_type',`unit_active`='$unit_status' WHERE `unit_code` = '$unit_code' ";
+  $unit_data_update_query = "UPDATE `unit_details` SET `unit_type`='$unit_type',`unit_active`='$unit_status' WHERE `unit_code` = '$unit_code' ";
   $unit_results = mysqli_query($db, $unit_data_update_query);
-
-  $unit_crs_update_query = "UPDATE `unit_course_details` SET `course_id`='$crs_id' WHERE `unit_id` = '$unit_code' ";
-  $unit_crs_results = mysqli_query($db, $unit_crs_update_query);
 
   $unit_sem_update_query = "UPDATE `unit_semester_details` SET `semester_id`='$uni_semester_id' WHERE `unit_id` = '$unit_code' ";
   $unit_sem_results = mysqli_query($db, $unit_sem_update_query);
 
-  header('location: units.php');
+  header('location: department-units.php');
   }else{
   array_push($errors, "Unable to update unit details");
-  header('location: units.php');
+  header('location: department-units.php');
   }
 }
 }
@@ -137,7 +129,6 @@ include '../assets/components/header.php';
             <div class="card">
           <div class="card-body">
             <h5 class="card-title">List of Units</h5>
-            <input type='button' value='Add a Unit' name='open-unit-modal-btn' class='btn btn-primary float-end open-unit-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
@@ -250,8 +241,11 @@ include '../assets/components/header.php';
 
       <div class="modal-body">
         <form method="POST" action="">
-          <input type="text" name="unit_code" readonly hidden class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
-      <div class="form-group">
+        <div class="form-group">
+        <label for="recipient-name" readonly class="col-form-label">Unit Code:</label>
+          <input type="text" name="unit_code" readonly class="form-control" id="unit_code_id" required placeholder="e.g CIT 101">
+    </div>
+          <div class="form-group">
           <label for="recipient-name" readonly class="col-form-label">Unit Name:</label>
           <input type="text" name="unit_name" readonly class="form-control" id="unit_name_id" required placeholder="e.g Software Project Management">
         </div>
@@ -294,7 +288,7 @@ include '../assets/components/header.php';
    
         <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-success" name="update-unit-details-btn">Update</button>
+      <button type="submit" class="btn btn-success" name="update-unit-details-btn">Update Unit Details</button>
     </div>
       </form>
     </div>
@@ -359,7 +353,8 @@ function updateUnitStatusModal() {
       document.getElementById("unit_status_id").value = unit_status;
     // // pre-select the option in the dropdown menu
     const status_select = document.querySelector('#unit_status_id');
-      status_select.value = unit_status;   
+      status_select.value = unit_status; 
+
     updateUnitStatusModal();
     });
   });
