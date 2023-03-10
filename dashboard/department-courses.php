@@ -1,8 +1,8 @@
 <?php
 include '../server.php';
-//deny access to courses.php if user is not an admin
-if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
-  // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
+//deny access to courses.php if user is not a chaiperson
+if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Chairperson') {
+  // if the session variable 'role_name' is not set or does not equal 'Chairperson', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
 }
@@ -13,104 +13,6 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-// Update Course Details
-if (isset($_POST['update-course-details-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $crs_id = $_POST['crs_id'];
-  $department_id = $_POST['crs_dpt_id'];
-  $course_name = $_POST['crs_name'];
-  $course_short_name = $_POST['crs_short_name'];
-
-
-//Data Validation
-  if (empty($crs_id)) {
-  	array_push($errors, "Course ID is required");
-  }
-  if (empty($department_id)) {
-  	array_push($errors, "Department ID is required");
-  }
-  if (empty($course_name)) {
-  	array_push($errors, "Course Name is required");
-  }
-  if (empty($course_short_name)) {
-  	array_push($errors, "Course Short Name is required");
-  }
-
-if (count($errors) == 0) {
-  $course_data_update_query = "UPDATE `course_details` SET `course_name`='$course_name',`course_shortform`='$course_short_name' WHERE `course_id` ='$crs_id'";
-  $results = mysqli_query($db, $course_data_update_query);
-
-  $crs_dpt_update_query = "UPDATE `department_course_details` SET `department_id`='$department_id' WHERE `course_id` ='$crs_id'";
-  $results = mysqli_query($db, $crs_dpt_update_query);
-
-  header('location: courses.php');
-  }else{
-  array_push($errors, "Unable to push updates");
-  header('location: courses.php');
-  }
-}
-}
-
-  // Delete course Details
-if (isset($_POST['delete-course-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $courseID = $_POST['course_id'];
-  
-  if (empty($courseID)) {
-    array_push($errors, "Course ID is required");
-  }
-  if (count($errors) == 0) {
-      $crs_data_delete_query = "DELETE FROM `course_details` WHERE `course_id`='$courseID' ";
-      $results = mysqli_query($db, $crs_data_delete_query);
-
-        header('location: courses.php');
-      }else{
-        array_push($errors, "Unable to delete Course");
-        header('location: courses.php');
-      }
-  }
-}
-
-function generate_course_id($department_id,$course_name) {
-  $crs_prefix = 'CRS';
-  $course_id =strtoupper($crs_prefix."_".$course_name);
-  return $course_id;
-}
-
-//add course
-if (isset($_POST['add-course-btn'])) {
-  $department_id = $_POST['uni_departments'];
-  $crs_name = $_POST['course_name'];
-  $crs_short_name = $_POST['crs_short_name'];
-
-  if (empty($department_id)) {
-    array_push($errors, "Department ID is required");
-  }
-  if (empty($crs_name)) {
-    array_push($errors, "Course name is required");
-  }
-  if (empty($crs_short_name)) {
-    array_push($errors, "Course short name is required");
-  }
-  
-  if (count($errors) == 0) {
-
-    //generate department id
-    $course_id = generate_course_id($department_id,$crs_short_name);
-
-    $add_crs_query = "INSERT INTO `course_details`(`course_id`, `course_name`,`course_shortform`) VALUES ('$course_id','$crs_name','$crs_short_name')";
-    $results = mysqli_query($db, $add_crs_query);
-
-    //link crs with department
-    $add_dpt_crs_query = "INSERT INTO `department_course_details`(`department_id`, `course_id`) VALUES ('$department_id','$course_id')";
-    $results_dpt_crs_dpt = mysqli_query($db, $add_dpt_crs_query);
-
-      header('location: ./courses.php');
-    }else{
-      array_push($errors, "Incorrect Username or Password");
-      header('location: ./courses.php');
-    }
-  }
 ?>
 
 
@@ -186,22 +88,19 @@ include '../assets/components/header.php';
             <div class="card">
           <div class="card-body">
             <h5 class="card-title">List of Courses</h5>
-            <input type='button' value='Add a Course' name='open-course-modal-btn' class='btn btn-primary float-end open-course-modal-btn m-2'>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 <thead>
     <tr>
     <th>Course ID</th>
     <th>Course Name</th>
     <th>Short Form</th>
-    <th>Department</th>
     <th>Date Added</th>
-    <th>Action</th>
     </tr>
   </thead>
   <tbody>
   <?php
-  if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_course_details.department_id = department_details.department_id INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id INNER JOIN school_details ON school_details.school_id =school_department_details.school_id ";
+  if($_SESSION['role_name'] == 'Chairperson'){
+      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE lecturer_department_details.lecturer_id = '$pfno' ";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
@@ -216,17 +115,8 @@ include '../assets/components/header.php';
       echo "<tr> <td>" .$course_id.  "</td>";
       echo "<td>" .$course_name."</td>";
       echo "<td>" .$shortname."</td>";
-      echo "<td>" .$department_name."</td>";
-      echo "<td>" .$date_created."</td>";
-      echo "<td>
-        
-      <form method ='POST' action=''>
-      <input  type='text' hidden name='course_id' value='$course_id'>
-      <input type='submit' data-crsid='$course_id'  data-crsname='$course_name' data-crs_short_name='$shortname' data-crs_dpt_id='$department_id' value='Edit Details' name='edit-course-btn' class='btn btn-success edit-course-modal-btn m-2'>
-      <input type='submit' data-id= '$course_id' value='Delete Course'  class='btn btn-danger deleteCourseBtn'>
-      </form>
-      </td> </tr>";
-      }
+      echo "<td>" .$date_created."</td> </tr>";
+       }
       
       }else{
       echo "<td>"."No Requests Found"."</td>";
@@ -243,9 +133,7 @@ include '../assets/components/header.php';
     <th>Course ID</th>
     <th>Course Name</th>
     <th>Short Form</th>
-    <th>Department</th>
     <th>Date Added</th>
-    <th>Action</th>
     </tr>
   </tfoot>
 </table>
