@@ -72,6 +72,15 @@
                   ><span class="hide-menu">Courses</span></a
                 >
               </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="department-units.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-vector-square"></i
+                  ><span class="hide-menu">Units</span></a
+                >
+              </li>
               <?php
                    }
               ?>

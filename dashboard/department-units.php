@@ -1,8 +1,8 @@
 <?php
 include '../server.php';
-//deny access to courses.php if user is not an admin
-if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
-  // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
+//deny access to courses.php if user is not an chairperson
+if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Chairperson') {
+  // if the session variable 'role_name' is not set or does not equal 'Chairperson', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
 }
@@ -135,7 +135,7 @@ if (isset($_POST['add-unit-btn'])) {
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <title>Units| EDUTIME</title>
+  <title>Units | EDUTIME</title>
   <?php
 include '../assets/components/header.php';
 ?>
@@ -221,8 +221,8 @@ include '../assets/components/header.php';
   </thead>
   <tbody>
   <?php
-  if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON unit_course_details.course_id = course_details.course_id INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id ";
+  if($_SESSION['role_name'] == 'Chairperson'){
+      $data_fetch_query = "SELECT * FROM `unit_details` INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id  INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_course_details.unit_id INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id  = department_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE pf_number ='$pfno'";
       $data_result = mysqli_query($db, $data_fetch_query);
 
       if ($data_result->num_rows > 0){
@@ -249,8 +249,7 @@ include '../assets/components/header.php';
                 echo "<td>
                 <form method ='POST' action=''>
                 <input  type='text' hidden name='unit_id' value='$unit_id'>
-                <input type='submit' data-id='$unit_id'  data-unit_name='$unit_name' data-unit_type='$unit_type' data-unit_status='$unit_active' data-course_id='$course_id' data-sem_id='$semester_id' data-sem_name='$semester_name'  value='Edit Details' name='edit-unit-btn' class='btn btn-success edit-unit-modal-btn m-2'>
-                <input type='submit' data-id= '$unit_id' value='Delete Unit'  class='btn btn-danger deleteUnitBtn'>
+                <input type='submit' data-id='$unit_id'  data-unit_name='$unit_name' data-unit_type='$unit_type' data-unit_status='$unit_active' data-course_id='$course_id' data-sem_id='$semester_id' data-sem_name='$semester_name'  value='Update Status' name='edit-unit-btn' class='btn btn-success edit-unit-modal-btn m-2'>
                 </form>
                 </td> </tr>";
       }

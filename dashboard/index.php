@@ -95,6 +95,19 @@ include '../assets/components/header.php';
         </a>
     </div>
 
+    <div class="col-md-4">
+        <a href="./department-units.php">
+            <div class="card card-hover">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-vector-square"></i>
+                    </h1>
+                    <h6 class="text-white">Units</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
     <?php
     }
     ?>

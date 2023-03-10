@@ -12,9 +12,7 @@ $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
-
 ?>
-
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
