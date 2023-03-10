@@ -134,16 +134,21 @@ $row['unit_active'];//string (1,0) $course_id = $row['course_id'];
 $course_short_name = $row['course_shortform']; $date_added = $row['date_added'];
 $semester_id = $row['semester_id']; $semester_name = $row['semester_name']; 
 echo"
-<div class='col-md-4'>
+<div class='col-md-3'>
 <div class='card'>
-    <div class='card-header' style='background-color:#dff0d8; color:#3c763d;font-weight:bold;'>
+    <div class='card-header' style='background-color:#dff0d8; color:#3c763d;font-weight:bold; font-size:16px'>
         $unit_id
     </div>
     <div class='card-body'>
-      <h5 class='card-title'>$unit_name</h5>
-      <p class='card-text'>$semester_id</p>
+      <h5 class='card-title text-primary'>$unit_name</h5>
+      <p class='card-text'>$semester_name</p>
+      <div class='form-check'>
+      <input type='checkbox' class='form-check-input' name='unit-code-selected' value='$unit_id' id='exampleCheck1'>
     </div>
+    </div>
+ 
   </div>
+
 </div>
 ";
  }
