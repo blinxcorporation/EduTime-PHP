@@ -13,6 +13,40 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
+//submit units by lecturers
+if (isset($_POST['submit-selected-units'])) {
+  if ($_SESSION['role_name'] == 'Dean'|| $_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Lecturer'){
+  $unitsSelected = $_POST['selected_units_ids'];
+  $academic_year_id = $_POST['academic_year_id'];
+  $pfnum = $_POST['lec_id'];
+
+  if (empty($academic_year_id)) {
+    array_push($errors, "Academic Year ID is required");
+  }
+  if (empty($pfnum)) {
+    array_push($errors, "PF Number is required");
+  }
+  if (empty($unitsSelected)) {
+    array_push($errors, "Unit ID is required");
+  }
+  // Split the input value into an array based on the comma delimiter
+  $units = explode(",", $unitsSelected);
+
+  if (count($errors) == 0) {
+  // Loop through the array and do something with each value
+  foreach ($units as $unit) {
+    $unit_selection_query = "INSERT INTO `lecturer_unit_details`(`lecturer_id`, `unit_id`, `academic_year_id`) VALUES ('$pfnum','$unit','$academic_year_id')";
+    $results = mysqli_query($db, $unit_selection_query );
+}
+
+      header('location: ./select-units.php');
+    }else{
+      array_push($errors, "Incorrect Username or Password");
+      header('location: ./select-units.php');
+    }
+  }
+}
+
 ?>
 
 
@@ -147,13 +181,19 @@ if (isset($_POST['select-sem-btn'])) {
       $data_result = mysqli_query($db, $fetch_unit_query);
 
               if ($data_result->num_rows > 0){ while($row = $data_result->fetch_assoc()){
-                 $id = $row['id']; $unit_id = $row['unit_code']; $unit_name =
-                  $row['unit_name']; $unit_type = $row['unit_type']; $unit_active =
-                  $row['unit_active'];//string (1,0) $course_id = $row['course_id'];
-                  $course_short_name = $row['course_shortform']; $date_added = $row['date_added'];
-                  $semester_id = $row['semester_id']; $semester_name = $row['semester_name']; 
+                 $id = $row['id']; 
+                 $unit_id = $row['unit_code']; 
+                 $unit_name = $row['unit_name'];
+                  $unit_type = $row['unit_type']; 
+                  $unit_active =$row['unit_active'];
+                  $course_short_name = $row['course_shortform'];
+                   $date_added = $row['date_added'];
+                  $semester_id = $row['semester_id']; 
+                  $semester_name = $row['semester_name']; 
                   echo"
+                  
                   <div class='col-md-3'>
+                
                   <div class='card'>
                       <div class='card-header' style='background-color:#dff0d8; color:#3c763d;font-weight:bold; font-size:16px'>
                           $unit_id
@@ -162,10 +202,11 @@ if (isset($_POST['select-sem-btn'])) {
                         <h5 class='card-title text-primary'>$unit_name</h5>
                         <p class='card-text'>$semester_name</p>
                         <div class='form-check'>
-                        <input type='checkbox' class='form-check-input' name='unit-code-selected' value='$unit_id' id='exampleCheck1'>
+                        <input type='checkbox' id='units-selected' class='form-check-input' name='unit-codes-selected[]' value='$unit_id' id='exampleCheck1'>
                       </div>
+                     
                       </div>
-                  
+                     
                     </div>
 
                   </div>
@@ -180,6 +221,38 @@ if (isset($_POST['select-sem-btn'])) {
           } 
           } 
 ?>
+   <hr>
+   <div class="col-md-3"> </div>
+   <div class="col-md-3"> </div>
+<div class="col-md-6"> 
+  <form method='POST' action=''>
+    <div class="row">
+  <div class="form-group col-md-6">
+            <label for="exampleInputPassword1" style="font-size:16px">Select Academic Year:</label>
+            <select class="form-control form-control-lg" id="academic_yr_id" name="academic_year_id" required>
+    <option value="">Select academic year..</option>
+    <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from academic_year");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+            </div>
+            <div class="form-group col-md-2">
+    <input type="text" name="selected_units_ids" readonly hidden id="units_id">
+    <input type="text" name="lec_id" readonly hidden id="lec_pf_number" value="<?php echo $pfno; ?>">
+  </div>
+  <div class="form-group col-md-4">
+  <label for="exampleInputPassword1" style="font-size:16px">*Submit Selected Units</label><br>
+    <input type='submit' class='btn btn-success btn-block form-control-lg' name='submit-selected-units' value='Submit Selected Units'/>
+  </div>
+  </div>
+  </form>
+</div>
 
 </div>
 
@@ -189,7 +262,7 @@ if (isset($_POST['select-sem-btn'])) {
         <!-- End Container fluid  -->
         <!-- ============================================================== -->
 
-
+        <hr class="m-4">
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
@@ -232,6 +305,30 @@ $(document).ready(function () {
   $('#dtBasicExample').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
+
+//get values of units selected
+let unitCodesSelected = [];
+
+const checkboxes = document.querySelectorAll('input[name="unit-codes-selected[]"]');
+  const selectedUnits = [];
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        selectedUnits.push(checkbox.value);
+      } else {
+        const index = selectedUnits.indexOf(checkbox.value);
+        if (index > -1) {
+          selectedUnits.splice(index, 1);
+        }
+      }
+      // console.log(selectedUnits);
+
+      let unitsSelectedField = document.getElementById('units_id');
+      unitsSelectedField.value = selectedUnits;
+    });
+  });
+
 
   </script>
 
