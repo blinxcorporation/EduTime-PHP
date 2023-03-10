@@ -85,13 +85,27 @@ include '../assets/components/header.php';
           <!-- ============================================================== -->
     <div class="row mb-4">
       <div class="col-12">
-
             <div class="card">
           <div class="card-body">
-            <h5 class="card-title" style="font-size:20px">Select Semester</h5>
             <form method="POST" action="">
                 <div class="row">
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
+            <label for="exampleInputPassword1" style="font-size:16px">Select Course:</label>
+            <select class="form-control form-control-lg" id="uni_semester_id" name="uni_semester_id" required>
+    <option value="">Select course..</option>
+    <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from course_details INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_course_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE lecturer_department_details.lecturer_id= '$pfno'");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+            </div>
+            <div class="form-group col-md-4">
+            <label for="exampleInputPassword1" style="font-size:16px">Select Semester:</label>
             <select class="form-control form-control-lg" id="uni_semester_id" name="uni_semester_id" required>
     <option value="">Select Semester..</option>
     <?php 
@@ -105,8 +119,9 @@ include '../assets/components/header.php';
     ?>
   </select>
             </div>
-            <div class="form-group col-md-7">
-                <input type="submit" name="select-sem-btn" class="btn btn-outline-success form-control-lg" value="View Units"  style="font-size:16px; font-weight:bold;"></input>  <strong style="font-size:16px">*Select a Semester to Diplay Active Units</strong>
+            <div class="form-group col-md-4">
+            <label for="exampleInputPassword1" style="font-size:16px">*Submit to view active units</label></br>
+                <input type="submit" name="select-sem-btn" class="btn btn-outline-success form-control-lg" value="View Units"  style="font-size:16px; font-weight:bold;"></input>
                 </div>
             </div>
             </form>
