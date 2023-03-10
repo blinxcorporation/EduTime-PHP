@@ -112,6 +112,27 @@ include '../assets/components/header.php';
     }
     ?>
 
+<?php
+    if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lecturer' || $_SESSION['role_name'] === 'Dean'){
+    // display the HTML code if the session variable 'role_name' is set to 'Admin'
+    ?>
+    <div class="col-md-4">
+        <a href="./select-units.php">
+            <div class="card card-hover">
+                <div class="box bg-success text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-checkbox-marked"></i>
+                    </h1>
+                    <h6 class="text-white">Select Units</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <?php
+    }
+    ?>
+
             <!-- Column -->
             <?php
     if ($_SESSION['role_name'] === 'Admin'){

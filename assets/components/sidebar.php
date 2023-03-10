@@ -60,6 +60,7 @@
               <?php
                    }
               ?>
+
               <?php
                if ($_SESSION['role_name'] == 'Chairperson'){
               ?>
@@ -79,6 +80,21 @@
                   aria-expanded="false"
                   ><i class="mdi mdi-vector-square"></i
                   ><span class="hide-menu">Units</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
+                 <?php
+               if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="select-units.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-checkbox-marked"></i
+                  ><span class="hide-menu">Select Units</span></a
                 >
               </li>
               <?php
