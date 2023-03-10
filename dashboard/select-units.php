@@ -123,7 +123,7 @@ include '../assets/components/header.php';
           <div class="card-body">
             <form method="POST" action="">
                 <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
             <label for="exampleInputPassword1" style="font-size:16px">Select Course:</label>
             <select class="form-control form-control-lg" id="course_id" name="course_id" required>
     <option value="">Select course..</option>
@@ -138,7 +138,7 @@ include '../assets/components/header.php';
     ?>
   </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
             <label for="exampleInputPassword1" style="font-size:16px">Select Semester:</label>
             <select class="form-control form-control-lg" id="uni_semester_id" name="uni_semester_id" required>
     <option value="">Select Semester..</option>
@@ -153,7 +153,25 @@ include '../assets/components/header.php';
     ?>
   </select>
             </div>
-            <div class="form-group col-md-4">
+
+            <div class="form-group col-md-3">
+            <label for="exampleInputPassword1" style="font-size:16px">Select Academic Year:</label>
+            <select class="form-control form-control-lg" id="academic_yr_id" name="academic_year_id" required>
+    <option value="">Select Academic Year..</option>
+    <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from academic_year");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+    <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
+    <?php
+    }
+    ?>
+  </select>
+            </div>
+
+
+            <div class="form-group col-md-3">
             <label for="exampleInputPassword1" style="font-size:16px">*Submit to view active units</label></br>
                 <input type="submit" name="select-sem-btn" class="btn btn-outline-success form-control-lg" value="View Units"  style="font-size:16px; font-weight:bold;"></input>
                 </div>
@@ -168,6 +186,7 @@ if (isset($_POST['select-sem-btn'])) {
     if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
     $sem_id = $_POST['uni_semester_id'];
     $crs_id= $_POST['course_id'];
+    $academic_year_id= $_POST['academic_year_id'];
   
     if (empty($sem_id)) {
       array_push($errors, "Sem ID is required");
@@ -175,12 +194,30 @@ if (isset($_POST['select-sem-btn'])) {
     if (empty($crs_id)) {
       array_push($errors, "Course ID is required");
     }
+    if (empty($academic_year_id)) {
+      array_push($errors, "Academic Year ID is required");
+    }
   
     if (count($errors) == 0) {
-      $fetch_unit_query = "SELECT * FROM `unit_details` INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id LEFT JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code WHERE unit_details.unit_active = 'Active' AND unit_semester_details.semester_id = '$sem_id' AND unit_course_details.course_id='$crs_id' AND lecturer_department_details.lecturer_id='$pfno' AND lecturer_unit_details.unit_id IS NULL";
+      $fetch_unit_query = "SELECT * FROM `unit_details`
+      INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code
+      INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id 
+      INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code 
+      INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id 
+      INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id 
+      INNER JOIN department_details ON department_details.department_id = department_course_details.department_id 
+      INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id 
+      LEFT JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code 
+      WHERE unit_details.unit_active = 'Active'
+      AND unit_semester_details.semester_id = '$sem_id' 
+      AND unit_course_details.course_id='$crs_id'
+      AND lecturer_department_details.lecturer_id='$pfno' 
+      AND lecturer_unit_details.unit_id IS NULL";
+
       $data_result = mysqli_query($db, $fetch_unit_query);
 
-              if ($data_result->num_rows > 0){ while($row = $data_result->fetch_assoc()){
+              if ($data_result->num_rows > 0){
+                 while($row = $data_result->fetch_assoc()){
                  $id = $row['id']; 
                  $unit_id = $row['unit_code']; 
                  $unit_name = $row['unit_name'];
