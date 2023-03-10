@@ -143,42 +143,42 @@ if (isset($_POST['select-sem-btn'])) {
     }
   
     if (count($errors) == 0) {
-      $fetch_unit_query = "SELECT * FROM `unit_details` INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id  WHERE unit_details.unit_active = 'Active' AND unit_semester_details.semester_id = '$sem_id' AND unit_course_details.course_id='$crs_id' AND lecturer_department_details.lecturer_id='$pfno'";
+      $fetch_unit_query = "SELECT * FROM `unit_details` INNER JOIN unit_semester_details ON unit_semester_details.unit_id = unit_details.unit_code INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id INNER JOIN unit_course_details ON unit_course_details.unit_id = unit_details.unit_code INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id INNER JOIN department_course_details ON department_course_details.course_id =course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id =department_details.department_id LEFT JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code WHERE unit_details.unit_active = 'Active' AND unit_semester_details.semester_id = '$sem_id' AND unit_course_details.course_id='$crs_id' AND lecturer_department_details.lecturer_id='$pfno' AND lecturer_unit_details.unit_id IS NULL";
       $data_result = mysqli_query($db, $fetch_unit_query);
 
-      if ($data_result->num_rows > 0){ while($row = $data_result->fetch_assoc())
-{ $id = $row['id']; $unit_id = $row['unit_code']; $unit_name =
-$row['unit_name']; $unit_type = $row['unit_type']; $unit_active =
-$row['unit_active'];//string (1,0) $course_id = $row['course_id'];
-$course_short_name = $row['course_shortform']; $date_added = $row['date_added'];
-$semester_id = $row['semester_id']; $semester_name = $row['semester_name']; 
-echo"
-<div class='col-md-3'>
-<div class='card'>
-    <div class='card-header' style='background-color:#dff0d8; color:#3c763d;font-weight:bold; font-size:16px'>
-        $unit_id
-    </div>
-    <div class='card-body'>
-      <h5 class='card-title text-primary'>$unit_name</h5>
-      <p class='card-text'>$semester_name</p>
-      <div class='form-check'>
-      <input type='checkbox' class='form-check-input' name='unit-code-selected' value='$unit_id' id='exampleCheck1'>
-    </div>
-    </div>
- 
-  </div>
+              if ($data_result->num_rows > 0){ while($row = $data_result->fetch_assoc()){
+                 $id = $row['id']; $unit_id = $row['unit_code']; $unit_name =
+                  $row['unit_name']; $unit_type = $row['unit_type']; $unit_active =
+                  $row['unit_active'];//string (1,0) $course_id = $row['course_id'];
+                  $course_short_name = $row['course_shortform']; $date_added = $row['date_added'];
+                  $semester_id = $row['semester_id']; $semester_name = $row['semester_name']; 
+                  echo"
+                  <div class='col-md-3'>
+                  <div class='card'>
+                      <div class='card-header' style='background-color:#dff0d8; color:#3c763d;font-weight:bold; font-size:16px'>
+                          $unit_id
+                      </div>
+                      <div class='card-body'>
+                        <h5 class='card-title text-primary'>$unit_name</h5>
+                        <p class='card-text'>$semester_name</p>
+                        <div class='form-check'>
+                        <input type='checkbox' class='form-check-input' name='unit-code-selected' value='$unit_id' id='exampleCheck1'>
+                      </div>
+                      </div>
+                  
+                    </div>
 
-</div>
-";
- }
- }else{ 
-  echo "No Requests Found";
- } 
-} else{ 
-  echo "No Data Found";
-} 
-  } 
-  } 
+                  </div>
+                  ";
+        }
+        }else{ 
+          echo "";
+        } 
+        } else{ 
+          echo "No Data Found";
+        } 
+          } 
+          } 
 ?>
 
 </div>
