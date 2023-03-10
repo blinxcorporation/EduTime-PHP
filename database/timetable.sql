@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2023 at 09:32 PM
+-- Generation Time: Mar 10, 2023 at 02:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -66,8 +66,8 @@ INSERT INTO `course_details` (`id`, `course_id`, `course_name`, `course_shortfor
 (1, 'CRS_CCS', 'Bachelor of Science in Computer Science', 'CCS', '2023-02-28 15:24:27'),
 (2, 'CRS_CCT', 'Bachelor of Science in Computer Technology', 'CCT', '2023-02-28 15:24:36'),
 (5, 'CRS_ICTM', 'Bachelor of Science in Information and Communication Technology Management', 'ICTM', '2023-03-01 21:33:39'),
-(3, 'CRS_IS', 'Bachelor of Science in Information Systems', 'IS', '2023-02-28 15:40:09'),
-(4, 'CRS_IT', 'Bachelor of Science in Information Technology', 'IT', '2023-02-28 15:27:38');
+(3, 'CRS_IS', 'Bachelor of Science in Information Systems', 'CIS', '2023-02-28 15:40:09'),
+(4, 'CRS_IT', 'Bachelor of Science in Information Technology', 'CIT', '2023-02-28 15:27:38');
 
 -- --------------------------------------------------------
 
@@ -89,6 +89,9 @@ CREATE TABLE `course_group_details` (
 --
 
 INSERT INTO `course_group_details` (`id`, `group_id`, `course_id`, `academic_year_id`, `group_number`, `date_added`) VALUES
+(4, 'GRP_CRS-IS_228', 'CRS_IS', 'YR_2020_2021', 28, '2023-03-09 20:49:02'),
+(2, 'GRP_CRS-IS_804', 'CRS_IS', 'YR_2019_2020', 18, '2023-03-09 20:48:11'),
+(3, 'GRP_CRS-IS_82', 'CRS_IS', 'YR_2021_2022', 55, '2023-03-09 20:48:35'),
 (1, 'GRP_CRS-IT_681', 'CRS_IT', 'YR_2019_2020', 40, '2023-03-06 15:03:42');
 
 -- --------------------------------------------------------
@@ -1108,11 +1111,11 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 
 CREATE TABLE `unit_room_time_day_allocation_details` (
   `id` int(11) NOT NULL,
-  `room_id` varchar(20) NOT NULL,
   `unit_id` varchar(20) NOT NULL,
+  `lecturer_id` varchar(20) NOT NULL,
+  `room_id` varchar(20) NOT NULL,
   `time_slot_id` varchar(20) NOT NULL,
   `weekday_id` varchar(20) NOT NULL,
-  `lecturer_id` varchar(20) NOT NULL,
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1570,7 +1573,7 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (17, 'PF17', 'role002', '2023-03-09 09:00:17'),
 (18, 'PF18', 'role002', '2023-03-09 09:01:26'),
 (19, 'PF19', 'role002', '2023-03-09 09:02:24'),
-(20, 'PF20', 'role002', '2023-03-09 09:05:33'),
+(20, 'PF20', 'role003', '2023-03-09 09:05:33'),
 (21, 'PF21', 'role002', '2023-03-09 09:07:02'),
 (22, 'PF22', 'role002', '2023-03-09 09:08:45'),
 (23, 'PF23', 'role002', '2023-03-09 09:09:42'),
@@ -1800,7 +1803,7 @@ ALTER TABLE `course_details`
 -- AUTO_INCREMENT for table `course_group_details`
 --
 ALTER TABLE `course_group_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `department_course_details`
@@ -1824,7 +1827,7 @@ ALTER TABLE `lecturer_department_details`
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `role_details`
