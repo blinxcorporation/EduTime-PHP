@@ -78,6 +78,27 @@ include '../assets/components/header.php';
           <!-- Sales Cards  -->
           <!-- ============================================================== -->
           <div class="row p-3">
+          <?php
+    if ($_SESSION['role_name'] === 'Chairperson'){
+    // display the HTML code if the session variable 'role_name' is set to 'Admin'
+    ?>
+    <div class="col-md-4">
+        <a href="./department-courses.php">
+            <div class="card card-hover">
+                <div class="box bg-info text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-school"></i>
+                    </h1>
+                    <h6 class="text-white">Courses</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <?php
+    }
+    ?>
+
             <!-- Column -->
             <?php
     if ($_SESSION['role_name'] === 'Admin'){
@@ -245,6 +266,8 @@ include '../assets/components/header.php';
 <?php
 }
 ?>
+
+
 </div>
 
 

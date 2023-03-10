@@ -61,6 +61,21 @@
                    }
               ?>
               <?php
+               if ($_SESSION['role_name'] == 'Chairperson'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="department-courses.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-school"></i
+                  ><span class="hide-menu">Courses</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
+              <?php
                if ($_SESSION['role_name'] == 'Admin'){
               ?>
               <li class="sidebar-item">
