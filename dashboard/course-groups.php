@@ -1,7 +1,14 @@
 <?php
 include '../server.php';
+if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
+  // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
+  session_destroy();
+  header("location: ../index.php"); // replace 'login.php' with the URL of your login page
+  exit;
+}
+
 //deny access to schools.php if user is not an admin
-if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Admin') {
+if ($_SESSION['role_name'] !== 'Admin') {
   // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;

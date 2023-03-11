@@ -1,7 +1,15 @@
 <?php
 include '../server.php';
+
+if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
+  // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
+  session_destroy();
+  header("location: ../index.php"); // replace 'login.php' with the URL of your login page
+  exit;
+}
+
 //deny access to courses.php if user is not a chaiperson
-if (!isset($_SESSION['role_name']) && $_SESSION['role_name'] !== 'Chairperson') {
+if ($_SESSION['role_name'] !== 'Chairperson') {
   // if the session variable 'role_name' is not set or does not equal 'Chairperson', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
@@ -97,7 +105,7 @@ include '../assets/components/header.php';
   </thead>
   <tbody>
   <?php
-  if($_SESSION['role_name'] == 'Chairperson'){
+  if($_SESSION['role_name'] == 'Chairperson'|| $_SESSION['role_name'] == 'Dean'|| $_SESSION['role_name'] == 'Lecturer'){
       $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE lecturer_department_details.lecturer_id = '$pfno' ";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
