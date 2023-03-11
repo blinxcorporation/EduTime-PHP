@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 10, 2023 at 02:14 PM
+-- Generation Time: Mar 11, 2023 at 01:22 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -161,6 +161,7 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (2, 'DPT_INFORMATIONTECHNOLOGY', 'PF02', '2023-03-09 06:25:37'),
 (3, 'DPT_INFORMATIONTECHNOLOGY', 'PF03', '2023-03-09 06:25:54'),
 (4, 'DPT_INFORMATIONTECHNOLOGY', 'PF04', '2023-03-09 06:25:54'),
+(6, 'DPT_COMPUTERSCIENCE', 'PF06', '2023-03-09 09:25:05'),
 (7, 'DPT_INFORMATIONTECHNOLOGY', 'PF07', '2023-03-09 07:32:22'),
 (8, 'DPT_INFORMATIONTECHNOLOGY', 'PF08', '2023-03-09 08:47:43'),
 (9, 'DPT_INFORMATIONTECHNOLOGY', 'PF09', '2023-03-09 08:52:02'),
@@ -182,8 +183,7 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (25, 'DPT_COMPUTERSCIENCE', 'PF25', '2023-03-09 09:11:20'),
 (26, 'DPT_COMPUTERSCIENCE', 'PF26', '2023-03-09 09:12:49'),
 (27, 'DPT_COMPUTERSCIENCE', 'PF27', '2023-03-09 09:14:03'),
-(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55'),
-(29, 'DPT_COMPUTERSCIENCE', 'PF06', '2023-03-09 09:25:05');
+(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55');
 
 -- --------------------------------------------------------
 
@@ -198,6 +198,14 @@ CREATE TABLE `lecturer_unit_details` (
   `academic_year_id` varchar(100) NOT NULL,
   `date_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `lecturer_unit_details`
+--
+
+INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_year_id`, `date_updated`) VALUES
+(1, 'PF02', 'CIT 110', 'YR_2022_2023', '2023-03-11 12:21:48'),
+(2, 'PF01', 'CIT 116', 'YR_2022_2023', '2023-03-11 12:22:12');
 
 -- --------------------------------------------------------
 
@@ -1827,7 +1835,7 @@ ALTER TABLE `lecturer_department_details`
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `role_details`
