@@ -276,7 +276,7 @@ if (isset($_POST['select-sem-btn'])) {
   <form method='POST' action=''>
     <div class="row">
   <div class="form-group col-md-6">
-            <label for="exampleInputPassword1" style="font-size:16px">Select Academic Year:</label>
+            <label for="exampleInputPassword1" style="font-size:16px">Select Academic Year Group:</label>
             <select class="form-control form-control-lg" id="academic_yr_id" name="academic_year_id" required>
     <option value="">Select academic year..</option>
     <?php 
