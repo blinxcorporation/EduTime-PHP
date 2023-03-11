@@ -129,6 +129,19 @@ include '../assets/components/header.php';
         </a>
     </div>
 
+    <div class="col-md-4">
+        <a href="./schedules.php">
+            <div class="card card-hover">
+                <div class="box bg-secondary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-calendar"></i>
+                    </h1>
+                    <h6 class="text-white">Timetables</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
     <?php
     }
     ?>

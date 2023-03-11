@@ -106,6 +106,21 @@
               <?php
                    }
               ?>
+                 <?php
+               if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="schedules.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-calendar"></i
+                  ><span class="hide-menu">Timetables</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
               <?php
                if ($_SESSION['role_name'] == 'Admin'){
               ?>

@@ -8,9 +8,9 @@ if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
   exit;
 }
 
-//deny access to courses.php if user is not an admin
-if ($_SESSION['role_name'] !== 'Admin') {
-  // if the session variable 'role_name' is not set or does not equal 'Admin', deny access and redirect to a non-privileged page
+//deny access to courses.php if user is not a lec
+if (!isset($_SESSION['role_name']) || ($_SESSION['role_name'] !== 'Chairperson' && $_SESSION['role_name'] !== 'Dean' && $_SESSION['role_name'] !== 'Lecturer')) {
+  // if the session variable 'role_name' is not set or does not equal 'Chairperson', 'Dean', or 'Lecturer', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
 }
