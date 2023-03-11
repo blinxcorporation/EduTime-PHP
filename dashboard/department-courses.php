@@ -9,7 +9,7 @@ if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
 }
 
 //deny access to courses.php if user is not a chaiperson
-if ($_SESSION['role_name'] !== 'Chairperson') {
+if (!isset($_SESSION['role_name']) || ($_SESSION['role_name'] !== 'Chairperson' && $_SESSION['role_name'] !== 'Dean' && $_SESSION['role_name'] !== 'Lecturer')) {
   // if the session variable 'role_name' is not set or does not equal 'Chairperson', deny access and redirect to a non-privileged page
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;

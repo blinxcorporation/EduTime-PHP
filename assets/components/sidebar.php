@@ -106,6 +106,22 @@
               <?php
                    }
               ?>
+      <?php
+               if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
+              ?>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="selected-units.php"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-book"></i
+                  ><span class="hide-menu">Selected Units</span></a
+                >
+              </li>
+              <?php
+                   }
+              ?>
+
                  <?php
                if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
               ?>
@@ -121,6 +137,7 @@
               <?php
                    }
               ?>
+           
               <?php
                if ($_SESSION['role_name'] == 'Admin'){
               ?>

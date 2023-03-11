@@ -79,7 +79,7 @@ include '../assets/components/header.php';
           <!-- ============================================================== -->
           <div class="row p-3">
           <?php
-    if ($_SESSION['role_name'] === 'Chairperson'){
+    if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lecturer' || $_SESSION['role_name'] === 'Dean'){
     // display the HTML code if the session variable 'role_name' is set to 'Admin'
     ?>
     <div class="col-md-4">
@@ -94,7 +94,13 @@ include '../assets/components/header.php';
             </div>
         </a>
     </div>
-
+    <?php
+    }
+    ?>
+    <?php
+    if ($_SESSION['role_name'] === 'Chairperson'){
+    // display the HTML code if the session variable 'role_name' is set to 'Admin'
+    ?>
     <div class="col-md-4">
         <a href="./department-units.php">
             <div class="card card-hover">
@@ -124,6 +130,19 @@ include '../assets/components/header.php';
                         <i class="mdi mdi-checkbox-marked"></i>
                     </h1>
                     <h6 class="text-white">Select Units</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="./selected-units.php">
+            <div class="card card-hover">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">
+                        <i class="mdi mdi-book"></i>
+                    </h1>
+                    <h6 class="text-white">Selected Units</h6>
                 </div>
             </div>
         </a>
