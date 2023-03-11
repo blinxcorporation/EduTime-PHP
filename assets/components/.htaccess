@@ -1,0 +1,2 @@
+# Deny all access to files in this directory
+Deny from all
