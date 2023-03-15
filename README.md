@@ -48,6 +48,11 @@
 
 - The lecturers should get notifications (SMS and Email) 2 hours before a `lecture` to remind them of classes they have.
 
+## Other Features that need to be fixed/added
+
+- Forgot password
+- Reset password
+
 ## Issues
 
 - The system seems to be getting a few conflicts, the code needs to be modified to `#bugfix` this
