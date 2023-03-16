@@ -1,5 +1,0 @@
-# Deny all access to files in this directory
-
-Deny from all
-
-ErrorDocument 403 http://localhost/varsity-timetabling-php/dashboard/error-403.php

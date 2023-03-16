@@ -40,9 +40,7 @@ if (isset($_POST['delete-unit-btn'])) {
       }
   }
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -240,7 +238,7 @@ include '../assets/components/header.php';
         <p>Are you sure you want to de-select this Unit?</p>
         <form method="POST" action="">
         <div class="form-group">
-            <input type="text" class="form-control" id="unitID" required readonly name='unit_id'>
+            <input type="text" class="form-control" id="unitID" required hidden readonly name='unit_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
