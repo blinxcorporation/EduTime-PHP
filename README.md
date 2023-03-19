@@ -43,3 +43,7 @@
 ## Future Additions/ Recommendations
 
 - The lecturers should get notifications 2 hours before a `lecture` to remind them of classes they have.
+
+## Issues
+
+- The system seems to be getting a few conflicts, the code needs to be modified to #bugfix this
