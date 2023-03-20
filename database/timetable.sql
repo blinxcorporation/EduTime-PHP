@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2023 at 01:22 PM
+-- Generation Time: Mar 20, 2023 at 10:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -183,7 +183,10 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (25, 'DPT_COMPUTERSCIENCE', 'PF25', '2023-03-09 09:11:20'),
 (26, 'DPT_COMPUTERSCIENCE', 'PF26', '2023-03-09 09:12:49'),
 (27, 'DPT_COMPUTERSCIENCE', 'PF27', '2023-03-09 09:14:03'),
-(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55');
+(28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55'),
+(30, 'DPT_COMPUTERSCIENCE', 'PF029', '2023-03-20 20:19:14'),
+(31, 'DPT_COMPUTERSCIENCE', 'PF30', '2023-03-20 20:25:40'),
+(32, 'DPT_COMPUTERSCIENCE', 'PF31', '2023-03-20 20:51:25');
 
 -- --------------------------------------------------------
 
@@ -204,8 +207,70 @@ CREATE TABLE `lecturer_unit_details` (
 --
 
 INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_year_id`, `date_updated`) VALUES
-(1, 'PF02', 'CIT 110', 'YR_2022_2023', '2023-03-11 12:21:48'),
-(2, 'PF01', 'CIT 116', 'YR_2022_2023', '2023-03-11 12:22:12');
+(1, 'PF01', 'CIS 212', 'YR_2021_2022', '2023-03-16 06:28:05'),
+(10, 'PF02', 'CIT 402', 'YR_2019_2020', '2023-03-16 06:37:20'),
+(11, 'PF02', 'CIM 312', 'YR_2020_2021', '2023-03-16 06:39:33'),
+(12, 'PF01', 'CIT 322', 'YR_2020_2021', '2023-03-16 06:56:31'),
+(18, 'PF01', 'CIT 204', 'YR_2021_2022', '2023-03-16 07:17:08'),
+(19, 'PF01', 'CIT 212', 'YR_2021_2022', '2023-03-16 07:17:08'),
+(20, 'PF16', 'CIT 416', 'YR_2019_2020', '2023-03-16 07:19:17'),
+(21, 'PF16', 'CIM 104', 'YR_2022_2023', '2023-03-16 07:19:55'),
+(22, 'PF16', 'CIM 212', 'YR_2021_2022', '2023-03-16 07:20:20'),
+(23, 'PF16', 'CIM 404', 'YR_2019_2020', '2023-03-16 07:26:06'),
+(24, 'PF16', 'CIM 408', 'YR_2019_2020', '2023-03-16 07:26:06'),
+(25, 'PF16', 'CIS 104', 'YR_2022_2023', '2023-03-16 07:27:25'),
+(26, 'PF16', 'CIS 214', 'YR_2021_2022', '2023-03-16 07:28:56'),
+(27, 'PF16', 'CIS 206', 'YR_2021_2022', '2023-03-16 07:28:56'),
+(28, 'PF16', 'CIT 104', 'YR_2022_2023', '2023-03-16 07:29:25'),
+(29, 'PF21', 'CCT 316', 'YR_2020_2021', '2023-03-20 19:47:10'),
+(30, 'PF21', 'CCT 412', 'YR_2019_2020', '2023-03-20 19:47:40'),
+(31, 'PF21', 'CCS 308', 'YR_2020_2021', '2023-03-20 19:48:04'),
+(32, 'PF22', 'CCT 402', 'YR_2019_2020', '2023-03-20 19:49:06'),
+(33, 'PF22', 'CCT 302', 'YR_2020_2021', '2023-03-20 19:49:27'),
+(34, 'PF26', 'CCT 112', 'YR_2022_2023', '2023-03-20 19:51:15'),
+(35, 'PF26', 'CCT 214', 'YR_2021_2022', '2023-03-20 19:51:44'),
+(36, 'PF26', 'CCT 420', 'YR_2019_2020', '2023-03-20 19:52:18'),
+(37, 'PF26', 'CCS 414', 'YR_2019_2020', '2023-03-20 19:52:39'),
+(38, 'PF27', 'CCS 316', 'YR_2020_2021', '2023-03-20 19:54:29'),
+(39, 'PF27', 'CCS 314', 'YR_2020_2021', '2023-03-20 19:54:30'),
+(40, 'PF27', 'CCS 312', 'YR_2020_2021', '2023-03-20 19:54:30'),
+(41, 'PF27', 'CCT 322', 'YR_2020_2021', '2023-03-20 19:55:34'),
+(42, 'PF27', 'CCT 306', 'YR_2020_2021', '2023-03-20 19:55:53'),
+(43, 'PF23', 'CCT 206', 'YR_2021_2022', '2023-03-20 19:57:12'),
+(44, 'PF23', 'CCT 215', 'YR_2021_2022', '2023-03-20 19:57:12'),
+(45, 'PF23', 'CCT 210', 'YR_2021_2022', '2023-03-20 19:57:12'),
+(46, 'PF23', 'CCS 204', 'YR_2021_2022', '2023-03-20 19:57:49'),
+(47, 'PF23', 'CCS 208', 'YR_2021_2022', '2023-03-20 19:57:49'),
+(48, 'PF24', 'CCT 202', 'YR_2021_2022', '2023-03-20 20:04:23'),
+(49, 'PF20', 'CCS 210', 'YR_2021_2022', '2023-03-20 20:07:01'),
+(50, 'PF20', 'CCT 212', 'YR_2021_2022', '2023-03-20 20:07:23'),
+(51, 'PF20', 'CCS 412', 'YR_2019_2020', '2023-03-20 20:07:44'),
+(52, 'PF20', 'CCT 418', 'YR_2019_2020', '2023-03-20 20:08:02'),
+(53, 'PF25', 'CCS 202', 'YR_2021_2022', '2023-03-20 20:11:05'),
+(54, 'PF25', 'CCS 406', 'YR_2019_2020', '2023-03-20 20:11:21'),
+(55, 'PF25', 'CCS 404', 'YR_2019_2020', '2023-03-20 20:11:43'),
+(56, 'PF06', 'CCS 318', 'YR_2020_2021', '2023-03-20 20:13:46'),
+(57, 'PF06', 'CCS 306', 'YR_2020_2021', '2023-03-20 20:13:46'),
+(58, 'PF06', 'CCS 418', 'YR_2019_2020', '2023-03-20 20:14:01'),
+(59, 'PF06', 'CCT 308', 'YR_2020_2021', '2023-03-20 20:14:23'),
+(60, 'PF06', 'CCT 320', 'YR_2020_2021', '2023-03-20 20:14:53'),
+(61, 'PF029', 'CCT 312', 'YR_2020_2021', '2023-03-20 20:20:01'),
+(62, 'PF029', 'CCS 104', 'YR_2022_2023', '2023-03-20 20:20:53'),
+(63, 'PF029', 'CCT 104', 'YR_2022_2023', '2023-03-20 20:21:11'),
+(64, 'PF029', 'CCS 206', 'YR_2021_2022', '2023-03-20 20:22:01'),
+(65, 'PF029', 'CCS 416', 'YR_2019_2020', '2023-03-20 20:24:21'),
+(66, 'PF30', 'CIR 106', 'YR_2022_2023', '2023-03-20 20:30:39'),
+(67, 'PF30', 'CIR 108', 'YR_2022_2023', '2023-03-20 20:30:39'),
+(68, 'PF30', 'CCS 302', 'YR_2020_2021', '2023-03-20 20:31:03'),
+(69, 'PF30', 'CCT 304', 'YR_2020_2021', '2023-03-20 20:31:23'),
+(70, 'PF30', 'CCS 304', 'YR_2020_2021', '2023-03-20 20:32:04'),
+(71, 'PF30', 'CCS 212', 'YR_2021_2022', '2023-03-20 20:32:24'),
+(72, 'PF26', 'CCT 116', 'YR_2022_2023', '2023-03-20 20:34:14'),
+(73, 'PF24', 'CCT 118', 'YR_2022_2023', '2023-03-20 20:38:02'),
+(74, 'PF24', 'CCS 122', 'YR_2022_2023', '2023-03-20 20:38:24'),
+(75, 'PF24', 'CCT 318', 'YR_2020_2021', '2023-03-20 20:38:38'),
+(76, 'PF31', 'ABS 424', 'YR_2019_2020', '2023-03-20 20:52:06'),
+(77, 'PF27', 'CCS 214', 'YR_2021_2022', '2023-03-20 20:53:20');
 
 -- --------------------------------------------------------
 
@@ -679,7 +744,6 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (289, 'CCT 402', 'CRS_CCT', '2023-03-02 08:00:11'),
 (290, 'CCT 406', 'CRS_CCT', '2023-03-02 08:00:33'),
 (291, 'CCT 407', 'CRS_CCT', '2023-03-02 08:01:10'),
-(292, 'ABS 424', 'CRS_CCT', '2023-03-02 08:01:34'),
 (293, 'CCT 412', 'CRS_CCT', '2023-03-02 08:02:02'),
 (294, 'CCT 418', 'CRS_CCT', '2023-03-02 08:02:26'),
 (295, 'CCT 420', 'CRS_CCT', '2023-03-02 08:02:49'),
@@ -728,7 +792,7 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (338, 'CCS 306', 'CRS_CCS', '2023-03-02 08:28:28'),
 (339, 'CCS 308', 'CRS_CCS', '2023-03-02 08:28:51'),
 (340, 'CCS 310', 'CRS_CCS', '2023-03-02 08:29:21'),
-(341, 'CSC 312', 'CRS_CCS', '2023-03-02 08:29:50'),
+(341, 'CCS 312', 'CRS_CCS', '2023-03-02 08:29:50'),
 (342, 'CCS 314', 'CRS_CCS', '2023-03-02 08:30:14'),
 (343, 'CCS 316', 'CRS_CCS', '2023-03-02 08:30:43'),
 (344, 'CCS 318', 'CRS_CCS', '2023-03-02 08:31:09'),
@@ -748,7 +812,15 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (358, 'CCS 412', 'CRS_CCS', '2023-03-02 08:37:58'),
 (359, 'CCS 414', 'CRS_CCS', '2023-03-02 08:38:24'),
 (360, 'CCS 418', 'CRS_CCS', '2023-03-02 08:38:50'),
-(361, 'CCS 422', 'CRS_CCS', '2023-03-02 08:39:17');
+(361, 'CCS 422', 'CRS_CCS', '2023-03-02 08:39:17'),
+(363, 'CCS 416', 'CRS_CCS', '2023-03-20 20:23:40'),
+(364, 'CIR 108', 'CRS_CCT', '2023-03-20 20:27:21'),
+(365, 'CIR 106', 'CRS_CCT', '2023-03-20 20:28:21'),
+(366, 'CCT 116', 'CRS_CCT', '2023-03-20 20:33:25'),
+(367, 'CCT 118', 'CRS_CCT', '2023-03-20 20:36:18'),
+(368, 'CCS 122', 'CRS_CCS', '2023-03-20 20:36:54'),
+(369, 'CCT 318', 'CRS_CCT', '2023-03-20 20:37:29'),
+(370, 'ABS 424', 'CRS_CCT', '2023-03-20 20:47:43');
 
 -- --------------------------------------------------------
 
@@ -773,7 +845,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (152, ' CIM 201', 'Organizational Processes I', 'Theory', 'Active', '2023-03-02 06:44:46'),
 (87, ' CIS 201', 'Introduction to Information Systems and Technology', 'Theory', 'Active', '2023-03-02 06:04:52'),
 (63, 'ABA 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-01 20:45:43'),
-(278, 'ABS 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-02 08:01:34'),
+(356, 'ABS 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-20 20:47:43'),
 (283, 'CCS 101', 'Fundamentals of Computing', 'Theory', 'Active', '2023-03-02 08:05:55'),
 (290, 'CCS 102', 'Linear Algebra', 'Theory', 'Active', '2023-03-02 08:09:12'),
 (284, 'CCS 103', 'Discrete Structures I', 'Theory', 'Active', '2023-03-02 08:06:21'),
@@ -788,6 +860,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (295, 'CCS 112', 'Databases Systems', 'Theory', 'Active', '2023-03-02 08:12:01'),
 (289, 'CCS 113', 'Programming in C', 'ICT-Practical', 'Active', '2023-03-02 08:08:44'),
 (296, 'CCS 114', 'Introduction to Spreadsheets', 'ICT-Practical', 'Active', '2023-03-02 08:12:26'),
+(354, 'CCS 122', 'Electronics', 'Theory', 'Active', '2023-03-20 20:36:54'),
 (297, 'CCS 201', 'Object Oriented Programming II (Java)', 'ICT-Practical', 'Active', '2023-03-02 08:13:10'),
 (304, 'CCS 202', 'Computer Organization and architecture', 'Theory', 'Active', '2023-03-02 08:17:05'),
 (298, 'CCS 203', 'Data Structures and Algorithms', 'Theory', 'Active', '2023-03-02 08:13:40'),
@@ -813,6 +886,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (325, 'CCS 308', 'Research Methods and Technical Writing', 'Theory', 'Active', '2023-03-02 08:28:51'),
 (316, 'CCS 309', 'Information Systems Security and Design', 'Theory', 'Active', '2023-03-02 08:23:51'),
 (326, 'CCS 310', 'Computer Graphics', 'Theory', 'Active', '2023-03-02 08:29:21'),
+(327, 'CCS 312', 'Mobile Computing', 'Theory', 'Active', '2023-03-02 08:29:50'),
 (317, 'CCS 313', 'Unix Operating Systems', 'Theory', 'Active', '2023-03-02 08:24:25'),
 (328, 'CCS 314', 'Computer Networks Lab II (CISCO II)', 'ICT-Practical', 'Active', '2023-03-02 08:30:14'),
 (318, 'CCS 315', 'Intelligent Systems', 'Theory', 'Active', '2023-03-02 08:24:52'),
@@ -832,6 +906,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (344, 'CCS 412', 'Natural Language Processing', 'Theory', 'Active', '2023-03-02 08:37:58'),
 (345, 'CCS 414', 'Pattern Recognition', 'Theory', 'Active', '2023-03-02 08:38:24'),
 (336, 'CCS 415', 'Data Mining', 'Theory', 'Active', '2023-03-02 08:34:31'),
+(349, 'CCS 416', 'Information Retrival', 'Theory', 'Active', '2023-03-20 20:23:40'),
 (337, 'CCS 417', 'Principles of Functional Programming', 'Theory', 'Active', '2023-03-02 08:34:53'),
 (346, 'CCS 418', 'Advanced Database Systems', 'Theory', 'Active', '2023-03-02 08:38:50'),
 (338, 'CCS 419', 'Advanced Computer Architectures', 'Theory', 'Active', '2023-03-02 08:35:19'),
@@ -852,6 +927,8 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (222, 'CCT 113', 'Programming in C', 'Theory', 'Active', '2023-03-02 07:25:17'),
 (229, 'CCT 114', 'Electric Circuits II', 'Theory', 'Active', '2023-03-02 07:32:46'),
 (223, 'CCT 115', 'Computer Aided Drawing and Design', 'Theory', 'Active', '2023-03-02 07:25:40'),
+(352, 'CCT 116', 'Digital Electronics I', 'ELECT-Practical', 'Active', '2023-03-20 20:33:24'),
+(353, 'CCT 118', 'Digital Electronics I LAB', 'ELECT-Practical', 'Active', '2023-03-20 20:36:18'),
 (231, 'CCT 201', 'Object Oriented programming II', 'ICT-Practical', 'Active', '2023-03-02 07:34:09'),
 (239, 'CCT 202', 'Digital Electronics II', 'ELECT-Practical', 'Active', '2023-03-02 07:42:47'),
 (232, 'CCT 203', 'Data Structures and Algorithms', 'Theory', 'Active', '2023-03-02 07:35:12'),
@@ -882,6 +959,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (254, 'CCT 315', 'Communication Systems', 'Theory', 'Active', '2023-03-02 07:49:40'),
 (262, 'CCT 316', 'Digital Communications Systems', 'Theory', 'Active', '2023-03-02 07:53:20'),
 (255, 'CCT 317', 'Group Project I', 'Theory', 'Active', '2023-03-02 07:50:07'),
+(355, 'CCT 318', 'Optical Devices and Systems', 'Theory', 'Active', '2023-03-20 20:37:29'),
 (256, 'CCT 319', 'Computer Networks Lab I (Cisco I)', 'ICT-Practical', 'Active', '2023-03-02 07:50:35'),
 (263, 'CCT 320', 'Group Project II', 'ICT-Practical', 'Active', '2023-03-02 07:53:55'),
 (264, 'CCT 322', 'Computer Networks Lab II (Cisco II)', 'ICT-Practical', 'Active', '2023-03-02 07:54:27'),
@@ -979,6 +1057,8 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (215, 'CIM 424', 'IT Service Cost & Availability Management', 'Theory', 'Active', '2023-03-02 07:17:50'),
 (203, 'CIM 425', 'Ethical Issues in Information Technology', 'Theory', 'Active', '2023-03-02 07:11:14'),
 (216, 'CIM 426', 'Supply Chain Management', 'Theory', 'Active', '2023-03-02 07:18:14'),
+(351, 'CIR 106', 'Database Systems', 'Theory', 'Active', '2023-03-20 20:28:21'),
+(350, 'CIR 108', 'System Analysis and Design', 'Theory', 'Active', '2023-03-20 20:27:21'),
 (73, 'CIS 101', 'Fundamentals of Computers Systems', 'Theory', 'Active', '2023-03-02 05:57:02'),
 (80, 'CIS 102', 'Probability and Statistics', 'Theory', 'Active', '2023-03-02 06:01:51'),
 (74, 'CIS 103', 'Mathematics for IT', 'Theory', 'Active', '2023-03-02 05:59:05'),
@@ -1108,8 +1188,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (70, 'CIT 416', 'Network Security', 'Theory', 'Active', '2023-03-01 20:50:14'),
 (71, 'CIT 418', 'Authentication Protocols and Biometrics', 'Theory', 'Active', '2023-03-01 20:50:43'),
 (62, 'CIT 419', 'Content Development and Management', 'Theory', 'Active', '2023-03-01 19:58:04'),
-(72, 'CIT 420', 'Information Systems Innovations & New Technologies', 'Theory', 'Active', '2023-03-01 20:51:08'),
-(327, 'CSC 312', 'Mobile Computing', 'Theory', 'Active', '2023-03-02 08:29:50');
+(72, 'CIT 420', 'Information Systems Innovations & New Technologies', 'Theory', 'Active', '2023-03-01 20:51:08');
 
 -- --------------------------------------------------------
 
@@ -1420,7 +1499,6 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (287, 'CCT 402', 'Y4S2', '2023-03-02 11:00:11'),
 (288, 'CCT 406', 'Y4S2', '2023-03-02 11:00:34'),
 (289, 'CCT 407', 'Y4S1', '2023-03-02 11:01:10'),
-(290, 'ABS 424', 'Y4S2', '2023-03-02 11:01:34'),
 (291, 'CCT 412', 'Y4S2', '2023-03-02 11:02:02'),
 (292, 'CCT 418', 'Y4S2', '2023-03-02 11:02:26'),
 (293, 'CCT 420', 'Y4S2', '2023-03-02 11:02:49'),
@@ -1469,7 +1547,7 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (336, 'CCS 306', 'Y3S2', '2023-03-02 11:28:28'),
 (337, 'CCS 308', 'Y3S2', '2023-03-02 11:28:51'),
 (338, 'CCS 310', 'Y3S2', '2023-03-02 11:29:21'),
-(339, 'CSC 312', 'Y3S2', '2023-03-02 11:29:50'),
+(339, 'CCS 312', 'Y3S2', '2023-03-02 11:29:50'),
 (340, 'CCS 314', 'Y3S2', '2023-03-02 11:30:14'),
 (341, 'CCS 316', 'Y3S2', '2023-03-02 11:30:43'),
 (342, 'CCS 318', 'Y3S2', '2023-03-02 11:31:09'),
@@ -1490,7 +1568,14 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (357, 'CCS 414', 'Y4S2', '2023-03-02 11:38:24'),
 (358, 'CCS 418', 'Y4S2', '2023-03-02 11:38:51'),
 (359, 'CCS 422', 'Y4S2', '2023-03-02 11:39:17'),
-(360, 'ABS 424', 'Y4S2', '2023-03-02 11:39:43');
+(361, 'CCS 416', 'Y4S2', '2023-03-20 23:23:40'),
+(362, 'CIR 108', 'Y1S2', '2023-03-20 23:27:22'),
+(363, 'CIR 106', 'Y1S2', '2023-03-20 23:28:21'),
+(364, 'CCT 116', 'Y1S2', '2023-03-20 23:33:25'),
+(365, 'CCT 118', 'Y1S2', '2023-03-20 23:36:19'),
+(366, 'CCS 122', 'Y1S2', '2023-03-20 23:36:54'),
+(367, 'CCT 318', 'Y3S2', '2023-03-20 23:37:29'),
+(368, 'ABS 424', 'Y4S2', '2023-03-20 23:47:43');
 
 -- --------------------------------------------------------
 
@@ -1517,6 +1602,7 @@ CREATE TABLE `user_details` (
 INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `date_created`) VALUES
 (1, 'PF01', 'Dr', ' Titus', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
 (2, 'PF02', 'Ms', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
+(33, 'PF029', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:19:13'),
 (3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
 (4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
 (5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
@@ -1539,11 +1625,13 @@ INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `
 (21, 'PF21', 'Dr', 'Sylvester', 'McOyowo', 'omcoyowo@maseno.ac.ke', 714257585, '64ff6aea6ca5f902a49fd8b387c55787cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:07:02'),
 (22, 'PF22', 'Dr', 'Henry', 'Okoyo', 'ookoyo@maseno.ac.ke', 712456257, 'd288a9980aaa616063101f3416b99dc4cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:08:45'),
 (23, 'PF23', 'Mr', 'Solomon', 'Nyabundi', 'solonyabs@gmail.com', 714256478, '3d5e0bb3323b7caf64dffce76a7bd092cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:09:42'),
-(24, 'PF24', 'Mr', 'Dickson', 'Amingo', 'omingodo@maseno.ac.ke', 762748595, '2c9b5b15a6d3cc951ca57c65e4966fd3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:10:30'),
-(25, 'PF25', 'Ms', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:11:20'),
+(24, 'PF24', 'Mr', 'Dickson', 'Omingo', 'omingodo@maseno.ac.ke', 762748595, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 12:10:30'),
+(25, 'PF25', 'Ms', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, 'e80b69b8963a262c31c5e20650e35fd4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 12:11:20'),
 (26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:12:49'),
 (27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:02'),
-(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55');
+(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55'),
+(34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:25:40'),
+(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:51:25');
 
 -- --------------------------------------------------------
 
@@ -1591,7 +1679,10 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (27, 'PF27', 'role002', '2023-03-09 09:14:02'),
 (28, 'PF28', 'role002', '2023-03-09 09:14:55'),
 (29, 'PF06', 'role004', '2023-03-09 09:25:05'),
-(32, 'PF055', 'role001', '2023-03-09 20:30:02');
+(32, 'PF055', 'role001', '2023-03-09 20:30:02'),
+(33, 'PF029', 'role002', '2023-03-20 20:19:14'),
+(34, 'PF30', 'role002', '2023-03-20 20:25:40'),
+(35, 'PF31', 'role002', '2023-03-20 20:51:25');
 
 -- --------------------------------------------------------
 
@@ -1829,13 +1920,13 @@ ALTER TABLE `department_details`
 -- AUTO_INCREMENT for table `lecturer_department_details`
 --
 ALTER TABLE `lecturer_department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -1883,13 +1974,13 @@ ALTER TABLE `time_slot_details`
 -- AUTO_INCREMENT for table `unit_course_details`
 --
 ALTER TABLE `unit_course_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=363;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT for table `unit_details`
 --
 ALTER TABLE `unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
 
 --
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
@@ -1901,19 +1992,19 @@ ALTER TABLE `unit_room_time_day_allocation_details`
 -- AUTO_INCREMENT for table `unit_semester_details`
 --
 ALTER TABLE `unit_semester_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=369;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `user_role_details`
 --
 ALTER TABLE `user_role_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `week_day_details`
