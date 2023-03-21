@@ -71,6 +71,5 @@ if (isset($_POST['login_btn'])) {
   }
 }
 
-
 ob_end_flush();
 ?>
