@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="keywords"
-      content="wkeo, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, WKEO Admin lite design, WKEO Admin lite dashboard bootstrap 5 dashboard template"
+      content="maseno, university, edutime, blinx, benson, timetable, units, courses, schools, departments"
     />
     <meta
       name="description"
-      content="WKEO Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
+      content="Maseno University EduTime system for generating timetables for the university."
     />
     <meta name="robots" content="noindex,nofollow" />
 
