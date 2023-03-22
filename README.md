@@ -1,45 +1,27 @@
 # University Timetabling System
 
-##### Note: Chairperson(Department Chair) and Timetable Coordinator are still lecturers only with more priviledges to the system.
-git s
-## Admin logs in and adds:
+##### Note: Chairperson(Department Chair) and and Dean are still lecturers.
 
-- Deans/Chairpersons/Coordinators/Lecturers
-- Schools, Departments, Courses, Units.
-- Rooms (standards and labs)
-- Time slots
-- Generate Timetable / Download TT
+## Admin (Registrar)
+- Add schools
+- Add departments
+- Add courses
+- Add units
+- Add rooms
+- Add timeslots
+- Add academic years
+- add semestera
+- Add lecturers
+- generateVarsityTimetable()
 
-## Dean logs in and adds:
+## Chairperson
+- Update unit status( whether it's active or in active for a specific semester)
+- Download department simplified Timetable
+- Download personal Timetable.
 
-- Chairpersons
-- Coordinators
-- Lecturers
-- Departments, Courses, Units
-- Rooms (standards and labs)
-- Time slots
-- Generate Timetable / Download TT
-
-## Chairperson logs in and adds:
-
-- Coordinators
-- Lecturers
-- Courses, Units
-- Rooms (standards and labs)
-- Time slots
-- Generate Timetable / Download TT
-
-## Coordinator logs in and:
-
-- Adds units,
-- Rooms (standards and labs)
-- Time slots
-- Generate Timetable / Download TT
-
-## lecturer Logs in and:
-
-- Selects units they will take for the semester.
-- View and Download TT
+## Lecturers ( Dean,chairperson and regular lecturer)
+- select units to take for a specific semester.
+- Download personal Timetable and department Timetable.
 
 ## Student
 
