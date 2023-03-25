@@ -146,9 +146,27 @@ include '../assets/components/header.php';
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Generate Timetable</h5>
-                            <input type='button' value='Generate Timetable' name='generate-timetable-btn'
-                                class='btn btn-primary float-end open-timetable-modal-btn m-2'>
 
+
+                            <form method="POST" action="">
+                                <form>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <select class="form-control" id="sem_id" name="semester">
+                                                    <option value="" selected>Select semester...</option>
+                                                    <option value="SEM1">Semester 1</option>
+                                                    <option value="SEM2">Semester 2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <button type="button" class="btn btn-primary">Generate Timetable</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </form>
                             <!--CSV file in an iframe-->
                             <!-- <iframe src="" width="100%" height="400"></iframe> -->
 
