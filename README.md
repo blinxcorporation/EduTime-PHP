@@ -3,6 +3,7 @@
 ##### Note: Chairperson(Department Chair) and and Dean are still lecturers.
 
 ## Admin (Registrar)
+
 - Add schools
 - Add departments
 - Add courses
@@ -15,12 +16,14 @@
 - generateVarsityTimetable()
 
 ## Chairperson
+
 - Update unit status( whether it's active or in active for a specific semester)
 - Download department simplified Timetable
 - Download personal Timetable.
 
 ## Lecturers ( Dean,chairperson and regular lecturer)
-- select units to take for a specific semester.
+
+- Select units to take for a specific semester.
 - Download personal Timetable and department Timetable.
 
 ## Student
