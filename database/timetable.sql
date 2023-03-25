@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2023 at 10:29 PM
+-- Generation Time: Mar 25, 2023 at 09:15 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -186,7 +186,9 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55'),
 (30, 'DPT_COMPUTERSCIENCE', 'PF029', '2023-03-20 20:19:14'),
 (31, 'DPT_COMPUTERSCIENCE', 'PF30', '2023-03-20 20:25:40'),
-(32, 'DPT_COMPUTERSCIENCE', 'PF31', '2023-03-20 20:51:25');
+(32, 'DPT_COMPUTERSCIENCE', 'PF31', '2023-03-20 20:51:25'),
+(33, 'DPT_INFORMATIONTECHNOLOGY', 'PF60', '2023-03-25 10:09:58'),
+(34, 'DPT_INFORMATIONTECHNOLOGY', 'PF52', '2023-03-25 11:56:47');
 
 -- --------------------------------------------------------
 
@@ -220,7 +222,6 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (24, 'PF16', 'CIM 408', 'YR_2019_2020', '2023-03-16 07:26:06'),
 (25, 'PF16', 'CIS 104', 'YR_2022_2023', '2023-03-16 07:27:25'),
 (26, 'PF16', 'CIS 214', 'YR_2021_2022', '2023-03-16 07:28:56'),
-(27, 'PF16', 'CIS 206', 'YR_2021_2022', '2023-03-16 07:28:56'),
 (28, 'PF16', 'CIT 104', 'YR_2022_2023', '2023-03-16 07:29:25'),
 (29, 'PF21', 'CCT 316', 'YR_2020_2021', '2023-03-20 19:47:10'),
 (30, 'PF21', 'CCT 412', 'YR_2019_2020', '2023-03-20 19:47:40'),
@@ -259,8 +260,6 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (63, 'PF029', 'CCT 104', 'YR_2022_2023', '2023-03-20 20:21:11'),
 (64, 'PF029', 'CCS 206', 'YR_2021_2022', '2023-03-20 20:22:01'),
 (65, 'PF029', 'CCS 416', 'YR_2019_2020', '2023-03-20 20:24:21'),
-(66, 'PF30', 'CIR 106', 'YR_2022_2023', '2023-03-20 20:30:39'),
-(67, 'PF30', 'CIR 108', 'YR_2022_2023', '2023-03-20 20:30:39'),
 (68, 'PF30', 'CCS 302', 'YR_2020_2021', '2023-03-20 20:31:03'),
 (69, 'PF30', 'CCT 304', 'YR_2020_2021', '2023-03-20 20:31:23'),
 (70, 'PF30', 'CCS 304', 'YR_2020_2021', '2023-03-20 20:32:04'),
@@ -269,8 +268,81 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (73, 'PF24', 'CCT 118', 'YR_2022_2023', '2023-03-20 20:38:02'),
 (74, 'PF24', 'CCS 122', 'YR_2022_2023', '2023-03-20 20:38:24'),
 (75, 'PF24', 'CCT 318', 'YR_2020_2021', '2023-03-20 20:38:38'),
-(76, 'PF31', 'ABS 424', 'YR_2019_2020', '2023-03-20 20:52:06'),
-(77, 'PF27', 'CCS 214', 'YR_2021_2022', '2023-03-20 20:53:20');
+(77, 'PF27', 'CCS 214', 'YR_2021_2022', '2023-03-20 20:53:20'),
+(78, 'PF01', 'CIT 118', 'YR_2022_2023', '2023-03-25 07:55:22'),
+(79, 'PF01', 'CIM 216', 'YR_2021_2022', '2023-03-25 09:09:57'),
+(80, 'PF01', 'CIS 120', 'YR_2022_2023', '2023-03-25 09:11:55'),
+(81, 'PF01', 'CIM 118', 'YR_2022_2023', '2023-03-25 09:13:38'),
+(82, 'PF19', 'CIM 106', 'YR_2022_2023', '2023-03-25 09:32:50'),
+(83, 'PF19', 'CIM 416', 'YR_2019_2020', '2023-03-25 09:35:13'),
+(84, 'PF19', 'CIT 106', 'YR_2022_2023', '2023-03-25 09:37:16'),
+(85, 'PF19', 'CIT 312', 'YR_2020_2021', '2023-03-25 09:40:07'),
+(86, 'PF19', 'CIS 106', 'YR_2022_2023', '2023-03-25 09:40:56'),
+(87, 'PF16', 'CIT 206', 'YR_2021_2022', '2023-03-25 09:47:31'),
+(88, 'PF18', 'CIM 108', 'YR_2022_2023', '2023-03-25 09:51:34'),
+(89, 'PF18', 'CIM 302', 'YR_2020_2021', '2023-03-25 09:52:58'),
+(90, 'PF18', 'CIM 320', 'YR_2020_2021', '2023-03-25 09:52:58'),
+(91, 'PF18', 'CIM 410', 'YR_2019_2020', '2023-03-25 09:55:04'),
+(92, 'PF18', 'CIT 210', 'YR_2021_2022', '2023-03-25 09:56:25'),
+(93, 'PF18', 'CIT 214', 'YR_2021_2022', '2023-03-25 09:57:29'),
+(94, 'PF18', 'CIT 108', 'YR_2022_2023', '2023-03-25 09:58:22'),
+(95, 'PF18', 'CIS 108', 'YR_2022_2023', '2023-03-25 09:59:50'),
+(96, 'PF18', 'CIS 208', 'YR_2021_2022', '2023-03-25 10:00:36'),
+(97, 'PF18', 'CIS 304', 'YR_2020_2021', '2023-03-25 10:01:19'),
+(98, 'PF08', 'CIM 120', 'YR_2022_2023', '2023-03-25 10:03:45'),
+(99, 'PF08', 'CIM 202', 'YR_2021_2022', '2023-03-25 10:04:33'),
+(100, 'PF08', 'CIM 306', 'YR_2020_2021', '2023-03-25 10:05:26'),
+(101, 'PF04', 'CIM 308', 'YR_2020_2021', '2023-03-25 10:05:26'),
+(102, 'PF08', 'CIT 414', 'YR_2019_2020', '2023-03-25 10:06:28'),
+(103, 'PF08', 'CIS 414', 'YR_2019_2020', '2023-03-25 10:07:11'),
+(104, 'PF08', 'CIS 412', 'YR_2019_2020', '2023-03-25 10:07:11'),
+(105, 'PF60', 'CIM 204', 'YR_2021_2022', '2023-03-25 10:11:33'),
+(106, 'PF60', 'CIM 406', 'YR_2019_2020', '2023-03-25 10:12:20'),
+(107, 'PF60', 'CIM 412', 'YR_2019_2020', '2023-03-25 10:12:20'),
+(108, 'PF60', 'ABA 424', 'YR_2019_2020', '2023-03-25 10:14:18'),
+(109, 'PF60', 'CIS 312', 'YR_2020_2021', '2023-03-25 10:15:38'),
+(110, 'PF60', 'CIS 402', 'YR_2019_2020', '2023-03-25 10:16:25'),
+(111, 'PF15', 'CIM 206', 'YR_2021_2022', '2023-03-25 10:18:55'),
+(112, 'PF15', 'CIM 208', 'YR_2021_2022', '2023-03-25 10:18:55'),
+(113, 'PF15', 'CIT 316', 'YR_2020_2021', '2023-03-25 10:21:48'),
+(114, 'PF17', 'CIM 214', 'YR_2021_2022', '2023-03-25 10:25:32'),
+(115, 'PF17', 'CIM 210', 'YR_2021_2022', '2023-03-25 10:25:32'),
+(116, 'PF17', 'CIM 402', 'YR_2019_2020', '2023-03-25 10:47:12'),
+(117, 'PF17', 'CIT 304', 'YR_2020_2021', '2023-03-25 10:48:16'),
+(118, 'PF17', 'CIT 408', 'YR_2019_2020', '2023-03-25 10:48:44'),
+(119, 'PF17', 'CIS 416', 'YR_2019_2020', '2023-03-25 10:49:25'),
+(120, 'PF12', 'CIM 304', 'YR_2020_2021', '2023-03-25 10:50:32'),
+(121, 'PF12', 'CIM 316', 'YR_2020_2021', '2023-03-25 10:50:32'),
+(122, 'PF12', 'CIT 216', 'YR_2021_2022', '2023-03-25 10:51:23'),
+(123, 'PF12', 'CIS 204', 'YR_2021_2022', '2023-03-25 10:52:16'),
+(124, 'PF12', 'CIT 318', 'YR_2020_2021', '2023-03-25 10:53:09'),
+(125, 'PF04', 'CIT 202', 'YR_2021_2022', '2023-03-25 10:58:48'),
+(126, 'PF04', 'CIT 306', 'YR_2020_2021', '2023-03-25 11:01:13'),
+(127, 'PF04', 'CIS 302', 'YR_2020_2021', '2023-03-25 11:02:52'),
+(128, 'PF04', 'CIS 310', 'YR_2020_2021', '2023-03-25 11:02:52'),
+(129, 'PF04', 'CIS 404', 'YR_2019_2020', '2023-03-25 11:04:04'),
+(130, 'PF02', 'CIM 418', 'YR_2019_2020', '2023-03-25 11:10:52'),
+(131, 'PF18', 'CIS 406', 'YR_2019_2020', '2023-03-25 11:29:20'),
+(132, 'PF07', 'CIM 322', 'YR_2020_2021', '2023-03-25 11:33:46'),
+(133, 'PF19', 'CIM 422', 'YR_2019_2020', '2023-03-25 11:35:16'),
+(134, 'PF07', 'CIT 308', 'YR_2020_2021', '2023-03-25 11:38:27'),
+(135, 'PF07', 'CIS 308', 'YR_2020_2021', '2023-03-25 11:39:57'),
+(136, 'PF03', 'CIM 420', 'YR_2019_2020', '2023-03-25 11:45:11'),
+(137, 'PF03', 'CIT 310', 'YR_2020_2021', '2023-03-25 11:48:42'),
+(138, 'PF03', 'CIT 404', 'YR_2019_2020', '2023-03-25 11:49:22'),
+(139, 'PF03', 'CIT 418', 'YR_2019_2020', '2023-03-25 11:49:22'),
+(140, 'PF13', 'CIT 314', 'YR_2020_2021', '2023-03-25 11:51:29'),
+(141, 'PF15', 'CIS 314', 'YR_2020_2021', '2023-03-25 11:52:35'),
+(142, 'PF03', 'CIS 306', 'YR_2020_2021', '2023-03-25 11:53:09'),
+(143, 'PF52', 'CIS 408', 'YR_2019_2020', '2023-03-25 11:57:40'),
+(144, 'PF52', 'CIT 208', 'YR_2021_2022', '2023-03-25 12:00:33'),
+(145, 'PF14', 'CIT 302', 'YR_2020_2021', '2023-03-25 12:04:14'),
+(146, 'PF14', 'CIT 406', 'YR_2019_2020', '2023-03-25 12:05:28'),
+(147, 'PF11', 'CIS 202', 'YR_2021_2022', '2023-03-25 12:07:19'),
+(148, 'PF11', 'CIS 206', 'YR_2021_2022', '2023-03-25 12:08:18'),
+(149, 'PF14', 'CIS 210', 'YR_2021_2022', '2023-03-25 12:09:01'),
+(150, 'PF60', 'ABS 424', 'YR_2019_2020', '2023-03-25 12:13:40'),
+(151, 'PF08', 'CIT 120', 'YR_2022_2023', '2023-03-25 12:20:41');
 
 -- --------------------------------------------------------
 
@@ -485,7 +557,6 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (21, 'CIT 106', 'CRS_IT', '2023-03-01 19:30:47'),
 (22, 'CIT 108', 'CRS_IT', '2023-03-01 19:31:08'),
 (23, 'CIT 110', 'CRS_IT', '2023-03-01 19:31:31'),
-(24, 'CIT 112', 'CRS_IT', '2023-03-01 19:31:58'),
 (25, 'CIT 114', 'CRS_IT', '2023-03-01 19:32:22'),
 (26, 'CIT 116', 'CRS_IT', '2023-03-01 19:32:42'),
 (27, 'CIT 201', 'CRS_IT', '2023-03-01 19:33:13'),
@@ -528,7 +599,6 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (65, 'CIT 405', 'CRS_IT', '2023-03-01 19:52:54'),
 (66, 'CIT 409', 'CRS_IT', '2023-03-01 19:53:36'),
 (67, 'CIT 411', 'CRS_IT', '2023-03-01 19:54:59'),
-(68, 'CIT 403', 'CRS_IT', '2023-03-01 19:55:21'),
 (69, 'CIT 407', 'CRS_IT', '2023-03-01 19:55:42'),
 (70, 'CIT 413', 'CRS_IT', '2023-03-01 19:56:09'),
 (71, 'CIT 415', 'CRS_IT', '2023-03-01 19:57:06'),
@@ -613,13 +683,8 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (155, 'CIM 109', 'CRS_ICTM', '2023-03-02 06:39:27'),
 (156, 'CIM 111', 'CRS_ICTM', '2023-03-02 06:39:49'),
 (157, 'CIM 113', 'CRS_ICTM', '2023-03-02 06:40:15'),
-(158, 'CIM 102', 'CRS_ICTM', '2023-03-02 06:40:40'),
 (159, 'CIM 104', 'CRS_ICTM', '2023-03-02 06:41:04'),
 (160, 'CIM 106', 'CRS_ICTM', '2023-03-02 06:41:31'),
-(161, 'CIM 108', 'CRS_ICTM', '2023-03-02 06:41:54'),
-(162, 'CIM 110', 'CRS_ICTM', '2023-03-02 06:42:14'),
-(163, 'CIM 112', 'CRS_ICTM', '2023-03-02 06:42:42'),
-(164, 'CIM 114', 'CRS_ICTM', '2023-03-02 06:43:08'),
 (165, 'CIM 116', 'CRS_ICTM', '2023-03-02 06:43:37'),
 (166, ' CIM 201', 'CRS_ICTM', '2023-03-02 06:44:46'),
 (167, 'CIM 201', 'CRS_ICTM', '2023-03-02 06:45:54'),
@@ -630,7 +695,6 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (172, 'CIM 211', 'CRS_ICTM', '2023-03-02 06:48:28'),
 (173, 'CIM 213', 'CRS_ICTM', '2023-03-02 06:49:01'),
 (174, 'CIM 215', 'CRS_ICTM', '2023-03-02 06:49:36'),
-(175, 'CIM 202', 'CRS_ICTM', '2023-03-02 06:50:44'),
 (176, 'CIM 204', 'CRS_ICTM', '2023-03-02 06:51:09'),
 (177, 'CIM 206', 'CRS_ICTM', '2023-03-02 06:51:38'),
 (178, 'CIM 208', 'CRS_ICTM', '2023-03-02 06:52:02'),
@@ -814,13 +878,21 @@ INSERT INTO `unit_course_details` (`id`, `unit_id`, `course_id`, `date_updated`)
 (360, 'CCS 418', 'CRS_CCS', '2023-03-02 08:38:50'),
 (361, 'CCS 422', 'CRS_CCS', '2023-03-02 08:39:17'),
 (363, 'CCS 416', 'CRS_CCS', '2023-03-20 20:23:40'),
-(364, 'CIR 108', 'CRS_CCT', '2023-03-20 20:27:21'),
-(365, 'CIR 106', 'CRS_CCT', '2023-03-20 20:28:21'),
 (366, 'CCT 116', 'CRS_CCT', '2023-03-20 20:33:25'),
 (367, 'CCT 118', 'CRS_CCT', '2023-03-20 20:36:18'),
 (368, 'CCS 122', 'CRS_CCS', '2023-03-20 20:36:54'),
 (369, 'CCT 318', 'CRS_CCT', '2023-03-20 20:37:29'),
-(370, 'ABS 424', 'CRS_CCT', '2023-03-20 20:47:43');
+(371, 'CIT 118', 'CRS_IT', '2023-03-25 07:53:09'),
+(372, 'CIT 120', 'CRS_IT', '2023-03-25 07:54:12'),
+(373, 'CIM 118', 'CRS_ICTM', '2023-03-25 08:22:18'),
+(375, 'CIM 108', 'CRS_ICTM', '2023-03-25 08:32:50'),
+(376, 'CIM 120', 'CRS_ICTM', '2023-03-25 08:33:41'),
+(377, 'CIM 202', 'CRS_ICTM', '2023-03-25 08:36:26'),
+(378, 'CIT 404', 'CRS_IT', '2023-03-25 08:42:27'),
+(379, 'CIS 118', 'CRS_IS', '2023-03-25 08:44:44'),
+(380, 'CIS 120', 'CRS_IS', '2023-03-25 08:46:01'),
+(383, 'ABS 424', 'CRS_IS', '2023-03-25 12:12:49'),
+(384, 'CIT 403', 'CRS_IT', '2023-03-25 12:23:05');
 
 -- --------------------------------------------------------
 
@@ -845,7 +917,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (152, ' CIM 201', 'Organizational Processes I', 'Theory', 'Active', '2023-03-02 06:44:46'),
 (87, ' CIS 201', 'Introduction to Information Systems and Technology', 'Theory', 'Active', '2023-03-02 06:04:52'),
 (63, 'ABA 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-01 20:45:43'),
-(356, 'ABS 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-20 20:47:43'),
+(369, 'ABS 424', 'Entrepreneurship and Small Business Management', 'Theory', 'Active', '2023-03-25 12:12:49'),
 (283, 'CCS 101', 'Fundamentals of Computing', 'Theory', 'Active', '2023-03-02 08:05:55'),
 (290, 'CCS 102', 'Linear Algebra', 'Theory', 'Active', '2023-03-02 08:09:12'),
 (284, 'CCS 103', 'Discrete Structures I', 'Theory', 'Active', '2023-03-02 08:06:21'),
@@ -981,22 +1053,20 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (273, 'CCT 425', 'Computer Networks Lab III (Cisco III)', 'ICT-Practical', 'Active', '2023-03-02 07:59:05'),
 (282, 'CCT 430', 'Computer Networks Lab IV (Cisco IV)', 'ICT-Practical', 'Active', '2023-03-02 08:03:16'),
 (137, 'CIM 101', 'Business Organization', 'Theory', 'Active', '2023-03-02 06:37:46'),
-(144, 'CIM 102', 'Discrete Structures', 'Theory', 'Active', '2023-03-02 06:40:40'),
 (138, 'CIM 103', 'Business Mathematics', 'Theory', 'Active', '2023-03-02 06:38:08'),
-(145, 'CIM 104', 'Probability and Statistics', 'Theory', 'Active', '2023-03-02 06:41:04'),
+(145, 'CIM 104', 'Object Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-02 06:41:04'),
 (139, 'CIM 105', 'Business Communication Skills', 'Theory', 'Active', '2023-03-02 06:38:34'),
-(146, 'CIM 106', 'Data Communications', 'Theory', 'Active', '2023-03-02 06:41:31'),
+(146, 'CIM 106', 'Database Systems', 'Theory', 'Active', '2023-03-02 06:41:31'),
 (140, 'CIM 107', 'Self-Management and Leadership', 'Theory', 'Active', '2023-03-02 06:39:03'),
-(147, 'CIM 108', 'Digital Systems', 'Theory', 'Active', '2023-03-02 06:41:54'),
+(361, 'CIM 108', 'System Analysis and Design', 'Theory', 'Active', '2023-03-25 08:32:49'),
 (141, 'CIM 109', 'Introduction to Programming using C/C++', 'ICT-Practical', 'Active', '2023-03-02 06:39:26'),
-(148, 'CIM 110', 'Web Design and Publishing', 'Theory', 'Active', '2023-03-02 06:42:14'),
 (142, 'CIM 111', 'Computer Organization and Architecture', 'Theory', 'Active', '2023-03-02 06:39:49'),
-(149, 'CIM 112', 'Operating Systems', 'Theory', 'Active', '2023-03-02 06:42:41'),
 (143, 'CIM 113', 'Computer Applications', 'ICT-Practical', 'Active', '2023-03-02 06:40:15'),
-(150, 'CIM 114', 'Object Oriented Programming in Java', 'ICT-Practical', 'Active', '2023-03-02 06:43:08'),
-(151, 'CIM 116', 'Database Management Systems', 'Theory', 'Active', '2023-03-02 06:43:37'),
+(151, 'CIM 116', 'Database Management Systems', 'Theory', 'In-Active', '2023-03-02 06:43:37'),
+(359, 'CIM 118', 'Computer Communication Theory', 'Theory', 'Active', '2023-03-25 08:22:18'),
+(362, 'CIM 120', ' Computer Organization and Architecture', 'Theory', 'Active', '2023-03-25 08:33:41'),
 (153, 'CIM 201', 'Organizational Processes I', 'Theory', 'Active', '2023-03-02 06:45:54'),
-(161, 'CIM 202', 'Operations Management', 'Theory', 'Active', '2023-03-02 06:50:44'),
+(363, 'CIM 202', 'Operations Management', 'Theory', 'Active', '2023-03-25 08:36:26'),
 (154, 'CIM 203', 'Computer Networks', 'Theory', 'Active', '2023-03-02 06:46:20'),
 (162, 'CIM 204', 'Customer Care', 'Theory', 'Active', '2023-03-02 06:51:09'),
 (155, 'CIM 205', 'Internet Technology', 'Theory', 'Active', '2023-03-02 06:46:50'),
@@ -1016,23 +1086,23 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (170, 'CIM 303', 'Network Security', 'Theory', 'Active', '2023-03-02 06:54:47'),
 (181, 'CIM 304', 'Unix Fundamentals', 'Theory', 'Active', '2023-03-02 07:00:57'),
 (173, 'CIM 305', 'Electronic Commerce', 'Theory', 'Active', '2023-03-02 06:56:22'),
-(184, 'CIM 306', 'IT Organization', 'Theory', 'Active', '2023-03-02 07:02:29'),
+(184, 'CIM 306', 'Group Project 2', 'Theory', 'Active', '2023-03-02 07:02:29'),
 (171, 'CIM 307', 'System Administration I', 'Theory', 'Active', '2023-03-02 06:55:10'),
 (182, 'CIM 308', 'Mobile Computing', 'Theory', 'Active', '2023-03-02 07:01:24'),
 (174, 'CIM 309', 'Quality Management Systems', 'Theory', 'Active', '2023-03-02 06:57:09'),
-(185, 'CIM 310', 'Defining the Information Architecture', 'Theory', 'Active', '2023-03-02 07:02:54'),
+(185, 'CIM 310', 'Defining the Information Architecture', 'Theory', 'In-Active', '2023-03-02 07:02:54'),
 (172, 'CIM 311', 'Research Methods', 'Theory', 'Active', '2023-03-02 06:55:30'),
 (183, 'CIM 312', 'Project (Programming)', 'ICT-Practical', 'Active', '2023-03-02 07:01:55'),
 (175, 'CIM 313', 'IT Hardware Support & Maintenance', 'Theory', 'Active', '2023-03-02 06:57:34'),
 (176, 'CIM 315', 'Knowledge Management', 'Theory', 'Active', '2023-03-02 06:58:00'),
 (186, 'CIM 316', 'System Administration II', 'Theory', 'Active', '2023-03-02 07:03:15'),
 (177, 'CIM 317', 'Human Computer Interactions', 'Theory', 'Active', '2023-03-02 06:58:36'),
-(187, 'CIM 318', 'Network Server Maintenance', 'Theory', 'Active', '2023-03-02 07:03:40'),
+(187, 'CIM 318', 'Network Server Maintenance', 'Theory', 'In-Active', '2023-03-02 07:03:40'),
 (178, 'CIM 319', 'Report Generation Skills', 'Theory', 'Active', '2023-03-02 06:59:11'),
 (188, 'CIM 320', 'Object Oriented Systems Analysis & Design', 'Theory', 'Active', '2023-03-02 07:04:07'),
 (179, 'CIM 321', 'Organizational Processes II', 'Theory', 'Active', '2023-03-02 06:59:59'),
 (189, 'CIM 322', 'Internet Based Programming', 'Theory', 'Active', '2023-03-02 07:04:49'),
-(190, 'CIM 324', 'Business Process Management and Outsourcing', 'Theory', 'Active', '2023-03-02 07:05:16'),
+(190, 'CIM 324', 'Business Process Management and Outsourcing', 'Theory', 'In-Active', '2023-03-02 07:05:16'),
 (191, 'CIM 401', 'Strategic Business Management', 'Theory', 'Active', '2023-03-02 07:05:58'),
 (204, 'CIM 402', 'IT Project Management', 'Theory', 'Active', '2023-03-02 07:11:57'),
 (192, 'CIM 403', 'Management Information Systems', 'Theory', 'Active', '2023-03-02 07:06:21'),
@@ -1046,7 +1116,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (196, 'CIM 411', 'Information Systems Strategy', 'Theory', 'Active', '2023-03-02 07:08:08'),
 (209, 'CIM 412', 'Entrepreneurship', 'Theory', 'Active', '2023-03-02 07:14:45'),
 (197, 'CIM 413', 'Information Security Management', 'Theory', 'Active', '2023-03-02 07:08:33'),
-(210, 'CIM 414', 'Analysis of Infrastructure Requirements', 'Theory', 'Active', '2023-03-02 07:15:12'),
+(210, 'CIM 414', 'Analysis of Infrastructure Requirements', 'Theory', 'In-Active', '2023-03-02 07:15:12'),
 (198, 'CIM 415', 'Application of Emerging Technology', 'Theory', 'Active', '2023-03-02 07:09:03'),
 (211, 'CIM 416', 'Emerging Database Technologies & Applications', 'Theory', 'Active', '2023-03-02 07:15:54'),
 (199, 'CIM 417', 'Web Design - Server Side', 'Theory', 'Active', '2023-03-02 07:09:28'),
@@ -1054,87 +1124,88 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (213, 'CIM 420', 'Software Quality Assurance', 'Theory', 'Active', '2023-03-02 07:17:02'),
 (214, 'CIM 422', 'Decision Making Systems', 'Theory', 'Active', '2023-03-02 07:17:25'),
 (202, 'CIM 423', 'Customer Relationship Management', 'Theory', 'Active', '2023-03-02 07:10:45'),
-(215, 'CIM 424', 'IT Service Cost & Availability Management', 'Theory', 'Active', '2023-03-02 07:17:50'),
+(215, 'CIM 424', 'IT Service Cost & Availability Management', 'Theory', 'In-Active', '2023-03-02 07:17:50'),
 (203, 'CIM 425', 'Ethical Issues in Information Technology', 'Theory', 'Active', '2023-03-02 07:11:14'),
-(216, 'CIM 426', 'Supply Chain Management', 'Theory', 'Active', '2023-03-02 07:18:14'),
-(351, 'CIR 106', 'Database Systems', 'Theory', 'Active', '2023-03-20 20:28:21'),
-(350, 'CIR 108', 'System Analysis and Design', 'Theory', 'Active', '2023-03-20 20:27:21'),
+(216, 'CIM 426', 'Supply Chain Management', 'Theory', 'In-Active', '2023-03-02 07:18:14'),
 (73, 'CIS 101', 'Fundamentals of Computers Systems', 'Theory', 'Active', '2023-03-02 05:57:02'),
-(80, 'CIS 102', 'Probability and Statistics', 'Theory', 'Active', '2023-03-02 06:01:51'),
+(80, 'CIS 102', 'Probability and Statistics', 'Theory', 'In-Active', '2023-03-02 06:01:51'),
 (74, 'CIS 103', 'Mathematics for IT', 'Theory', 'Active', '2023-03-02 05:59:05'),
-(81, 'CIS 104', 'Internet Computing', 'Theory', 'Active', '2023-03-02 06:02:23'),
+(81, 'CIS 104', 'Object Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-02 06:02:23'),
 (76, 'CIS 105', 'Principles of Accounting', 'Theory', 'Active', '2023-03-02 05:59:31'),
-(82, 'CIS 106', 'Operating Systems', 'Theory', 'Active', '2023-03-02 06:02:49'),
+(82, 'CIS 106', 'Database Systems', 'Theory', 'Active', '2023-03-02 06:02:49'),
 (77, 'CIS 107', 'Communication Skills', 'Theory', 'Active', '2023-03-02 05:59:56'),
-(83, 'CIS 108', 'Object Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-02 06:03:11'),
+(83, 'CIS 108', 'Systems Analysis and Design', 'Theory', 'Active', '2023-03-02 06:03:11'),
 (78, 'CIS 109', 'General Economics', 'Theory', 'Active', '2023-03-02 06:00:23'),
-(84, 'CIS 110', 'Data Communications', 'Theory', 'Active', '2023-03-02 06:03:38'),
+(84, 'CIS 110', 'Data Communications', 'Theory', 'In-Active', '2023-03-02 06:03:38'),
 (79, 'CIS 111', 'Structured Programming', 'ICT-Practical', 'Active', '2023-03-02 06:00:53'),
-(85, 'CIS 112', 'Multimedia systems', 'Theory', 'Active', '2023-03-02 06:03:59'),
-(86, 'CIS 114', 'Introduction to Macroeconomics', 'Theory', 'Active', '2023-03-02 06:04:22'),
-(95, 'CIS 202', 'Information Systems Management', 'Theory', 'Active', '2023-03-02 06:08:35'),
+(85, 'CIS 112', 'Multimedia systems', 'Theory', 'In-Active', '2023-03-02 06:03:59'),
+(86, 'CIS 114', 'Introduction to Macroeconomics', 'Theory', 'In-Active', '2023-03-02 06:04:22'),
+(365, 'CIS 118', 'Computer Communication Theory', 'Theory', 'In-Active', '2023-03-25 08:44:44'),
+(366, 'CIS 120', 'Computer Based Information Systems Concepts', 'Theory', 'Active', '2023-03-25 08:46:01'),
+(95, 'CIS 202', 'Transaction Processing Systems', 'Theory', 'Active', '2023-03-02 06:08:35'),
 (88, 'CIS 203', 'Data structures and Algorithms', 'Theory', 'Active', '2023-03-02 06:05:18'),
-(96, 'CIS 204', 'Systems Analysis & Integration', 'Theory', 'Active', '2023-03-02 06:09:01'),
+(96, 'CIS 204', 'Group Project', 'ICT-Practical', 'Active', '2023-03-02 06:09:01'),
 (89, 'CIS 205', 'Commercial Law', 'Theory', 'Active', '2023-03-02 06:05:43'),
-(97, 'CIS 206', 'Information Systems Assurance', 'Theory', 'Active', '2023-03-02 06:09:34'),
+(97, 'CIS 206', 'Insurance and Risk Management', 'Theory', 'Active', '2023-03-02 06:09:34'),
 (90, 'CIS 207', 'IT Service Delivery Management', 'Theory', 'Active', '2023-03-02 06:06:21'),
-(98, 'CIS 208', 'Web Programming II', 'ICT-Practical', 'Active', '2023-03-02 06:10:19'),
+(98, 'CIS 208', 'Software Engineering', 'Theory', 'Active', '2023-03-02 06:10:19'),
 (91, 'CIS 209', 'Web Programming I', 'ICT-Practical', 'Active', '2023-03-02 06:06:47'),
-(99, 'CIS 210', 'E-Commerce', 'Theory', 'Active', '2023-03-02 06:17:21'),
+(99, 'CIS 210', 'Human Computer Interaction', 'Theory', 'Active', '2023-03-02 06:17:21'),
 (92, 'CIS 211', 'Object Oriented Programming II', 'ICT-Practical', 'Active', '2023-03-02 06:07:13'),
-(100, 'CIS 212', 'Database Systems', 'Theory', 'Active', '2023-03-02 06:17:48'),
+(100, 'CIS 212', 'Computer Networks Lab III', 'ICT-Practical', 'Active', '2023-03-02 06:17:48'),
 (93, 'CIS 213', 'MIS Group Project I', 'Theory', 'Active', '2023-03-02 06:07:44'),
-(101, 'CIS 214', 'MIS Group Project II', 'ICT-Practical', 'Active', '2023-03-02 06:18:31'),
+(101, 'CIS 214', 'IS Audit and Control', 'Theory', 'Active', '2023-03-02 06:18:31'),
 (94, 'CIS 215', 'Object Oriented Analysis and Design with UML', 'Theory', 'Active', '2023-03-02 06:08:06'),
 (102, 'CIS 301', 'Internet Marketing', 'Theory', 'Active', '2023-03-02 06:19:15'),
-(110, 'CIS 302', 'Project Management for Information Technology', 'Theory', 'Active', '2023-03-02 06:23:13'),
+(110, 'CIS 302', 'Computer Aided Art and Design', 'Theory', 'Active', '2023-03-02 06:23:13'),
 (103, 'CIS 303', 'Introduction to Management', 'Theory', 'Active', '2023-03-02 06:19:56'),
-(111, 'CIS 304', 'Research Methodology', 'Theory', 'Active', '2023-03-02 06:23:36'),
+(111, 'CIS 304', 'Database Administration', 'Theory', 'Active', '2023-03-02 06:23:36'),
 (104, 'CIS 305', 'Unix Operating System', 'Theory', 'Active', '2023-03-02 06:20:32'),
-(112, 'CIS 306', 'Business Process Management', 'Theory', 'Active', '2023-03-02 06:24:08'),
+(112, 'CIS 306', 'Group Project 2', 'ICT-Practical', 'Active', '2023-03-02 06:24:08'),
 (105, 'CIS 307', 'MIS Group Project I ', 'Theory', 'Active', '2023-03-02 06:20:56'),
-(113, 'CIS 308', 'Economics in the Information Age', 'Theory', 'Active', '2023-03-02 06:24:37'),
+(113, 'CIS 308', 'Web Server Applications Development', 'Theory', 'Active', '2023-03-02 06:24:37'),
 (106, 'CIS 309', 'Information Systems Security', 'Theory', 'Active', '2023-03-02 06:21:21'),
-(114, 'CIS 310', 'MIS Group Project II', 'ICT-Practical', 'Active', '2023-03-02 06:25:00'),
+(114, 'CIS 310', 'Mobile Devices and Wireless Computing', 'Theory', 'Active', '2023-03-02 06:25:00'),
 (107, 'CIS 311', 'Social Networking and Cyber Security', 'Theory', 'Active', '2023-03-02 06:21:48'),
-(115, 'CIS 312', 'ICT and Society', 'Theory', 'Active', '2023-03-02 06:25:25'),
+(115, 'CIS 312', 'Business Ethics and Corporate Governance', 'Theory', 'Active', '2023-03-02 06:25:25'),
 (108, 'CIS 313', 'System Administration and Management', 'Theory', 'Active', '2023-03-02 06:22:18'),
-(116, 'CIS 314', 'Internet Computing', 'Theory', 'Active', '2023-03-02 06:25:56'),
-(109, 'CIS 315', 'Artificial Intelligence', 'Theory', 'Active', '2023-03-02 06:22:43'),
+(116, 'CIS 314', 'Computer Graphics', 'ICT-Practical', 'Active', '2023-03-02 06:25:56'),
+(109, 'CIS 315', 'Artificial Intelligence', 'Theory', 'In-Active', '2023-03-02 06:22:43'),
 (117, 'CIS 316', 'Business Information Systems and Management', 'Theory', 'Active', '2023-03-02 06:26:23'),
-(118, 'CIS 318', 'Database Administration', 'Theory', 'Active', '2023-03-02 06:26:50'),
+(118, 'CIS 318', 'Database Administration', 'Theory', 'In-Active', '2023-03-02 06:26:50'),
 (119, 'CIS 401', 'Management Research Project', 'Theory', 'Active', '2023-03-02 06:27:48'),
-(128, 'CIS 402', 'Special Topics in MIS', 'Theory', 'Active', '2023-03-02 06:32:00'),
+(128, 'CIS 402', 'Business Process Management', 'Theory', 'Active', '2023-03-02 06:32:00'),
 (120, 'CIS 403', 'Entrepreneurship Skills', 'Theory', 'Active', '2023-03-02 06:28:19'),
-(129, 'CIS 404', 'Managerial Decision Making', 'Theory', 'Active', '2023-03-02 06:32:39'),
+(129, 'CIS 404', 'Information Systems Security and Controls', 'Theory', 'Active', '2023-03-02 06:32:39'),
 (121, 'CIS 405', 'ICT Strategic Management', 'Theory', 'Active', '2023-03-02 06:28:41'),
-(130, 'CIS 406', 'MIS Individual Project 2', 'ICT-Practical', 'Active', '2023-03-02 06:33:21'),
+(130, 'CIS 406', 'Strategic Management', 'Theory', 'Active', '2023-03-02 06:33:21'),
 (122, 'CIS 407', 'Data Warehousing and Data mining', 'Theory', 'Active', '2023-03-02 06:29:04'),
-(131, 'CIS 408', 'Decision Support Systems', 'Theory', 'Active', '2023-03-02 06:33:56'),
+(131, 'CIS 408', 'IS Project Execution', 'ICT-Practical', 'Active', '2023-03-02 06:33:56'),
 (123, 'CIS 409', 'MIS Individual Project 1', 'Theory', 'Active', '2023-03-02 06:29:27'),
-(132, 'CIS 410', 'Knowledge Management', 'Theory', 'Active', '2023-03-02 06:34:21'),
+(132, 'CIS 410', 'Mobile Technology Applications and M-Commerce', 'Theory', 'In-Active', '2023-03-02 06:34:21'),
 (124, 'CIS 411', 'Business Process Management', 'Theory', 'Active', '2023-03-02 06:29:55'),
-(133, 'CIS 412', 'Management Research Project', 'Theory', 'Active', '2023-03-02 06:34:42'),
+(133, 'CIS 412', 'Business Continuity and Disaster Recovery', 'Theory', 'Active', '2023-03-02 06:34:42'),
 (125, 'CIS 413', 'Content Development and Management', 'Theory', 'Active', '2023-03-02 06:30:22'),
-(134, 'CIS 414', 'Large Scale Software Systems', 'Theory', 'Active', '2023-03-02 06:35:08'),
+(134, 'CIS 414', 'Cloud Computing and Emerging Applications', 'Theory', 'Active', '2023-03-02 06:35:08'),
 (126, 'CIS 415', 'Distributed Systems', 'Theory', 'Active', '2023-03-02 06:30:54'),
-(135, 'CIS 416', 'Security Engineering Principles', 'Theory', 'Active', '2023-03-02 06:35:33'),
+(135, 'CIS 416', 'Knowledge Based Systems', 'Theory', 'Active', '2023-03-02 06:35:33'),
 (127, 'CIS 417', 'Information Systems Innovations and New Technologies', 'Theory', 'Active', '2023-03-02 06:31:21'),
-(136, 'CIS 418', 'Cloud Computing and Emerging Applications', 'Theory', 'Active', '2023-03-02 06:35:57'),
+(136, 'CIS 418', 'Cloud Computing and Emerging Applications', 'Theory', 'In-Active', '2023-03-02 06:35:57'),
 (1, 'CIT 101', 'Discrete Structures I', 'Theory', 'Active', '2023-03-01 19:26:18'),
-(9, 'CIT 102', 'Probability and statistics', 'Theory', 'Active', '2023-03-01 19:29:55'),
+(9, 'CIT 102', 'Discrete Structures II', 'Theory', 'In-Active', '2023-03-01 19:29:55'),
 (2, 'CIT 103', 'Mathematics for IT', 'Theory', 'Active', '2023-03-01 19:26:46'),
-(10, 'CIT 104', 'Computer Architecture', 'Theory', 'Active', '2023-03-01 19:30:21'),
+(10, 'CIT 104', 'Object Oriented Programming I', 'Theory', 'Active', '2023-03-01 19:30:21'),
 (3, 'CIT 105', 'Electrical Principles', 'Theory', 'Active', '2023-03-01 19:27:10'),
-(11, 'CIT 106', 'Linear Algebra', 'Theory', 'Active', '2023-03-01 19:30:47'),
+(11, 'CIT 106', 'Database Systems', 'Theory', 'Active', '2023-03-01 19:30:47'),
 (4, 'CIT 107', 'Fundamentals of IT', 'Theory', 'Active', '2023-03-01 19:27:37'),
-(12, 'CIT 108', 'Object-Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-01 19:31:08'),
+(12, 'CIT 108', 'System Analysis and Design', 'ICT-Practical', 'Active', '2023-03-01 19:31:08'),
 (5, 'CIT 109', 'Computer Applications', 'Theory', 'Active', '2023-03-01 19:28:05'),
-(13, 'CIT 110', 'Platform technologies I', 'Theory', 'Active', '2023-03-01 19:31:31'),
+(13, 'CIT 110', 'Platform technologies I', 'Theory', 'In-Active', '2023-03-01 19:31:31'),
 (6, 'CIT 111', 'Fundamentals of Programming', 'ICT-Practical', 'Active', '2023-03-01 19:28:31'),
-(14, 'CIT 112', 'Discrete Structures II', 'Theory', 'Active', '2023-03-01 19:31:57'),
-(15, 'CIT 114', 'System Analysis and Design', 'Theory', 'Active', '2023-03-01 19:32:22'),
-(16, 'CIT 116', 'Data communications', 'Theory', 'Active', '2023-03-01 19:32:42'),
+(15, 'CIT 114', 'System Analysis and Design', 'Theory', 'In-Active', '2023-03-01 19:32:22'),
+(16, 'CIT 116', 'Data communications', 'Theory', 'In-Active', '2023-03-01 19:32:42'),
+(357, 'CIT 118', 'Computer Communication Theory', 'Theory', 'Active', '2023-03-25 07:53:09'),
+(358, 'CIT 120', 'Computer Organization and Architecture', 'Theory', 'Active', '2023-03-25 07:54:12'),
 (17, 'CIT 201', 'Object-Oriented Programming II', 'ICT-Practical', 'Active', '2023-03-01 19:33:13'),
 (25, 'CIT 202', 'Computer Aided Design', 'ICT-Practical', 'Active', '2023-03-01 19:36:55'),
 (18, 'CIT 203', 'Data Structures and Algorithms', 'Theory', 'Active', '2023-03-01 19:33:35'),
@@ -1159,7 +1230,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (35, 'CIT 307', 'Information Assurance and Security I', 'Theory', 'Active', '2023-03-01 19:41:30'),
 (48, 'CIT 308', 'Web systems and Technologies II', 'ICT-Practical', 'Active', '2023-03-01 19:47:49'),
 (36, 'CIT 309', 'IT Project I (Proposal Writing)', 'Theory', 'Active', '2023-03-01 19:41:54'),
-(49, 'CIT 310', 'Design Thinking and Human Centered Design', 'Theory', 'Active', '2023-03-01 19:48:17'),
+(49, 'CIT 310', 'Information Assurance and Security II', 'Theory', 'Active', '2023-03-01 19:48:17'),
 (38, 'CIT 311', 'Information Technology Control and Audit I', 'Theory', 'Active', '2023-03-01 19:42:44'),
 (45, 'CIT 312', 'Group Project (Project Implementation)', 'Theory', 'Active', '2023-03-01 19:45:53'),
 (39, 'CIT 313', 'Database Administration', 'Theory', 'Active', '2023-03-01 19:43:10'),
@@ -1169,26 +1240,27 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (41, 'CIT 317', 'Multimedia and Graphics Systems', 'Theory', 'Active', '2023-03-01 19:44:16'),
 (46, 'CIT 318', 'Artificial Intelligence', 'Theory', 'Active', '2023-03-01 19:46:23'),
 (42, 'CIT 319', 'Software Testing and Measurement', 'Theory', 'Active', '2023-03-01 19:44:38'),
-(52, 'CIT 320', 'Simulation and Modelling', 'Theory', 'Active', '2023-03-01 19:49:25'),
+(52, 'CIT 320', 'Simulation and Modelling', 'Theory', 'In-Active', '2023-03-01 19:49:25'),
 (53, 'CIT 322', 'Computer Networks Lab 4', 'ICT-Practical', 'Active', '2023-03-01 19:49:47'),
 (54, 'CIT 401', 'Software Project Management', 'Theory', 'Active', '2023-03-01 19:51:06'),
 (64, 'CIT 402', 'IT project II', 'ICT-Practical', 'Active', '2023-03-01 20:46:11'),
-(58, 'CIT 403', 'Management Information Systems', 'Theory', 'Active', '2023-03-01 19:55:21'),
+(370, 'CIT 403', 'Management Information Systems', 'Theory', 'Active', '2023-03-25 12:23:04'),
+(364, 'CIT 404', 'Cryptography and Information Security', 'Theory', 'Active', '2023-03-25 08:42:27'),
 (55, 'CIT 405', 'E-Commerce', 'Theory', 'Active', '2023-03-01 19:52:54'),
 (65, 'CIT 406', 'Social and Professional Issues In IT', 'Theory', 'Active', '2023-03-01 20:47:17'),
 (59, 'CIT 407', 'IT and Society', 'Theory', 'Active', '2023-03-01 19:55:42'),
 (66, 'CIT 408', 'IT and Development', 'Theory', 'Active', '2023-03-01 20:48:05'),
 (56, 'CIT 409', 'IT Project ', 'Theory', 'Active', '2023-03-01 19:53:36'),
-(67, 'CIT 410', 'Mobile Technology Applications and M-Commerce', 'Theory', 'Active', '2023-03-01 20:48:35'),
+(67, 'CIT 410', 'Mobile Technology Applications and M-Commerce', 'Theory', 'In-Active', '2023-03-01 20:48:35'),
 (57, 'CIT 411', 'Distributed Systems', 'Theory', 'Active', '2023-03-01 19:54:59'),
-(68, 'CIT 412', 'Mobile Embedded Hardware Platforms & Architectures', 'Theory', 'Active', '2023-03-01 20:49:03'),
+(68, 'CIT 412', 'Mobile Embedded Hardware Platforms & Architectures', 'Theory', 'In-Active', '2023-03-01 20:49:03'),
 (60, 'CIT 413', 'Mobile Devices, Technologies, and Programming', 'ICT-Practical', 'Active', '2023-03-01 19:56:09'),
 (69, 'CIT 414', 'Cloud Computing and Emerging Applications', 'Theory', 'Active', '2023-03-01 20:49:43'),
 (61, 'CIT 415', 'Web Applications and Programming', 'ICT-Practical', 'Active', '2023-03-01 19:57:06'),
 (70, 'CIT 416', 'Network Security', 'Theory', 'Active', '2023-03-01 20:50:14'),
 (71, 'CIT 418', 'Authentication Protocols and Biometrics', 'Theory', 'Active', '2023-03-01 20:50:43'),
 (62, 'CIT 419', 'Content Development and Management', 'Theory', 'Active', '2023-03-01 19:58:04'),
-(72, 'CIT 420', 'Information Systems Innovations & New Technologies', 'Theory', 'Active', '2023-03-01 20:51:08');
+(72, 'CIT 420', 'Information Systems Innovations & New Technologies', 'Theory', 'In-Active', '2023-03-01 20:51:08');
 
 -- --------------------------------------------------------
 
@@ -1235,7 +1307,6 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (20, 'CIT 106', 'Y1S2', '2023-03-01 22:30:47'),
 (21, 'CIT 108', 'Y1S2', '2023-03-01 22:31:08'),
 (22, 'CIT 110', 'Y1S2', '2023-03-01 22:31:31'),
-(23, 'CIT 112', 'Y1S2', '2023-03-01 22:31:58'),
 (24, 'CIT 114', 'Y1S2', '2023-03-01 22:32:22'),
 (25, 'CIT 116', 'Y1S2', '2023-03-01 22:32:43'),
 (26, 'CIT 201', 'Y2S1', '2023-03-01 22:33:13'),
@@ -1279,14 +1350,12 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (64, 'CIT 405', 'Y4S1', '2023-03-01 22:52:54'),
 (65, 'CIT 409', 'Y4S1', '2023-03-01 22:53:36'),
 (66, 'CIT 411', 'Y4S1', '2023-03-01 22:54:59'),
-(67, 'CIT 403', 'Y4S1', '2023-03-01 22:55:21'),
 (68, 'CIT 407', 'Y4S1', '2023-03-01 22:55:43'),
 (69, 'CIT 413', 'Y4S1', '2023-03-01 22:56:09'),
 (70, 'CIT 415', 'Y4S1', '2023-03-01 22:57:06'),
 (71, 'CIT 419', 'Y4S1', '2023-03-01 22:58:04'),
 (72, 'ABA 424', 'Y4S2', '2023-03-01 23:45:43'),
 (73, 'CIT 402', 'Y4S2', '2023-03-01 23:46:11'),
-(74, 'CIT 403', 'Y4S2', '2023-03-01 23:46:45'),
 (75, 'CIT 406', 'Y4S2', '2023-03-01 23:47:18'),
 (76, 'CIT 408', 'Y4S2', '2023-03-01 23:48:06'),
 (77, 'CIT 410', 'Y4S2', '2023-03-01 23:48:36'),
@@ -1366,13 +1435,8 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (154, 'CIM 109', 'Y1S1', '2023-03-02 09:39:27'),
 (155, 'CIM 111', 'Y1S1', '2023-03-02 09:39:50'),
 (156, 'CIM 113', 'Y1S1', '2023-03-02 09:40:15'),
-(157, 'CIM 102', 'Y1S2', '2023-03-02 09:40:40'),
 (158, 'CIM 104', 'Y1S2', '2023-03-02 09:41:05'),
 (159, 'CIM 106', 'Y1S2', '2023-03-02 09:41:31'),
-(160, 'CIM 108', 'Y1S2', '2023-03-02 09:41:54'),
-(161, 'CIM 110', 'Y1S2', '2023-03-02 09:42:15'),
-(162, 'CIM 112', 'Y1S2', '2023-03-02 09:42:42'),
-(163, 'CIM 114', 'Y1S2', '2023-03-02 09:43:08'),
 (164, 'CIM 116', 'Y1S2', '2023-03-02 09:43:37'),
 (165, 'CIM 201', 'Y2S1', '2023-03-02 09:45:54'),
 (166, 'CIM 203', 'Y2S1', '2023-03-02 09:46:20'),
@@ -1382,7 +1446,6 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (170, 'CIM 211', 'Y2S1', '2023-03-02 09:48:28'),
 (171, 'CIM 213', 'Y2S1', '2023-03-02 09:49:01'),
 (172, 'CIM 215', 'Y2S1', '2023-03-02 09:49:36'),
-(173, 'CIM 202', 'Y2S2', '2023-03-02 09:50:45'),
 (174, 'CIM 204', 'Y2S2', '2023-03-02 09:51:09'),
 (175, 'CIM 206', 'Y2S2', '2023-03-02 09:51:38'),
 (176, 'CIM 208', 'Y2S2', '2023-03-02 09:52:02'),
@@ -1569,13 +1632,21 @@ INSERT INTO `unit_semester_details` (`id`, `unit_id`, `semester_id`, `date_added
 (358, 'CCS 418', 'Y4S2', '2023-03-02 11:38:51'),
 (359, 'CCS 422', 'Y4S2', '2023-03-02 11:39:17'),
 (361, 'CCS 416', 'Y4S2', '2023-03-20 23:23:40'),
-(362, 'CIR 108', 'Y1S2', '2023-03-20 23:27:22'),
-(363, 'CIR 106', 'Y1S2', '2023-03-20 23:28:21'),
 (364, 'CCT 116', 'Y1S2', '2023-03-20 23:33:25'),
 (365, 'CCT 118', 'Y1S2', '2023-03-20 23:36:19'),
 (366, 'CCS 122', 'Y1S2', '2023-03-20 23:36:54'),
 (367, 'CCT 318', 'Y3S2', '2023-03-20 23:37:29'),
-(368, 'ABS 424', 'Y4S2', '2023-03-20 23:47:43');
+(369, 'CIT 118', 'Y1S2', '2023-03-25 10:53:09'),
+(370, 'CIT 120', 'Y1S2', '2023-03-25 10:54:12'),
+(371, 'CIM 118', 'Y1S2', '2023-03-25 11:22:18'),
+(373, 'CIM 108', 'Y1S2', '2023-03-25 11:32:50'),
+(374, 'CIM 120', 'Y1S2', '2023-03-25 11:33:41'),
+(375, 'CIM 202', 'Y2S2', '2023-03-25 11:36:26'),
+(376, 'CIT 404', 'Y4S2', '2023-03-25 11:42:27'),
+(377, 'CIS 118', 'Y1S2', '2023-03-25 11:44:44'),
+(378, 'CIS 120', 'Y1S2', '2023-03-25 11:46:01'),
+(381, 'ABS 424', 'Y4S2', '2023-03-25 15:12:49'),
+(382, 'CIT 403', 'Y4S1', '2023-03-25 15:23:05');
 
 -- --------------------------------------------------------
 
@@ -1608,8 +1679,8 @@ INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `
 (5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
 (32, 'PF055', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 23:30:02'),
 (6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:25:05'),
-(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11c32ad76442ac5993e83143d2b11caaef510d4ce4 ', '2023-03-09 10:32:21'),
-(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, '064d02846ea32bf0214cbfa8b66cb1fdcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:47:42'),
+(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 10:32:21'),
+(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, 'e51ebb11e912d482972e91f5b2243849cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 11:47:42'),
 (9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:01'),
 (10, 'PF10', 'Mr', 'James', 'Chamwama', 'chamwama@maseno.ac.ke', 795824582, '31b90ee1a33da1431913c70021722926cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:56'),
 (11, 'PF11', 'Mr', 'Charles', 'Awuor', 'jumamark1234@gmail.com', 762854852, '511fae1765b80afceb29cf5fbcd15e17cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:54:16'),
@@ -1631,7 +1702,9 @@ INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `
 (27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:02'),
 (28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55'),
 (34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:25:40'),
-(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:51:25');
+(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:51:25'),
+(37, 'PF52', 'Dr', 'Roxanne', 'Hawi', 'roxannehavi@maseno.ac.ke', 752457582, '733cf4ed6fc40042a9514cb42817a54fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 14:56:47'),
+(36, 'PF60', 'Mr', 'Thomas', 'Ojijo', 'ojijotom@maseno.ac.ke', 714758258, '7ed946148ae8b14c898fcefde7a03734cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 13:09:58');
 
 -- --------------------------------------------------------
 
@@ -1682,7 +1755,9 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (32, 'PF055', 'role001', '2023-03-09 20:30:02'),
 (33, 'PF029', 'role002', '2023-03-20 20:19:14'),
 (34, 'PF30', 'role002', '2023-03-20 20:25:40'),
-(35, 'PF31', 'role002', '2023-03-20 20:51:25');
+(35, 'PF31', 'role002', '2023-03-20 20:51:25'),
+(36, 'PF60', 'role002', '2023-03-25 10:09:58'),
+(37, 'PF52', 'role002', '2023-03-25 11:56:47');
 
 -- --------------------------------------------------------
 
@@ -1920,13 +1995,13 @@ ALTER TABLE `department_details`
 -- AUTO_INCREMENT for table `lecturer_department_details`
 --
 ALTER TABLE `lecturer_department_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -1974,13 +2049,13 @@ ALTER TABLE `time_slot_details`
 -- AUTO_INCREMENT for table `unit_course_details`
 --
 ALTER TABLE `unit_course_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=385;
 
 --
 -- AUTO_INCREMENT for table `unit_details`
 --
 ALTER TABLE `unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
@@ -1992,19 +2067,19 @@ ALTER TABLE `unit_room_time_day_allocation_details`
 -- AUTO_INCREMENT for table `unit_semester_details`
 --
 ALTER TABLE `unit_semester_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=369;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=383;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_role_details`
 --
 ALTER TABLE `user_role_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `week_day_details`
