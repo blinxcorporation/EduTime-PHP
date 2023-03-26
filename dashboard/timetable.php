@@ -1,5 +1,6 @@
 <?php
 include '../server.php';
+
 if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
   // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
   session_destroy();
@@ -14,157 +15,202 @@ if ($_SESSION['role_name'] !== 'Admin') {
   exit;
 }
 
-$pfno = $_SESSION['pfno'];
-$fname = $_SESSION['fname'];
-$lname = $_SESSION['lname'];
-$name = $_SESSION['fname'] . " ".$_SESSION['lname'];
-$mail = $_SESSION['email'];
-
 //generate timetable function
-function generateTimetable($semester) {
-  // Query the database to get the list of units that are active and selected by a lecturer
-  $units_query = "SELECT * FROM unit_details
-  INNER JOIN lecturer_unit_details ON lecturer_unit_details.lecturer_id = unit_details.unit_code 
-  INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
-  INNER JOIN unit_semester_details ON unit_semester_details.unit_id =lecturer_unit_details.unit_id 
-  INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id 
-  WHERE unit_semester_details.semester_id='$semester'";
-  
-  $result = mysqli_query($db, $units_query);
+function generateTimetable() {
+    //GET database connection string inside function
+    global $db;
+    
+    //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
+    $units = array();
+    $lecturers = array();
+    $courses = array();
+    $departments = array();
+    $schools = array();
+    $rooms = array();
+    $timeSlots = array();
+    $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 
-  // Create a two-dimensional array to store the timetable
-  $timetable = array(
-    "Monday" => array(),
-    "Tuesday" => array(),
-    "Wednesday" => array(),
-    "Thursday" => array(),
-    "Friday" => array()
-  );
+    //STEP 2: ####### Get Unit Details, Lecturer taking the unit, Semester the unit is taught, 
+   //course name for which the unit belongs, academic year group the lecturer taught that unit #######
+    $units_query = "SELECT * FROM unit_details 
+    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id =unit_details.unit_code 
+    INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
+    INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
+    INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
+    INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
+    INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
+    INNER JOIN course_group_details ON course_group_details.course_id = course_group_details.course_id
+    GROUP BY unit_details.unit_code ORDER BY unit_details.unit_code ASC";
 
-  // Loop through the list of units
-  while ($row = mysqli_fetch_assoc($result)) {
-    $unit_id = $row['unit_code'];
-    $unit_name = $row['unit_name'];
-    $semester_id = $row['semester_id'];
-    $semester_name = $row['semester_name'];
-    $unit_type = $row['unit_type'];
-    $room_type = $row['room_type'];
-    $department = $row['department'];
+   $unit_results = mysqli_query($db,$units_query);
+   
+   if (mysqli_num_rows($unit_results) > 0) {
 
-    // Determine the capacity of the room based on the type of room and the department
-    if ($room_type == 'Standard') {
-      if ($department == 'IT') {
-        $capacity = 50;
-      } else if ($department == 'Business') {
-        $capacity = 60;
-      } else if ($department == 'Engineering') {
-        $capacity = 70;
-      }
-    } else if ($room_type == 'Laboratory') {
-      if ($department == 'IT') {
-        $capacity = 30;
-      } else if ($department == 'Business') {
-        $capacity = 40;
-      } else if ($department == 'Engineering') {
-        $capacity = 50;
-      }
-    }
+   
+     // Create a file pointer for the CSV file
+     $fp = fopen('unit_lecturer_details.csv', 'w');
 
-    // Determine the duration of the unit based on the type of unit
-    if ($type == 'Theory') {
-      $duration = 2;
-    } else if ($type == 'ICT-Practical') {
-      $duration = 3;
-    } else if ($type == 'ELECT-Practical') {
-      $duration = 4;
-    }
+     // Write the headers for the CSV file
+     fputcsv($fp, array('Unit ID', 'Unit Name', 'Lecturer ID', 'Lecturer Name', 'Semester', 'Course Name', 'Course Group'));
+ 
+     // Loop through the results and write each row to the CSV file
+     while ($row = mysqli_fetch_assoc($unit_results)) {
+         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_id'], $row['course_shortform'], $row['academic_year_id']));
+     }
+ 
+     // Close the file pointer
+     fclose($fp);
 
-    // Determine the number of groups based on the department and the semester
-    if ($department == 'IT') {
-      if ($semester == 'YEAR 1 SEMESTER 1' || $semester == 'YEAR 1 SEMESTER 2') {
-        $num_groups = 2;
-      } else if ($semester == 'YEAR 2 SEMESTER 1' || $semester == 'YEAR 2 SEMESTER 2') {
-        $num_groups = 3;
-      } else if ($semester == 'YEAR 3 SEMESTER 1' || $semester == 'YEAR 3 SEMESTER 2') {
-        $num_groups = 4;
-      } else if ($semester == 'YEAR 4 SEMESTER 1' || $semester == 'YEAR 4 SEMESTER 2') {
-        $num_groups = 5;
-      }
-    } else if ($department == 'Business') {
-      if ($semester == 'YEAR 1 SEMESTER 1' || $semester == 'YEAR 1 SEMESTER 2') {
-        $num_groups = 2;
-      } else if ($semester == 'YEAR 2 SEMESTER 1' || $semester == 'YEAR 2 SEMESTER 2') {
-        $num_groups = 3;
-      } else if ($semester == 'YEAR3 SEMESTER 1' || $semester == 'YEAR 3 SEMESTER 2') {
-        $num_groups = 4;
-        } else if ($semester == 'YEAR 4 SEMESTER 1' || $semester == 'YEAR 4 SEMESTER 2') {
-        $num_groups = 5;
+     //Push Unit_results to the $units array
+     while ($row = mysqli_fetch_assoc($unit_results)) {
+        $units[] = $row; // Add each row to the $units array
+     }
+    } else {
+            // Query did not return any rows
+            // Query was not successful
+            // Get the error message
+            $error_message = mysqli_error($db);
+            
+            // Display an error message to the user or log the error for further investigation
+            echo "Error: " . $error_message;
         }
-        } else if ($department == 'Engineering') {
-        if ($semester == 'YEAR 1 SEMESTER 1' || $semester == 'YEAR 1 SEMESTER 2') {
-        $num_groups = 2;
-        } else if ($semester == 'YEAR 2 SEMESTER 1' || $semester == 'YEAR 2 SEMESTER 2') {
-        $num_groups = 3;
-        } else if ($semester == 'YEAR 3 SEMESTER 1' || $semester == 'YEAR 3 SEMESTER 2') {
-        $num_groups = 4;
-        } else if ($semester == 'YEAR 4 SEMESTER 1' || $semester == 'YEAR 4 SEMESTER 2') {
-        $num_groups = 5;
+
+   //STEP 3: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
+   $timeslots = array(
+    'Monday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Tuesday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Wednesday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Thursday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Friday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+);
+
+// Define the filename and path to save timeslots in a CSV file
+// $filename = __DIR__ . '/timeslots.csv';
+// $fp = fopen($filename, 'w');
+// foreach ($timeslots as $day => $slots) {
+//     fputcsv($fp, [$day]);
+//     foreach ($slots as $slot) {
+//         fputcsv($fp, [$slot]);
+//     }
+// }
+// fclose($fp);
+
+//STEP 4: GET ROOM DETAILS AND PUSH THEM TO rooms array
+    $rooms_query = "SELECT * FROM room_details 
+    INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
+    $room_results = mysqli_query($db,$rooms_query);   
+    //populate room array
+    // Loop through the room results and add each room to the $rooms array
+while ($room = mysqli_fetch_assoc($room_results)) {
+    $rooms[] = array(
+        'room_id' => $room['room_id'],
+        'room_name' => $room['room_name'],
+        'capacity' => $room['room_capacity'],
+        'room_type' => $room['room_type']
+    );
+}
+// Open a new CSV file for writing room details
+// $file = fopen('rooms.csv', 'w');
+// // Add a header row to the CSV file
+// fputcsv($file, array('Room ID', 'Room Name', 'Capacity', 'Room Type'));
+// // Loop through the rooms array and add each room to the CSV file
+// foreach($rooms as $room) {
+//     fputcsv($file, $room);
+// }
+// // Close the CSV file
+// fclose($file);
+     
+
+// STEP 5: Assign units to timeslots:
+
+// shuffle the units randomly
+shuffle($units);
+
+// loop through each unit and assign to a timeslot, room, and day
+foreach ($units as $unit) {
+    // shuffle the timeslots, days, and rooms arrays randomly
+    shuffle($timeslots);
+    shuffle($days);
+    shuffle($rooms);
+
+    // loop through each day until a suitable timeslot is found
+    foreach ($days as $day) {
+        foreach ($timeslots as $timeslot) {
+            // loop through each room until a suitable room is found
+            foreach ($rooms as $room) {
+                // check if the room capacity is enough for the unit
+                if ($room['room_capacity'] >= $unit['group_number']) {
+                    // assign the unit to the timeslot, room, and day
+                    $assignment = array(
+                        'code' => $unit['unit_code'],
+                        'unit' => $unit['unit_name'],
+                        'day' => $day,
+                        'timeslot' => $timeslot,
+                        'room' => $room['room_id']
+                    );
+
+
+                    $unit_id = $assignment['code'];
+                    $unit_name= $assignment['unit'];
+                    $day = $assignment['day'];
+                    $timeslot = $assignment['timeslot'];
+                    $room = $assignment['room'];
+
+                    // save the assignment to the database or elsewhere
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`, `room_id`, `time_slot_id`, `weekday_id`)
+                    VALUES ('$unit_id','$room','$timeslot','$day')
+                    ";
+  	                $assignment_results = mysqli_query($db, $assignment_query);
+
+                    // remove the assigned room from the list of available rooms
+                    $room_index = array_search($room, $rooms);
+                    unset($rooms[$room_index]);
+
+                    // break out of the room loop
+                    break;
+                }
+            }
+            // check if the unit has been assigned to a room
+            if (isset($assignment)) {
+                // break out of the timeslot loop
+                break;
+            }
         }
+        // check if the unit has been assigned to a timeslot and room
+        if (isset($assignment)) {
+            // break out of the day loop
+            break;
         }
-        // Loop through the days of the week
-foreach ($timetable as $day => $slots) {
-  // Loop through the time slots of the day
-  for ($i = 0; $i <= 8; $i++) {
-    // Check if the slot is available for all the groups
-    $slot_available = true;
-    for ($j = 1; $j <= $num_groups; $j++) {
-      $group = $department . ' ' . 'GROUP ' . $j;
-      $query = "SELECT COUNT(*) FROM timetable WHERE day='$day' AND slot=$i AND group_name='$group'";
-      $result = mysqli_query($conn, $query);
-      $row = mysqli_fetch_assoc($result);
-      if ($row['COUNT(*)'] > 0) {
-        $slot_available = false;
-      }
     }
-
-    // Check if the slot is available for the lecturer
-    $query = "SELECT COUNT(*) FROM timetable WHERE day='$day' AND slot=$i AND lecturer='$lecturer'";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($result);
-    if ($row['COUNT(*)'] > 0) {
-      $slot_available = false;
-    }
-
-    // Check if the slot is available for the room
-    $query = "SELECT COUNT(*) FROM timetable WHERE day='$day' AND slot=$i AND room_type='$room_type' AND capacity>=$num_groups";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($result);
-    if ($row['COUNT(*)'] > 0) {
-      $slot_available = false;
-    }
-
-    // If the slot is available, assign the unit to the slot
-    if ($slot_available) {
-      for ($j = 1; $j <= $num_groups; $j++) {
-        $group = $department . ' ' . 'GROUP ' . $j;
-        $query = "INSERT INTO timetable (day, slot, unit_name, lecturer, room_type, group_name, num_groups) VALUES ('$day', $i, '$unit', '$lecturer', '$room_type', '$group', $num_groups)";
-        mysqli_query($conn, $query);
-      }
-      break;
-    }
-  }
-}
-// Disconnect from the database
-mysqli_close($conn);
-
-// Return the timetable
-return $timetable;
-}
 }
 
 
-//generate timetable
+}//END OF FUNCTION
+
+
+
+
+
+//generate timetable on clicking a button
 if (isset($_POST['generate-timetable-btn'])) {
+
+//generate TT
+generateTimetable($sem);
 
 }
 
@@ -218,6 +264,15 @@ include '../assets/components/header.php';
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Timetables
                                 </li>
+                                <?php
+                                                    echo $assignment['code']; // prints the assigned unit code
+                                                    echo $assignment['unit']; // prints the assigned unit name
+                                                    echo $assignment['day']; // prints the assigned day
+                                                    echo $assignment['timeslot']; // prints the assigned timeslot
+                                                    echo $assignment['room']; // prints the assigned room ID
+                                
+                                
+                                ?>
 
                             </ol>
                         </nav>
@@ -241,12 +296,27 @@ include '../assets/components/header.php';
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Generate Timetable</h5>
-                            <input type='button' value='Generate Timetable' name='generate-timetable-btn'
-                                class='btn btn-primary float-end open-timetable-modal-btn m-2'>
 
+
+                            <form method="POST" action="">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sem_id" name="semester_id">
+                                                <option value="" selected>Select semester...</option>
+                                                <option value="SEM1">Semester 1</option>
+                                                <option value="SEM2">Semester 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-primary"
+                                            name="generate-timetable-btn">Generate Timetable</button>
+                                    </div>
+                                </div>
+                            </form>
                             <!--CSV file in an iframe-->
-                            <!-- <iframe src="" width="100%" height="400"></iframe> -->
-
+                            <iframe src="" width="100%" height="400"></iframe>
 
                         </div>
                     </div>
