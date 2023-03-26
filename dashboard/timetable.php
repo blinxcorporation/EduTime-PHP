@@ -27,6 +27,7 @@ function generateTimetable($sem) {
   INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
   INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
   INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
+  INNER JOIN course_group_details ON course_group_details.course_id = unit_course_details.course_id
   INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
   INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
   INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id
@@ -35,6 +36,8 @@ function generateTimetable($sem) {
   INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
   ";
   $unit_results = mysqli_query($db, $units_query);
+
+  //
 }
 
 //generate timetable on clicking a button
