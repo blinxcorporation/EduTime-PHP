@@ -1,0 +1,537 @@
+"Unit ID","Unit Name","Lecturer ID","Lecturer Name",Semester,"Course Name","Course Group"
+"CCS 104","Object Oriented Programming",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 206","Application Development for the Internet",PF029,"James Obuhuma","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 416","Information Retrival",PF029,"James Obuhuma","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 318","Introduction to Expert Systems",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 306","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 418","Advanced Database Systems",PF06,"Calvins Otieno","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 210","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 412","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 308","Research Methods and Technical Writing",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 204","Assembly Language Programming",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 208","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 122",Electronics,PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 202","Computer Organization and architecture",PF25,"Vivian Oloo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 406","Computer Science Project II",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 404","Social Legal and ethical issues in Computing",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 414","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 316","Network Administration",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 314","Computer Networks Lab II (CISCO II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 312","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 214","Group Project",PF27,"John Alwala","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 302","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 304","Project II ",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 212","Web Design and Publishing",PF30,"M O Adongo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2022_2023
+"CCS 104","Object Oriented Programming",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 206","Application Development for the Internet",PF029,"James Obuhuma","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 416","Information Retrival",PF029,"James Obuhuma","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 318","Introduction to Expert Systems",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 306","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 418","Advanced Database Systems",PF06,"Calvins Otieno","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 210","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 412","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 308","Research Methods and Technical Writing",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 204","Assembly Language Programming",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 208","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 122",Electronics,PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 202","Computer Organization and architecture",PF25,"Vivian Oloo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 406","Computer Science Project II",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 404","Social Legal and ethical issues in Computing",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 414","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 316","Network Administration",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 314","Computer Networks Lab II (CISCO II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 312","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 214","Group Project",PF27,"John Alwala","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 302","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 304","Project II ",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 212","Web Design and Publishing",PF30,"M O Adongo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2019_2020
+"CCS 104","Object Oriented Programming",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 206","Application Development for the Internet",PF029,"James Obuhuma","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 416","Information Retrival",PF029,"James Obuhuma","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 318","Introduction to Expert Systems",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 306","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 418","Advanced Database Systems",PF06,"Calvins Otieno","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 210","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 412","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 308","Research Methods and Technical Writing",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 204","Assembly Language Programming",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 208","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 122",Electronics,PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 202","Computer Organization and architecture",PF25,"Vivian Oloo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 406","Computer Science Project II",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 404","Social Legal and ethical issues in Computing",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 414","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 316","Network Administration",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 314","Computer Networks Lab II (CISCO II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 312","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 214","Group Project",PF27,"John Alwala","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 302","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 304","Project II ",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 212","Web Design and Publishing",PF30,"M O Adongo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2021_2022
+"CCS 104","Object Oriented Programming",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 206","Application Development for the Internet",PF029,"James Obuhuma","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 416","Information Retrival",PF029,"James Obuhuma","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 318","Introduction to Expert Systems",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 306","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 418","Advanced Database Systems",PF06,"Calvins Otieno","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 210","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 412","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 308","Research Methods and Technical Writing",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 204","Assembly Language Programming",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 208","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 122",Electronics,PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 202","Computer Organization and architecture",PF25,"Vivian Oloo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 406","Computer Science Project II",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 404","Social Legal and ethical issues in Computing",PF25,"Vivian Oloo","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 414","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 316","Network Administration",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 314","Computer Networks Lab II (CISCO II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 312","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 214","Group Project",PF27,"John Alwala","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 302","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 304","Project II ",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCS 212","Web Design and Publishing",PF30,"M O Adongo","Year 2 Semester 2","Bachelor of Science in Computer Science",YR_2020_2021
+"CCT 312","Embedded Computing Systems I",PF029,"James Obuhuma","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 104","Object Oriented programming in Java ",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 308","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 320","Group Project II",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 212","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 418","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 316","Digital Communications Systems",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 412","Computer Systems Engineering II",PF21,"Sylvester McOyowo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 402","Computer-Aided Analysis and Design",PF22,"Henry Okoyo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 302","Computer Architecture II",PF22,"Henry Okoyo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 206","Circuits and Systems",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 215","Applied Electromagnetics",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 210","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 202","Digital Electronics II",PF24,"Dickson Omingo","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 118","Digital Electronics I LAB",PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 318","Optical Devices and Systems",PF24,"Dickson Omingo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 112","Electronics II",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 214","Signals and Systems",PF26,"John Konyino","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 420","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 116","Digital Electronics I",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 322","Computer Networks Lab II (Cisco II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 306","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 304","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2020_2021
+"CCT 312","Embedded Computing Systems I",PF029,"James Obuhuma","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 104","Object Oriented programming in Java ",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 308","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 320","Group Project II",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 212","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 418","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 316","Digital Communications Systems",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 412","Computer Systems Engineering II",PF21,"Sylvester McOyowo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 402","Computer-Aided Analysis and Design",PF22,"Henry Okoyo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 302","Computer Architecture II",PF22,"Henry Okoyo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 206","Circuits and Systems",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 215","Applied Electromagnetics",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 210","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 202","Digital Electronics II",PF24,"Dickson Omingo","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 118","Digital Electronics I LAB",PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 318","Optical Devices and Systems",PF24,"Dickson Omingo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 112","Electronics II",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 214","Signals and Systems",PF26,"John Konyino","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 420","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 116","Digital Electronics I",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 322","Computer Networks Lab II (Cisco II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 306","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 304","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2021_2022
+"CCT 312","Embedded Computing Systems I",PF029,"James Obuhuma","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 104","Object Oriented programming in Java ",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 308","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 320","Group Project II",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 212","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 418","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 316","Digital Communications Systems",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 412","Computer Systems Engineering II",PF21,"Sylvester McOyowo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 402","Computer-Aided Analysis and Design",PF22,"Henry Okoyo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 302","Computer Architecture II",PF22,"Henry Okoyo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 206","Circuits and Systems",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 215","Applied Electromagnetics",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 210","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 202","Digital Electronics II",PF24,"Dickson Omingo","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 118","Digital Electronics I LAB",PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 318","Optical Devices and Systems",PF24,"Dickson Omingo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 112","Electronics II",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 214","Signals and Systems",PF26,"John Konyino","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 420","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 116","Digital Electronics I",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 322","Computer Networks Lab II (Cisco II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 306","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 304","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2019_2020
+"CCT 312","Embedded Computing Systems I",PF029,"James Obuhuma","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 104","Object Oriented programming in Java ",PF029,"James Obuhuma","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 308","Software Engineering",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 320","Group Project II",PF06,"Calvins Otieno","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 212","Automata Theory",PF20,"Lilian Wanzare","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 418","Natural Language Processing",PF20,"Lilian Wanzare","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 316","Digital Communications Systems",PF21,"Sylvester McOyowo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 412","Computer Systems Engineering II",PF21,"Sylvester McOyowo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 402","Computer-Aided Analysis and Design",PF22,"Henry Okoyo","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 302","Computer Architecture II",PF22,"Henry Okoyo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 206","Circuits and Systems",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 215","Applied Electromagnetics",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 210","Data Communications",PF23,"Solomon Nyabundi","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 202","Digital Electronics II",PF24,"Dickson Omingo","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 118","Digital Electronics I LAB",PF24,"Dickson Omingo","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 318","Optical Devices and Systems",PF24,"Dickson Omingo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 112","Electronics II",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 214","Signals and Systems",PF26,"John Konyino","Year 2 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 420","Pattern Recognition",PF26,"John Konyino","Year 4 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 116","Digital Electronics I",PF26,"John Konyino","Year 1 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 322","Computer Networks Lab II (Cisco II)",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 306","Mobile Computing",PF27,"John Alwala","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CCT 304","Human Computer Interaction",PF30,"M O Adongo","Year 3 Semester 2","Bachelor of Science in Computer Technology",YR_2022_2023
+"CIM 216","ICT Consultancy Project",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 312","Project (Programming)",PF02,"Violet Settim","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 418","Software Implementation Techniques",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 420","Software Quality Assurance",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 308","Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 322","Internet Based Programming",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 120"," Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 202","Operations Management",PF08,"George Omuono","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 306","Group Project 2",PF08,"George Omuono","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 304","Unix Fundamentals",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 316","System Administration II",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 206","Messaging and Communication",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 208","Work Flow Applications",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 212","Security in Applications",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 404","Security Policies",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 408","Information Systems Audits",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 214","Structured Programming Models",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 210","Office Applications Programming",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 402","IT Project Management",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 302","IT Service Support and Delivery",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 320","Object Oriented Systems Analysis & Design",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 410","Managing the IT Investment",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 416","Emerging Database Technologies & Applications",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 422","Decision Making Systems",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 204","Customer Care",PF60,"Thomas Ojijo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 406","Change Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 412",Entrepreneurship,PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2020_2021
+"CIM 216","ICT Consultancy Project",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 312","Project (Programming)",PF02,"Violet Settim","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 418","Software Implementation Techniques",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 420","Software Quality Assurance",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 308","Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 322","Internet Based Programming",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 120"," Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 202","Operations Management",PF08,"George Omuono","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 306","Group Project 2",PF08,"George Omuono","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 304","Unix Fundamentals",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 316","System Administration II",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 206","Messaging and Communication",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 208","Work Flow Applications",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 212","Security in Applications",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 404","Security Policies",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 408","Information Systems Audits",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 214","Structured Programming Models",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 210","Office Applications Programming",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 402","IT Project Management",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 302","IT Service Support and Delivery",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 320","Object Oriented Systems Analysis & Design",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 410","Managing the IT Investment",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 416","Emerging Database Technologies & Applications",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 422","Decision Making Systems",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 204","Customer Care",PF60,"Thomas Ojijo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 406","Change Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 412",Entrepreneurship,PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2019_2020
+"CIM 216","ICT Consultancy Project",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 312","Project (Programming)",PF02,"Violet Settim","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 418","Software Implementation Techniques",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 420","Software Quality Assurance",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 308","Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 322","Internet Based Programming",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 120"," Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 202","Operations Management",PF08,"George Omuono","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 306","Group Project 2",PF08,"George Omuono","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 304","Unix Fundamentals",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 316","System Administration II",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 206","Messaging and Communication",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 208","Work Flow Applications",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 212","Security in Applications",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 404","Security Policies",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 408","Information Systems Audits",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 214","Structured Programming Models",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 210","Office Applications Programming",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 402","IT Project Management",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 302","IT Service Support and Delivery",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 320","Object Oriented Systems Analysis & Design",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 410","Managing the IT Investment",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 416","Emerging Database Technologies & Applications",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 422","Decision Making Systems",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 204","Customer Care",PF60,"Thomas Ojijo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 406","Change Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 412",Entrepreneurship,PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2022_2023
+"CIM 216","ICT Consultancy Project",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 312","Project (Programming)",PF02,"Violet Settim","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 418","Software Implementation Techniques",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 420","Software Quality Assurance",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 308","Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 322","Internet Based Programming",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 120"," Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 202","Operations Management",PF08,"George Omuono","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 306","Group Project 2",PF08,"George Omuono","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 304","Unix Fundamentals",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 316","System Administration II",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 206","Messaging and Communication",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 208","Work Flow Applications",PF15,"Bethuel Okelo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 212","Security in Applications",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 404","Security Policies",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 408","Information Systems Audits",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 214","Structured Programming Models",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 210","Office Applications Programming",PF17,"Moses Wainaina","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 402","IT Project Management",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 302","IT Service Support and Delivery",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 320","Object Oriented Systems Analysis & Design",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 410","Managing the IT Investment",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 416","Emerging Database Technologies & Applications",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 422","Decision Making Systems",PF19,"Rose Kapukha","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 204","Customer Care",PF60,"Thomas Ojijo","Year 2 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 406","Change Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIM 412",Entrepreneurship,PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information and Communication Technology Management",YR_2021_2022
+"CIS 212","Computer Networks Lab III",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 120","Computer Based Information Systems Concepts",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 306","Group Project 2",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 302","Computer Aided Art and Design",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 310","Mobile Devices and Wireless Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 404","Information Systems Security and Controls",PF04,"Isaac Owino","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 308","Web Server Applications Development",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 412","Business Continuity and Disaster Recovery",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 202","Transaction Processing Systems",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 206","Insurance and Risk Management",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 204","Group Project",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 210","Human Computer Interaction",PF14,"Maurine Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 314","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 214","IS Audit and Control",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 416","Knowledge Based Systems",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 108","Systems Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 208","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 304","Database Administration",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 406","Strategic Management",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 408","IS Project Execution",PF52,"Roxanne Hawi","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 312","Business Ethics and Corporate Governance",PF60,"Thomas Ojijo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 402","Business Process Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"ABS 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2019_2020
+"CIS 212","Computer Networks Lab III",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 120","Computer Based Information Systems Concepts",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 306","Group Project 2",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 302","Computer Aided Art and Design",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 310","Mobile Devices and Wireless Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 404","Information Systems Security and Controls",PF04,"Isaac Owino","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 308","Web Server Applications Development",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 412","Business Continuity and Disaster Recovery",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 202","Transaction Processing Systems",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 206","Insurance and Risk Management",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 204","Group Project",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 210","Human Computer Interaction",PF14,"Maurine Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 314","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 214","IS Audit and Control",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 416","Knowledge Based Systems",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 108","Systems Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 208","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 304","Database Administration",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 406","Strategic Management",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 408","IS Project Execution",PF52,"Roxanne Hawi","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 312","Business Ethics and Corporate Governance",PF60,"Thomas Ojijo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 402","Business Process Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"ABS 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2021_2022
+"CIS 212","Computer Networks Lab III",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 120","Computer Based Information Systems Concepts",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 306","Group Project 2",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 302","Computer Aided Art and Design",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 310","Mobile Devices and Wireless Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 404","Information Systems Security and Controls",PF04,"Isaac Owino","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 308","Web Server Applications Development",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 412","Business Continuity and Disaster Recovery",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 202","Transaction Processing Systems",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 206","Insurance and Risk Management",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 204","Group Project",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 210","Human Computer Interaction",PF14,"Maurine Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 314","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 214","IS Audit and Control",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 416","Knowledge Based Systems",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 108","Systems Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 208","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 304","Database Administration",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 406","Strategic Management",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 408","IS Project Execution",PF52,"Roxanne Hawi","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 312","Business Ethics and Corporate Governance",PF60,"Thomas Ojijo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 402","Business Process Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"ABS 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2022_2023
+"CIS 212","Computer Networks Lab III",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 120","Computer Based Information Systems Concepts",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 306","Group Project 2",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 302","Computer Aided Art and Design",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 310","Mobile Devices and Wireless Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 404","Information Systems Security and Controls",PF04,"Isaac Owino","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 308","Web Server Applications Development",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 412","Business Continuity and Disaster Recovery",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 202","Transaction Processing Systems",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 206","Insurance and Risk Management",PF11,"Charles Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 204","Group Project",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 210","Human Computer Interaction",PF14,"Maurine Awuor","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 314","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 214","IS Audit and Control",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 416","Knowledge Based Systems",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 108","Systems Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 208","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 304","Database Administration",PF18,"Yvonne Mwajuma","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 406","Strategic Management",PF18,"Yvonne Mwajuma","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 408","IS Project Execution",PF52,"Roxanne Hawi","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 312","Business Ethics and Corporate Governance",PF60,"Thomas Ojijo","Year 3 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIS 402","Business Process Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"ABS 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Systems",YR_2020_2021
+"CIT 322","Computer Networks Lab 4",PF01," Titus Muhambe","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 204","Networking Administration and Management",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 212","Computer Networks lab II",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 402","IT project II",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 310","Information Assurance and Security II",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 404","Cryptography and Information Security",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 418","Authentication Protocols and Biometrics",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 202","Computer Aided Design",PF04,"Isaac Owino","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 306","Wireless and Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 308","Web systems and Technologies II",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 120","Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 216","System Administration and Management",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 318","Artificial Intelligence",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 314","Mobile Programming",PF13,"Rennish Mboya","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 302","Human Computer Interaction",PF14,"Maurine Awuor","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 406","Social and Professional Issues In IT",PF14,"Maurine Awuor","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 316","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 416","Network Security",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 206","Research Methods and Technical Writing",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 304","Integrative programming and technologies",PF17,"Moses Wainaina","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 408","IT and Development",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 210","Object Oriented Analysis and Design",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 214","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 312","Group Project (Project Implementation)",PF19,"Rose Kapukha","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 208","Group Project",PF52,"Roxanne Hawi","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"ABA 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2020_2021
+"CIT 322","Computer Networks Lab 4",PF01," Titus Muhambe","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 204","Networking Administration and Management",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 212","Computer Networks lab II",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 402","IT project II",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 310","Information Assurance and Security II",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 404","Cryptography and Information Security",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 418","Authentication Protocols and Biometrics",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 202","Computer Aided Design",PF04,"Isaac Owino","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 306","Wireless and Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 308","Web systems and Technologies II",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 120","Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 216","System Administration and Management",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 318","Artificial Intelligence",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 314","Mobile Programming",PF13,"Rennish Mboya","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 302","Human Computer Interaction",PF14,"Maurine Awuor","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 406","Social and Professional Issues In IT",PF14,"Maurine Awuor","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 316","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 416","Network Security",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 206","Research Methods and Technical Writing",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 304","Integrative programming and technologies",PF17,"Moses Wainaina","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 408","IT and Development",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 210","Object Oriented Analysis and Design",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 214","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 312","Group Project (Project Implementation)",PF19,"Rose Kapukha","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 208","Group Project",PF52,"Roxanne Hawi","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"ABA 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2019_2020
+"CIT 322","Computer Networks Lab 4",PF01," Titus Muhambe","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 204","Networking Administration and Management",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 212","Computer Networks lab II",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 402","IT project II",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 310","Information Assurance and Security II",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 404","Cryptography and Information Security",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 418","Authentication Protocols and Biometrics",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 202","Computer Aided Design",PF04,"Isaac Owino","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 306","Wireless and Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 308","Web systems and Technologies II",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 120","Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 216","System Administration and Management",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 318","Artificial Intelligence",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 314","Mobile Programming",PF13,"Rennish Mboya","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 302","Human Computer Interaction",PF14,"Maurine Awuor","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 406","Social and Professional Issues In IT",PF14,"Maurine Awuor","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 316","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 416","Network Security",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 206","Research Methods and Technical Writing",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 304","Integrative programming and technologies",PF17,"Moses Wainaina","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 408","IT and Development",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 210","Object Oriented Analysis and Design",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 214","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 312","Group Project (Project Implementation)",PF19,"Rose Kapukha","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 208","Group Project",PF52,"Roxanne Hawi","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"ABA 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2022_2023
+"CIT 322","Computer Networks Lab 4",PF01," Titus Muhambe","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 204","Networking Administration and Management",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 212","Computer Networks lab II",PF01," Titus Muhambe","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 118","Computer Communication Theory",PF01," Titus Muhambe","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 402","IT project II",PF02,"Violet Settim","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 310","Information Assurance and Security II",PF03," Samuel Oonge","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 404","Cryptography and Information Security",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 418","Authentication Protocols and Biometrics",PF03," Samuel Oonge","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 202","Computer Aided Design",PF04,"Isaac Owino","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 306","Wireless and Mobile Computing",PF04,"Isaac Owino","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 308","Web systems and Technologies II",PF07,"David Saka","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 414","Cloud Computing and Emerging Applications",PF08,"George Omuono","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 120","Computer Organization and Architecture",PF08,"George Omuono","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 216","System Administration and Management",PF12,"Gabriel Oliko","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 318","Artificial Intelligence",PF12,"Gabriel Oliko","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 314","Mobile Programming",PF13,"Rennish Mboya","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 302","Human Computer Interaction",PF14,"Maurine Awuor","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 406","Social and Professional Issues In IT",PF14,"Maurine Awuor","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 316","Computer Graphics",PF15,"Bethuel Okelo","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 416","Network Security",PF16,"Michael Wambwere","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 104","Object Oriented Programming I",PF16,"Michael Wambwere","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 206","Research Methods and Technical Writing",PF16,"Michael Wambwere","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 304","Integrative programming and technologies",PF17,"Moses Wainaina","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 408","IT and Development",PF17,"Moses Wainaina","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 210","Object Oriented Analysis and Design",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 214","Software Engineering",PF18,"Yvonne Mwajuma","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 108","System Analysis and Design",PF18,"Yvonne Mwajuma","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 106","Database Systems",PF19,"Rose Kapukha","Year 1 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 312","Group Project (Project Implementation)",PF19,"Rose Kapukha","Year 3 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"CIT 208","Group Project",PF52,"Roxanne Hawi","Year 2 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022
+"ABA 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo","Year 4 Semester 2","Bachelor of Science in Information Technology",YR_2021_2022

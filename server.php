@@ -5,6 +5,9 @@ session_start();
 // connect to the database
 try {
   $db = mysqli_connect('localhost', 'benson', 'benson', 'timetable');
+  if (!$db) {
+    die('Could not connect: ' . mysqli_connect_error());
+}
 } catch(Exception $e) {
   echo 'Database Connection Failed.';
 }

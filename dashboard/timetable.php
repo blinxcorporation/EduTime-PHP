@@ -1,5 +1,6 @@
 <?php
 include '../server.php';
+
 if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
   // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
   session_destroy();
@@ -14,43 +15,57 @@ if ($_SESSION['role_name'] !== 'Admin') {
   exit;
 }
 
-$pfno = $_SESSION['pfno'];
-$fname = $_SESSION['fname'];
-$lname = $_SESSION['lname'];
-$name = $_SESSION['fname'] . " ".$_SESSION['lname'];
-$mail = $_SESSION['email'];
-
 //generate timetable function
-function generateTimetable($sem) {
-  //Fetch Units selected by Lecturers
-  $units_query = "SELECT * FROM unit_details 
-  INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
-  INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
-  INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
-  INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
-  INNER JOIN course_group_details ON course_group_details.course_id = unit_course_details.course_id
-  INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
-  INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
-  INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id
-  INNER JOIN department_details ON department_details.department_id = department_course_details.department_id
-  INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
-  INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
-  ";
-  $unit_results = mysqli_query($db, $units_query);
+function generateTimetable() {
+    //GET database connection string inside function
+    global $db;
+    
+    // Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
+    $units = array();
+    $lecturers = array();
+    $courses = array();
+    $departments = array();
+    $schools = array();
+    $rooms = array();
+    $timeSlots = array();
 
-  //fetch rooms
-  $rooms_query ="SELECT * FROM room_details
-  INNER JOIN room_type_details ON room_type_details.room_type_id = room_details.room_type_id";
-  $room_results = mysqli_query($db, $rooms_query);
+    //get Units and the lecturers teaching the unit
+    $units_query = "SELECT * FROM unit_details 
+    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id =unit_details.unit_code 
+    INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
+    INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
+    INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
+    INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
+    INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
+    INNER JOIN course_group_details ON course_group_details.course_id = course_details.course_id
+    ";
+   $unit_results = mysqli_query($db,$units_query);
+   
+   //save unit and lecturer details on a csv file
+     // Create a file pointer for the CSV file
+     $fp = fopen('unit_lecturer_details.csv', 'w');
+
+     // Write the headers for the CSV file
+     fputcsv($fp, array('Unit ID', 'Unit Name', 'Lecturer ID', 'Lecturer Name', 'Semester', 'Course Name', 'Course Group'));
+ 
+     // Loop through the results and write each row to the CSV file
+     while ($row = mysqli_fetch_assoc($unit_results)) {
+         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_name'], $row['course_name'], $row['academic_year_id']));
+     }
+ 
+     // Close the file pointer
+     fclose($fp);
 }
+
+
+
+
 
 //generate timetable on clicking a button
 if (isset($_POST['generate-timetable-btn'])) {
-//Get Selected Semester
-$sem = $_POST['semester_id'];
 
 //generate TT
-generateTimetable($semester);
+generateTimetable($sem);
 
 }
 
@@ -104,7 +119,7 @@ include '../assets/components/header.php';
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Timetables
                                 </li>
-
+                                <?php echo $units;?>
                             </ol>
                         </nav>
                     </div>
@@ -130,27 +145,24 @@ include '../assets/components/header.php';
 
 
                             <form method="POST" action="">
-                                <form>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <select class="form-control" id="sem_id" name="semester_id">
-                                                    <option value="" selected>Select semester...</option>
-                                                    <option value="SEM1">Semester 1</option>
-                                                    <option value="SEM2">Semester 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <button type="submit" class="btn btn-primary"
-                                                name="generate-timetable-btn">Generate Timetable</button>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sem_id" name="semester_id">
+                                                <option value="" selected>Select semester...</option>
+                                                <option value="SEM1">Semester 1</option>
+                                                <option value="SEM2">Semester 2</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </form>
-
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-primary"
+                                            name="generate-timetable-btn">Generate Timetable</button>
+                                    </div>
+                                </div>
                             </form>
                             <!--CSV file in an iframe-->
-                            <!-- <iframe src="" width="100%" height="400"></iframe> -->
+                            <iframe src="" width="100%" height="400"></iframe>
 
 
                         </div>
