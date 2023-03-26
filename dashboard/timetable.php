@@ -28,6 +28,7 @@ function generateTimetable() {
     $schools = array();
     $rooms = array();
     $timeSlots = array();
+    $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 
     //STEP 2: ####### Get Unit Details, Lecturer taking the unit, Semester the unit is taught, 
    //course name for which the unit belongs, academic year group the lecturer taught that unit #######
@@ -109,8 +110,96 @@ function generateTimetable() {
 // }
 // fclose($fp);
 
-        
+//STEP 4: GET ROOM DETAILS AND PUSH THEM TO rooms array
+    $rooms_query = "SELECT * FROM room_details 
+    INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
+    $room_results = mysqli_query($db,$rooms_query);   
+    //populate room array
+    // Loop through the room results and add each room to the $rooms array
+while ($room = mysqli_fetch_assoc($room_results)) {
+    $rooms[] = array(
+        'room_id' => $room['room_id'],
+        'room_name' => $room['room_name'],
+        'capacity' => $room['room_capacity'],
+        'room_type' => $room['room_type']
+    );
+}
+// Open a new CSV file for writing room details
+// $file = fopen('rooms.csv', 'w');
+// // Add a header row to the CSV file
+// fputcsv($file, array('Room ID', 'Room Name', 'Capacity', 'Room Type'));
+// // Loop through the rooms array and add each room to the CSV file
+// foreach($rooms as $room) {
+//     fputcsv($file, $room);
+// }
+// // Close the CSV file
+// fclose($file);
      
+
+// STEP 5: Assign units to timeslots:
+
+// shuffle the units randomly
+shuffle($units);
+
+// loop through each unit and assign to a timeslot, room, and day
+foreach ($units as $unit) {
+    // shuffle the timeslots, days, and rooms arrays randomly
+    shuffle($timeslots);
+    shuffle($days);
+    shuffle($rooms);
+
+    // loop through each day until a suitable timeslot is found
+    foreach ($days as $day) {
+        foreach ($timeslots as $timeslot) {
+            // loop through each room until a suitable room is found
+            foreach ($rooms as $room) {
+                // check if the room capacity is enough for the unit
+                if ($room['room_capacity'] >= $unit['group_number']) {
+                    // assign the unit to the timeslot, room, and day
+                    $assignment = array(
+                        'code' => $unit['unit_code'],
+                        'unit' => $unit['unit_name'],
+                        'day' => $day,
+                        'timeslot' => $timeslot,
+                        'room' => $room['room_id']
+                    );
+
+
+                    $unit_id = $assignment['code'];
+                    $unit_name= $assignment['unit'];
+                    $day = $assignment['day'];
+                    $timeslot = $assignment['timeslot'];
+                    $room = $assignment['room'];
+
+                    // save the assignment to the database or elsewhere
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`, `room_id`, `time_slot_id`, `weekday_id`)
+                    VALUES ('$unit_id','$room','$timeslot','$day')
+                    ";
+  	                $assignment_results = mysqli_query($db, $assignment_query);
+
+                    // remove the assigned room from the list of available rooms
+                    $room_index = array_search($room, $rooms);
+                    unset($rooms[$room_index]);
+
+                    // break out of the room loop
+                    break;
+                }
+            }
+            // check if the unit has been assigned to a room
+            if (isset($assignment)) {
+                // break out of the timeslot loop
+                break;
+            }
+        }
+        // check if the unit has been assigned to a timeslot and room
+        if (isset($assignment)) {
+            // break out of the day loop
+            break;
+        }
+    }
+}
+
+
 }//END OF FUNCTION
 
 
@@ -175,6 +264,15 @@ include '../assets/components/header.php';
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Timetables
                                 </li>
+                                <?php
+                                                    echo $assignment['code']; // prints the assigned unit code
+                                                    echo $assignment['unit']; // prints the assigned unit name
+                                                    echo $assignment['day']; // prints the assigned day
+                                                    echo $assignment['timeslot']; // prints the assigned timeslot
+                                                    echo $assignment['room']; // prints the assigned room ID
+                                
+                                
+                                ?>
 
                             </ol>
                         </nav>
