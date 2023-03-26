@@ -20,7 +20,7 @@ function generateTimetable() {
     //GET database connection string inside function
     global $db;
     
-    // Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
+    //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
     $units = array();
     $lecturers = array();
     $courses = array();
@@ -29,7 +29,8 @@ function generateTimetable() {
     $rooms = array();
     $timeSlots = array();
 
-    //get Units and the lecturers teaching the unit
+    //STEP 2: ####### Get Unit Details, Lecturer taking the unit, Semester the unit is taught, 
+   //course name for which the unit belongs, academic year group the lecturer taught that unit #######
     $units_query = "SELECT * FROM unit_details 
     INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id =unit_details.unit_code 
     INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
@@ -42,7 +43,9 @@ function generateTimetable() {
 
    $unit_results = mysqli_query($db,$units_query);
    
-   //save unit and lecturer details on a csv file
+   if (mysqli_num_rows($unit_results) > 0) {
+
+   
      // Create a file pointer for the CSV file
      $fp = fopen('unit_lecturer_details.csv', 'w');
 
@@ -56,7 +59,59 @@ function generateTimetable() {
  
      // Close the file pointer
      fclose($fp);
-}
+
+     //Push Unit_results to the $units array
+     while ($row = mysqli_fetch_assoc($unit_results)) {
+        $units[] = $row; // Add each row to the $units array
+     }
+    } else {
+            // Query did not return any rows
+            // Query was not successful
+            // Get the error message
+            $error_message = mysqli_error($db);
+            
+            // Display an error message to the user or log the error for further investigation
+            echo "Error: " . $error_message;
+        }
+
+   //STEP 3: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
+   $timeslots = array(
+    'Monday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Tuesday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Wednesday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Thursday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+    'Friday' => array(
+        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+        '15:00-17:00', '17:00-19:00'
+    ),
+);
+
+// Define the filename and path to save timeslots in a CSV file
+// $filename = __DIR__ . '/timeslots.csv';
+// $fp = fopen($filename, 'w');
+// foreach ($timeslots as $day => $slots) {
+//     fputcsv($fp, [$day]);
+//     foreach ($slots as $slot) {
+//         fputcsv($fp, [$slot]);
+//     }
+// }
+// fclose($fp);
+
+        
+     
+}//END OF FUNCTION
 
 
 
@@ -120,7 +175,7 @@ include '../assets/components/header.php';
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Timetables
                                 </li>
-                                <?php echo $units;?>
+
                             </ol>
                         </nav>
                     </div>
@@ -164,7 +219,6 @@ include '../assets/components/header.php';
                             </form>
                             <!--CSV file in an iframe-->
                             <iframe src="" width="100%" height="400"></iframe>
-
 
                         </div>
                     </div>
