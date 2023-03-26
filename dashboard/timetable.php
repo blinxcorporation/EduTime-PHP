@@ -25,6 +25,7 @@ function generateTimetable($sem) {
   //Fetch Units selected by Lecturers
   $units_query = "SELECT * FROM unit_details 
   INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
+  INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
   INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
   INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
   INNER JOIN course_group_details ON course_group_details.course_id = unit_course_details.course_id
