@@ -20,56 +20,30 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
+//generate timetable function
+function generateTimetable($sem) {
+  //Fetch Units selected by Lecturers
+  $units_query = "SELECT * FROM unit_details 
+  INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
+  INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
+  INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
+  INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
+  INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
+  INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id
+  INNER JOIN department_details ON department_details.department_id = department_course_details.department_id
+  INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+  INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+  ";
+  $unit_results = mysqli_query($db, $units_query);
+}
 
+//generate timetable on clicking a button
+if (isset($_POST['generate-timetable-btn'])) {
 //Get Selected Semester
 $sem = $_POST['semester_id'];
-//generate timetable function
-function generateTimetable($semester) {
 
-  // Query the database to get the list of units that are active and selected by a lecturer
-if($sem == 'SEM1'){
-  $units_query = "SELECT * FROM unit_details
-  INNER JOIN lecturer_unit_details ON lecturer_unit_details.lecturer_id = unit_details.unit_code 
-  INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
-  INNER JOIN unit_semester_details ON unit_semester_details.unit_id =lecturer_unit_details.unit_id 
-  INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id 
-  WHERE unit_semester_details.semester_id LIKE 'Y1S1'
-   OR unit_semester_details.semester_id LIKE 'Y2S1'
-   OR unit_semester_details.semester_id LIKE 'Y3S1'
-   OR unit_semester_details.semester_id LIKE 'Y4S1'";
-}elseif ($sem == 'SEM2') {
-  $units_query = "SELECT * FROM unit_details
-  INNER JOIN lecturer_unit_details ON lecturer_unit_details.lecturer_id = unit_details.unit_code 
-  INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
-  INNER JOIN unit_semester_details ON unit_semester_details.unit_id =lecturer_unit_details.unit_id 
-  INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id 
-  WHERE unit_semester_details.semester_id LIKE 'Y1S2'
-   OR unit_semester_details.semester_id LIKE 'Y2S2'
-   OR unit_semester_details.semester_id LIKE 'Y3S2'
-   OR unit_semester_details.semester_id LIKE 'Y4S2'";
-}
-  $units_result = mysqli_query($db, $units_query);
-
-  // Create a two-dimensional array to store the timetable
-  $timetable = array(
-    "Monday" => array(),
-    "Tuesday" => array(),
-    "Wednesday" => array(),
-    "Thursday" => array(),
-    "Friday" => array()
-  );
-
-
-// Disconnect from the database
-mysqli_close($db);
-
-// Return the timetable
-return $timetable;
-}
-
-
-//generate timetable
-if (isset($_POST['generate-timetable-btn'])) {
+//generate TT
+generateTimetable($semester);
 
 }
 
@@ -153,7 +127,7 @@ include '../assets/components/header.php';
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <select class="form-control" id="sem_id" name="semester">
+                                                <select class="form-control" id="sem_id" name="semester_id">
                                                     <option value="" selected>Select semester...</option>
                                                     <option value="SEM1">Semester 1</option>
                                                     <option value="SEM2">Semester 2</option>
@@ -161,7 +135,8 @@ include '../assets/components/header.php';
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <button type="button" class="btn btn-primary">Generate Timetable</button>
+                                            <button type="submit" class="btn btn-primary"
+                                                name="generate-timetable-btn">Generate Timetable</button>
                                         </div>
                                     </div>
                                 </form>
