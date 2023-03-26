@@ -37,8 +37,9 @@ function generateTimetable() {
     INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
     INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
     INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
-    INNER JOIN course_group_details ON course_group_details.course_id = course_details.course_id
-    ";
+    INNER JOIN course_group_details ON course_group_details.course_id = course_group_details.course_id
+    GROUP BY unit_details.unit_code ORDER BY unit_details.unit_code ASC";
+
    $unit_results = mysqli_query($db,$units_query);
    
    //save unit and lecturer details on a csv file
@@ -50,7 +51,7 @@ function generateTimetable() {
  
      // Loop through the results and write each row to the CSV file
      while ($row = mysqli_fetch_assoc($unit_results)) {
-         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_name'], $row['course_shortform'], $row['academic_year_id']));
+         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_id'], $row['course_shortform'], $row['academic_year_id']));
      }
  
      // Close the file pointer
