@@ -37,7 +37,10 @@ function generateTimetable($sem) {
   ";
   $unit_results = mysqli_query($db, $units_query);
 
-  //
+  //fetch rooms
+  $rooms_query ="SELECT * FROM room_details
+  INNER JOIN room_type_details ON room_type_details.room_type_id = room_details.room_type_id";
+  $room_results = mysqli_query($db, $rooms_query);
 }
 
 //generate timetable on clicking a button
