@@ -50,7 +50,7 @@ function generateTimetable() {
  
      // Loop through the results and write each row to the CSV file
      while ($row = mysqli_fetch_assoc($unit_results)) {
-         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_name'], $row['course_name'], $row['academic_year_id']));
+         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_name'], $row['course_shortform'], $row['academic_year_id']));
      }
  
      // Close the file pointer
