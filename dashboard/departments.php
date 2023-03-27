@@ -135,59 +135,60 @@ $department_id = generate_department_id($school_id, $dpt_name);
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-  <title>Departments | EDUTIME</title>
-  <?php
+
+<head>
+    <title>Departments | EDUTIME</title>
+    <?php
 include '../assets/components/header.php';
 ?>
-  </head>
+</head>
 
-  <body>
+<body>
 
-      <!-- ============================================================== -->
-      <!-- Topbar header - style you can find in pages.scss -->
-      <!-- ============================================================== -->
-     <?php
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <?php
      include '../assets/components/topbar.php';
      ?>
-      <!-- ============================================================== -->
-      <!-- End Topbar header -->
-      <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
 
 
-      <!-- ============================================================== -->
-      <!-- Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <?php
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <?php
      include '../assets/components/sidebar.php';
      ?>
-      <!-- ============================================================== -->
-      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Page wrapper  -->
-      <!-- ============================================================== -->
-      <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <div class="page-breadcrumb pt-5">
-          <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Departments Details</h4>
-              <div class="ms-auto text-end">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Departments
-                    </li>
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Departments Details</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Departments
+                                </li>
 
-                  </ol>
-                </nav>
-              </div>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
@@ -196,27 +197,29 @@ include '../assets/components/header.php';
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-          <!-- ============================================================== -->
-          <!-- Start Page Content -->
-          <!-- ============================================================== -->
-    <div class="row">
-      <div class="col-12">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
 
-            <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">List of Departments</h5>
-            <input type='button' value='Add a Department' name='open-department-modal-btn' class='btn btn-primary float-end open-department-modal-btn m-2'>
-            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-<thead>
-    <tr>
-    <th>Department ID</th>
-    <th>Department Name</th>
-    <th>Date Added</th>
-    <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">List of Departments</h5>
+                            <input type='button' value='Add a Department' name='open-department-modal-btn'
+                                class='btn btn-primary float-end open-department-modal-btn m-2'>
+                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm"
+                                cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Department ID</th>
+                                        <th>Department Name</th>
+                                        <th>Date Added</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
   if($_SESSION['role_name'] == 'Admin' || $_SESSION['role_name'] == 'Dean'){
       $data_fetch_query = "SELECT * FROM `department_details`";
       $data_result = mysqli_query($db, $data_fetch_query);
@@ -250,20 +253,20 @@ include '../assets/components/header.php';
       }
 
 ?>
-  </tbody>
-  <tfoot>
-    <tr>
-    <th>Department ID</th>
-    <th>Department Name</th>
-    <th>Date Added</th>
-    <th>Action</th>
-    </tr>
-  </tfoot>
-</table>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Department ID</th>
+                                        <th>Department Name</th>
+                                        <th>Date Added</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
@@ -273,121 +276,129 @@ include '../assets/components/header.php';
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-    <?php
+        <?php
     include '../assets/components/footer.php';
     ?>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->
-      </div>
-      <!-- ============================================================== -->
-      <!-- End Page wrapper  -->
-      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <div class="modal" id='deleteDepartmentModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-        <div class="modal-body">
-        <p>Are you sure you want to delete this Department?</p>
-        <form method="POST" action="">
-        <div class="form-group">
-            <input type="text" hidden  class="form-control" id="departmentID" required readonly name='department_id'>
-          </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-        <button type="submit" name='delete-department-btn' class="btn btn-danger">Yes,Delete!</button>
-      </div>
-        </form>
-      </div>
-      
-      </div>
-     
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this Department?</p>
+                        <form method="POST" action="">
+                            <div class="form-group">
+                                <input type="text" hidden class="form-control" id="departmentID" required readonly
+                                    name='department_id'>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No,
+                                    Cancel</button>
+                                <button type="submit" name='delete-department-btn'
+                                    class="btn btn-danger">Yes,Delete!</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
-<!--edit Department details-->
-<div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editDepartmentModalLabel">Edit Department Details</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-        
-            <input type="text" readonly hidden name="dpt_id"  class="form-control" id="dpt_id" required>
-          
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <input type="text" name="dpt_name"  class="form-control" id="dpt_name" required>
-          </div>
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" name="update-department-details-btn">Update Details</button>
-      </div>
-        </form>
-      </div>
-     
+    <!--edit Department details-->
+    <div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog"
+        aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editDepartmentModalLabel">Edit Department Details</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="">
+
+                        <input type="text" readonly hidden name="dpt_id" class="form-control" id="dpt_id" required>
+
+                        <div class="form-group">
+                            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
+                            <input type="text" name="dpt_name" class="form-control" id="dpt_name" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-info" name="update-department-details-btn">Update
+                                Details</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- add new Department-->
-<div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addDepartmentModalLabel">Add a Department</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-        <div class="form-group">
-    <label for="exampleFormControlSelect1">Select School</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="uni_schools">
-<option value="">Select School</option>
-<?php $sql=mysqli_query($db,"select * from school_details");
+    <!-- add new Department-->
+    <div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog"
+        aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDepartmentModalLabel">Add a Department</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select School</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="uni_schools">
+                                <option value="">Select School</option>
+                                <?php $sql=mysqli_query($db,"select * from school_details");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['school_id']);?>">School of <?php echo htmlentities($rw['school_name']);?></option>
-<?php
+                                <option value="<?php echo htmlentities($rw['school_id']);?>">School of
+                                    <?php echo htmlentities($rw['school_name']);?></option>
+                                <?php
 }
 ?>
-    </select>
-  </div>
+                            </select>
+                        </div>
 
-        <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
-            <input type="text" name="department_name"  class="form-control" id="dpt_name" required placeholder="e.g Information Technology">
-          </div>
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="add-department-btn">Submit</button>
-      </div>
-        </form>
-      </div>
-     
+                        <div class="form-group">
+                            <label for="recipient-name" readonly class="col-form-label">Department Name:</label>
+                            <input type="text" name="department_name" class="form-control" id="dpt_name" required
+                                placeholder="e.g Information Technology">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info" name="add-department-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
     <!-- ============================================================== -->
@@ -410,66 +421,59 @@ while ($rw=mysqli_fetch_array($sql)) {
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
     <script>
-      /****************************************
-       *       Basic Table                   *
-       ****************************************/
-      $("#zero_config").DataTable();
+    $(document).ready(function() {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+    //add Department details modal code
+    function openDepartmentModal() {
+        $("#addDepartmentModal").modal("show");
+    }
+
+    let openAddDepartmentModalBtn = document.querySelector(".open-department-modal-btn");
+    openAddDepartmentModalBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        openDepartmentModal();
+    });
+
+    //edit Department details modal code
+    function editDepartmentModal() {
+        $("#editDepartmentModal").modal("show");
+    }
+    let editButtons = document.querySelectorAll(".edit-department-modal-btn");
+    editButtons.forEach(function(editButton) {
+        editButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            let departmentid = editButton.dataset.dptid;
+            let dpt_name = editButton.dataset.dptname;
+
+            document.getElementById("dpt_id").value = departmentid;
+            document.getElementById("dpt_name").value = dpt_name;
+
+            editDepartmentModal();
+        });
+    });
+
+    //delete Department modal query
+    function deleteDepartmentModal() {
+        $("#deleteDepartmentModal").modal("show");
+    }
+    let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
+    deleteBtns.forEach(function(deleteBtn) {
+        deleteBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            let dptid = deleteBtn.dataset.id;
+
+            document.getElementById("departmentID").value = dptid;
+
+            deleteDepartmentModal();
+        });
+    });
     </script>
 
-<script>
-$(document).ready(function () {
-  $('#dtBasicExample').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-});
+</body>
 
-//add Department details modal code
-function openDepartmentModal() {
-  $("#addDepartmentModal").modal("show");
-}
-
-let openAddDepartmentModalBtn = document.querySelector(".open-department-modal-btn");
-openAddDepartmentModalBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  openDepartmentModal();
-});
-
-//edit Department details modal code
-function editDepartmentModal() {
-    $("#editDepartmentModal").modal("show");
-  }
-  let editButtons = document.querySelectorAll(".edit-department-modal-btn");
-  editButtons.forEach(function (editButton) {
-    editButton.addEventListener("click", function (e) {
-      e.preventDefault();
-  
-      let departmentid = editButton.dataset.dptid;
-      let dpt_name = editButton.dataset.dptname;
-
-      document.getElementById("dpt_id").value = departmentid ;
-      document.getElementById("dpt_name").value = dpt_name;
-
-      editDepartmentModal();
-    });
-  });
-
-  //delete Department modal query
-    function deleteDepartmentModal() {
-    $("#deleteDepartmentModal").modal("show");
-  }
-  let deleteBtns = document.querySelectorAll(".deleteDepartmentBtn");
-  deleteBtns.forEach(function (deleteBtn) {
-    deleteBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-  
-      let dptid = deleteBtn.dataset.id;
-  
-      document.getElementById("departmentID").value = dptid;
-     
-      deleteDepartmentModal();
-    });
-  });
-
-  </script>
-
-  </body>
 </html>
