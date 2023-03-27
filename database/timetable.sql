@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2023 at 05:35 PM
+-- Generation Time: Mar 27, 2023 at 04:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -358,7 +358,24 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (148, 'PF11', 'CIS 206', 'YR_2021_2022', '2023-03-25 12:08:18'),
 (149, 'PF14', 'CIS 210', 'YR_2021_2022', '2023-03-25 12:09:01'),
 (150, 'PF60', 'ABS 424', 'YR_2019_2020', '2023-03-25 12:13:40'),
-(151, 'PF08', 'CIT 120', 'YR_2022_2023', '2023-03-25 12:20:41');
+(151, 'PF08', 'CIT 120', 'YR_2022_2023', '2023-03-25 12:20:41'),
+(152, 'PF20', 'CCS 216', 'YR_2021_2022', '2023-03-27 05:19:44'),
+(153, 'PF28', 'CCS 106', 'YR_2022_2023', '2023-03-27 05:21:29'),
+(154, 'PF28', 'CCS 110', 'YR_2022_2023', '2023-03-27 05:21:29'),
+(155, 'PF28', 'CCS 114', 'YR_2022_2023', '2023-03-27 05:21:29'),
+(156, 'PF28', 'CCT 106', 'YR_2022_2023', '2023-03-27 05:21:50'),
+(157, 'PF28', 'CCT 102', 'YR_2022_2023', '2023-03-27 05:21:50'),
+(158, 'PF28', 'CCS 112', 'YR_2022_2023', '2023-03-27 05:22:09'),
+(159, 'PF24', 'CCS 102', 'YR_2022_2023', '2023-03-27 05:22:58'),
+(160, 'PF22', 'CCS 108', 'YR_2022_2023', '2023-03-27 05:23:28'),
+(161, 'PF22', 'CCS 310', 'YR_2020_2021', '2023-03-27 05:23:50'),
+(162, 'PF22', 'CCS 422', 'YR_2019_2020', '2023-03-27 05:24:04'),
+(163, 'PF22', 'CCT 108', 'YR_2022_2023', '2023-03-27 05:24:35'),
+(164, 'PF25', 'CCT 114', 'YR_2022_2023', '2023-03-27 05:25:31'),
+(165, 'PF25', 'CCT 110', 'YR_2022_2023', '2023-03-27 05:25:31'),
+(166, 'PF25', 'CCS 408', 'YR_2019_2020', '2023-03-27 05:26:12'),
+(167, 'PF20', 'CCT 216', 'YR_2021_2022', '2023-03-27 05:27:52'),
+(168, 'PF30', 'CCT 406', 'YR_2019_2020', '2023-03-27 05:33:26');
 
 -- --------------------------------------------------------
 
@@ -1026,7 +1043,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (233, 'CCT 205', 'Engineering Mathematics III', 'Theory', 'Active', '2023-03-02 07:35:45'),
 (240, 'CCT 206', 'Circuits and Systems', 'Theory', 'Active', '2023-03-02 07:43:17'),
 (234, 'CCT 207', 'Digital Electronics I', 'ELECT-Practical', 'Active', '2023-03-02 07:36:12'),
-(241, 'CCT 208', 'Engineering Mathematics IV', 'Theory', 'Active', '2023-03-02 07:43:47'),
+(241, 'CCT 208', 'Engineering Mathematics IV', 'Theory', 'In-Active', '2023-03-02 07:43:47'),
 (235, 'CCT 209', 'Comp. Org. & Assm. Lang. Prog', 'Theory', 'Active', '2023-03-02 07:36:42'),
 (242, 'CCT 210', 'Data Communications', 'Theory', 'Active', '2023-03-02 07:44:15'),
 (236, 'CCT 211', 'Databases', 'Theory', 'Active', '2023-03-02 07:38:09'),
@@ -1069,7 +1086,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (272, 'CCT 419', 'Intelligent Agents', 'Theory', 'Active', '2023-03-02 07:58:40'),
 (281, 'CCT 420', 'Pattern Recognition', 'Theory', 'Active', '2023-03-02 08:02:49'),
 (273, 'CCT 425', 'Computer Networks Lab III (Cisco III)', 'ICT-Practical', 'Active', '2023-03-02 07:59:05'),
-(282, 'CCT 430', 'Computer Networks Lab IV (Cisco IV)', 'ICT-Practical', 'Active', '2023-03-02 08:03:16'),
+(282, 'CCT 430', 'Computer Networks Lab IV (Cisco IV)', 'ICT-Practical', 'In-Active', '2023-03-02 08:03:16'),
 (137, 'CIM 101', 'Business Organization', 'Theory', 'Active', '2023-03-02 06:37:46'),
 (138, 'CIM 103', 'Business Mathematics', 'Theory', 'Active', '2023-03-02 06:38:08'),
 (145, 'CIM 104', 'Object Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-02 06:41:04'),
@@ -2016,7 +2033,7 @@ ALTER TABLE `lecturer_department_details`
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `role_details`
