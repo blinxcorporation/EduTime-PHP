@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 25, 2023 at 09:15 PM
+-- Generation Time: Mar 27, 2023 at 04:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -65,7 +65,7 @@ CREATE TABLE `course_details` (
 INSERT INTO `course_details` (`id`, `course_id`, `course_name`, `course_shortform`, `date_added`) VALUES
 (1, 'CRS_CCS', 'Bachelor of Science in Computer Science', 'CCS', '2023-02-28 15:24:27'),
 (2, 'CRS_CCT', 'Bachelor of Science in Computer Technology', 'CCT', '2023-02-28 15:24:36'),
-(5, 'CRS_ICTM', 'Bachelor of Science in Information and Communication Technology Management', 'ICTM', '2023-03-01 21:33:39'),
+(5, 'CRS_ICTM', 'Bachelor of Science in Information and Communication Technology Management', 'CIM', '2023-03-01 21:33:39'),
 (3, 'CRS_IS', 'Bachelor of Science in Information Systems', 'CIS', '2023-02-28 15:40:09'),
 (4, 'CRS_IT', 'Bachelor of Science in Information Technology', 'CIT', '2023-02-28 15:27:38');
 
@@ -89,10 +89,26 @@ CREATE TABLE `course_group_details` (
 --
 
 INSERT INTO `course_group_details` (`id`, `group_id`, `course_id`, `academic_year_id`, `group_number`, `date_added`) VALUES
-(4, 'GRP_CRS-IS_228', 'CRS_IS', 'YR_2020_2021', 28, '2023-03-09 20:49:02'),
-(2, 'GRP_CRS-IS_804', 'CRS_IS', 'YR_2019_2020', 18, '2023-03-09 20:48:11'),
-(3, 'GRP_CRS-IS_82', 'CRS_IS', 'YR_2021_2022', 55, '2023-03-09 20:48:35'),
-(1, 'GRP_CRS-IT_681', 'CRS_IT', 'YR_2019_2020', 40, '2023-03-06 15:03:42');
+(8, 'GRP_CRS-CCS_229', 'CRS_CCS', 'YR_2022_2023', 80, '2023-03-26 12:59:48'),
+(5, 'GRP_CRS-CCS_366', 'CRS_CCS', 'YR_2019_2020', 62, '2023-03-26 12:58:48'),
+(7, 'GRP_CRS-CCS_580', 'CRS_CCS', 'YR_2021_2022', 95, '2023-03-26 12:59:13'),
+(6, 'GRP_CRS-CCS_74', 'CRS_CCS', 'YR_2020_2021', 53, '2023-03-26 12:58:59'),
+(10, 'GRP_CRS-CCT_332', 'CRS_CCT', 'YR_2020_2021', 32, '2023-03-26 13:00:37'),
+(11, 'GRP_CRS-CCT_392', 'CRS_CCT', 'YR_2021_2022', 48, '2023-03-26 13:00:52'),
+(9, 'GRP_CRS-CCT_635', 'CRS_CCT', 'YR_2019_2020', 45, '2023-03-26 13:00:18'),
+(12, 'GRP_CRS-CCT_734', 'CRS_CCT', 'YR_2022_2023', 72, '2023-03-26 13:01:07'),
+(14, 'GRP_CRS-ICTM_533', 'CRS_ICTM', 'YR_2020_2021', 40, '2023-03-26 13:01:31'),
+(13, 'GRP_CRS-ICTM_557', 'CRS_ICTM', 'YR_2019_2020', 36, '2023-03-26 13:01:23'),
+(16, 'GRP_CRS-ICTM_644', 'CRS_ICTM', 'YR_2022_2023', 40, '2023-03-26 13:01:59'),
+(15, 'GRP_CRS-ICTM_916', 'CRS_ICTM', 'YR_2021_2022', 51, '2023-03-26 13:01:42'),
+(17, 'GRP_CRS-IS_208', 'CRS_IS', 'YR_2019_2020', 18, '2023-03-26 13:03:09'),
+(19, 'GRP_CRS-IS_504', 'CRS_IS', 'YR_2021_2022', 30, '2023-03-26 13:03:24'),
+(20, 'GRP_CRS-IS_805', 'CRS_IS', 'YR_2022_2023', 28, '2023-03-26 13:03:32'),
+(18, 'GRP_CRS-IS_897', 'CRS_IS', 'YR_2020_2021', 23, '2023-03-26 13:03:17'),
+(22, 'GRP_CRS-IT_1000', 'CRS_IT', 'YR_2020_2021', 43, '2023-03-26 13:03:59'),
+(21, 'GRP_CRS-IT_317', 'CRS_IT', 'YR_2019_2020', 42, '2023-03-26 13:03:50'),
+(24, 'GRP_CRS-IT_794', 'CRS_IT', 'YR_2022_2023', 54, '2023-03-26 13:04:17'),
+(23, 'GRP_CRS-IT_797', 'CRS_IT', 'YR_2021_2022', 50, '2023-03-26 13:04:09');
 
 -- --------------------------------------------------------
 
@@ -342,7 +358,24 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (148, 'PF11', 'CIS 206', 'YR_2021_2022', '2023-03-25 12:08:18'),
 (149, 'PF14', 'CIS 210', 'YR_2021_2022', '2023-03-25 12:09:01'),
 (150, 'PF60', 'ABS 424', 'YR_2019_2020', '2023-03-25 12:13:40'),
-(151, 'PF08', 'CIT 120', 'YR_2022_2023', '2023-03-25 12:20:41');
+(151, 'PF08', 'CIT 120', 'YR_2022_2023', '2023-03-25 12:20:41'),
+(152, 'PF20', 'CCS 216', 'YR_2021_2022', '2023-03-27 05:19:44'),
+(153, 'PF28', 'CCS 106', 'YR_2022_2023', '2023-03-27 05:21:29'),
+(154, 'PF28', 'CCS 110', 'YR_2022_2023', '2023-03-27 05:21:29'),
+(155, 'PF28', 'CCS 114', 'YR_2022_2023', '2023-03-27 05:21:29'),
+(156, 'PF28', 'CCT 106', 'YR_2022_2023', '2023-03-27 05:21:50'),
+(157, 'PF28', 'CCT 102', 'YR_2022_2023', '2023-03-27 05:21:50'),
+(158, 'PF28', 'CCS 112', 'YR_2022_2023', '2023-03-27 05:22:09'),
+(159, 'PF24', 'CCS 102', 'YR_2022_2023', '2023-03-27 05:22:58'),
+(160, 'PF22', 'CCS 108', 'YR_2022_2023', '2023-03-27 05:23:28'),
+(161, 'PF22', 'CCS 310', 'YR_2020_2021', '2023-03-27 05:23:50'),
+(162, 'PF22', 'CCS 422', 'YR_2019_2020', '2023-03-27 05:24:04'),
+(163, 'PF22', 'CCT 108', 'YR_2022_2023', '2023-03-27 05:24:35'),
+(164, 'PF25', 'CCT 114', 'YR_2022_2023', '2023-03-27 05:25:31'),
+(165, 'PF25', 'CCT 110', 'YR_2022_2023', '2023-03-27 05:25:31'),
+(166, 'PF25', 'CCS 408', 'YR_2019_2020', '2023-03-27 05:26:12'),
+(167, 'PF20', 'CCT 216', 'YR_2021_2022', '2023-03-27 05:27:52'),
+(168, 'PF30', 'CCT 406', 'YR_2019_2020', '2023-03-27 05:33:26');
 
 -- --------------------------------------------------------
 
@@ -386,6 +419,7 @@ CREATE TABLE `room_details` (
 --
 
 INSERT INTO `room_details` (`id`, `room_id`, `room_name`, `room_type_id`, `room_capacity`, `date_added`) VALUES
+(11, 'RM-ELECTRONICS-LAB-I', 'Electronics LAB I', 'RM_ELECTRONIC_LAB', 60, '2023-03-26 08:54:20'),
 (5, 'RM-LAB-I', 'LAB I', 'RM_ICT_LAB', 55, '2023-03-06 12:02:32'),
 (6, 'RM-LAB-II', 'LAB II', 'RM_ICT_LAB', 55, '2023-03-06 12:02:51'),
 (7, 'RM-LAB-III', 'LAB III', 'RM_ICT_LAB', 55, '2023-03-06 12:03:10'),
@@ -417,6 +451,7 @@ INSERT INTO `room_type_details` (`id`, `room_type_id`, `room_type`, `date_added`
 (7, 'RM_AMPH', 'Amphitheatre', '2023-03-06 14:14:51'),
 (4, 'RM_BIO_LAB', 'Biology Lab', '2023-03-06 14:12:55'),
 (3, 'RM_CHEM_LAB', 'Chemistry Lab', '2023-03-06 14:12:55'),
+(8, 'RM_ELECTRONIC_LAB', 'Electronics LAB', '2023-03-26 11:52:42'),
 (2, 'RM_ICT_LAB', 'ICT Labaratory', '2023-03-06 14:12:00'),
 (5, 'RM_PHY_LAB', 'Physics Lab', '2023-03-06 14:13:35'),
 (1, 'RM_STD', 'Standard', '2023-03-06 14:12:00'),
@@ -526,7 +561,7 @@ INSERT INTO `time_slot_details` (`id`, `slot_id`, `start_time`, `end_time`, `dat
 (3, 'TM_1100_1300', '11:00:00', '13:00:00', '2023-03-06 21:17:04'),
 (4, 'TM_1300_1500', '13:00:00', '15:00:00', '2023-03-09 08:49:13'),
 (5, 'TM_1500_1700', '15:00:00', '17:00:00', '2023-03-09 08:49:44'),
-(7, 'TM_1700_1900', '17:00:00', '19:00:00', '2023-03-09 08:58:20');
+(6, 'TM_1700_1900', '17:00:00', '19:00:00', '2023-03-09 08:58:20');
 
 -- --------------------------------------------------------
 
@@ -1008,7 +1043,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (233, 'CCT 205', 'Engineering Mathematics III', 'Theory', 'Active', '2023-03-02 07:35:45'),
 (240, 'CCT 206', 'Circuits and Systems', 'Theory', 'Active', '2023-03-02 07:43:17'),
 (234, 'CCT 207', 'Digital Electronics I', 'ELECT-Practical', 'Active', '2023-03-02 07:36:12'),
-(241, 'CCT 208', 'Engineering Mathematics IV', 'Theory', 'Active', '2023-03-02 07:43:47'),
+(241, 'CCT 208', 'Engineering Mathematics IV', 'Theory', 'In-Active', '2023-03-02 07:43:47'),
 (235, 'CCT 209', 'Comp. Org. & Assm. Lang. Prog', 'Theory', 'Active', '2023-03-02 07:36:42'),
 (242, 'CCT 210', 'Data Communications', 'Theory', 'Active', '2023-03-02 07:44:15'),
 (236, 'CCT 211', 'Databases', 'Theory', 'Active', '2023-03-02 07:38:09'),
@@ -1051,7 +1086,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (272, 'CCT 419', 'Intelligent Agents', 'Theory', 'Active', '2023-03-02 07:58:40'),
 (281, 'CCT 420', 'Pattern Recognition', 'Theory', 'Active', '2023-03-02 08:02:49'),
 (273, 'CCT 425', 'Computer Networks Lab III (Cisco III)', 'ICT-Practical', 'Active', '2023-03-02 07:59:05'),
-(282, 'CCT 430', 'Computer Networks Lab IV (Cisco IV)', 'ICT-Practical', 'Active', '2023-03-02 08:03:16'),
+(282, 'CCT 430', 'Computer Networks Lab IV (Cisco IV)', 'ICT-Practical', 'In-Active', '2023-03-02 08:03:16'),
 (137, 'CIM 101', 'Business Organization', 'Theory', 'Active', '2023-03-02 06:37:46'),
 (138, 'CIM 103', 'Business Mathematics', 'Theory', 'Active', '2023-03-02 06:38:08'),
 (145, 'CIM 104', 'Object Oriented Programming I', 'ICT-Practical', 'Active', '2023-03-02 06:41:04'),
@@ -1270,11 +1305,10 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 
 CREATE TABLE `unit_room_time_day_allocation_details` (
   `id` int(11) NOT NULL,
-  `unit_id` varchar(20) NOT NULL,
-  `lecturer_id` varchar(20) NOT NULL,
-  `room_id` varchar(20) NOT NULL,
-  `time_slot_id` varchar(20) NOT NULL,
-  `weekday_id` varchar(20) NOT NULL,
+  `unit_id` varchar(100) NOT NULL,
+  `room_id` varchar(100) NOT NULL,
+  `time_slot_id` varchar(100) NOT NULL,
+  `weekday_id` varchar(100) NOT NULL,
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1921,9 +1955,7 @@ ALTER TABLE `unit_room_time_day_allocation_details`
   ADD KEY `room` (`room_id`),
   ADD KEY `unit` (`unit_id`),
   ADD KEY `day_of_the_week` (`weekday_id`),
-  ADD KEY `weekday_id` (`weekday_id`),
-  ADD KEY `leciddd` (`lecturer_id`),
-  ADD KEY `stime_slot` (`time_slot_id`);
+  ADD KEY `weekday_id` (`weekday_id`);
 
 --
 -- Indexes for table `unit_semester_details`
@@ -1977,7 +2009,7 @@ ALTER TABLE `course_details`
 -- AUTO_INCREMENT for table `course_group_details`
 --
 ALTER TABLE `course_group_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `department_course_details`
@@ -2001,7 +2033,7 @@ ALTER TABLE `lecturer_department_details`
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -2013,13 +2045,13 @@ ALTER TABLE `role_details`
 -- AUTO_INCREMENT for table `room_details`
 --
 ALTER TABLE `room_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `room_type_details`
 --
 ALTER TABLE `room_type_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `school_department_details`
@@ -2139,16 +2171,6 @@ ALTER TABLE `school_department_details`
 ALTER TABLE `unit_course_details`
   ADD CONSTRAINT `crsids` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `unitsidddd` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `unit_room_time_day_allocation_details`
---
-ALTER TABLE `unit_room_time_day_allocation_details`
-  ADD CONSTRAINT `day_id` FOREIGN KEY (`weekday_id`) REFERENCES `week_day_details` (`week_day_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lecID` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `room` FOREIGN KEY (`room_id`) REFERENCES `room_details` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `stime_slot` FOREIGN KEY (`time_slot_id`) REFERENCES `time_slot_details` (`slot_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `unit` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit_semester_details`
