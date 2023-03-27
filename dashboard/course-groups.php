@@ -123,56 +123,58 @@ if (isset($_POST['course-group-delete-btn'])) {
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-  <title>Course Groups | EDUTIME</title>
-  <?php
+
+<head>
+    <title>Course Groups | EDUTIME</title>
+    <?php
 include '../assets/components/header.php';
 ?>
-  </head>
-  <body>
-      <!-- ============================================================== -->
-      <!-- Topbar header - style you can find in pages.scss -->
-      <!-- ============================================================== -->
-     <?php
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <?php
      include '../assets/components/topbar.php';
      ?>
-      <!-- ============================================================== -->
-      <!-- End Topbar header -->
-      <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
 
-      <!-- ============================================================== -->
-      <!-- Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <?php
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <?php
      include '../assets/components/sidebar.php';
      ?>
-      <!-- ============================================================== -->
-      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Page wrapper  -->
-      <!-- ============================================================== -->
-      <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <div class="page-breadcrumb pt-5">
-          <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Course Group Details</h4>
-              <div class="ms-auto text-end">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Groups
-                    </li>
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Course Group Details</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Groups
+                                </li>
 
-                  </ol>
-                </nav>
-              </div>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
@@ -181,29 +183,31 @@ include '../assets/components/header.php';
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-          <!-- ============================================================== -->
-          <!-- Start Page Content -->
-          <!-- ============================================================== -->
-    <div class="row">
-      <div class="col-12">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
 
-            <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Course Groups</h5>
-            <input type='button' value='Add a Course Group' name='open-course-group-modal-btn' class='btn btn-primary float-end open-course-group-modal-btn m-2'>
-            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-<thead>
-    <tr>
-    <th>Group ID</th>
-    <th>Course Name</th>
-    <th>Academic Year</th>
-    <th>Group Number</th>
-    <th>Date Updated</th>
-    <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Course Groups</h5>
+                            <input type='button' value='Add a Course Group' name='open-course-group-modal-btn'
+                                class='btn btn-primary float-end open-course-group-modal-btn m-2'>
+                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm"
+                                cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Group ID</th>
+                                        <th>Course Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Group Number</th>
+                                        <th>Date Updated</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
   if($_SESSION['role_name'] == 'Admin'){
       $data_fetch_query = "SELECT * FROM `course_group_details` INNER JOIN course_details ON course_group_details.course_id = course_details.course_id INNER JOIN academic_year ON academic_year.academic_year_id = course_group_details.academic_year_id";
       $data_result = mysqli_query($db, $data_fetch_query);
@@ -242,22 +246,22 @@ include '../assets/components/header.php';
       }
 
 ?>
-  </tbody>
-  <tfoot>
-    <tr>
-    <th>Group ID</th>
-    <th>Course Name</th>
-    <th>Academic Year</th>
-    <th>Group Number</th>
-    <th>Date Updated</th>
-    <th>Action</th>
-    </tr>
-  </tfoot>
-</table>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Group ID</th>
+                                        <th>Course Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Group Number</th>
+                                        <th>Date Updated</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
@@ -267,160 +271,173 @@ include '../assets/components/header.php';
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-    <?php
+        <?php
     include '../assets/components/footer.php';
     ?>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->
-      </div>
-      <!-- ============================================================== -->
-      <!-- End Page wrapper  -->
-      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
 
-<!-- add new academic group-->
-<div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addGroupModalLabel">Add a Group</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-          <div class="form-group">
-    <label for="exampleFormControlSelect1">Select a Course</label>
-    <select class="form-control" id="crs_id" name="course_id">
-<option value="">Select a Course</option>
-<?php $sql=mysqli_query($db,"select * from course_details");
+    <!-- add new academic group-->
+    <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addGroupModalLabel">Add a Group</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select a Course</label>
+                            <select class="form-control" id="crs_id" name="course_id">
+                                <option value="">Select a Course</option>
+                                <?php $sql=mysqli_query($db,"select * from course_details");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
-<?php
+                                <option value="<?php echo htmlentities($rw['course_id']);?>">
+                                    <?php echo htmlentities($rw['course_name']);?></option>
+                                <?php
 }
 ?>
-    </select>
-  </div>
+                            </select>
+                        </div>
 
-          <div class="form-group">
-    <label for="exampleFormControlSelect1">Select an Academic Year</label>
-    <select class="form-control" id="academic_yr_id" name="academic_yr_id">
-<option value="">Select Academic Year</option>
-<?php $sql=mysqli_query($db,"select * from academic_year");
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select an Academic Year</label>
+                            <select class="form-control" id="academic_yr_id" name="academic_yr_id">
+                                <option value="">Select Academic Year</option>
+                                <?php $sql=mysqli_query($db,"select * from academic_year");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
-<?php
+                                <option value="<?php echo htmlentities($rw['academic_year_id']);?>">
+                                    <?php echo htmlentities($rw['academic_year']);?></option>
+                                <?php
 }
 ?>
-    </select>
-  </div>
-  <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Group Number:</label>
-            <input type="number" name="group_capacity"  class="form-control" id="group_capacity_id" required placeholder="e.g 120">
-          </div>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" readonly class="col-form-label">Group Number:</label>
+                            <input type="number" name="group_capacity" class="form-control" id="group_capacity_id"
+                                required placeholder="e.g 120">
+                        </div>
 
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="add-course-group-btn">Submit</button>
-      </div>
-        </form>
-      </div>
-     
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info" name="add-course-group-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!--edit Group details-->
-<div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editGroupModalLabel">Edit Group Details:</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-          <div class="form-group">
-          <input type="text" name="group_id" readonly hidden class="form-control" id="groupID" required>
-    <label for="exampleFormControlSelect1">Select a Course</label>
-    <select class="form-control" id="courseId" name="course_id" value="">
-<option value="">Select a Course</option>
-<?php $sql=mysqli_query($db,"select * from course_details");
+    <!--edit Group details-->
+    <div class="modal fade" id="editGroupModal" tabindex="-1" role="dialog" aria-labelledby="editGroupModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editGroupModalLabel">Edit Group Details:</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <input type="text" name="group_id" readonly hidden class="form-control" id="groupID"
+                                required>
+                            <label for="exampleFormControlSelect1">Select a Course</label>
+                            <select class="form-control" id="courseId" name="course_id" value="">
+                                <option value="">Select a Course</option>
+                                <?php $sql=mysqli_query($db,"select * from course_details");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
-<?php
+                                <option value="<?php echo htmlentities($rw['course_id']);?>">
+                                    <?php echo htmlentities($rw['course_name']);?></option>
+                                <?php
 }
 ?>
-    </select>
-  </div>
+                            </select>
+                        </div>
 
-          <div class="form-group">
-    <label for="exampleFormControlSelect1">Select an Academic Year</label>
-    <select class="form-control" id="academic_yr" name="academic_yr">
-<option value="">Select Academic Year</option>
-<?php $sql=mysqli_query($db,"select * from academic_year");
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select an Academic Year</label>
+                            <select class="form-control" id="academic_yr" name="academic_yr">
+                                <option value="">Select Academic Year</option>
+                                <?php $sql=mysqli_query($db,"select * from academic_year");
 while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
-<?php
+                                <option value="<?php echo htmlentities($rw['academic_year_id']);?>">
+                                    <?php echo htmlentities($rw['academic_year']);?></option>
+                                <?php
 }
 ?>
-    </select>
-  </div>
-  <div class="form-group">
-            <label for="recipient-name" readonly class="col-form-label">Group Number:</label>
-            <input type="number" name="group_capacity"  class="form-control" id="group_capacity" required placeholder="e.g 120">
-          </div>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" readonly class="col-form-label">Group Number:</label>
+                            <input type="number" name="group_capacity" class="form-control" id="group_capacity" required
+                                placeholder="e.g 120">
+                        </div>
 
-          <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-info" name="update-course-group-btn">Update Details</button>
-      </div>
-        </form>
-      </div>
-     
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info" name="update-course-group-btn">Update
+                                Details</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!--Delete Group model-->
-<div class="modal" id='deleteGroupModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
-    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    
-    <div class="modal-body">
-    <p>Are you sure you want to delete this Group?</p>
-    <form method="POST" action="">
-    <div class="form-group">
-        <input type="text" class="form-control" id="groupID" required hidden readonly name='group_id'>
-      </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-    <button type="submit" name='course-group-delete-btn' class="btn btn-danger">Yes,Delete!</button>
-  </div>
-    </form>
-  </div>
-  </div>
-</div>
-</div>
-</div>
+    <!--Delete Group model-->
+    <div class="modal" id='deleteGroupModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this Group?</p>
+                        <form method="POST" action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="groupID" required hidden readonly
+                                    name='group_id'>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No,
+                                    Cancel</button>
+                                <button type="submit" name='course-group-delete-btn'
+                                    class="btn btn-danger">Yes,Delete!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- ============================================================== -->
@@ -442,81 +459,75 @@ while ($rw=mysqli_fetch_array($sql)) {
     <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
+
     <script>
-      /****************************************
-       *       Basic Table                   *
-       ****************************************/
-      $("#zero_config").DataTable();
+    $(document).ready(function() {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+    //add Room details modal code
+    function openAddGroupModal() {
+        $("#addGroupModal").modal("show");
+    }
+    let openAddGroupModalBtn = document.querySelector(".open-course-group-modal-btn");
+
+    openAddGroupModalBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        openAddGroupModal();
+    });
+
+    //edit group details modal code
+    function editGroupModal() {
+        $("#editGroupModal").modal("show");
+    }
+    let editButtons = document.querySelectorAll(".edit-course-group-modal-btn");
+
+    editButtons.forEach(function(editButton) {
+        editButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            let group_id = editButton.dataset.group_id;
+            let course_id = editButton.dataset.course_id;
+            let academic_year_id = editButton.dataset.academic_year_id;
+            let group_capacity = editButton.dataset.group_capacity;
+
+            document.getElementById("groupID").value = group_id;
+
+            document.getElementById("courseId").value = course_id;
+            // pre-select the option in the dropdown menu
+            const selectedCourse = document.querySelector('#crs_id');
+            selectedCourse.value = course_id;
+
+            document.getElementById("academic_yr").value = academic_year_id;
+            // pre-select the option in the dropdown menu
+            const selectedAcademicYear = document.querySelector('#crs_id');
+            selectedAcademicYear.value = academic_year_id;
+
+            document.getElementById("group_capacity").value = group_capacity;
+            editGroupModal();
+        });
+    });
+
+    //   //delete Group modal query
+    function deleteGroupModal() {
+        $("#deleteGroupModal").modal("show");
+    }
+
+    let deleteBtns = document.querySelectorAll(".deleteGroupBtn");
+    deleteBtns.forEach(function(deleteBtn) {
+        deleteBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            let group_id = deleteBtn.dataset.id;
+
+            document.getElementById("groupID").value = group_id;
+
+            deleteGroupModal();
+        });
+    });
     </script>
 
-<script>
-$(document).ready(function () {
-  $('#dtBasicExample').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-});
+</body>
 
-//add Room details modal code
-function openAddGroupModal() {
-  $("#addGroupModal").modal("show");
-}
-let openAddGroupModalBtn = document.querySelector(".open-course-group-modal-btn");
-
-openAddGroupModalBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  openAddGroupModal();
-});
-
-//edit group details modal code
-function editGroupModal() {
-$("#editGroupModal").modal("show");
-}
-let editButtons = document.querySelectorAll(".edit-course-group-modal-btn");
-
-editButtons.forEach(function (editButton) {
-    editButton.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    let group_id = editButton.dataset.group_id;
-    let course_id = editButton.dataset.course_id;
-    let academic_year_id = editButton.dataset.academic_year_id;
-    let group_capacity = editButton.dataset.group_capacity;
-
-    document.getElementById("groupID").value = group_id;
-
-    document.getElementById("courseId").value = course_id;
-    // pre-select the option in the dropdown menu
-    const selectedCourse = document.querySelector('#crs_id');
-    selectedCourse.value = course_id;
-
-    document.getElementById("academic_yr").value = academic_year_id;
-    // pre-select the option in the dropdown menu
-    const selectedAcademicYear = document.querySelector('#crs_id');
-    selectedAcademicYear.value = academic_year_id;
-
-    document.getElementById("group_capacity").value = group_capacity;
-    editGroupModal();
-    });
-});
-
-//   //delete Group modal query
-function deleteGroupModal() {
-$("#deleteGroupModal").modal("show");
-}
-
-let deleteBtns = document.querySelectorAll(".deleteGroupBtn");
-deleteBtns.forEach(function (deleteBtn) {
-  deleteBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      let group_id = deleteBtn.dataset.id;
-
-      document.getElementById("groupID").value = group_id;
-      
-      deleteGroupModal();
-  });
-});
-
-  </script>
-
-  </body>
 </html>
