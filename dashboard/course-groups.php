@@ -459,7 +459,10 @@ while ($rw=mysqli_fetch_array($sql)) {
     <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26c1e8df432250a03f9f27bbc568042bf38f8624
     <script>
     $(document).ready(function() {
         $('#dtBasicExample').DataTable();
