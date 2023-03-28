@@ -149,7 +149,7 @@ foreach ($units as $unit) {
             foreach ($rooms as $room) {              
                 // check if the room capacity is enough for the unit
                 // var_dump($rooms);
-                if ($room['capacity'] >= 10) {
+                if ($room['capacity'] >= $unit['group_number']) {
                     // assign the unit to the timeslot, room, and day
                     $assignment = array(
                         'code' => $unit['unit_code'],
@@ -158,8 +158,8 @@ foreach ($units as $unit) {
                         'timeslot' => $random_timeslot,
                         'room' => $room['room_name']
                     );
-                    var_dump($day);
-                    
+                    // var_dump($day);
+                
                     $unit_id = $assignment['code'];
                     $unit_name= $assignment['unit'];
                     $day = $assignment['day'];
@@ -191,6 +191,7 @@ foreach ($units as $unit) {
             break;
         }
     }
+
 } 
 
 }//END OF FUNCTION
