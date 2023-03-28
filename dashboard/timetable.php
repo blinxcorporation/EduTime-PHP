@@ -71,7 +71,47 @@ function generateTimetable() {
         echo "Error: " . $error_message;
     }
 
-       
+    //STEP 3: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
+    $timeslots = array(
+            'Monday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Tuesday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Wednesday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Thursday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Friday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+        );      
+
+        //save timeslots on a csv
+        // // Open a file for writing
+        // $file = fopen('timeslots.csv', 'w');
+
+        // // Write the header row
+        // fputcsv($file, array('Day', 'Time Slots'));
+
+        // // Loop through the array and write each row to the CSV file
+        // foreach ($timeslots as $day => $slots) {
+        //     foreach ($slots as $slot) {
+        //         fputcsv($file, array($day, $slot));
+        //     }
+        // }
+
+        // // Close the file
+        // fclose($file);
+    
 
 }//END OF FUNCTION
 
