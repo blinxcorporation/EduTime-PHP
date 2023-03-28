@@ -98,24 +98,6 @@ function generateTimetable() {
             ),
         );      
 
-        //save timeslots on a csv
-        // // Open a file for writing
-        // $file = fopen('timeslots.csv', 'w');
-
-        // // Write the header row
-        // fputcsv($file, array('Day', 'Time Slots'));
-
-        // // Loop through the array and write each row to the CSV file
-        // foreach ($timeslots as $day => $slots) {
-        //     foreach ($slots as $slot) {
-        //         fputcsv($file, array($day, $slot));
-        //     }
-        // }
-
-        // // Close the file
-        // fclose($file);
-    
-
     //STEP 4: GET ROOM DETAILS AND PUSH THEM TO rooms array
     $rooms_query = "SELECT * FROM room_details
     INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
@@ -164,21 +146,6 @@ foreach ($units as $unit) {
             $random_index = array_rand($slots);
             $random_timeslot = $slots[$random_index];
             // loop through each room until a suitable room is found
-            
-            // $file = fopen('timeslots.csv', 'w');
-            // // Write the header row
-            // fputcsv($file, array('Day', 'Time Slots'));
-            // // Loop through the array and write each row to the CSV file
-            // foreach ($timeslots as $day => $slots) {
-            //     // Get the name of the day from the $days array
-            //     $day_name = $days[$day];
-            //     foreach ($slots as $slot) {
-            //         fputcsv($file, array($day_name, $slot));
-            //     }
-            // }
-            // // Close the file
-            // fclose($file);
-
             foreach ($rooms as $room) {              
                 // check if the room capacity is enough for the unit
                 // var_dump($rooms);
