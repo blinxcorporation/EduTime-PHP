@@ -160,7 +160,9 @@ foreach ($units as $unit) {
 
     // loop through each day until a suitable timeslot is found
     foreach ($days as $day) {
-        foreach ($timeslots as $timeslot) {
+        foreach ($timeslots as $dy => $slots) {
+            $random_index = array_rand($slots);
+            $random_timeslot = $slots[$random_index];
             // loop through each room until a suitable room is found
             
             // $file = fopen('timeslots.csv', 'w');
@@ -186,10 +188,10 @@ foreach ($units as $unit) {
                         'code' => $unit['unit_code'],
                         'unit' => $unit['unit_name'],
                         'day' => $day,
-                        'timeslot' => $timeslot,
+                        'timeslot' => $random_timeslot,
                         'room' => $room['room_name']
                     );
-                    var_dump($timeslot);
+                    var_dump($day);
                     
                     $unit_id = $assignment['code'];
                     $unit_name= $assignment['unit'];
