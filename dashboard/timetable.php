@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 include '../server.php';
 
 if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
@@ -174,10 +177,10 @@ foreach ($units as $unit) {
             // // Close the file
             // fclose($file);
 
-
             foreach ($rooms as $room) {              
                 // check if the room capacity is enough for the unit
-                if ($room['room_capacity'] >= 10) {
+                // var_dump($rooms);
+                if ($room['capacity'] >= 10) {
                     // assign the unit to the timeslot, room, and day
                     $assignment = array(
                         'code' => $unit['unit_code'],
@@ -186,7 +189,8 @@ foreach ($units as $unit) {
                         'timeslot' => $timeslot,
                         'room' => $room['room_name']
                     );
-
+                    var_dump($timeslot);
+                    
                     $unit_id = $assignment['code'];
                     $unit_name= $assignment['unit'];
                     $day = $assignment['day'];
@@ -200,9 +204,6 @@ foreach ($units as $unit) {
                     // remove the assigned room from the list of available rooms
                     $room_index = array_search($room, $rooms);
                     unset($rooms[$room_index]);
-
-                    // write the assignment to the CSV file
-                    fputcsv($file, $assignment);
 
                     // break out of the room loop
                     break;
@@ -284,15 +285,7 @@ include '../assets/components/header.php';
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Timetables
                                 </li>
-                                <?php
-                                                    echo $assignment['code']; // prints the assigned unit code
-                                                    echo $assignment['unit']; // prints the assigned unit name
-                                                    echo $assignment['day']; // prints the assigned day
-                                                    echo $assignment['timeslot']; // prints the assigned timeslot
-                                                    echo $assignment['room']; // prints the assigned room ID
-                                
-                                
-                                ?>
+
 
                             </ol>
                         </nav>
