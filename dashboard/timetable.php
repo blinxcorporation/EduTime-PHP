@@ -175,11 +175,9 @@ foreach ($units as $unit) {
             // fclose($file);
 
 
-            foreach ($rooms as $room) {
-       
+            foreach ($rooms as $room) {              
                 // check if the room capacity is enough for the unit
                 if ($room['room_capacity'] >= 10) {
-                 
                     // assign the unit to the timeslot, room, and day
                     $assignment = array(
                         'code' => $unit['unit_code'],
