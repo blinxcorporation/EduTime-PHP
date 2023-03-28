@@ -113,25 +113,17 @@ function generateTimetable() {
         );
     }
 
-    //SAVE ROOM DETAILS ON A CSV FIILE
-        // // Open a file for writing
-        // $file = fopen('rooms.csv', 'w');
-
-        // // Write the header row
-        // fputcsv($file, array('Room ID', 'Room Name', 'Capacity', 'Room Type'));
-
-        // // Loop through the array and write each row to the CSV file
-        // foreach ($rooms as $room) {
-        //     fputcsv($file, $room);
-        // }
-
-        // // Close the file
-        // fclose($file);
-    
+   
  // STEP 5: Assign units to timeslots:
 
 // shuffle the units randomly
 shuffle($units);
+
+// open the CSV file for writing
+$csv_file = fopen('assignment.csv', 'w');
+
+// write the header row to the CSV file
+fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Day', 'Time Slot', 'Room'));
 
 // loop through each unit and assign to a timeslot, room, and day
 foreach ($units as $unit) {
@@ -166,6 +158,9 @@ foreach ($units as $unit) {
                     $timeslot = $assignment['timeslot'];
                     $room = $assignment['room'];
 
+                    // save the assignment to the CSV file
+                    fputcsv($csv_file, array($unit_id, $unit_name, $day, $timeslot, $room));
+
                     // save the assignment to the database or elsewhere
                     $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`, `room_id`, `time_slot_id`, `weekday_id`) VALUES ('$unit_id','$room','$timeslot','$day')";
                     $assignment_results = mysqli_query($db, $assignment_query);
@@ -193,6 +188,10 @@ foreach ($units as $unit) {
     }
 
 } 
+
+// close the CSV file
+fclose($csv_file);
+
 
 }//END OF FUNCTION
 
