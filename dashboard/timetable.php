@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 include '../server.php';
 
 if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
@@ -19,7 +22,7 @@ if ($_SESSION['role_name'] !== 'Admin') {
 function generateTimetable() {
     //GET database connection string inside function
     global $db;
-    
+
     //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
     $units = array();
     $lecturers = array();
@@ -30,116 +33,97 @@ function generateTimetable() {
     $timeSlots = array();
     $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 
-    //STEP 2: ####### Get Unit Details, Lecturer taking the unit, Semester the unit is taught, 
-   //course name for which the unit belongs, academic year group the lecturer taught that unit #######
+    //STEP 2: Get unit details
     $units_query = "SELECT * FROM unit_details 
-    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id =unit_details.unit_code 
-    INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
-    INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
-    INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
-    INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
-    INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
-    INNER JOIN course_group_details ON course_group_details.course_id = course_group_details.course_id
-    GROUP BY unit_details.unit_code ORDER BY unit_details.unit_code ASC";
+                    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code 
+                    INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
+                    INNER JOIN unit_semester_details ON unit_semester_details.unit_id = lecturer_unit_details.unit_id
+                    INNER JOIN semester_details ON semester_details.semester_id = unit_semester_details.semester_id
+                    INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
+                    INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
+                    INNER JOIN course_group_details ON course_group_details.course_id = course_group_details.course_id
+                    GROUP BY unit_details.unit_code ORDER BY unit_details.unit_code ASC";
 
-   $unit_results = mysqli_query($db,$units_query);
-   
-   if (mysqli_num_rows($unit_results) > 0) {
+    $unit_results = mysqli_query($db, $units_query);
 
-   
-     // Create a file pointer for the CSV file
-     $fp = fopen('unit_lecturer_details.csv', 'w');
-
-     // Write the headers for the CSV file
-     fputcsv($fp, array('Unit ID', 'Unit Name', 'Lecturer ID', 'Lecturer Name', 'Semester', 'Course Name', 'Course Group'));
- 
-     // Loop through the results and write each row to the CSV file
-     while ($row = mysqli_fetch_assoc($unit_results)) {
-         fputcsv($fp, array($row['unit_code'], $row['unit_name'], $row['pf_number'], $row['user_firstname']." ".$row['user_lastname'], $row['semester_id'], $row['course_shortform'], $row['academic_year_id']));
-     }
- 
-     // Close the file pointer
-     fclose($fp);
-
-     //Push Unit_results to the $units array
-     while ($row = mysqli_fetch_assoc($unit_results)) {
-        $units[] = $row; // Add each row to the $units array
-     }
-    } else {
-            // Query did not return any rows
-            // Query was not successful
-            // Get the error message
-            $error_message = mysqli_error($db);
-            
-            // Display an error message to the user or log the error for further investigation
-            echo "Error: " . $error_message;
+    if (mysqli_num_rows($unit_results) > 0) {
+        // Push Unit_results to the $units array
+        while ($row = mysqli_fetch_assoc($unit_results)) {
+            $units[] = $row; // Add each row to the $units array
         }
 
-   //STEP 3: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
-   $timeslots = array(
-    'Monday' => array(
-        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-        '15:00-17:00', '17:00-19:00'
-    ),
-    'Tuesday' => array(
-        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-        '15:00-17:00', '17:00-19:00'
-    ),
-    'Wednesday' => array(
-        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-        '15:00-17:00', '17:00-19:00'
-    ),
-    'Thursday' => array(
-        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-        '15:00-17:00', '17:00-19:00'
-    ),
-    'Friday' => array(
-        '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-        '15:00-17:00', '17:00-19:00'
-    ),
-);
+        // Create a file pointer for the CSV file
+        $fp = fopen('unit_lecturer_details.csv', 'w');
 
-// Define the filename and path to save timeslots in a CSV file
-// $filename = __DIR__ . '/timeslots.csv';
-// $fp = fopen($filename, 'w');
-// foreach ($timeslots as $day => $slots) {
-//     fputcsv($fp, [$day]);
-//     foreach ($slots as $slot) {
-//         fputcsv($fp, [$slot]);
-//     }
-// }
-// fclose($fp);
+        // Write the headers for the CSV file
+        fputcsv($fp, array('Unit ID', 'Unit Name', 'Lecturer ID', 'Lecturer Name', 'Semester', 'Course Name', 'Course Group'));
 
-//STEP 4: GET ROOM DETAILS AND PUSH THEM TO rooms array
-    $rooms_query = "SELECT * FROM room_details 
+        // Loop through the results and write each row to the CSV file
+        foreach ($units as $unit) {
+            fputcsv($fp, array($unit['unit_code'], $unit['unit_name'], $unit['pf_number'], $unit['user_firstname']." ".$unit['user_lastname'], $unit['semester_id'], $unit['course_shortform'], $unit['academic_year_id']));
+        }
+
+        // Close the file pointer
+        fclose($fp);
+    } else {
+        // IF Query did not return any rows OR
+        // Query was not successful
+        $error_message = mysqli_error($db);
+
+        // Display an error message to the user or log the error for further investigation
+        echo "Error: " . $error_message;
+    }
+
+    //STEP 3: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
+    $timeslots = array(
+            'Monday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Tuesday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Wednesday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Thursday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+            'Friday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
+            '15:00-17:00', '17:00-19:00'
+            ),
+        );      
+
+    //STEP 4: GET ROOM DETAILS AND PUSH THEM TO rooms array
+    $rooms_query = "SELECT * FROM room_details
     INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
-    $room_results = mysqli_query($db,$rooms_query);   
+    $room_results = mysqli_query($db,$rooms_query);
     //populate room array
     // Loop through the room results and add each room to the $rooms array
-while ($room = mysqli_fetch_assoc($room_results)) {
-    $rooms[] = array(
-        'room_id' => $room['room_id'],
-        'room_name' => $room['room_name'],
-        'capacity' => $room['room_capacity'],
-        'room_type' => $room['room_type']
-    );
-}
-// Open a new CSV file for writing room details
-// $file = fopen('rooms.csv', 'w');
-// // Add a header row to the CSV file
-// fputcsv($file, array('Room ID', 'Room Name', 'Capacity', 'Room Type'));
-// // Loop through the rooms array and add each room to the CSV file
-// foreach($rooms as $room) {
-//     fputcsv($file, $room);
-// }
-// // Close the CSV file
-// fclose($file);
-     
+    while ($room = mysqli_fetch_assoc($room_results)) {
+            $rooms[] = array(
+            'room_id' => $room['room_id'],
+            'room_name' => $room['room_name'],
+            'capacity' => $room['room_capacity'],
+            'room_type' => $room['room_type']
+        );
+    }
 
-// STEP 5: Assign units to timeslots:
+   
+ // STEP 5: Assign units to timeslots:
 
 // shuffle the units randomly
 shuffle($units);
+
+// open the CSV file for writing
+$csv_file = fopen('assignment.csv', 'w');
+
+// write the header row to the CSV file
+fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Lecturer','Day', 'Time Slot', 'Room'));
 
 // loop through each unit and assign to a timeslot, room, and day
 foreach ($units as $unit) {
@@ -150,32 +134,38 @@ foreach ($units as $unit) {
 
     // loop through each day until a suitable timeslot is found
     foreach ($days as $day) {
-        foreach ($timeslots as $timeslot) {
+        foreach ($timeslots as $dy => $slots) {
+            $random_index = array_rand($slots);
+            $random_timeslot = $slots[$random_index];
             // loop through each room until a suitable room is found
-            foreach ($rooms as $room) {
+            foreach ($rooms as $room) {              
                 // check if the room capacity is enough for the unit
-                if ($room['room_capacity'] >= $unit['group_number']) {
+                // var_dump($rooms);
+                if ($room['capacity'] >= $unit['group_number']) {
                     // assign the unit to the timeslot, room, and day
                     $assignment = array(
                         'code' => $unit['unit_code'],
                         'unit' => $unit['unit_name'],
+                        'lecturer' => $unit['lecturer_id'],
                         'day' => $day,
-                        'timeslot' => $timeslot,
-                        'room' => $room['room_id']
+                        'timeslot' => $random_timeslot,
+                        'room' => $room['room_name']
                     );
-
-
+                    // var_dump($day);
+                
                     $unit_id = $assignment['code'];
                     $unit_name= $assignment['unit'];
                     $day = $assignment['day'];
                     $timeslot = $assignment['timeslot'];
                     $room = $assignment['room'];
+                    $lec = $assignment['lecturer'];
+
+                    // save the assignment to the CSV file
+                    fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
                     // save the assignment to the database or elsewhere
-                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`, `room_id`, `time_slot_id`, `weekday_id`)
-                    VALUES ('$unit_id','$room','$timeslot','$day')
-                    ";
-  	                $assignment_results = mysqli_query($db, $assignment_query);
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday_id`) VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                    $assignment_results = mysqli_query($db, $assignment_query);
 
                     // remove the assigned room from the list of available rooms
                     $room_index = array_search($room, $rooms);
@@ -185,6 +175,7 @@ foreach ($units as $unit) {
                     break;
                 }
             }
+            
             // check if the unit has been assigned to a room
             if (isset($assignment)) {
                 // break out of the timeslot loop
@@ -197,20 +188,21 @@ foreach ($units as $unit) {
             break;
         }
     }
-}
+
+} 
+
+// close the CSV file
+fclose($csv_file);
 
 
 }//END OF FUNCTION
-
-
-
 
 
 //generate timetable on clicking a button
 if (isset($_POST['generate-timetable-btn'])) {
 
 //generate TT
-generateTimetable($sem);
+generateTimetable();
 
 }
 
@@ -264,15 +256,7 @@ include '../assets/components/header.php';
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Timetables
                                 </li>
-                                <?php
-                                                    echo $assignment['code']; // prints the assigned unit code
-                                                    echo $assignment['unit']; // prints the assigned unit name
-                                                    echo $assignment['day']; // prints the assigned day
-                                                    echo $assignment['timeslot']; // prints the assigned timeslot
-                                                    echo $assignment['room']; // prints the assigned room ID
-                                
-                                
-                                ?>
+
 
                             </ol>
                         </nav>

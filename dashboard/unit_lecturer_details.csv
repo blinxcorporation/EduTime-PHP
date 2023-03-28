@@ -1,7 +1,13 @@
 "Unit ID","Unit Name","Lecturer ID","Lecturer Name",Semester,"Course Name","Course Group"
 "ABA 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo",Y4S2,CIT,YR_2022_2023
 "ABS 424","Entrepreneurship and Small Business Management",PF60,"Thomas Ojijo",Y4S2,CIS,YR_2022_2023
+"CCS 102","Linear Algebra",PF24,"Dickson Omingo",Y1S2,CCS,YR_2022_2023
 "CCS 104","Object Oriented Programming",PF029,"James Obuhuma",Y1S2,CCS,YR_2022_2023
+"CCS 106","Discrete Structures II",PF28,"Michael Ondeja",Y1S2,CCS,YR_2022_2023
+"CCS 108","Digital Electronics 1",PF22,"Henry Okoyo",Y1S2,CCS,YR_2022_2023
+"CCS 110","Introduction to Internet Technologies",PF28,"Michael Ondeja",Y1S2,CCS,YR_2022_2023
+"CCS 112","Databases Systems",PF28,"Michael Ondeja",Y1S2,CCS,YR_2022_2023
+"CCS 114","Introduction to Spreadsheets",PF28,"Michael Ondeja",Y1S2,CCS,YR_2022_2023
 "CCS 122",Electronics,PF24,"Dickson Omingo",Y1S2,CCS,YR_2022_2023
 "CCS 202","Computer Organization and architecture",PF25,"Vivian Oloo",Y2S2,CCS,YR_2022_2023
 "CCS 204","Assembly Language Programming",PF23,"Solomon Nyabundi",Y2S2,CCS,YR_2022_2023
@@ -10,22 +16,31 @@
 "CCS 210","Automata Theory",PF20,"Lilian Wanzare",Y2S2,CCS,YR_2022_2023
 "CCS 212","Web Design and Publishing",PF30,"M O Adongo",Y2S2,CCS,YR_2022_2023
 "CCS 214","Group Project",PF27,"John Alwala",Y2S2,CCS,YR_2022_2023
+"CCS 216","Visual Basic Programming",PF20,"Lilian Wanzare",Y2S2,CCS,YR_2022_2023
 "CCS 302","Human Computer Interaction",PF30,"M O Adongo",Y3S2,CCS,YR_2022_2023
 "CCS 304","Project II ",PF30,"M O Adongo",Y3S2,CCS,YR_2022_2023
 "CCS 306","Software Engineering",PF06,"Calvins Otieno",Y3S2,CCS,YR_2022_2023
 "CCS 308","Research Methods and Technical Writing",PF21,"Sylvester McOyowo",Y3S2,CCS,YR_2022_2023
+"CCS 310","Computer Graphics",PF22,"Henry Okoyo",Y3S2,CCS,YR_2022_2023
 "CCS 312","Mobile Computing",PF27,"John Alwala",Y3S2,CCS,YR_2022_2023
 "CCS 314","Computer Networks Lab II (CISCO II)",PF27,"John Alwala",Y3S2,CCS,YR_2022_2023
 "CCS 316","Network Administration",PF27,"John Alwala",Y3S2,CCS,YR_2022_2023
 "CCS 318","Introduction to Expert Systems",PF06,"Calvins Otieno",Y3S2,CCS,YR_2022_2023
 "CCS 404","Social Legal and ethical issues in Computing",PF25,"Vivian Oloo",Y4S2,CCS,YR_2022_2023
 "CCS 406","Computer Science Project II",PF25,"Vivian Oloo",Y4S2,CCS,YR_2022_2023
+"CCS 408","Computer Networks Lab IV (CISCO IV)",PF25,"Vivian Oloo",Y4S2,CCS,YR_2022_2023
 "CCS 412","Natural Language Processing",PF20,"Lilian Wanzare",Y4S2,CCS,YR_2022_2023
 "CCS 414","Pattern Recognition",PF26,"John Konyino",Y4S2,CCS,YR_2022_2023
 "CCS 416","Information Retrival",PF029,"James Obuhuma",Y4S2,CCS,YR_2022_2023
 "CCS 418","Advanced Database Systems",PF06,"Calvins Otieno",Y4S2,CCS,YR_2022_2023
+"CCS 422","Advanced Compiler Construction and Design",PF22,"Henry Okoyo",Y4S2,CCS,YR_2022_2023
+"CCT 102","Engineering Mathematics II",PF28,"Michael Ondeja",Y1S2,CCT,YR_2022_2023
 "CCT 104","Object Oriented programming in Java ",PF029,"James Obuhuma",Y1S2,CCT,YR_2022_2023
+"CCT 106","Discrete Structures II",PF28,"Michael Ondeja",Y1S2,CCT,YR_2022_2023
+"CCT 108","Digital Logic Circuits",PF22,"Henry Okoyo",Y1S2,CCT,YR_2022_2023
+"CCT 110","Digital Logic Circuits Lab",PF25,"Vivian Oloo",Y1S2,CCT,YR_2022_2023
 "CCT 112","Electronics II",PF26,"John Konyino",Y1S2,CCT,YR_2022_2023
+"CCT 114","Electric Circuits II",PF25,"Vivian Oloo",Y1S2,CCT,YR_2022_2023
 "CCT 116","Digital Electronics I",PF26,"John Konyino",Y1S2,CCT,YR_2022_2023
 "CCT 118","Digital Electronics I LAB",PF24,"Dickson Omingo",Y1S2,CCT,YR_2022_2023
 "CCT 202","Digital Electronics II",PF24,"Dickson Omingo",Y2S2,CCT,YR_2022_2023
@@ -34,6 +49,7 @@
 "CCT 212","Automata Theory",PF20,"Lilian Wanzare",Y2S2,CCT,YR_2022_2023
 "CCT 214","Signals and Systems",PF26,"John Konyino",Y2S2,CCT,YR_2022_2023
 "CCT 215","Applied Electromagnetics",PF23,"Solomon Nyabundi",Y2S2,CCT,YR_2022_2023
+"CCT 216","Applied probability and Statistics",PF20,"Lilian Wanzare",Y2S2,CCT,YR_2022_2023
 "CCT 302","Computer Architecture II",PF22,"Henry Okoyo",Y3S2,CCT,YR_2022_2023
 "CCT 304","Human Computer Interaction",PF30,"M O Adongo",Y3S2,CCT,YR_2022_2023
 "CCT 306","Mobile Computing",PF27,"John Alwala",Y3S2,CCT,YR_2022_2023
@@ -44,6 +60,7 @@
 "CCT 320","Group Project II",PF06,"Calvins Otieno",Y3S2,CCT,YR_2022_2023
 "CCT 322","Computer Networks Lab II (Cisco II)",PF27,"John Alwala",Y3S2,CCT,YR_2022_2023
 "CCT 402","Computer-Aided Analysis and Design",PF22,"Henry Okoyo",Y4S2,CCT,YR_2022_2023
+"CCT 406","Computer Technology Project II",PF30,"M O Adongo",Y4S2,CCT,YR_2022_2023
 "CCT 412","Computer Systems Engineering II",PF21,"Sylvester McOyowo",Y4S2,CCT,YR_2022_2023
 "CCT 418","Natural Language Processing",PF20,"Lilian Wanzare",Y4S2,CCT,YR_2022_2023
 "CCT 420","Pattern Recognition",PF26,"John Konyino",Y4S2,CCT,YR_2022_2023
