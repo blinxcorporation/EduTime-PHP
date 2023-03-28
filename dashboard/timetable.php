@@ -123,7 +123,7 @@ shuffle($units);
 $csv_file = fopen('assignment.csv', 'w');
 
 // write the header row to the CSV file
-fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Day', 'Time Slot', 'Room'));
+fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Lecturer','Day', 'Time Slot', 'Room'));
 
 // loop through each unit and assign to a timeslot, room, and day
 foreach ($units as $unit) {
@@ -146,6 +146,7 @@ foreach ($units as $unit) {
                     $assignment = array(
                         'code' => $unit['unit_code'],
                         'unit' => $unit['unit_name'],
+                        'lecturer' => $unit['lecturer_id'],
                         'day' => $day,
                         'timeslot' => $random_timeslot,
                         'room' => $room['room_name']
@@ -157,12 +158,13 @@ foreach ($units as $unit) {
                     $day = $assignment['day'];
                     $timeslot = $assignment['timeslot'];
                     $room = $assignment['room'];
+                    $lec = $assignment['lecturer'];
 
                     // save the assignment to the CSV file
-                    fputcsv($csv_file, array($unit_id, $unit_name, $day, $timeslot, $room));
+                    fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
                     // save the assignment to the database or elsewhere
-                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`, `room_id`, `time_slot_id`, `weekday_id`) VALUES ('$unit_id','$room','$timeslot','$day')";
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday_id`) VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
                     $assignment_results = mysqli_query($db, $assignment_query);
 
                     // remove the assigned room from the list of available rooms
