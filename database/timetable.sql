@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2023 at 04:59 PM
+-- Generation Time: Mar 30, 2023 at 08:58 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -421,14 +421,19 @@ CREATE TABLE `room_details` (
 INSERT INTO `room_details` (`id`, `room_id`, `room_name`, `room_type_id`, `room_capacity`, `date_added`) VALUES
 (11, 'RM-ELECTRONICS-LAB-I', 'Electronics LAB I', 'RM_ELECTRONIC_LAB', 60, '2023-03-26 08:54:20'),
 (5, 'RM-LAB-I', 'LAB I', 'RM_ICT_LAB', 55, '2023-03-06 12:02:32'),
-(6, 'RM-LAB-II', 'LAB II', 'RM_ICT_LAB', 55, '2023-03-06 12:02:51'),
-(7, 'RM-LAB-III', 'LAB III', 'RM_ICT_LAB', 55, '2023-03-06 12:03:10'),
+(6, 'RM-LAB-II', 'LAB II', 'RM_ICT_LAB', 70, '2023-03-06 12:02:51'),
+(7, 'RM-LAB-III', 'LAB III', 'RM_ICT_LAB', 85, '2023-03-06 12:03:10'),
 (8, 'RM-LAB-IV', 'LAB IV', 'RM_ICT_LAB', 55, '2023-03-06 12:03:24'),
-(9, 'RM-LAB-V', 'LAB V', 'RM_ICT_LAB', 140, '2023-03-06 12:03:38'),
-(1, 'RM-TB-1', 'TB 1', 'RM_STD', 60, '2023-03-06 12:00:39'),
+(9, 'RM-LAB-V', 'LAB V', 'RM_ICT_LAB', 200, '2023-03-06 12:03:38'),
+(15, 'RM-LAB-VI', 'LAB VI', 'RM_ICT_LAB', 85, '2023-03-30 11:49:57'),
+(16, 'RM-LAB-VII', 'LAB VII', 'RM_ICT_LAB', 120, '2023-03-30 11:50:12'),
+(1, 'RM-TB-1', 'TB 1', 'RM_STD', 100, '2023-03-06 12:00:39'),
 (2, 'RM-TB-2', 'TB 2', 'RM_STD', 150, '2023-03-06 12:00:54'),
-(3, 'RM-TB-3', 'TB 3', 'RM_STD', 60, '2023-03-06 12:01:09'),
-(4, 'RM-TB-4', 'TB 4', 'RM_STD', 60, '2023-03-06 12:01:24');
+(3, 'RM-TB-3', 'TB 3', 'RM_STD', 75, '2023-03-06 12:01:09'),
+(4, 'RM-TB-4', 'TB 4', 'RM_STD', 90, '2023-03-06 12:01:24'),
+(12, 'RM-TB-5', 'TB 5', 'RM_STD', 65, '2023-03-30 11:48:21'),
+(13, 'RM-TB-6', 'TB 6', 'RM_STD', 95, '2023-03-30 11:48:33'),
+(14, 'RM-TB-7', 'TB 7', 'RM_STD', 85, '2023-03-30 11:48:52');
 
 -- --------------------------------------------------------
 
@@ -1306,9 +1311,10 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 CREATE TABLE `unit_room_time_day_allocation_details` (
   `id` int(11) NOT NULL,
   `unit_id` varchar(100) NOT NULL,
+  `lecturer_id` varchar(100) NOT NULL,
   `room_id` varchar(100) NOT NULL,
   `time_slot_id` varchar(100) NOT NULL,
-  `weekday_id` varchar(100) NOT NULL,
+  `weekday` varchar(100) NOT NULL,
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1953,9 +1959,9 @@ ALTER TABLE `unit_details`
 ALTER TABLE `unit_room_time_day_allocation_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `room` (`room_id`),
-  ADD KEY `unit` (`unit_id`),
-  ADD KEY `day_of_the_week` (`weekday_id`),
-  ADD KEY `weekday_id` (`weekday_id`);
+  ADD KEY `day_of_the_week` (`weekday`),
+  ADD KEY `weekday_id` (`weekday`),
+  ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `unit_semester_details`
@@ -2045,7 +2051,7 @@ ALTER TABLE `role_details`
 -- AUTO_INCREMENT for table `room_details`
 --
 ALTER TABLE `room_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `room_type_details`
@@ -2093,7 +2099,7 @@ ALTER TABLE `unit_details`
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2341;
 
 --
 -- AUTO_INCREMENT for table `unit_semester_details`
