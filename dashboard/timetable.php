@@ -32,8 +32,43 @@ function generateTimetable() {
     $rooms = array();
     $timeSlots = array();
     $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
+    
+    //STEP 2: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
+    $timeslots = array(
+        'Monday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
+        ),
+        'Tuesday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
+        ),
+        'Wednesday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
+        ),
+        'Thursday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
+        ),
+        'Friday' => array(
+            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
+        ),
+    );
+        
 
-    //STEP 2: Get unit details
+    //STEP 3: GET ROOM DETAILS AND PUSH THEM TO rooms array
+    $rooms_query = "SELECT * FROM room_details
+    INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
+    $room_results = mysqli_query($db,$rooms_query);
+    //populate room array
+    // Loop through the room results and add each room to the $rooms array
+    while ($room = mysqli_fetch_assoc($room_results)) {
+            $rooms[] = array(
+            'room_id' => $room['room_id'],
+            'room_name' => $room['room_name'],
+            'capacity' => $room['room_capacity'],
+            'room_type' => $room['room_type']
+        );
+    }
+
+    //STEP 4: Get unit details
     $units_query = "SELECT * FROM unit_details 
                     INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code 
                     INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
@@ -52,6 +87,7 @@ function generateTimetable() {
             $units[] = $row; // Add each row to the $units array
         }
 
+        //SAVE UNIT AND LECTURER TEACHING THE UNIT IN A CSV FILE
         // Create a file pointer for the CSV file
         $fp = fopen('unit_lecturer_details.csv', 'w');
 
@@ -65,6 +101,8 @@ function generateTimetable() {
 
         // Close the file pointer
         fclose($fp);
+
+
     } else {
         // IF Query did not return any rows OR
         // Query was not successful
@@ -74,125 +112,100 @@ function generateTimetable() {
         echo "Error: " . $error_message;
     }
 
-    //STEP 3: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
-    $timeslots = array(
-            'Monday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-            '15:00-17:00', '17:00-19:00'
-            ),
-            'Tuesday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-            '15:00-17:00', '17:00-19:00'
-            ),
-            'Wednesday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-            '15:00-17:00', '17:00-19:00'
-            ),
-            'Thursday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-            '15:00-17:00', '17:00-19:00'
-            ),
-            'Friday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00',
-            '15:00-17:00', '17:00-19:00'
-            ),
-        );      
+    // STEP 5: ASSIGN UNITS TO TIMESLOTS
 
-    //STEP 4: GET ROOM DETAILS AND PUSH THEM TO rooms array
-    $rooms_query = "SELECT * FROM room_details
-    INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
-    $room_results = mysqli_query($db,$rooms_query);
-    //populate room array
-    // Loop through the room results and add each room to the $rooms array
-    while ($room = mysqli_fetch_assoc($room_results)) {
-            $rooms[] = array(
-            'room_id' => $room['room_id'],
-            'room_name' => $room['room_name'],
-            'capacity' => $room['room_capacity'],
-            'room_type' => $room['room_type']
-        );
+    // shuffle the units randomly
+    shuffle($units);
+
+    // open the CSV file for writing
+    $csv_file = fopen('assignment.csv', 'w');
+
+    // write the header row to the CSV file
+    fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Lecturer','Day', 'Time Slot', 'Room'));
+
+    // create an array to keep track of assigned units
+    $assigned_units = array();
+
+    // loop through each unit and assign to a timeslot, room, and day
+    foreach ($units as $unit) {
+    // check if the unit has already been assigned
+    if (in_array($unit['unit_code'], $assigned_units)) {
+    continue;
     }
+ 
 
-   
- // STEP 5: Assign units to timeslots:
-
-// shuffle the units randomly
-shuffle($units);
-
-// open the CSV file for writing
-$csv_file = fopen('assignment.csv', 'w');
-
-// write the header row to the CSV file
-fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Lecturer','Day', 'Time Slot', 'Room'));
-
-// loop through each unit and assign to a timeslot, room, and day
-foreach ($units as $unit) {
     // shuffle the timeslots, days, and rooms arrays randomly
     shuffle($timeslots);
     shuffle($days);
     shuffle($rooms);
 
     // loop through each day until a suitable timeslot is found
-    foreach ($days as $day) {
-        foreach ($timeslots as $dy => $slots) {
-            $random_index = array_rand($slots);
-            $random_timeslot = $slots[$random_index];
-            // loop through each room until a suitable room is found
-            foreach ($rooms as $room) {              
-                // check if the room capacity is enough for the unit
-                // var_dump($rooms);
-                if ($room['capacity'] >= $unit['group_number']) {
-                    // assign the unit to the timeslot, room, and day
-                    $assignment = array(
-                        'code' => $unit['unit_code'],
-                        'unit' => $unit['unit_name'],
-                        'lecturer' => $unit['lecturer_id'],
-                        'day' => $day,
-                        'timeslot' => $random_timeslot,
-                        'room' => $room['room_name']
-                    );
-                    // var_dump($day);
+    foreach ($timeslots as $day => $slots) {
+        if($day == 0){
+            $dy = 'Monday';
+        }elseif ($day == 1) {
+            $dy = 'Tuesday';
+        }elseif ($day == 2) {
+            $dy = 'Wednesday';
+        }elseif ($day == 3) {
+            $dy = 'Thursday';
+        }elseif ($day == 4) {
+            $dy = 'Friday';
+        }
+        
+        $random_index = array_rand($slots);
+        $random_timeslot = $slots[$random_index];
+
+        // loop through each room until a suitable room is found
+        foreach ($rooms as $room) {              
+            // check if the room capacity is enough for the unit
+            if ($room['capacity'] >= $unit['group_number']) {
+                // assign the unit to the timeslot, room, and day
+                $assignment = array(
+                    'code' => $unit['unit_code'],
+                    'unit' => $unit['unit_name'],
+                    'unit_type'=> $unit['unit_type'],
+                    'lecturer' => $unit['lecturer_id'],
+                    'day' => $dy,
+                    'timeslot' => $random_timeslot,
+                    'room' => $room['room_name']
+                );
                 
-                    $unit_id = $assignment['code'];
-                    $unit_name= $assignment['unit'];
-                    $day = $assignment['day'];
-                    $timeslot = $assignment['timeslot'];
-                    $room = $assignment['room'];
-                    $lec = $assignment['lecturer'];
+                $unit_id = $assignment['code'];
+                $unit_name= $assignment['unit'];
+                $unit_type= $assignment['unit_type'];
+                $day = $assignment['day'];
+                $timeslot = $assignment['timeslot'];
+                $room = $assignment['room'];
+                $lec = $assignment['lecturer'];
 
-                    // save the assignment to the CSV file
-                    fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
+                // save the assignment to the CSV file
+                fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
-                    // save the assignment to the database or elsewhere
-                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday_id`) VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
-                    $assignment_results = mysqli_query($db, $assignment_query);
+                // save the assignment to the database or elsewhere
+                $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
+                VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                $assignment_results = mysqli_query($db, $assignment_query);
 
-                    // remove the assigned room from the list of available rooms
-                    $room_index = array_search($room, $rooms);
-                    unset($rooms[$room_index]);
+
+                // add the assigned unit to the array of assigned units
+                $assigned_units[] = $unit['unit_code'];
+
+                // remove the assigned room from the list of available rooms
+                $room_index = array_search($room, $rooms);
+                unset($rooms[$room_index]);
 
                     // break out of the room loop
                     break;
                 }
             }
-            
-            // check if the unit has been assigned to a room
-            if (isset($assignment)) {
-                // break out of the timeslot loop
-                break;
-            }
-        }
-        // check if the unit has been assigned to a timeslot and room
-        if (isset($assignment)) {
-            // break out of the day loop
-            break;
-        }
-    }
+                
+            }//LOOP THROUGH TIMESLOTS -CLOSING
+    } //LOOP THROUGH UNITS -CLOSING
 
-} 
+    // close the CSV file
+    fclose($csv_file);
 
-// close the CSV file
-fclose($csv_file);
 
 
 }//END OF FUNCTION
