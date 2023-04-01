@@ -29,3 +29,6 @@
 ## Student
 
 - Download TT from university website
+
+## Assumptions
+- There are enough resources for efficient timetabling.
