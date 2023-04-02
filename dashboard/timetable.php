@@ -18,42 +18,25 @@ if ($_SESSION['role_name'] !== 'Admin') {
   exit;
 }
 
-//generate timetable function
+//GENERATE TIMETABLE FUNCTION
 function generateTimetable() {
     //GET database connection string inside function
     global $db;
 
-    //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
+    //STEP 1: Initialize arrays to store UNITS, LECTURERS, COURSES, DEPARTMENT, SCHOOLS, ROOMS, and TIME SLOTS
     $units = array();
-    $lecturers = array();
-    $courses = array();
-    $departments = array();
-    $schools = array();
     $rooms = array();
-    $timeSlots = array();
     $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
-    
-    //STEP 2: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
     $timeslots = array(
-        'Monday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
-        ),
-        'Tuesday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
-        ),
-        'Wednesday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
-        ),
-        'Thursday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
-        ),
-        'Friday' => array(
-            '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
-        ),
+        '07:00-09:00',
+        '09:00-11:00',
+        '11:00-13:00',
+        '13:00-15:00',
+        '15:00-17:00',
+        '17:00-19:00'
     );
         
-
-    //STEP 3: GET ROOM DETAILS AND PUSH THEM TO rooms array
+    //STEP 2: GET ROOM DETAILS AND PUSH THEM TO rooms array
     $rooms_query = "SELECT * FROM room_details
     INNER JOIN room_type_details ON room_type_details.room_type_id =room_details.room_type_id";
     $room_results = mysqli_query($db,$rooms_query);
@@ -68,7 +51,7 @@ function generateTimetable() {
         );
     }
 
-    //STEP 4: Get unit details
+    //STEP 3: Get unit details
     $units_query = "SELECT * FROM unit_details 
                     INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code 
                     INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
@@ -133,151 +116,139 @@ function generateTimetable() {
     continue;
     }
  
-// shuffle the timeslots, days, and rooms arrays randomly
-shuffle($timeslots);
+    // shuffle the timeslots, days, and rooms arrays randomly
+    shuffle($timeslots);
 
-shuffle($rooms);
+    shuffle($rooms);
 
-// loop through each day until a suitable timeslot is found
-foreach ($timeslots as $day => $slots) {
-    if($day == 0){
-        $dy = 'Monday';
-    }elseif ($day == 1) {
-        $dy = 'Tuesday';
-    }elseif ($day == 2) {
-        $dy = 'Wednesday';
-    }elseif ($day == 3) {
-        $dy = 'Thursday';
-    }elseif ($day == 4) {
-        $dy = 'Friday';
-    }
- 
-    
-    $random_index = array_rand($slots);
-    $random_timeslot = $slots[$random_index];
+    // loop through each day until a suitable timeslot is found
+    foreach ($days as $day) {
+        // loop through each timeslot until a suitable room is found
+        foreach ($timeslots as $timeslot) {
+            // loop through each room until a suitable room is found
+            foreach ($rooms as $room) {
+                // check if the room is large enough to hold the unit
+                if ($room['capacity'] >= $unit['group_number']) {
+                     // check if the unit type is Theory or ICT-Practical and allocate the room accordingly
+                if ($unit['unit_type'] == 'Theory' && $room['room_type'] == 'Standard') {
+                    // assign the unit to the timeslot, room, and day
+                    $assignment = array(
+                        'code' => $unit['unit_code'],
+                        'unit' => $unit['unit_name'],
+                        'unit_type'=> $unit['unit_type'],
+                        'lecturer' => $unit['lecturer_id'],
+                        'day' => $day,
+                        'timeslot' => $timeslot,
+                        'room' => $room['room_name']
+                    );
+                    $unit_id = $assignment['code'];
+                    $unit_name= $assignment['unit'];
+                    $unit_type= $assignment['unit_type'];
+                    $day = $assignment['day'];
+                    $timeslot = $assignment['timeslot'];
+                    $room = $assignment['room'];
+                    $lec = $assignment['lecturer'];
 
-// loop through each room until a suitable room is found
-foreach ($rooms as $room) {
-    // check if the room capacity is enough for the unit
-    if ($room['capacity'] >= $unit['group_number']) {
-        // check if the unit type is Theory or ICT-Practical and allocate the room accordingly
-        if ($unit['unit_type'] == 'Theory' && $room['room_type'] == 'Standard') {
-            // assign the unit to the timeslot, room, and day
-            $assignment = array(
-                'code' => $unit['unit_code'],
-                'unit' => $unit['unit_name'],
-                'unit_type'=> $unit['unit_type'],
-                'lecturer' => $unit['lecturer_id'],
-                'day' => $dy,
-                'timeslot' => $random_timeslot,
-                'room' => $room['room_name']
-            );
-            $unit_id = $assignment['code'];
-            $unit_name= $assignment['unit'];
-            $unit_type= $assignment['unit_type'];
-            $day = $assignment['day'];
-            $timeslot = $assignment['timeslot'];
-            $room = $assignment['room'];
-            $lec = $assignment['lecturer'];
+                    // save the assignment to the CSV file
+                    fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
-            // save the assignment to the CSV file
-            fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
+                    // save the assignment to the database or elsewhere
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
+                                        VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                    $assignment_results = mysqli_query($db, $assignment_query);
 
-            // save the assignment to the database or elsewhere
-            $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
-                                 VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
-            $assignment_results = mysqli_query($db, $assignment_query);
+                    // add the assigned unit to the array of assigned units
+                    $assigned_units[] = $unit['unit_code'];
+                    // remove the assigned room from the list of available rooms
+                    $room_index = array_search($room, $rooms);
+                    unset($rooms[$room_index]);
+                    // break out of the room loop
+                    break;
+                } elseif ($unit['unit_type'] == 'ICT-Practical' && $room['room_type'] == 'ICT Labaratory') {
+                    // assign the unit to the timeslot, room, and day
+                    $assignment = array(
+                        'code' => $unit['unit_code'],
+                        'unit' => $unit['unit_name'],
+                        'unit_type'=> $unit['unit_type'],
+                        'lecturer' => $unit['lecturer_id'],
+                        'day' => $day,
+                        'timeslot' => $timeslot,
+                        'room' => $room['room_name']
+                    );
+                    $unit_id = $assignment['code'];
+                    $unit_name= $assignment['unit'];
+                    $unit_type= $assignment['unit_type'];
+                    $day = $assignment['day'];
+                    $timeslot = $assignment['timeslot'];
+                    $room = $assignment['room'];
+                    $lec = $assignment['lecturer'];
 
-            // add the assigned unit to the array of assigned units
-            $assigned_units[] = $unit['unit_code'];
-            // remove the assigned room from the list of available rooms
-            $room_index = array_search($room, $rooms);
-            unset($rooms[$room_index]);
-            // break out of the room loop
-            break;
-        } elseif ($unit['unit_type'] == 'ICT-Practical' && $room['room_type'] == 'ICT Labaratory') {
-            // assign the unit to the timeslot, room, and day
-            $assignment = array(
-                'code' => $unit['unit_code'],
-                'unit' => $unit['unit_name'],
-                'unit_type'=> $unit['unit_type'],
-                'lecturer' => $unit['lecturer_id'],
-                'day' => $dy,
-                'timeslot' => $random_timeslot,
-                'room' => $room['room_name']
-            );
-            $unit_id = $assignment['code'];
-            $unit_name= $assignment['unit'];
-            $unit_type= $assignment['unit_type'];
-            $day = $assignment['day'];
-            $timeslot = $assignment['timeslot'];
-            $room = $assignment['room'];
-            $lec = $assignment['lecturer'];
+                    // save the assignment to the CSV file
+                    fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
-            // save the assignment to the CSV file
-            fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
+                    // save the assignment to the database or elsewhere
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
+                                        VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                    $assignment_results = mysqli_query($db, $assignment_query);
 
-            // save the assignment to the database or elsewhere
-            $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
-                                 VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
-            $assignment_results = mysqli_query($db, $assignment_query);
+                    // add the assigned unit to the array of assigned units
+                    $assigned_units[] = $unit['unit_code'];
+                    // remove the assigned room from the list of available rooms
+                    $room_index = array_search($room, $rooms);
+                    unset($rooms[$room_index]);
+                    // break out of the room loop
+                    break;
+                }elseif ($unit['unit_type'] == 'ELECT-Practical' && $room['room_type'] == 'Electronics LAB') {
+                    // assign the unit to the timeslot, room, and day
+                    $assignment = array(
+                        'code' => $unit['unit_code'],
+                        'unit' => $unit['unit_name'],
+                        'unit_type'=> $unit['unit_type'],
+                        'lecturer' => $unit['lecturer_id'],
+                        'day' => $day,
+                        'timeslot' => $timeslot,
+                        'room' => $room['room_name']
+                    );
+                    $unit_id = $assignment['code'];
+                    $unit_name= $assignment['unit'];
+                    $unit_type= $assignment['unit_type'];
+                    $day = $assignment['day'];
+                    $timeslot = $assignment['timeslot'];
+                    $room = $assignment['room'];
+                    $lec = $assignment['lecturer'];
 
-            // add the assigned unit to the array of assigned units
-            $assigned_units[] = $unit['unit_code'];
-            // remove the assigned room from the list of available rooms
-            $room_index = array_search($room, $rooms);
-            unset($rooms[$room_index]);
-            // break out of the room loop
-            break;
-        }elseif ($unit['unit_type'] == 'ELECT-Practical' && $room['room_type'] == 'Electronics LAB') {
-            // assign the unit to the timeslot, room, and day
-            $assignment = array(
-                'code' => $unit['unit_code'],
-                'unit' => $unit['unit_name'],
-                'unit_type'=> $unit['unit_type'],
-                'lecturer' => $unit['lecturer_id'],
-                'day' => $dy,
-                'timeslot' => $random_timeslot,
-                'room' => $room['room_name']
-            );
-            $unit_id = $assignment['code'];
-            $unit_name= $assignment['unit'];
-            $unit_type= $assignment['unit_type'];
-            $day = $assignment['day'];
-            $timeslot = $assignment['timeslot'];
-            $room = $assignment['room'];
-            $lec = $assignment['lecturer'];
+                    // save the assignment to the CSV file
+                    fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
-            // save the assignment to the CSV file
-            fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
+                    // save the assignment to the database or elsewhere
+                    $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
+                                        VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                    $assignment_results = mysqli_query($db, $assignment_query);
 
-            // save the assignment to the database or elsewhere
-            $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
-                                 VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
-            $assignment_results = mysqli_query($db, $assignment_query);
+                    // add the assigned unit to the array of assigned units
+                    $assigned_units[] = $unit['unit_code'];
+                    // remove the assigned room from the list of available rooms
+                    $room_index = array_search($room, $rooms);
+                    unset($rooms[$room_index]);
+                    // break out of the room loop
+                    break;
+                }
 
-            // add the assigned unit to the array of assigned units
-            $assigned_units[] = $unit['unit_code'];
-            // remove the assigned room from the list of available rooms
-            $room_index = array_search($room, $rooms);
-            unset($rooms[$room_index]);
-            // break out of the room loop
-            break;
-        }
+                        }else{
+                            continue;
+                            
+                        }
+
+            }// end of room timeslot
+        }//end of loop for timeslot
+
+    }//end of loop for days
 
 
-    }
-}
+    }//end of loop of unit
 
-
-
-}
-
-
-}
-
-    // close the CSV file
-    fclose($csv_file);
+        // close the CSV file
+        fclose($csv_file);
 
 }//END OF FUNCTION
 
