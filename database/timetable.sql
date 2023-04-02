@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2023 at 08:58 PM
+-- Generation Time: Apr 02, 2023 at 02:57 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -407,7 +407,7 @@ INSERT INTO `role_details` (`id`, `role_id`, `role_name`) VALUES
 
 CREATE TABLE `room_details` (
   `id` int(11) NOT NULL,
-  `room_id` varchar(20) NOT NULL,
+  `room_id` varchar(100) NOT NULL,
   `room_name` varchar(255) NOT NULL,
   `room_type_id` varchar(100) NOT NULL,
   `room_capacity` bigint(20) NOT NULL,
@@ -419,7 +419,8 @@ CREATE TABLE `room_details` (
 --
 
 INSERT INTO `room_details` (`id`, `room_id`, `room_name`, `room_type_id`, `room_capacity`, `date_added`) VALUES
-(11, 'RM-ELECTRONICS-LAB-I', 'Electronics LAB I', 'RM_ELECTRONIC_LAB', 60, '2023-03-26 08:54:20'),
+(11, 'RM-ELECTRONICS-LAB-I', 'Electronics LAB I', 'RM_ELECTRONIC_LAB', 90, '2023-03-26 08:54:20'),
+(20, 'RM-ELECTRONICS-LAB-II', 'Electronics LAB II', 'RM_ELECTRONIC_LAB', 110, '2023-04-02 12:37:22'),
 (5, 'RM-LAB-I', 'LAB I', 'RM_ICT_LAB', 55, '2023-03-06 12:02:32'),
 (6, 'RM-LAB-II', 'LAB II', 'RM_ICT_LAB', 70, '2023-03-06 12:02:51'),
 (7, 'RM-LAB-III', 'LAB III', 'RM_ICT_LAB', 85, '2023-03-06 12:03:10'),
@@ -433,7 +434,9 @@ INSERT INTO `room_details` (`id`, `room_id`, `room_name`, `room_type_id`, `room_
 (4, 'RM-TB-4', 'TB 4', 'RM_STD', 90, '2023-03-06 12:01:24'),
 (12, 'RM-TB-5', 'TB 5', 'RM_STD', 65, '2023-03-30 11:48:21'),
 (13, 'RM-TB-6', 'TB 6', 'RM_STD', 95, '2023-03-30 11:48:33'),
-(14, 'RM-TB-7', 'TB 7', 'RM_STD', 85, '2023-03-30 11:48:52');
+(14, 'RM-TB-7', 'TB 7', 'RM_STD', 85, '2023-03-30 11:48:52'),
+(17, 'RM-TB-8', 'TB 8', 'RM_STD', 110, '2023-04-02 12:34:06'),
+(18, 'RM-TB-9', 'TB 9', 'RM_STD', 140, '2023-04-02 12:34:31');
 
 -- --------------------------------------------------------
 
@@ -1272,7 +1275,7 @@ INSERT INTO `unit_details` (`id`, `unit_code`, `unit_name`, `unit_type`, `unit_a
 (36, 'CIT 309', 'IT Project I (Proposal Writing)', 'Theory', 'Active', '2023-03-01 19:41:54'),
 (49, 'CIT 310', 'Information Assurance and Security II', 'Theory', 'Active', '2023-03-01 19:48:17'),
 (38, 'CIT 311', 'Information Technology Control and Audit I', 'Theory', 'Active', '2023-03-01 19:42:44'),
-(45, 'CIT 312', 'Group Project (Project Implementation)', 'Theory', 'Active', '2023-03-01 19:45:53'),
+(45, 'CIT 312', 'Group Project (Project Implementation)', 'ICT-Practical', 'Active', '2023-03-01 19:45:53'),
 (39, 'CIT 313', 'Database Administration', 'Theory', 'Active', '2023-03-01 19:43:10'),
 (50, 'CIT 314', 'Mobile Programming', 'ICT-Practical', 'Active', '2023-03-01 19:48:39'),
 (40, 'CIT 315', 'Computer Networks Lab III', 'ICT-Practical', 'Active', '2023-03-01 19:43:49'),
@@ -2051,7 +2054,7 @@ ALTER TABLE `role_details`
 -- AUTO_INCREMENT for table `room_details`
 --
 ALTER TABLE `room_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `room_type_details`
@@ -2099,7 +2102,7 @@ ALTER TABLE `unit_details`
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2341;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3885;
 
 --
 -- AUTO_INCREMENT for table `unit_semester_details`
