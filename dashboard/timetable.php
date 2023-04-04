@@ -25,7 +25,6 @@ function generateTimetable() {
 
     //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
     $units = array();
-    $schools = array();
     $rooms = array();
     $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
     
