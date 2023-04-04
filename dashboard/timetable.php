@@ -25,12 +25,7 @@ function generateTimetable() {
 
     //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
     $units = array();
-    $lecturers = array();
-    $courses = array();
-    $departments = array();
-    $schools = array();
     $rooms = array();
-    $timeSlots = array();
     $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
     
     //STEP 2: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
@@ -51,7 +46,6 @@ function generateTimetable() {
             '07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00'
         ),
     );
-        
 
     //STEP 3: GET ROOM DETAILS AND PUSH THEM TO rooms array
     $rooms_query = "SELECT * FROM room_details
@@ -267,7 +261,7 @@ foreach ($timeslots as $day => $slots) {
 
             }
         }//room
-break; 
+// break; 
 
 }//timeslot
 
