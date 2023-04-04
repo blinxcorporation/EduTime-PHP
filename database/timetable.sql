@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2023 at 02:57 PM
+-- Generation Time: Apr 04, 2023 at 11:16 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -1321,6 +1321,27 @@ CREATE TABLE `unit_room_time_day_allocation_details` (
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `unit_room_time_day_allocation_details`
+--
+
+INSERT INTO `unit_room_time_day_allocation_details` (`id`, `unit_id`, `lecturer_id`, `room_id`, `time_slot_id`, `weekday`, `date_allocated`) VALUES
+(1, 'ABA 424', 'PF60', 'TB 7', '07:00-09:00', 'Monday', '2023-04-04 21:16:21'),
+(2, 'CCT 212', 'PF20', 'TB 6', '07:00-09:00', 'Monday', '2023-04-04 21:16:21'),
+(3, 'CIM 212', 'PF16', 'TB 1', '13:00-15:00', 'Monday', '2023-04-04 21:16:21'),
+(4, 'CIM 208', 'PF15', 'TB 2', '07:00-09:00', 'Monday', '2023-04-04 21:16:21'),
+(5, 'CIT 316', 'PF15', 'TB 4', '09:00-11:00', 'Monday', '2023-04-04 21:16:22'),
+(6, 'CCS 412', 'PF20', 'TB 9', '13:00-15:00', 'Monday', '2023-04-04 21:16:22'),
+(7, 'CCS 202', 'PF25', 'TB 8', '11:00-13:00', 'Monday', '2023-04-04 21:16:22'),
+(8, 'CCS 312', 'PF27', 'TB 8', '17:00-19:00', 'Monday', '2023-04-04 21:16:22'),
+(9, 'CIS 212', 'PF01', 'LAB VI', '17:00-19:00', 'Monday', '2023-04-04 21:16:22'),
+(10, 'CIM 422', 'PF19', 'TB 1', '17:00-19:00', 'Monday', '2023-04-04 21:16:22'),
+(11, 'CCS 318', 'PF06', 'TB 1', '09:00-11:00', 'Monday', '2023-04-04 21:16:22'),
+(12, 'CCT 318', 'PF24', 'TB 8', '07:00-09:00', 'Monday', '2023-04-04 21:16:22'),
+(13, 'CIT 312', 'PF19', 'LAB V', '17:00-19:00', 'Monday', '2023-04-04 21:16:22'),
+(14, 'CCS 214', 'PF27', 'LAB VII', '09:00-11:00', 'Monday', '2023-04-04 21:16:22'),
+(15, 'CIS 406', 'PF18', 'TB 8', '17:00-19:00', 'Monday', '2023-04-04 21:16:22');
+
 -- --------------------------------------------------------
 
 --
@@ -2102,7 +2123,7 @@ ALTER TABLE `unit_details`
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3885;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `unit_semester_details`
