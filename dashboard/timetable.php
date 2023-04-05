@@ -23,6 +23,12 @@ function generateTimetable() {
         //GET database connection string inside function
         global $db;
 
+            // SQL query to delete all rows in the table
+            $alter_query = "DELETE FROM unit_room_time_day_allocation_details;
+            ALTER TABLE unit_room_time_day_allocation_details DROP COLUMN id;
+            ALTER TABLE unit_room_time_day_allocation_details ADD id INT AUTO_INCREMENT PRIMARY KEY FIRST;";
+            mysqli_query($db, $alter_query);
+
         //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
         $units = array();
         $rooms = array();
@@ -350,34 +356,34 @@ include '../assets/components/header.php';
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-12">
 
                     <div class="card">
+
                         <div class="card-body">
-                            <h5 class="card-title">Generate Timetable</h5>
-
-
                             <form method="POST" action="">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <select class="form-control" id="sem_id" name="semester_id">
-                                                <option value="" selected>Select semester...</option>
-                                                <option value="SEM1">Semester 1</option>
-                                                <option value="SEM2">Semester 2</option>
-                                            </select>
-                                        </div>
+                                <div class="row mb-4">
+                                    <div class="col"></div>
+                                    <div class="col mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                                            name="generate-timetable-btn" style="font-size:20px">Generate
+                                            Timetable <i class="fa fa-refresh"></i></button>
                                     </div>
-                                    <div class="col">
-                                        <button type="submit" class="btn btn-primary"
-                                            name="generate-timetable-btn">Generate Timetable</button>
-                                    </div>
+                                    <div class="col"></div>
                                 </div>
                             </form>
-                            <!--CSV file in an iframe-->
-                            <iframe src="" width="100%" height="400"></iframe>
-
                         </div>
+
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col"></div>
+                        <div class="col mt-4">
+                            <a href="assignment.csv" download class="btn btn-outline-success btn-lg"
+                                style="font-size:30px">
+                                DOWNLOAD
+                                TIMETABLE <i class="fa fa-download"></i></a>
+                        </div>
+                        <div class="col"></div>
                     </div>
                 </div>
             </div>
@@ -385,7 +391,6 @@ include '../assets/components/header.php';
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
         <!-- ============================================================== -->
-
 
         <!-- ============================================================== -->
         <!-- footer -->
