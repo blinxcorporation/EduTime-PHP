@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2023 at 10:31 PM
+-- Generation Time: Apr 06, 2023 at 12:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -200,7 +200,7 @@ INSERT INTO `lecturer_department_details` (`id`, `department_id`, `lecturer_id`,
 (26, 'DPT_COMPUTERSCIENCE', 'PF26', '2023-03-09 09:12:49'),
 (27, 'DPT_COMPUTERSCIENCE', 'PF27', '2023-03-09 09:14:03'),
 (28, 'DPT_COMPUTERSCIENCE', 'PF28', '2023-03-09 09:14:55'),
-(30, 'DPT_COMPUTERSCIENCE', 'PF029', '2023-03-20 20:19:14'),
+(30, 'DPT_COMPUTERSCIENCE', 'PF29', '2023-03-20 20:19:14'),
 (31, 'DPT_COMPUTERSCIENCE', 'PF30', '2023-03-20 20:25:40'),
 (32, 'DPT_COMPUTERSCIENCE', 'PF31', '2023-03-20 20:51:25'),
 (33, 'DPT_INFORMATIONTECHNOLOGY', 'PF60', '2023-03-25 10:09:58'),
@@ -271,11 +271,11 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (58, 'PF06', 'CCS 418', 'YR_2019_2020', '2023-03-20 20:14:01'),
 (59, 'PF06', 'CCT 308', 'YR_2020_2021', '2023-03-20 20:14:23'),
 (60, 'PF06', 'CCT 320', 'YR_2020_2021', '2023-03-20 20:14:53'),
-(61, 'PF029', 'CCT 312', 'YR_2020_2021', '2023-03-20 20:20:01'),
-(62, 'PF029', 'CCS 104', 'YR_2022_2023', '2023-03-20 20:20:53'),
-(63, 'PF029', 'CCT 104', 'YR_2022_2023', '2023-03-20 20:21:11'),
-(64, 'PF029', 'CCS 206', 'YR_2021_2022', '2023-03-20 20:22:01'),
-(65, 'PF029', 'CCS 416', 'YR_2019_2020', '2023-03-20 20:24:21'),
+(61, 'PF29', 'CCT 312', 'YR_2020_2021', '2023-03-20 20:20:01'),
+(62, 'PF29', 'CCS 104', 'YR_2022_2023', '2023-03-20 20:20:53'),
+(63, 'PF29', 'CCT 104', 'YR_2022_2023', '2023-03-20 20:21:11'),
+(64, 'PF29', 'CCS 206', 'YR_2021_2022', '2023-03-20 20:22:01'),
+(65, 'PF29', 'CCS 416', 'YR_2019_2020', '2023-03-20 20:24:21'),
 (68, 'PF30', 'CCS 302', 'YR_2020_2021', '2023-03-20 20:31:03'),
 (69, 'PF30', 'CCT 304', 'YR_2020_2021', '2023-03-20 20:31:23'),
 (70, 'PF30', 'CCS 304', 'YR_2020_2021', '2023-03-20 20:32:04'),
@@ -1326,24 +1326,23 @@ CREATE TABLE `unit_room_time_day_allocation_details` (
 --
 
 INSERT INTO `unit_room_time_day_allocation_details` (`id`, `unit_id`, `lecturer_id`, `room_id`, `time_slot_id`, `weekday`, `date_allocated`) VALUES
-(1, 'CCT 320', 'PF06', 'LAB VI', '15:00-17:00', 'Monday', '2023-04-05 20:29:24'),
-(2, 'CCT 108', 'PF22', 'TB 9', '15:00-17:00', 'Thursday', '2023-04-05 20:29:24'),
-(3, 'CIS 406', 'PF18', 'TB 9', '15:00-17:00', 'Thursday', '2023-04-05 20:29:24'),
-(4, 'CIM 422', 'PF19', 'TB 7', '15:00-17:00', 'Tuesday', '2023-04-05 20:29:24'),
-(5, 'CIT 318', 'PF12', 'TB 1', '11:00-13:00', 'Tuesday', '2023-04-05 20:29:24'),
-(6, 'CIM 304', 'PF12', 'TB 6', '09:00-11:00', 'Friday', '2023-04-05 20:29:24'),
-(7, 'CIS 206', 'PF11', 'TB 9', '17:00-19:00', 'Friday', '2023-04-05 20:29:24'),
-(8, 'CIT 302', 'PF14', 'TB 7', '15:00-17:00', 'Wednesday', '2023-04-05 20:29:24'),
-(9, 'CIM 208', 'PF15', 'TB 8', '07:00-09:00', 'Friday', '2023-04-05 20:29:24'),
-(10, 'CIT 306', 'PF04', 'TB 7', '13:00-15:00', 'Friday', '2023-04-05 20:29:25'),
-(11, 'CIT 104', 'PF16', 'TB 4', '15:00-17:00', 'Monday', '2023-04-05 20:29:25'),
-(12, 'CIS 416', 'PF17', 'TB 2', '17:00-19:00', 'Tuesday', '2023-04-05 20:29:25'),
-(13, 'CIT 118', 'PF01', 'TB 6', '17:00-19:00', 'Tuesday', '2023-04-05 20:29:25'),
-(14, 'CIT 316', 'PF15', 'TB 4', '07:00-09:00', 'Monday', '2023-04-05 20:29:25'),
-(15, 'CIT 408', 'PF17', 'TB 4', '15:00-17:00', 'Monday', '2023-04-05 20:29:25'),
-(16, 'CIM 320', 'PF18', 'TB 9', '13:00-15:00', 'Friday', '2023-04-05 20:29:25'),
-(17, 'CIS 310', 'PF04', 'TB 4', '07:00-09:00', 'Monday', '2023-04-05 20:29:25'),
-(18, 'CIT 308', 'PF07', 'LAB III', '17:00-19:00', 'Monday', '2023-04-05 20:29:25');
+(1, 'CIM 108', 'PF18', 'TB 9', '09:00-11:00', 'Thursday', '2023-04-05 22:07:01'),
+(2, 'CIM 214', 'PF17', 'TB 6', '11:00-13:00', 'Thursday', '2023-04-05 22:07:01'),
+(3, 'CIM 306', 'PF08', 'TB 7', '07:00-09:00', 'Tuesday', '2023-04-05 22:07:01'),
+(4, 'CCS 416', 'PF29', 'TB 1', '13:00-15:00', 'Friday', '2023-04-05 22:07:01'),
+(5, 'CCT 212', 'PF20', 'TB 8', '11:00-13:00', 'Tuesday', '2023-04-05 22:07:01'),
+(6, 'CCS 304', 'PF30', 'LAB VI', '09:00-11:00', 'Friday', '2023-04-05 22:07:01'),
+(7, 'CIM 302', 'PF18', 'TB 1', '13:00-15:00', 'Thursday', '2023-04-05 22:07:01'),
+(8, 'CCS 214', 'PF27', 'LAB VI', '11:00-13:00', 'Thursday', '2023-04-05 22:07:01'),
+(9, 'CIM 418', 'PF02', 'TB 4', '09:00-11:00', 'Tuesday', '2023-04-05 22:07:01'),
+(10, 'CCS 406', 'PF25', 'LAB III', '13:00-15:00', 'Tuesday', '2023-04-05 22:07:01'),
+(11, 'CIT 120', 'PF08', 'TB 4', '11:00-13:00', 'Friday', '2023-04-05 22:07:01'),
+(12, 'CIS 314', 'PF15', 'LAB VI', '11:00-13:00', 'Wednesday', '2023-04-05 22:07:01'),
+(13, 'CIT 402', 'PF02', 'LAB III', '11:00-13:00', 'Thursday', '2023-04-05 22:07:01'),
+(14, 'CCT 322', 'PF27', 'LAB VI', '11:00-13:00', 'Friday', '2023-04-05 22:07:02'),
+(15, 'CIS 104', 'PF16', 'LAB VI', '13:00-15:00', 'Monday', '2023-04-05 22:07:02'),
+(16, 'CCS 114', 'PF28', 'LAB VI', '13:00-15:00', 'Wednesday', '2023-04-05 22:07:02'),
+(17, 'CCS 204', 'PF23', 'LAB VI', '11:00-13:00', 'Thursday', '2023-04-05 22:07:02');
 
 -- --------------------------------------------------------
 
@@ -1740,11 +1739,9 @@ CREATE TABLE `user_details` (
 INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `date_created`) VALUES
 (1, 'PF01', 'Dr', ' Titus', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
 (2, 'PF02', 'Ms', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
-(33, 'PF029', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:19:13'),
 (3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
 (4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
 (5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
-(32, 'PF055', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 23:30:02'),
 (6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:25:05'),
 (7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 10:32:21'),
 (8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, 'e51ebb11e912d482972e91f5b2243849cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 11:47:42'),
@@ -1768,9 +1765,11 @@ INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `
 (26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:12:49'),
 (27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:02'),
 (28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55'),
+(33, 'PF29', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:19:13'),
 (34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:25:40'),
 (35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:51:25'),
 (37, 'PF52', 'Dr', 'Roxanne', 'Hawi', 'roxannehavi@maseno.ac.ke', 752457582, '733cf4ed6fc40042a9514cb42817a54fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 14:56:47'),
+(32, 'PF55', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 23:30:02'),
 (36, 'PF60', 'Mr', 'Thomas', 'Ojijo', 'ojijotom@maseno.ac.ke', 714758258, '7ed946148ae8b14c898fcefde7a03734cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 13:09:58');
 
 -- --------------------------------------------------------
@@ -1819,8 +1818,8 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (27, 'PF27', 'role002', '2023-03-09 09:14:02'),
 (28, 'PF28', 'role002', '2023-03-09 09:14:55'),
 (29, 'PF06', 'role004', '2023-03-09 09:25:05'),
-(32, 'PF055', 'role001', '2023-03-09 20:30:02'),
-(33, 'PF029', 'role002', '2023-03-20 20:19:14'),
+(32, 'PF55', 'role001', '2023-03-09 20:30:02'),
+(33, 'PF29', 'role002', '2023-03-20 20:19:14'),
 (34, 'PF30', 'role002', '2023-03-20 20:25:40'),
 (35, 'PF31', 'role002', '2023-03-20 20:51:25'),
 (36, 'PF60', 'role002', '2023-03-25 10:09:58'),
@@ -2126,7 +2125,7 @@ ALTER TABLE `unit_details`
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `unit_semester_details`
