@@ -133,23 +133,26 @@ shuffle($timeslots);
 shuffle($rooms);
 
 // loop through each day until a suitable timeslot is found
-foreach ($timeslots as $day => $slots) {
-    if($day == 0){
-        $dy = 'Monday';
-    }elseif ($day == 1) {
-        $dy = 'Tuesday';
-    }elseif ($day == 2) {
-        $dy = 'Wednesday';
-    }elseif ($day == 3) {
-        $dy = 'Thursday';
-    }elseif ($day == 4) {
-        $dy = 'Friday';
-    }
- 
-    $random_index = array_rand($slots);
-    $random_timeslot = $slots[$random_index];
+// foreach ($timeslots as $day => $slots) {
 
-        // loop through each room until a suitable room is found
+    $assigned_day_key = array_rand($timeslots); // choose a random day from the timeslots array
+    $assigned_day = array_keys($timeslots)[$assigned_day_key]; // get the weekday name for the chosen day
+    $random_timeslot = $timeslots[$assigned_day][array_rand($timeslots[$assigned_day])]; // choose a random timeslot for the selected day
+
+    if($assigned_day == 0){
+        $assigned_day = "Monday";
+    }elseif ($assigned_day == 1) {
+        $assigned_day = "Tuesday";
+    }elseif ($assigned_day == 2) {
+        $assigned_day = "Wednesday";
+    }elseif ($assigned_day == 3) {
+        $assigned_day = "Thursday";
+    }elseif ($assigned_day == 4) {
+        $assigned_day = "Friday";
+    }
+
+
+         // loop through each room until a suitable room is found
         foreach ($rooms as $room) {
             // check if the room capacity is enough for the unit
             if ($room['capacity'] >= $unit['group_number']) {
@@ -161,7 +164,7 @@ foreach ($timeslots as $day => $slots) {
                         'unit' => $unit['unit_name'],
                         'unit_type'=> $unit['unit_type'],
                         'lecturer' => $unit['lecturer_id'],
-                        'day' => $dy,
+                        'day' => $assigned_day,
                         'timeslot' => $random_timeslot,
                         'room' => $room['room_name']
                     );
@@ -195,7 +198,7 @@ foreach ($timeslots as $day => $slots) {
                         'unit' => $unit['unit_name'],
                         'unit_type'=> $unit['unit_type'],
                         'lecturer' => $unit['lecturer_id'],
-                        'day' => $dy,
+                        'day' => $assigned_day,
                         'timeslot' => $random_timeslot,
                         'room' => $room['room_name']
                     );
@@ -229,7 +232,7 @@ foreach ($timeslots as $day => $slots) {
                         'unit' => $unit['unit_name'],
                         'unit_type'=> $unit['unit_type'],
                         'lecturer' => $unit['lecturer_id'],
-                        'day' => $dy,
+                        'day' => $assigned_day,
                         'timeslot' => $random_timeslot,
                         'room' => $room['room_name']
                     );
@@ -258,18 +261,17 @@ foreach ($timeslots as $day => $slots) {
                     break;
                 }
 
-
             }
-        }//room
+        }
 // break; 
 
-}//timeslot
+// }//end of timeslot loop
 
 
-}
+}//end of units loop
 
-    // close the CSV file
-    fclose($csv_file);
+// close the CSV file
+fclose($csv_file);
 
 }//END OF FUNCTION
 
