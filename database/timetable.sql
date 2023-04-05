@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2023 at 11:47 PM
+-- Generation Time: Apr 05, 2023 at 09:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -1317,9 +1317,32 @@ CREATE TABLE `unit_room_time_day_allocation_details` (
   `lecturer_id` varchar(100) NOT NULL,
   `room_id` varchar(100) NOT NULL,
   `time_slot_id` varchar(100) NOT NULL,
-  `weekday` varchar(100) NOT NULL,
+  `weekday` varchar(100) DEFAULT NULL,
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit_room_time_day_allocation_details`
+--
+
+INSERT INTO `unit_room_time_day_allocation_details` (`id`, `unit_id`, `lecturer_id`, `room_id`, `time_slot_id`, `weekday`, `date_allocated`) VALUES
+(1, 'ABS 424', 'PF60', 'TB 9', '09:00-11:00', 'Thursday', '2023-04-05 19:57:13'),
+(2, 'CIS 214', 'PF16', 'TB 2', '13:00-15:00', 'Tuesday', '2023-04-05 19:57:13'),
+(3, 'CIS 204', 'PF12', 'LAB III', '11:00-13:00', 'Thursday', '2023-04-05 19:57:13'),
+(4, 'CCS 112', 'PF28', 'TB 8', '17:00-19:00', 'Friday', '2023-04-05 19:57:14'),
+(5, 'CIT 308', 'PF07', 'LAB VII', '09:00-11:00', 'Wednesday', '2023-04-05 19:57:14'),
+(6, 'ABA 424', 'PF60', 'TB 6', '09:00-11:00', 'Tuesday', '2023-04-05 19:57:14'),
+(7, 'CIS 210', 'PF14', 'TB 7', '07:00-09:00', 'Friday', '2023-04-05 19:57:14'),
+(8, 'CCS 208', 'PF23', 'TB 9', '11:00-13:00', 'Friday', '2023-04-05 19:57:14'),
+(9, 'CCS 206', 'PF029', 'TB 6', '09:00-11:00', 'Friday', '2023-04-05 19:57:14'),
+(10, 'CIS 120', 'PF01', 'TB 8', '17:00-19:00', 'Thursday', '2023-04-05 19:57:14'),
+(11, 'CCT 102', 'PF28', 'TB 7', '09:00-11:00', 'Thursday', '2023-04-05 19:57:14'),
+(12, 'CIT 216', 'PF12', 'TB 8', '17:00-19:00', 'Wednesday', '2023-04-05 19:57:14'),
+(13, 'CIT 210', 'PF18', 'TB 7', '11:00-13:00', 'Wednesday', '2023-04-05 19:57:14'),
+(14, 'CCT 316', 'PF21', 'TB 7', '17:00-19:00', 'Tuesday', '2023-04-05 19:57:14'),
+(15, 'CIT 402', 'PF02', 'LAB V', '15:00-17:00', 'Friday', '2023-04-05 19:57:14'),
+(16, 'CIS 402', 'PF60', 'TB 7', '13:00-15:00', 'Friday', '2023-04-05 19:57:14'),
+(17, 'CIT 408', 'PF17', 'TB 7', '07:00-09:00', 'Friday', '2023-04-05 19:57:15');
 
 -- --------------------------------------------------------
 
@@ -2102,7 +2125,7 @@ ALTER TABLE `unit_details`
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=358;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `unit_semester_details`
