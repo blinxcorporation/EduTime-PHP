@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2023 at 12:08 AM
+-- Generation Time: Apr 06, 2023 at 12:28 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -1326,23 +1326,24 @@ CREATE TABLE `unit_room_time_day_allocation_details` (
 --
 
 INSERT INTO `unit_room_time_day_allocation_details` (`id`, `unit_id`, `lecturer_id`, `room_id`, `time_slot_id`, `weekday`, `date_allocated`) VALUES
-(1, 'CIM 108', 'PF18', 'TB 9', '09:00-11:00', 'Thursday', '2023-04-05 22:07:01'),
-(2, 'CIM 214', 'PF17', 'TB 6', '11:00-13:00', 'Thursday', '2023-04-05 22:07:01'),
-(3, 'CIM 306', 'PF08', 'TB 7', '07:00-09:00', 'Tuesday', '2023-04-05 22:07:01'),
-(4, 'CCS 416', 'PF29', 'TB 1', '13:00-15:00', 'Friday', '2023-04-05 22:07:01'),
-(5, 'CCT 212', 'PF20', 'TB 8', '11:00-13:00', 'Tuesday', '2023-04-05 22:07:01'),
-(6, 'CCS 304', 'PF30', 'LAB VI', '09:00-11:00', 'Friday', '2023-04-05 22:07:01'),
-(7, 'CIM 302', 'PF18', 'TB 1', '13:00-15:00', 'Thursday', '2023-04-05 22:07:01'),
-(8, 'CCS 214', 'PF27', 'LAB VI', '11:00-13:00', 'Thursday', '2023-04-05 22:07:01'),
-(9, 'CIM 418', 'PF02', 'TB 4', '09:00-11:00', 'Tuesday', '2023-04-05 22:07:01'),
-(10, 'CCS 406', 'PF25', 'LAB III', '13:00-15:00', 'Tuesday', '2023-04-05 22:07:01'),
-(11, 'CIT 120', 'PF08', 'TB 4', '11:00-13:00', 'Friday', '2023-04-05 22:07:01'),
-(12, 'CIS 314', 'PF15', 'LAB VI', '11:00-13:00', 'Wednesday', '2023-04-05 22:07:01'),
-(13, 'CIT 402', 'PF02', 'LAB III', '11:00-13:00', 'Thursday', '2023-04-05 22:07:01'),
-(14, 'CCT 322', 'PF27', 'LAB VI', '11:00-13:00', 'Friday', '2023-04-05 22:07:02'),
-(15, 'CIS 104', 'PF16', 'LAB VI', '13:00-15:00', 'Monday', '2023-04-05 22:07:02'),
-(16, 'CCS 114', 'PF28', 'LAB VI', '13:00-15:00', 'Wednesday', '2023-04-05 22:07:02'),
-(17, 'CCS 204', 'PF23', 'LAB VI', '11:00-13:00', 'Thursday', '2023-04-05 22:07:02');
+(1, 'CCS 110', 'Mr Michael Ondeja', 'TB 9', '15:00-17:00', 'Thursday', '2023-04-05 22:28:03'),
+(2, 'CIT 414', 'Mr George Omuono', 'TB 6', '15:00-17:00', 'Thursday', '2023-04-05 22:28:03'),
+(3, 'CIS 104', 'Mr Michael Wambwere', 'LAB V', '09:00-11:00', 'Thursday', '2023-04-05 22:28:03'),
+(4, 'CCT 212', 'Dr Lilian Wanzare', 'TB 6', '11:00-13:00', 'Monday', '2023-04-05 22:28:03'),
+(5, 'CIS 212', 'Dr  Titus Muhambe', 'LAB VI', '11:00-13:00', 'Wednesday', '2023-04-05 22:28:03'),
+(6, 'CIS 310', 'Mr Isaac Owino', 'TB 8', '15:00-17:00', 'Monday', '2023-04-05 22:28:03'),
+(7, 'CCT 418', 'Dr Lilian Wanzare', 'TB 8', '11:00-13:00', 'Tuesday', '2023-04-05 22:28:03'),
+(8, 'CIM 316', 'Mr Gabriel Oliko', 'TB 8', '17:00-19:00', 'Friday', '2023-04-05 22:28:03'),
+(9, 'CIM 212', 'Mr Michael Wambwere', 'TB 4', '11:00-13:00', 'Thursday', '2023-04-05 22:28:03'),
+(10, 'CIM 206', 'Mr Bethuel Okelo', 'TB 2', '09:00-11:00', 'Monday', '2023-04-05 22:28:03'),
+(11, 'CIS 120', 'Dr  Titus Muhambe', 'TB 2', '15:00-17:00', 'Wednesday', '2023-04-05 22:28:03'),
+(12, 'CIM 322', 'Mr David Saka', 'TB 4', '11:00-13:00', 'Thursday', '2023-04-05 22:28:03'),
+(13, 'CIT 118', 'Dr  Titus Muhambe', 'TB 7', '13:00-15:00', 'Thursday', '2023-04-05 22:28:03'),
+(14, 'CIM 406', 'Mr Thomas Ojijo', 'TB 7', '15:00-17:00', 'Monday', '2023-04-05 22:28:03'),
+(15, 'CCT 320', 'Dr Calvins Otieno', 'LAB VII', '11:00-13:00', 'Friday', '2023-04-05 22:28:03'),
+(16, 'CIS 314', 'Mr Bethuel Okelo', 'LAB V', '09:00-11:00', 'Monday', '2023-04-05 22:28:03'),
+(17, 'CCT 402', 'Dr Henry Okoyo', 'LAB III', '09:00-11:00', 'Thursday', '2023-04-05 22:28:03'),
+(18, 'CCT 104', 'Dr James Obuhuma', 'LAB III', '15:00-17:00', 'Tuesday', '2023-04-05 22:28:03');
 
 -- --------------------------------------------------------
 
@@ -2125,7 +2126,7 @@ ALTER TABLE `unit_details`
 -- AUTO_INCREMENT for table `unit_room_time_day_allocation_details`
 --
 ALTER TABLE `unit_room_time_day_allocation_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `unit_semester_details`

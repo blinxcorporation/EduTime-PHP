@@ -18,6 +18,7 @@ if ($_SESSION['role_name'] !== 'Admin') {
   exit;
 }
 
+
 //generate timetable function
 function generateTimetable() {
         //GET database connection string inside function
@@ -37,6 +38,9 @@ function generateTimetable() {
         //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
         $units = array();
         $rooms = array();
+        // create an array to keep track of assigned units
+        $assigned_units = array();
+        $assigned_rooms = array();
         
         //STEP 2: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
         $timeslots = array(
@@ -127,12 +131,8 @@ function generateTimetable() {
         // write the header row to the CSV file
         fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Lecturer','Day', 'Time Slot', 'Room'));
 
-        // create an array to keep track of assigned units
-        $assigned_units = array();
-
         // loop through each unit and assign to a timeslot, room, and day
         foreach ($units as $unit) {
-            
             // check if the unit has already been assigned
             if (in_array($unit['unit_code'], $assigned_units)) {
                 continue;
@@ -166,23 +166,29 @@ function generateTimetable() {
                 if ($room['capacity'] >= $unit['group_number']) {
                     // check if the unit type is Theory or ICT-Practical and allocate the room accordingly
                     if ($unit['unit_type'] == 'Theory' && $room['room_type'] == 'Standard') {
+                        if (in_array($unit['unit_code'], $assigned_units)) {
+                            continue;
+                        }else{
+
                         // assign the unit to the timeslot, room, and day
                         $assignment = array(
                             'code' => $unit['unit_code'],
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
+                            'lecturer_name' => $unit['user_title']." ".$unit['user_firstname']." ".$unit['user_lastname'],
                             'day' => $assigned_day,
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
                         );
+                        $assigned_rooms[$assigned_day][$random_timeslot][] = $room['room_name'];
                         $unit_id = $assignment['code'];
                         $unit_name= $assignment['unit'];
                         $unit_type= $assignment['unit_type'];
                         $day = $assignment['day'];
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
-                        $lec = $assignment['lecturer'];
+                        $lec = $assignment['lecturer_name'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
@@ -194,30 +200,34 @@ function generateTimetable() {
 
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
-                        
-                        // remove the assigned room from the list of available rooms
-                        $room_index = array_search($room, $rooms);
-                        unset($rooms[$room_index]);
+
                         // break out of the room loop
                         break;
+                    }
                     } elseif ($unit['unit_type'] == 'ICT-Practical' && $room['room_type'] == 'ICT Labaratory') {
+                        if (in_array($unit['unit_code'], $assigned_units)) {
+                            continue;
+                        }else{
+
                         // assign the unit to the timeslot, room, and day
                         $assignment = array(
                             'code' => $unit['unit_code'],
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
+                            'lecturer_name' => $unit['user_title']." ".$unit['user_firstname']." ".$unit['user_lastname'],
                             'day' => $assigned_day,
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
                         );
+                        $assigned_rooms[$assigned_day][$random_timeslot][] = $room['room_name'];
                         $unit_id = $assignment['code'];
                         $unit_name= $assignment['unit'];
                         $unit_type= $assignment['unit_type'];
                         $day = $assignment['day'];
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
-                        $lec = $assignment['lecturer'];
+                        $lec = $assignment['lecturer_name'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
@@ -230,29 +240,33 @@ function generateTimetable() {
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
                         
-                        // remove the assigned room from the list of available rooms
-                        $room_index = array_search($room, $rooms);
-                        unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
+                    }
                     }elseif ($unit['unit_type'] == 'ELECT-Practical' && $room['room_type'] == 'Electronics LAB') {
+                        if (in_array($unit['unit_code'], $assigned_units)) {
+                            continue;
+                        }else{
+
                         // assign the unit to the timeslot, room, and day
                         $assignment = array(
                             'code' => $unit['unit_code'],
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
+                            'lecturer_name' => $unit['user_title']." ".$unit['user_firstname']." ".$unit['user_lastname'],
                             'day' => $assigned_day,
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
                         );
+                        $assigned_rooms[$assigned_day][$random_timeslot][] = $room['room_name'];
                         $unit_id = $assignment['code'];
                         $unit_name= $assignment['unit'];
                         $unit_type= $assignment['unit_type'];
                         $day = $assignment['day'];
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
-                        $lec = $assignment['lecturer'];
+                        $lec = $assignment['lecturer_name'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
@@ -265,16 +279,13 @@ function generateTimetable() {
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
                         
-                        // remove the assigned room from the list of available rooms
-                        $room_index = array_search($room, $rooms);
-                        unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
+                    }
                     }
 
                 }
             }
-    // break; 
 
     }//end of units loop
 
