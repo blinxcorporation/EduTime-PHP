@@ -24,10 +24,15 @@ function generateTimetable() {
         global $db;
 
             // SQL query to delete all rows in the table
-            $alter_query = "DELETE FROM unit_room_time_day_allocation_details;
-            ALTER TABLE unit_room_time_day_allocation_details DROP COLUMN id;
-            ALTER TABLE unit_room_time_day_allocation_details ADD id INT AUTO_INCREMENT PRIMARY KEY FIRST;";
-            mysqli_query($db, $alter_query);
+            $delete_query = "DELETE FROM unit_room_time_day_allocation_details";
+            mysqli_query($db, $delete_query);
+
+            $delete_id_query = "ALTER TABLE unit_room_time_day_allocation_details DROP COLUMN id";
+            mysqli_query($db, $delete_id_query);
+            
+            $update_id_query = "ALTER TABLE unit_room_time_day_allocation_details ADD id INT AUTO_INCREMENT PRIMARY KEY FIRST";
+            mysqli_query($db, $update_id_query);
+
 
         //STEP 1: Initialize arrays to store units, lecturers, courses, departments, schools, rooms, and time slots
         $units = array();
