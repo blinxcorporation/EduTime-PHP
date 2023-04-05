@@ -201,9 +201,6 @@ function generateTimetable() {
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
 
-                        // remove the assigned room from the list of available rooms
-                        // $room_index = array_search($room, $rooms);
-                        // unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
                     }
@@ -243,9 +240,6 @@ function generateTimetable() {
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
                         
-                        // remove the assigned room from the list of available rooms
-                        // $room_index = array_search($room, $rooms);
-                        // unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
                     }
@@ -285,9 +279,6 @@ function generateTimetable() {
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
                         
-                        // remove the assigned room from the list of available rooms
-                        // $room_index = array_search($room, $rooms);
-                        // unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
                     }
