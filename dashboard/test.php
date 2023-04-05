@@ -40,7 +40,6 @@ function generateTimetable() {
         $rooms = array();
         // create an array to keep track of assigned units
         $assigned_units = array();
-        $assigned_rooms = array();
         
         //STEP 2: FETCH TIME SLOTS AND POPULATE TIMESLOTS ARRAY
         $timeslots = array(
@@ -162,7 +161,27 @@ function generateTimetable() {
 
             // loop through each room until a suitable room is found
             foreach ($rooms as $room) {
-                // check if the room capacity is enough for the unit
+             //function to check if room is available
+                function isRoomAvailable($room, $assigned_day, $random_timeslot) {
+                    // Sanitize input parameters
+                    $roomName = mysqli_real_escape_string($db, $room);
+                    $dayOfWeek = mysqli_real_escape_string($db, $assigned_day);
+                    $timeslot = mysqli_real_escape_string($db, $random_timeslot);
+
+                    // Prepare the SQL query
+                    $query = "SELECT COUNT(*) FROM unit_room_time_day_allocation_details WHERE room_id = '$roomName'
+                    AND weekday = '$dayOfWeek' AND time_slot_id = '$timeslot'";
+
+                    // Execute the query and fetch the result
+                    $result = mysqli_query($db, $query);
+                    $row = mysqli_fetch_array($result);
+
+                    // If the count is greater than 0, the room is already booked
+                    if ($row[0] > 0) {
+                        return false;
+                    } else {
+                        // return true;
+                        // check if the room capacity is enough for the unit
                 if ($room['capacity'] >= $unit['group_number']) {
                     // check if the unit type is Theory or ICT-Practical and allocate the room accordingly
                     if ($unit['unit_type'] == 'Theory' && $room['room_type'] == 'Standard') {
@@ -181,7 +200,6 @@ function generateTimetable() {
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
                         );
-                        $assigned_rooms[$assigned_day][$random_timeslot][] = $room['room_name'];
                         $unit_id = $assignment['code'];
                         $unit_name= $assignment['unit'];
                         $unit_type= $assignment['unit_type'];
@@ -200,10 +218,10 @@ function generateTimetable() {
 
                         // add the assigned unit to the array of assigned units
                         $assigned_units[] = $unit['unit_code'];
-
+                        
                         // remove the assigned room from the list of available rooms
-                        // $room_index = array_search($room, $rooms);
-                        // unset($rooms[$room_index]);
+                        $room_index = array_search($room, $rooms);
+                        unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
                     }
@@ -223,7 +241,6 @@ function generateTimetable() {
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
                         );
-                        $assigned_rooms[$assigned_day][$random_timeslot][] = $room['room_name'];
                         $unit_id = $assignment['code'];
                         $unit_name= $assignment['unit'];
                         $unit_type= $assignment['unit_type'];
@@ -244,8 +261,8 @@ function generateTimetable() {
                         $assigned_units[] = $unit['unit_code'];
                         
                         // remove the assigned room from the list of available rooms
-                        // $room_index = array_search($room, $rooms);
-                        // unset($rooms[$room_index]);
+                        $room_index = array_search($room, $rooms);
+                        unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
                     }
@@ -265,7 +282,6 @@ function generateTimetable() {
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
                         );
-                        $assigned_rooms[$assigned_day][$random_timeslot][] = $room['room_name'];
                         $unit_id = $assignment['code'];
                         $unit_name= $assignment['unit'];
                         $unit_type= $assignment['unit_type'];
@@ -286,14 +302,17 @@ function generateTimetable() {
                         $assigned_units[] = $unit['unit_code'];
                         
                         // remove the assigned room from the list of available rooms
-                        // $room_index = array_search($room, $rooms);
-                        // unset($rooms[$room_index]);
+                        $room_index = array_search($room, $rooms);
+                        unset($rooms[$room_index]);
                         // break out of the room loop
                         break;
                     }
                     }
 
                 }
+                    }
+                }
+                isRoomAvailable($room, $assigned_day, $random_timeslot);
             }
 
     }//end of units loop
