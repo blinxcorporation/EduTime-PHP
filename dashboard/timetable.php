@@ -172,6 +172,7 @@ function generateTimetable() {
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
+                            'lecturer_name' => $unit['user_title']." ".$unit['user_firstname']." ".$unit['user_lastname'],
                             'day' => $assigned_day,
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
@@ -182,7 +183,7 @@ function generateTimetable() {
                         $day = $assignment['day'];
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
-                        $lec = $assignment['lecturer'];
+                        $lec = $assignment['lecturer_name'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
@@ -207,6 +208,7 @@ function generateTimetable() {
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
+                            'lecturer_name' => $unit['user_title']." ".$unit['user_firstname']." ".$unit['user_lastname'],
                             'day' => $assigned_day,
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
@@ -217,7 +219,7 @@ function generateTimetable() {
                         $day = $assignment['day'];
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
-                        $lec = $assignment['lecturer'];
+                        $lec = $assignment['lecturer_name'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
@@ -242,6 +244,7 @@ function generateTimetable() {
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
+                            'lecturer_name' => $unit['user_title']." ".$unit['user_firstname']." ".$unit['user_lastname'],
                             'day' => $assigned_day,
                             'timeslot' => $random_timeslot,
                             'room' => $room['room_name']
@@ -252,7 +255,7 @@ function generateTimetable() {
                         $day = $assignment['day'];
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
-                        $lec = $assignment['lecturer'];
+                        $lec = $assignment['lecturer_name'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
