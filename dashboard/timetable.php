@@ -126,7 +126,7 @@ function generateTimetable() {
         shuffle($units);
 
         // open the CSV file for writing
-        $csv_file = fopen('assignment.csv', 'w');
+        $csv_file = fopen('timetable.csv', 'w');
 
         // write the header row to the CSV file
         fputcsv($csv_file, array('Unit Code', 'Unit Name', 'Lecturer','Day', 'Time Slot', 'Room'));
@@ -394,7 +394,7 @@ include '../assets/components/header.php';
                     <div class="row mt-4">
                         <div class="col"></div>
                         <div class="col mt-4">
-                            <a href="assignment.csv" download class="btn btn-outline-success btn-lg"
+                            <a href="timetable.csv" download class="btn btn-outline-success btn-lg"
                                 style="font-size:30px">
                                 DOWNLOAD
                                 TIMETABLE <i class="fa fa-download"></i></a>
