@@ -120,8 +120,7 @@ function generateTimetable() {
         $assigned_units = array();
 
         // loop through each unit and assign to a timeslot, room, and day
-        for ($i = 0; $i < count($units); $i++) {
-            $unit = $units[$i];
+        foreach ($units as $unit) {
             
             // check if the unit has already been assigned
             if (in_array($unit['unit_code'], $assigned_units)) {
