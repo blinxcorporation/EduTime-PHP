@@ -10,6 +10,11 @@ do
         shift # past argument
         shift # past value
         ;;
+        -d|--description)
+        description="$2"
+        shift # past argument
+        shift # past value
+        ;;
         *)    # unknown option
         echo "Unknown option: $key"
         exit 1
@@ -22,5 +27,11 @@ if [ -z "$message" ]; then
     exit 1
 fi
 
+if [ -z "$description" ]; then
+    echo "Commit description not provided"
+    exit 1
+fi
+
+commit_message="$message"$'\n\n'"$description"
 git add . &&
-git commit -m "$message"
+git commit -m "$commit_message"
