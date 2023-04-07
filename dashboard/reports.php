@@ -18,7 +18,7 @@ if ($_SESSION['role_name'] !== 'Admin') {
 }
 
 
-if (isset($_POST['faculty-form'])) {
+if (isset($_POST['download-school-btn'])) {
     // Set the content type as a downloadable PDF file
     header('Content-Type: application/pdf');
     // Set the file name
@@ -161,9 +161,9 @@ include '../assets/components/header.php';
                                     <h1 class="font-light text-white">
                                         <i class="fa fa-file-download "></i>
                                     </h1>
-                                    <h6 class="text-light">Faculty Details</h6>
-                                    <input type="submit" name="download-school-btn" class="btn btn-primary"
-                                        value="Faculty Details" />
+                                    <!-- <h6 class="text-light">Faculty Details</h6> -->
+                                    <input type="submit" name="download-school-btn" class="btn btn-info"
+                                        value="Download Faculty Details" />
                                 </div>
                             </div>
 
