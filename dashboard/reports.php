@@ -55,7 +55,7 @@ if (isset($_POST['download-school-btn'])) {
 
 
     // Query to get the school details
-    $sql = "SELECT * FROM school_details ORDER BY ID ASC";
+    $sql = "SELECT * FROM school_details ORDER BY id ASC";
     $result = mysqli_query($db, $sql);
 
     // Set the font and font size for the table rows
@@ -75,6 +75,129 @@ if (isset($_POST['download-school-btn'])) {
     // Close the database connection and output the PDF
     mysqli_close($db);
     $pdf->Output('D', 'school_details.pdf');
+
+        // header('location: ./reports.php');
+}
+
+
+if (isset($_POST['download-department-btn'])) {
+    // Set the content type as a downloadable PDF file
+    header('Content-Type: application/pdf');
+    // Set the file name
+    header('Content-Disposition: attachment; filename="department_details.pdf"');
+
+    // Include the necessary files for creating a PDF
+    require('fpdf/fpdf.php');
+
+    // Create a new PDF document
+    $pdf = new FPDF();
+    $pdf->AddPage();
+
+    // Set the font and font size for the document
+    $pdf->SetFont('Arial', 'B', 14);
+
+    // Add the logo to the document
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 25, 10, 50, 0, 'PNG');
+
+    // Write the title of the document
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 50, '', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Department Details', 0, 1, 'C');
+
+    // Set the font and font size for the table headers
+    $pdf->SetFont('Arial', 'B', 12);
+
+    // Write the headers of the table
+    $pdf->Cell(65, 10, 'Department ID', 1);
+    $pdf->Cell(90, 10, 'Department Name', 1);
+    $pdf->Cell(40, 10, 'School', 1);
+    $pdf->Ln();
+
+
+    // Query to get the school details
+    $sql = "SELECT * FROM department_details 
+    INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+    INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+    ORDER BY department_details.id ASC";
+    $result = mysqli_query($db, $sql);
+
+    // Set the font and font size for the table rows
+    $pdf->SetFont('Arial', '', 10);
+
+    // Loop through the results and write them to the table
+    if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $pdf->Cell(65, 10, $row['department_id'], 1);
+        $pdf->Cell(90, 10, $row['department_name'], 1);
+        $pdf->Cell(40, 10, $row['school_shortform'], 1);
+        $pdf->Ln();
+    }
+    }
+
+    // Close the database connection and output the PDF
+    mysqli_close($db);
+    $pdf->Output('D', 'department_details.pdf');
+
+        // header('location: ./reports.php');
+}
+    
+
+if (isset($_POST['download-course-btn'])) {
+    // Set the content type as a downloadable PDF file
+    header('Content-Type: application/pdf');
+    // Set the file name
+    header('Content-Disposition: attachment; filename="course_details.pdf"');
+
+    // Include the necessary files for creating a PDF
+    require('fpdf/fpdf.php');
+
+    // Create a new PDF document
+    $pdf = new FPDF();
+    $pdf->AddPage();
+
+    // Set the font and font size for the document
+    $pdf->SetFont('Arial', 'B', 14);
+
+    // Add the logo to the document
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 25, 10, 50, 0, 'PNG');
+
+    // Write the title of the document
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 50, '', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Course Details', 0, 1, 'C');
+
+    // Set the font and font size for the table headers
+    $pdf->SetFont('Arial', 'B', 12);
+
+    // Write the headers of the table
+    $pdf->Cell(40, 10, 'Course ID', 1);
+    $pdf->Cell(140, 10, 'Course Name', 1);
+     $pdf->Ln();
+
+
+    // Query to get the school details
+    $sql = "SELECT * FROM course_details 
+    INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id 
+    INNER JOIN department_details ON department_details.department_id =department_course_details.department_id ";
+    $result = mysqli_query($db, $sql);
+
+    // Set the font and font size for the table rows
+    $pdf->SetFont('Arial', '', 10);
+
+    // Loop through the results and write them to the table
+    if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $pdf->Cell(40, 10, $row['course_id'], 1);
+        $pdf->Cell(140, 10, $row['course_name'], 1);
+        $pdf->Ln();
+    }
+    }
+
+    // Close the database connection and output the PDF
+    mysqli_close($db);
+    $pdf->Output('D', 'course_details.pdf');
 
         // header('location: ./reports.php');
 }
@@ -163,9 +286,9 @@ include '../assets/components/header.php';
                                     <h1 class="font-light text-white">
                                         <i class="fa fa-file-download "></i>
                                     </h1>
-                                    <!-- <h6 class="text-light">Faculty Details</h6> -->
+                                    <h6 class="text-light">Faculty Details</h6>
                                     <input type="submit" name="download-school-btn" class="btn btn-info"
-                                        value="Download Faculty Details" />
+                                        value="Download" />
                                 </div>
                             </div>
 
@@ -173,35 +296,40 @@ include '../assets/components/header.php';
                     </a>
                 </div>
 
-
-
                 <div class="col-md-3">
-                    <a href="">
-                        <div class="card card-hover">
-                            <div class="box bg-info text-center">
-                                <h1 class="font-light text-white">
-                                    <i class="fa fa-file-download"></i>
-                                </h1>
-                                <h6 class="text-light">Department Details</h6>
+                    <a href="#" name="department-form">
+                        <form method="POST" action="">
+                            <div class="card card-hover">
+                                <div class="box bg-info text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="fa fa-file-download "></i>
+                                    </h1>
+                                    <h6 class="text-light">Department Details</h6>
+                                    <input type="submit" name="download-department-btn" class="btn btn-success"
+                                        value="Download" />
+                                </div>
                             </div>
-                        </div>
+
+                        </form>
                     </a>
                 </div>
 
                 <div class="col-md-3">
-                    <form method="POST" action="">
-                        <a href="">
+                    <a href="#" name="course-form">
+                        <form method="POST" action="">
                             <div class="card card-hover">
                                 <div class="box bg-primary text-center">
                                     <h1 class="font-light text-white">
                                         <i class="fa fa-cloud-download-alt"></i>
                                     </h1>
                                     <h6 class="text-light">Course Details</h6>
+                                    <input type="submit" name="download-course-btn" class="btn btn-cyan"
+                                        value="Download" />
                                 </div>
                             </div>
-                        </a>
 
-                    </form>
+                        </form>
+                    </a>
                 </div>
 
                 <div class="col-md-3">
