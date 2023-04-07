@@ -20,73 +20,14 @@ $lname = $_SESSION['lname'];
 $name = $_SESSION['fname'] . " ".$_SESSION['lname'];
 $mail = $_SESSION['email'];
 
-//generate timeslot id
-function generateTimeslotID($start_time, $end_time) {
-  // Format the start time, end time, and date to create the timeslot ID
-  $formatted_start_time = date('Hi', strtotime($start_time));
-  $formatted_end_time = date('Hi', strtotime($end_time));
-  $prefix = 'TM_';
-  
-  // Combine the formatted start time, end time, and date to create the timeslot ID
-  $timeslot_id = $prefix ."". $formatted_start_time . '_' . $formatted_end_time;
-  
-  return $timeslot_id;
-}
 
-//add timeslot
-if (isset($_POST['add-timeslot-btn'])) {
-  $start_time = $_POST['start_time'];
-  $end_time = $_POST['end_time'];
-
-  if (empty($start_time)) {
-    array_push($errors, "Start Time is required");
-  }
-  if (empty($end_time)) {
-    array_push($errors, "Start is required");
-  }
-
-  if (count($errors) == 0) {
-    //generate timeslot id
-    $timeslot_id = generateTimeslotID($start_time, $end_time);
-
-
-    $add_timeslot_query = "INSERT INTO `time_slot_details`(`slot_id`, `start_time`, `end_time`) VALUES ('$timeslot_id','$start_time','$end_time')";
-    $results = mysqli_query($db, $add_timeslot_query);
-
-      header('location: ./timeslots.php');
-    }else{
-      array_push($errors, "Unable to add timeslots");
-      header('location: ./timeslots.php');
-    }
-  }
-
-  // Delete Timeslot Details
-if (isset($_POST['delete-timeslot-btn'])) {
-  if ($_SESSION['role_name'] == 'Admin'){
-  $time_slot_id = $_POST['timeSlot_id'];
-  
-  if (empty($time_slot_id)) {
-    array_push($errors, "Timeslot ID is required");
-  }
-  if (count($errors) == 0) {
-      $timeslot_data_delete_query = "DELETE FROM `time_slot_details` WHERE `slot_id`='$time_slot_id' ";
-      $results = mysqli_query($db, $timeslot_data_delete_query);
-
-        header('location: timeslots.php');
-      }else{
-        array_push($errors, "Unable to delete academic year");
-        header('location: timeslots.php');
-      }
-  }
-}
 ?>
-
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
-    <title>Timeslots | EDUTIME</title>
+    <title>Reports | EDUTIME</title>
     <?php
 include '../assets/components/header.php';
 ?>
@@ -122,13 +63,13 @@ include '../assets/components/header.php';
         <div class="page-breadcrumb pt-5">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Timeslot Details</h4>
+                    <h4 class="page-title">Reports</h4>
                     <div class="ms-auto text-end">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Timeslots
+                                    Reports
                                 </li>
 
                             </ol>
@@ -148,72 +89,103 @@ include '../assets/components/header.php';
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             <div class="row">
-                <div class="col-12">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">List of Timeslots</h5>
-                            <input type='button' value='Add a Timeslot' name='open-timeslot-btn'
-                                class='btn btn-primary float-end open-timeslot-modal-btn m-2'>
-                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm"
-                                cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Timeslot ID</th>
-                                        <th>Time Frame</th>
-                                        <th>Date Added</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-  if($_SESSION['role_name'] == 'Admin'){
-      $data_fetch_query = "SELECT * FROM `time_slot_details`";
-      $data_result = mysqli_query($db, $data_fetch_query);
-      if ($data_result->num_rows > 0){
-          while($row = $data_result->fetch_assoc()) {
-              $slot_id = $row['slot_id'];
-              $start_time = $row['start_time'];
-              $end_time = $row['end_time'];
-              $date_added = $row['date_added'];
-
-      echo "<tr> <td>" .$slot_id.  "</td>";
-      echo "<td>" .$start_time." - ".$end_time. "</td>";
-      echo "<td>" .$date_added."</td>";
-      echo "<td>
-        
-      <form method ='POST' action=''>
-      <input  type='text' hidden name='slot_id' value='$slot_id'>
-     
-      <input type='submit' data-id= '$slot_id' value='Delete Timeslot'  class='btn btn-danger deleteTimeslotBtn'>
-      </form>
-      </td> </tr>";
-      }
-      // <input type='submit' data-id='$slot_id' data-start_time='$start_time' data-end_time='$end_time' value='Edit Details' name='edit-timeslot-btn' class='btn btn-success edit-timeslot-btn m-2'>
-      
-      }else{
-      echo "<td>"."No Requests Found"."</td>";
-      }
-      
-      } else{
-          echo "<td>"."No Data Found"."</td>";
-      }
-
-?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Timeslot ID</th>
-                                        <th>Time Frame</th>
-                                        <th>Date Added</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="card card-hover">
+                            <div class="box bg-success text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-file-download "></i>
+                                </h1>
+                                <h6 class="text-light">Faculty Details</h6>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="card card-hover">
+                            <div class="box bg-info text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-file-download"></i>
+                                </h1>
+                                <h6 class="text-light">Department Details</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="card card-hover">
+                            <div class="box bg-primary text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-cloud-download-alt"></i>
+                                </h1>
+                                <h6 class="text-light">Course Details</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="card card-hover">
+                            <div class="box bg-cyan text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-file-excel"></i>
+                                </h1>
+                                <h6 class="text-light">Unit Details</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="card card-hover">
+                            <div class="box bg-secondary text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-file-pdf"></i>
+                                </h1>
+                                <h6 class="text-light">Lecturer Details</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="">
+                        <div class="card card-hover">
+                            <div class="box bg-cyan text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-cloud-download-alt"></i>
+                                </h1>
+                                <h6 class="text-light">Room Details</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="timetable.csv" download>
+                        <div class="card card-hover">
+                            <div class="box bg-info text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-file-excel"></i>
+                                </h1>
+                                <h6 class="text-light">Timetable</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+
             </div>
+            <!--close row-->
+
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
