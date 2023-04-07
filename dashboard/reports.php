@@ -567,34 +567,21 @@ include '../assets/components/header.php';
                     </a>
                 </div>
 
-
-                <div class="col-md-3">
-                    <a href="">
-                        <div class="card card-hover">
-                            <div class="box bg-cyan text-center">
-                                <h1 class="font-light text-white">
-                                    <i class="fa fa-cloud-download-alt"></i>
-                                </h1>
-                                <h6 class="text-light">Room Details</h6>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
                 <div class="col-md-3">
                     <a href="timetable.csv" download>
-                        <div class="card card-hover">
-                            <div class="box bg-info text-center">
-                                <h1 class="font-light text-white">
-                                    <i class="fa fa-file-excel"></i>
-                                </h1>
-                                <h6 class="text-light">Timetable</h6>
+                        <form method="POST" action="">
+                            <div class="card card-hover">
+                                <div class="box bg-info text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="fa fa-file-excel"></i>
+                                    </h1>
+                                    <h6 class="text-light">Timetable</h6>
+                                    <a href="timetable.csv" class="btn btn-success" download>Download</a>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </a>
                 </div>
-
-
 
             </div>
             <!--close row-->
