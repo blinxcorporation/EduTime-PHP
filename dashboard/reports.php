@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 include '../server.php';
 if (!isset($_SESSION['role_id']) || empty($_SESSION['role_id'])) {
   // if the session variable 'role_id' is not set or is empty, destroy the session and redirect to the login page
@@ -13,6 +16,67 @@ if ($_SESSION['role_name'] !== 'Admin') {
   header("Location: index.php"); // replace 'index.php' with the URL of a non-privileged page
   exit;
 }
+
+
+if (isset($_POST['faculty-form'])) {
+    // Set the content type as a downloadable PDF file
+    header('Content-Type: application/pdf');
+    // Set the file name
+    header('Content-Disposition: attachment; filename="school_details.pdf"');
+
+    // Include the necessary files for creating a PDF
+    require('fpdf/fpdf.php');
+
+    // Create a new PDF document
+    $pdf = new FPDF();
+    $pdf->AddPage();
+
+    // Set the font and font size for the document
+    $pdf->SetFont('Arial', 'B', 14);
+
+    // Add the logo to the document
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 25, 10, 50, 0, 'PNG');
+
+    // Write the title of the document
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 50, '', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'School Details', 0, 1, 'C');
+
+    // Set the font and font size for the table headers
+    $pdf->SetFont('Arial', 'B', 12);
+
+    // Write the headers of the table
+    $pdf->Cell(50, 10, 'School ID', 1);
+    $pdf->Cell(90, 10, 'School Name', 1);
+    $pdf->Cell(40, 10, 'Short Form', 1);
+    $pdf->Ln();
+
+
+    // Query to get the school details
+    $sql = "SELECT * FROM school_details";
+    $result = mysqli_query($db, $sql);
+
+    // Set the font and font size for the table rows
+    $pdf->SetFont('Arial', '', 10);
+
+    // Loop through the results and write them to the table
+    if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $pdf->Cell(50, 10, $row['school_id'], 1);
+        $pdf->Cell(90, 10, $row['school_name'], 1);
+        $pdf->Cell(40, 10, $row['school_shortform'], 1);
+        $pdf->Ln();
+    }
+    }
+
+    // Close the database connection and output the PDF
+    mysqli_close($db);
+    $pdf->Output('D', 'school_details.pdf');
+
+        // header('location: ./reports.php');
+}
+    
 
 $pfno = $_SESSION['pfno'];
 $fname = $_SESSION['fname'];
@@ -90,17 +154,24 @@ include '../assets/components/header.php';
             <!-- ============================================================== -->
             <div class="row">
                 <div class="col-md-3">
-                    <a href="">
-                        <div class="card card-hover">
-                            <div class="box bg-success text-center">
-                                <h1 class="font-light text-white">
-                                    <i class="fa fa-file-download "></i>
-                                </h1>
-                                <h6 class="text-light">Faculty Details</h6>
+                    <a href="#" name="faculty-form">
+                        <form method="POST" action="">
+                            <div class="card card-hover">
+                                <div class="box bg-success text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="fa fa-file-download "></i>
+                                    </h1>
+                                    <h6 class="text-light">Faculty Details</h6>
+                                    <input type="submit" name="download-school-btn" class="btn btn-primary"
+                                        value="Faculty Details" />
+                                </div>
                             </div>
-                        </div>
+
+                        </form>
                     </a>
                 </div>
+
+
 
                 <div class="col-md-3">
                     <a href="">
@@ -116,16 +187,19 @@ include '../assets/components/header.php';
                 </div>
 
                 <div class="col-md-3">
-                    <a href="">
-                        <div class="card card-hover">
-                            <div class="box bg-primary text-center">
-                                <h1 class="font-light text-white">
-                                    <i class="fa fa-cloud-download-alt"></i>
-                                </h1>
-                                <h6 class="text-light">Course Details</h6>
+                    <form method="POST" action="">
+                        <a href="">
+                            <div class="card card-hover">
+                                <div class="box bg-primary text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="fa fa-cloud-download-alt"></i>
+                                    </h1>
+                                    <h6 class="text-light">Course Details</h6>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+
+                    </form>
                 </div>
 
                 <div class="col-md-3">
