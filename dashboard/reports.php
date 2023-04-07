@@ -47,6 +47,7 @@ if (isset($_POST['download-school-btn'])) {
     $pdf->SetFont('Arial', 'B', 12);
 
     // Write the headers of the table
+    $pdf->Cell(15, 10, 'S.NO', 1);
     $pdf->Cell(50, 10, 'School ID', 1);
     $pdf->Cell(90, 10, 'School Name', 1);
     $pdf->Cell(40, 10, 'Short Form', 1);
@@ -54,7 +55,7 @@ if (isset($_POST['download-school-btn'])) {
 
 
     // Query to get the school details
-    $sql = "SELECT * FROM school_details";
+    $sql = "SELECT * FROM school_details ORDER BY ID ASC";
     $result = mysqli_query($db, $sql);
 
     // Set the font and font size for the table rows
@@ -63,6 +64,7 @@ if (isset($_POST['download-school-btn'])) {
     // Loop through the results and write them to the table
     if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+        $pdf->Cell(15, 10, $row['id'], 1);
         $pdf->Cell(50, 10, $row['school_id'], 1);
         $pdf->Cell(90, 10, $row['school_name'], 1);
         $pdf->Cell(40, 10, $row['school_shortform'], 1);
