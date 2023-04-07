@@ -276,18 +276,6 @@ include '../assets/components/header.php';
                     </a>
                 </div>
 
-                <div class="col-md-4">
-                    <a href="./timeslots.php">
-                        <div class="card card-hover">
-                            <div class="box bg-secondary text-center">
-                                <h1 class="font-light text-white">
-                                    <i class="mdi mdi-timer"></i>
-                                </h1>
-                                <h6 class="text-white">Timeslots</h6>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
                 <div class="col-md-4">
                     <a href="./users.php">
@@ -323,6 +311,19 @@ include '../assets/components/header.php';
                                     <i class="mdi mdi-calendar-clock"></i>
                                 </h1>
                                 <h6 class="text-light">Generate Timetable</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="./reports.php">
+                        <div class="card card-hover">
+                            <div class="box bg-secondary text-center">
+                                <h1 class="font-light text-white">
+                                    <i class="fa fa-file-alt"></i>
+                                </h1>
+                                <h6 class="text-white">Reports</h6>
                             </div>
                         </div>
                     </a>
