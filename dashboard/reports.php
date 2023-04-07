@@ -262,6 +262,67 @@ if (isset($_POST['download-unit-btn'])) {
 
         // header('location: ./reports.php');
 }
+
+if (isset($_POST['download-room-btn'])) {
+    // Set the content type as a downloadable PDF file
+    header('Content-Type: application/pdf');
+    // Set the file name
+    header('Content-Disposition: attachment; filename="room_details.pdf"');
+
+    // Include the necessary files for creating a PDF
+    require('fpdf/fpdf.php');
+
+    // Create a new PDF document
+    $pdf = new FPDF();
+    $pdf->AddPage();
+
+    // Set the font and font size for the document
+    $pdf->SetFont('Arial', 'B', 14);
+
+    // Add the logo to the document
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 25, 10, 50, 0, 'PNG');
+
+    // Write the title of the document
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 50, '', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Room Details', 0, 1, 'C');
+
+    // Set the font and font size for the table headers
+    $pdf->SetFont('Arial', 'B', 12);
+
+    // Write the headers of the table
+    $pdf->Cell(15, 10, 'S.NO', 1);
+    $pdf->Cell(55, 10, 'Room ID', 1);
+    $pdf->Cell(75, 10, 'Room Name', 1);
+    $pdf->Cell(40, 10, 'Room Capacity', 1);
+     $pdf->Ln();
+
+
+    // Query to get the school details
+    $sql = "SELECT * FROM room_details ORDER BY id ASC";
+    $result = mysqli_query($db, $sql);
+
+    // Set the font and font size for the table rows
+    $pdf->SetFont('Arial', '', 10);
+
+    // Loop through the results and write them to the table
+    if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $pdf->Cell(15, 10, $row['id'], 1);
+        $pdf->Cell(55, 10, $row['room_id'], 1);
+        $pdf->Cell(75, 10, $row['room_name'], 1);
+        $pdf->Cell(40, 10, $row['room_capacity'], 1);
+        $pdf->Ln();
+    }
+    }
+
+    // Close the database connection and output the PDF
+    mysqli_close($db);
+    $pdf->Output('D', 'room_details.pdf');
+
+        // header('location: ./reports.php');
+}
     
 if (isset($_POST['download-lecturer-btn'])) {
     // Set the content type as a downloadable PDF file
@@ -482,6 +543,23 @@ include '../assets/components/header.php';
                                     </h1>
                                     <h6 class="text-light">Lecturer Details</h6>
                                     <input type="submit" name="download-lecturer-btn" class="btn btn-success"
+                                        value="Download" />
+                                </div>
+                            </div>
+                        </form>
+                    </a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="#" name="lecturer-form">
+                        <form method="POST" action="">
+                            <div class="card card-hover">
+                                <div class="box bg-cyan text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="fa fa-file-pdf"></i>
+                                    </h1>
+                                    <h6 class="text-light">Room Details</h6>
+                                    <input type="submit" name="download-room-btn" class="btn btn-info"
                                         value="Download" />
                                 </div>
                             </div>
