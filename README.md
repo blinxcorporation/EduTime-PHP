@@ -15,6 +15,12 @@
 - Add lecturers
 - generateVarsityTimetable()
 
+## Dean
+
+- Download school TT
+- Download their departmental timetable
+- Download personal timetable
+
 ## Chairperson
 
 - Update unit status( whether it's active or in active for a specific semester)
