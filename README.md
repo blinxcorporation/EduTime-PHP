@@ -19,7 +19,7 @@
 
 - Download school TT
 - Download their departmental timetable
-- Download personal timetable
+- Download personal timetablei
 
 ## Chairperson
 
