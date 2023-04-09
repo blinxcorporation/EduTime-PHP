@@ -93,8 +93,7 @@
               ?>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="schedules.php"
-                        aria-expanded="false"><i class="mdi mdi-calendar"></i><span
-                            class="hide-menu">Timetables</span></a>
+                        aria-expanded="false"><i class="fa fa-file-alt"></i><span class="hide-menu">Reports</span></a>
                 </li>
                 <?php
                    }
