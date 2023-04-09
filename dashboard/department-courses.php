@@ -108,14 +108,19 @@ include '../assets/components/header.php';
                                 <tbody>
                                     <?php
   if($_SESSION['role_name'] == 'Chairperson'|| $_SESSION['role_name'] == 'Dean'|| $_SESSION['role_name'] == 'Lecturer'){
-      $data_fetch_query = "SELECT * FROM `course_details` INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN department_details ON department_details.department_id = department_course_details.department_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE lecturer_department_details.lecturer_id = '$pfno' ";
+      $data_fetch_query = "SELECT * FROM `course_details` 
+      INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id 
+      INNER JOIN department_details ON department_details.department_id = department_course_details.department_id 
+      INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id 
+      INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id 
+      WHERE lecturer_department_details.lecturer_id = '$pfno' ";
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
               $course_id = $row['course_id'];
               $course_name = $row['course_name'];
               $shortname = $row['course_shortform'];
-              $school_name = $row['school_name'];
+            //   $school_name = $row['school_name'];
               $department_id = $row['department_id'];
               $department_name = $row['department_name'];
               $date_created = $row['date_added'];
