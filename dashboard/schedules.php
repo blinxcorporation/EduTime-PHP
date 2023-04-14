@@ -57,6 +57,12 @@ if (isset($_POST['download-personal-tt-btn'])) {
      WHERE lecturer_department_details.lecturer_id = '$lec'";
     $dpt_result = mysqli_query($db, $sql_dpt);
 
+    //get unit details
+    $sql_unit = "SELECT * FROM unit_details
+    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
+    WHERE lecturer_unit_details.lecturer_id = '$lec'";
+    $unit_result = mysqli_query($db, $sql_unit);
+
     // Query to get the timetable details
     $sql = "SELECT *
     FROM unit_room_time_day_allocation_details urtd1
@@ -108,13 +114,79 @@ if (isset($_POST['download-personal-tt-btn'])) {
     }
     }
 
+    $pdf->Ln();
+    $pdf->SetFont('Arial', 'B', 14); // set font to Arial, regular, size 14
+    $pdf->Cell(0, 10, 'Unit Details', 0, 1, 'L'); // align to the left
+    while ($row = mysqli_fetch_assoc($unit_result)) {
+        // Do something with each row, for example:
+        $unit_id = $row['unit_id'];
+        $unit_name = $row['unit_name'];
+        $pdf->SetFont('Arial', '', 12); // set font to Arial, regular, size 12
+        $pdf->Cell(0, 10, $unit_id . ": " . $unit_name, 0, 1, 'L'); // align to the left
+    }
+    
+
+
     // Close the database connection and output the PDF
     mysqli_close($db);
     $pdf->Output('D', $filename);
-
-        // header('location: ./reports.php');
 }
+
+//generate department TT
+if (isset($_POST['download-department-tt-btn'])) {
+    $lec = $_POST['lec_pf_num'];
     
+    // Retrieve the department ID of the lecturer
+    $sql_dept = "SELECT lecturer_department_details.department_id FROM lecturer_department_details 
+    INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id
+    WHERE lecturer_id = '$lec' LIMIT 0, 25
+    ";
+    $result_dept = mysqli_query($db, $sql_dept);
+    $row_dept = mysqli_fetch_assoc($result_dept);
+    $dept_id = $row_dept['department_id'];
+
+    // Retrieve information from the database
+    $sql = "SELECT * FROM unit_room_time_day_allocation_details 
+    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_room_time_day_allocation_details.unit_id
+    INNER JOIN user_details ON user_details.pf_number = lecturer_unit_details.lecturer_id
+    INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = lecturer_unit_details.lecturer_id
+    INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id
+    INNER JOIN room_details ON room_details.room_name = unit_room_time_day_allocation_details.room_id
+    WHERE department_details.department_id = '$dept_id'";
+    $result = mysqli_query($db, $sql);
+
+    // Create a file pointer for the CSV file
+    $fp = fopen('department_timetable.csv', 'w');
+
+    // Write the headers for the CSV file
+    fputcsv($fp, array('Unit', 'Lecturer', 'Time', 'Room'));
+
+    // Shuffle the result data
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+        shuffle($rows);
+
+        // Loop through the shuffled rows and display the data
+        foreach ($rows as $row) {
+            fputcsv($fp, array($row['unit_id'], $row['user_firstname']." ".$row['user_lastname'], $row['time_slot_id'], $row['room_name']));
+        }
+
+
+    // Close the file pointer
+    fclose($fp);
+
+    // Download the CSV file
+    header('Content-Type: application/csv');
+    header('Content-Disposition: attachment; filename=department_timetable.csv;');
+    header('Pragma: no-cache');
+    readfile('department_timetable.csv');
+    exit();
+
+    mysqli_close($db);
+}
+
 
 
 ?>
@@ -331,7 +403,6 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     <h6 class="text-light">Personal Timetable</h6>
                                     <input type='text' readonly hidden value='<?php echo $pfno; ?>' name='lec_pf'>
                                     <input type='text' readonly hidden value='<?php echo $name; ?>' name='lec_name'>
-                                    <input type='text' readonly hidden value='<?php echo $name; ?>' name='lec_dpt'>
                                     <input type="submit" name="download-personal-tt-btn" class="btn btn-info"
                                         value="Download" />
                                 </div>
@@ -349,6 +420,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                         <i class="fa fa-file-pdf"></i>
                                     </h1>
                                     <h6 class="text-light">Departmental Timetable</h6>
+                                    <input type='text' readonly hidden value='<?php echo $pfno; ?>' name='lec_pf_num'>
                                     <input type="submit" name="download-department-tt-btn" class="btn btn-info"
                                         value="Download" />
                                 </div>
