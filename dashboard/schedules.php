@@ -157,22 +157,30 @@ if (isset($_POST['download-department-tt-btn'])) {
 
     // Create a file pointer for the CSV file
     $fp = fopen('department_timetable.csv', 'w');
+    
+    // Write the title for the CSV file
+    fputcsv($fp, array('', 'Maseno University', '', '', ''), ';');
+
+
+    fputcsv($fp, array('', 'Department Timetable', '', '', ''), ';');
+
 
     // Write the headers for the CSV file
     fputcsv($fp, array('Unit', 'Lecturer', 'Time', 'Room'));
 
+
+
     // Shuffle the result data
-        $rows = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            $rows[] = $row;
-        }
-        shuffle($rows);
+    $rows = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    shuffle($rows);
 
-        // Loop through the shuffled rows and display the data
-        foreach ($rows as $row) {
-            fputcsv($fp, array($row['unit_id'], $row['user_firstname']." ".$row['user_lastname'], $row['time_slot_id'], $row['room_name']));
-        }
-
+    // Loop through the shuffled rows and display the data
+    foreach ($rows as $row) {
+        fputcsv($fp, array($row['unit_id'], $row['user_firstname']." ".$row['user_lastname'], $row['time_slot_id'], $row['room_name']));
+    }
 
     // Close the file pointer
     fclose($fp);
@@ -186,6 +194,8 @@ if (isset($_POST['download-department-tt-btn'])) {
 
     mysqli_close($db);
 }
+
+
 
 
 
