@@ -36,7 +36,7 @@ if (isset($_POST['download-personal-tt-btn'])) {
     header('Content-Type: application/pdf');
     
     // Set the file name
-    $filename = $lname . '-timetable.pdf';
+    $filename = strtolower($lname) . '-personal-timetable.pdf';
     header('Content-Disposition: attachment; filename="' . $filename . '"');
     
     // Include the necessary files for creating a PDF
@@ -46,25 +46,41 @@ if (isset($_POST['download-personal-tt-btn'])) {
     $pdf = new FPDF();
     $pdf->AddPage();
 
-    // Set the font and font size for the document
-    $pdf->SetFont('Arial', 'B', 14);
-
     // Add the logo to the document
-    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 25, 10, 50, 0, 'PNG');
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 15, 10, 30, 0, 'PNG');
     
-    // Query to get the school details
+    //get department details
+    $sql_dpt = "SELECT * FROM department_details 
+    INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id
+    INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+    INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+     WHERE lecturer_department_details.lecturer_id = '$lec'";
+    $dpt_result = mysqli_query($db, $sql_dpt);
+
+    // Query to get the timetable details
     $sql = "SELECT *
     FROM unit_room_time_day_allocation_details urtd1
     INNER JOIN lecturer_unit_details lud ON urtd1.unit_id = lud.unit_id
     INNER JOIN user_details ud ON lud.lecturer_id = ud.pf_number
     INNER JOIN unit_room_time_day_allocation_details urtd2 ON urtd1.unit_id = urtd2.unit_id
-    WHERE urtd2.lecturer_id = 'PF01'";
+    WHERE urtd2.lecturer_id = '$lec'";
     $result = mysqli_query($db, $sql);
 
     // Write the title of the document
-    $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 50, '', 0, 1, 'C');
+    $pdf->SetFont('Arial', 'B', 24);
+    $pdf->Cell(0, 30, '', 0, 1, 'C');
     $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    while ($row = mysqli_fetch_assoc($dpt_result)) {
+        // Do something with each row, for example:
+        $department_id = $row['department_id'];
+        $department_name = $row['department_name'];
+        $school_name = $row['school_name'];
+        $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
+        $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
+    }
+    $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
     $pdf->Cell(0, 10,$salutation." ".$lname."'s"." Personal Timetable", 0, 1, 'C');
 
     // Set the font and font size for the table headers
@@ -315,6 +331,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     <h6 class="text-light">Personal Timetable</h6>
                                     <input type='text' readonly hidden value='<?php echo $pfno; ?>' name='lec_pf'>
                                     <input type='text' readonly hidden value='<?php echo $name; ?>' name='lec_name'>
+                                    <input type='text' readonly hidden value='<?php echo $name; ?>' name='lec_dpt'>
                                     <input type="submit" name="download-personal-tt-btn" class="btn btn-info"
                                         value="Download" />
                                 </div>
