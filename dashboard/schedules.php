@@ -57,6 +57,12 @@ if (isset($_POST['download-personal-tt-btn'])) {
      WHERE lecturer_department_details.lecturer_id = '$lec'";
     $dpt_result = mysqli_query($db, $sql_dpt);
 
+    //get unit details
+    $sql_unit = "SELECT * FROM unit_details
+    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
+    WHERE lecturer_unit_details.lecturer_id = '$lec'";
+    $unit_result = mysqli_query($db, $sql_unit);
+
     // Query to get the timetable details
     $sql = "SELECT *
     FROM unit_room_time_day_allocation_details urtd1
@@ -107,6 +113,19 @@ if (isset($_POST['download-personal-tt-btn'])) {
         $pdf->Ln();
     }
     }
+
+    $pdf->Ln();
+    $pdf->SetFont('Arial', 'B', 14); // set font to Arial, regular, size 14
+    $pdf->Cell(0, 10, 'Unit Details', 0, 1, 'L'); // align to the left
+    while ($row = mysqli_fetch_assoc($unit_result)) {
+        // Do something with each row, for example:
+        $unit_id = $row['unit_id'];
+        $unit_name = $row['unit_name'];
+        $pdf->SetFont('Arial', '', 12); // set font to Arial, regular, size 12
+        $pdf->Cell(0, 10, $unit_id . ": " . $unit_name, 0, 1, 'L'); // align to the left
+    }
+    
+
 
     // Close the database connection and output the PDF
     mysqli_close($db);
