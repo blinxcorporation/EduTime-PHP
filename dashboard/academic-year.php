@@ -31,6 +31,7 @@ if (isset($_POST['add-academic-year-btn'])) {
   $year_1 = $_POST['year1'];
   $year_2 = $_POST['year2'];
   $academic_yr = $_POST['academic_yr_group'];
+  $year_status_id = $_POST['status_ID'];
 
   if (empty($year_1)) {
     array_push($errors, "Year 1 is required");
@@ -41,18 +42,21 @@ if (isset($_POST['add-academic-year-btn'])) {
   if (empty($academic_yr)) {
     array_push($errors, "Year is required");
   }
+  if (empty($year_status_id)) {
+    array_push($errors, "Status required");
+  }
 
   if (count($errors) == 0) {
     //generate academic year id
     $academic_yr_id = generate_academic_year_id($year_1,$year_2);
     $academic_year = $year_1 ."/".$year_2;
 
-    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`,`Year`) VALUES ('$academic_yr_id','$academic_year','$academic_yr')";
+    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`,`Year`,`year_status`) VALUES ('$academic_yr_id','$academic_year','$academic_yr','$year_status_id')";
     $results = mysqli_query($db, $add_academic_yr_query);
 
       header('location: ./academic-year.php');
     }else{
-      array_push($errors, "Incorrect Username or Password");
+      array_push($errors, "unable to add academic year");
       header('location: ./academic-year.php');
     }
   }
@@ -204,6 +208,7 @@ include '../assets/components/header.php';
               $year_id = $row['academic_year_id'];
               $year_desc = $row['academic_year'];
               $stage = $row['Year'];
+              $yr_status = $row['year_status'];
               $date_created = $row['date_added'];
 
       echo "<tr> <td>" .$year_id.  "</td>";
@@ -214,7 +219,7 @@ include '../assets/components/header.php';
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='year_id' value='$year_id'>
-      <input type='submit' data-id='$year_id' data-year_name='$year_desc' data-yr_stage='$stage' value='Edit Details' name='edit-academic-year-btn' class='btn btn-success edit-academic-year-btn m-2'>
+      <input type='submit' data-id='$year_id' data-year_name='$year_desc' data-yr_stage='$stage' data-year_status='$yr_status' value='Edit Details' name='edit-academic-year-btn' class='btn btn-success edit-academic-year-btn m-2'>
       <input type='submit' data-id= '$year_id' value='Delete Academic Year'  class='btn btn-danger deleteAcademicYearBtn'>
       </form>
       </td> </tr>";
@@ -343,6 +348,14 @@ include '../assets/components/header.php';
                                         <option value="Year 4">Year 4</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Status</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="status_ID">
+                                        <option value="">Select Status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="In-Active">In Active</option>
+                                    </select>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                                         Cancel
@@ -386,6 +399,15 @@ include '../assets/components/header.php';
                                     <label for="exampleFormControlSelect1">Select Stage</label>
                                     <input type="text" class="form-control" placeholder="e.g Year 1"
                                         name="academic_yr_grp_id" id="academic_yr_grp_id" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Status</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="yr_status_ID"
+                                        id="yr_status_id">
+                                        <option value="">Select Status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="In-Active">In Active</option>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
@@ -452,11 +474,16 @@ include '../assets/components/header.php';
             let year_id = editButton.dataset.id;
             let academic_year_desc = editButton.dataset.year_name;
             let stage = editButton.dataset.yr_stage;
+            let yr_status = editButton.dataset.year_status;
 
             document.getElementById("academic_year_id").value = year_id;
             document.getElementById("academic_year_name").value = academic_year_desc;
-
             document.getElementById("academic_yr_grp_id").value = stage;
+
+            document.getElementById("yr_status_id").value = yr_status;
+            // pre-select the option in the dropdown menu
+            const status_select = document.querySelector('#yr_status_id');
+            status_select.value = yr_status;
 
 
             editAcademicYearModal();
