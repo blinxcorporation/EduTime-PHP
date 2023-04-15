@@ -30,6 +30,7 @@ function generate_academic_year_id($year1, $year2) {
 if (isset($_POST['add-academic-year-btn'])) {
   $year_1 = $_POST['year1'];
   $year_2 = $_POST['year2'];
+  $academic_yr = $_POST['academic_yr_group'];
 
   if (empty($year_1)) {
     array_push($errors, "Year 1 is required");
@@ -37,13 +38,16 @@ if (isset($_POST['add-academic-year-btn'])) {
   if (empty($year_2)) {
     array_push($errors, "Year 2 is required");
   }
+  if (empty($academic_yr)) {
+    array_push($errors, "Year is required");
+  }
 
   if (count($errors) == 0) {
     //generate academic year id
     $academic_yr_id = generate_academic_year_id($year_1,$year_2);
     $academic_year = $year_1 ."/".$year_2;
 
-    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`) VALUES ('$academic_yr_id','$academic_year')";
+    $add_academic_yr_query = "INSERT INTO `academic_year`(`academic_year_id`, `academic_year`,`Year`) VALUES ('$academic_yr_id','$academic_year','$academic_yr')";
     $results = mysqli_query($db, $add_academic_yr_query);
 
       header('location: ./academic-year.php');
@@ -58,6 +62,7 @@ if (isset($_POST['update-academic-year-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
   $academic_year_id = $_POST['academic_year_id'];
   $academic_year = $_POST['academic_year'];
+  $academic_yr = $_POST['academic_yr_group'];
 
 //Data Validation
   if (empty($academic_year_id)) {
@@ -66,9 +71,12 @@ if (isset($_POST['update-academic-year-btn'])) {
   if (empty($academic_year)) {
   	array_push($errors, "Academic Year is required");
   }
+  if (empty($academic_yr)) {
+  	array_push($errors, "Year is required");
+  }
 
 if (count($errors) == 0) {
-  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year' WHERE `academic_year_id`='$academic_year_id'";
+  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year', `Year`='$academic_yr' WHERE `academic_year_id`='$academic_year_id'";
   $results = mysqli_query($db, $academic_yr_update_query);
 
 
@@ -181,6 +189,7 @@ include '../assets/components/header.php';
                                     <tr>
                                         <th>Year ID</th>
                                         <th>Academic Year</th>
+                                        <th>Stage</th>
                                         <th>Date Added</th>
                                         <th>Action</th>
                                     </tr>
@@ -194,16 +203,18 @@ include '../assets/components/header.php';
           while($row = $data_result->fetch_assoc()) {
               $year_id = $row['academic_year_id'];
               $year_desc = $row['academic_year'];
+              $stage = $row['Year'];
               $date_created = $row['date_added'];
 
       echo "<tr> <td>" .$year_id.  "</td>";
       echo "<td>" .$year_desc."</td>";
+      echo "<td>" .$stage."</td>";
       echo "<td>" .$date_created."</td>";
       echo "<td>
         
       <form method ='POST' action=''>
       <input  type='text' hidden name='year_id' value='$year_id'>
-      <input type='submit' data-id='$year_id' data-year_name='$year_desc'  value='Edit Details' name='edit-academic-year-btn' class='btn btn-success edit-academic-year-btn m-2'>
+      <input type='submit' data-id='$year_id' data-year_name='$year_desc' data-yr_stage='$stage' value='Edit Details' name='edit-academic-year-btn' class='btn btn-success edit-academic-year-btn m-2'>
       <input type='submit' data-id= '$year_id' value='Delete Academic Year'  class='btn btn-danger deleteAcademicYearBtn'>
       </form>
       </td> </tr>";
@@ -223,6 +234,7 @@ include '../assets/components/header.php';
                                     <tr>
                                         <th>Year ID</th>
                                         <th>Academic Year</th>
+                                        <th>Stage</th>
                                         <th>Date Added</th>
                                         <th>Action</th>
                                     </tr>
@@ -320,6 +332,17 @@ include '../assets/components/header.php';
                                     <input type="number" class="form-control" placeholder="e.g 2020" name="year2"
                                         id="year2_id" required />
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Select Year</label>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                        name="academic_yr_group">
+                                        <option value="">Select Year</option>
+                                        <option value="Year 1">Year 1</option>
+                                        <option value="Year 2">Year 2</option>
+                                        <option value="Year 3">Year 3</option>
+                                        <option value="Year 4">Year 4</option>
+                                    </select>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                                         Cancel
@@ -357,6 +380,12 @@ include '../assets/components/header.php';
                                         id="academic_year_id" required>
                                     <input type="text" class="form-control" placeholder="e.g 2019/2020"
                                         name="academic_year" id="academic_year_name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Select Stage</label>
+                                    <input type="text" class="form-control" placeholder="e.g Year 1"
+                                        name="academic_yr_grp_id" id="academic_yr_grp_id" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
@@ -422,9 +451,13 @@ include '../assets/components/header.php';
 
             let year_id = editButton.dataset.id;
             let academic_year_desc = editButton.dataset.year_name;
+            let stage = editButton.dataset.yr_stage;
 
             document.getElementById("academic_year_id").value = year_id;
             document.getElementById("academic_year_name").value = academic_year_desc;
+
+            document.getElementById("academic_yr_grp_id").value = stage;
+
 
             editAcademicYearModal();
         });
