@@ -67,6 +67,7 @@ if (isset($_POST['update-academic-year-btn'])) {
   $academic_year_id = $_POST['academic_year_id'];
   $academic_year = $_POST['academic_year'];
   $stage_yr = $_POST['academic_yr_grp_id'];
+  $yr_status = $_POST['yr_status_ID'];
 
 //Data Validation
   if (empty($academic_year_id)) {
@@ -78,11 +79,13 @@ if (isset($_POST['update-academic-year-btn'])) {
   if (empty($stage_yr)) {
   	array_push($errors, "Year is required");
   }
+  if (empty($yr_status)) {
+  	array_push($errors, "Staus required");
+  }
 
 if (count($errors) == 0) {
-  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year', `Year`='$stage_yr' WHERE `academic_year_id`='$academic_year_id'";
+  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year', `Year`='$stage_yr', `year_status`='$yr_status' WHERE `academic_year_id`='$academic_year_id'";
   $results = mysqli_query($db, $academic_yr_update_query);
-
 
   header('location: academic-year.php');
   }else{
@@ -194,6 +197,7 @@ include '../assets/components/header.php';
                                         <th>Year ID</th>
                                         <th>Academic Year</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th>Date Added</th>
                                         <th>Action</th>
                                     </tr>
@@ -214,6 +218,7 @@ include '../assets/components/header.php';
       echo "<tr> <td>" .$year_id.  "</td>";
       echo "<td>" .$year_desc."</td>";
       echo "<td>" .$stage."</td>";
+      echo "<td>" .$yr_status."</td>";
       echo "<td>" .$date_created."</td>";
       echo "<td>
         
@@ -240,6 +245,7 @@ include '../assets/components/header.php';
                                         <th>Year ID</th>
                                         <th>Academic Year</th>
                                         <th>Stage</th>
+                                        <th>Status</th>
                                         <th>Date Added</th>
                                         <th>Action</th>
                                     </tr>
@@ -479,11 +485,6 @@ include '../assets/components/header.php';
             document.getElementById("academic_year_id").value = year_id;
             document.getElementById("academic_year_name").value = academic_year_desc;
             document.getElementById("academic_yr_grp_id").value = stage;
-
-            document.getElementById("yr_status_id").value = yr_status;
-            // pre-select the option in the dropdown menu
-            const status_select = document.querySelector('#yr_status_id');
-            status_select.value = yr_status;
 
 
             editAcademicYearModal();
