@@ -168,7 +168,7 @@ include '../assets/components/header.php';
                 echo "<td>
                 <form method ='POST' action=''>
                 <input  type='text' hidden name='unit_id' value='$unit_id'>
-                <input type='submit' data-id= '$unit_id' value='De-select Unit'  class='btn btn-info deleteUnitBtn'>
+                <input type='submit' data-id= '$unit_id' value='Delete'  class='btn btn-danger deleteUnitBtn'>
                 </form>
                 </td> </tr>";
       }
