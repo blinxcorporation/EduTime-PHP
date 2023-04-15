@@ -62,7 +62,7 @@ if (isset($_POST['update-academic-year-btn'])) {
   if ($_SESSION['role_name'] == 'Admin'){
   $academic_year_id = $_POST['academic_year_id'];
   $academic_year = $_POST['academic_year'];
-  $academic_yr = $_POST['academic_yr_group'];
+  $stage_yr = $_POST['academic_yr_grp_id'];
 
 //Data Validation
   if (empty($academic_year_id)) {
@@ -71,12 +71,12 @@ if (isset($_POST['update-academic-year-btn'])) {
   if (empty($academic_year)) {
   	array_push($errors, "Academic Year is required");
   }
-  if (empty($academic_yr)) {
+  if (empty($stage_yr)) {
   	array_push($errors, "Year is required");
   }
 
 if (count($errors) == 0) {
-  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year', `Year`='$academic_yr' WHERE `academic_year_id`='$academic_year_id'";
+  $academic_yr_update_query = "UPDATE `academic_year` SET `academic_year`='$academic_year', `Year`='$stage_yr' WHERE `academic_year_id`='$academic_year_id'";
   $results = mysqli_query($db, $academic_yr_update_query);
 
 
