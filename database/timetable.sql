@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2023 at 02:25 AM
+-- Generation Time: Apr 15, 2023 at 02:22 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -31,6 +31,8 @@ CREATE TABLE `academic_year` (
   `id` int(11) NOT NULL,
   `academic_year_id` varchar(100) NOT NULL,
   `academic_year` varchar(100) NOT NULL,
+  `Year` varchar(255) DEFAULT NULL,
+  `year_status` varchar(100) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,11 +40,11 @@ CREATE TABLE `academic_year` (
 -- Dumping data for table `academic_year`
 --
 
-INSERT INTO `academic_year` (`id`, `academic_year_id`, `academic_year`, `date_added`) VALUES
-(1, 'YR_2019_2020', '2019/2020', '2023-03-02 11:51:27'),
-(2, 'YR_2020_2021', '2020/2021', '2023-03-02 11:51:27'),
-(4, 'YR_2021_2022', '2021/2022', '2023-03-06 12:34:36'),
-(5, 'YR_2022_2023', '2022/2023', '2023-03-06 12:34:46');
+INSERT INTO `academic_year` (`id`, `academic_year_id`, `academic_year`, `Year`, `year_status`, `date_added`) VALUES
+(1, 'YR_2019_2020', '2019/2020', 'Year 4', 'Active', '2023-03-02 11:51:27'),
+(2, 'YR_2020_2021', '2020/2021', 'Year 3', 'Active', '2023-03-02 11:51:27'),
+(4, 'YR_2021_2022', '2021/2022', 'Year 2', 'Active', '2023-03-06 12:34:36'),
+(5, 'YR_2022_2023', '2022/2023', 'Year 1', 'Active', '2023-03-06 12:34:46');
 
 -- --------------------------------------------------------
 
@@ -1867,6 +1869,7 @@ CREATE TABLE `user_details` (
   `user_email` varchar(50) NOT NULL,
   `user_phone` int(20) NOT NULL,
   `user_password` varchar(255) NOT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1874,41 +1877,41 @@ CREATE TABLE `user_details` (
 -- Dumping data for table `user_details`
 --
 
-INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `date_created`) VALUES
-(1, 'PF01', 'Dr', ' Titus', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
-(2, 'PF02', 'Mrs', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
-(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
-(4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
-(5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
-(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:25:05'),
-(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 10:32:21'),
-(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, 'e51ebb11e912d482972e91f5b2243849cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 11:47:42'),
-(9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:01'),
-(10, 'PF10', 'Mr', 'James', 'Chamwama', 'chamwama@maseno.ac.ke', 795824582, '31b90ee1a33da1431913c70021722926cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:56'),
-(11, 'PF11', 'Mr', 'Charles', 'Awuor', 'jumamark1234@gmail.com', 762854852, '511fae1765b80afceb29cf5fbcd15e17cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:54:16'),
-(12, 'PF12', 'Mr', 'Gabriel', 'Oliko', 'goliko2002@gmail.com', 752785245, '4f8977b865468be91c3cc666d03ee2f3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:55:11'),
-(13, 'PF13', 'Mrs', 'Rennish', 'Mboya', 'rennishm@gmail.com', 752897412, '70642600a08efae11ab6d83b52e9a8e9cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:56:08'),
-(14, 'PF14', 'Mrs', 'Maurine', 'Awuor', 'cnyambuga@maseno.ac.ke', 741789547, '96777c2aa17ebbd8b84cfc25fd559714cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:57:06'),
-(15, 'PF15', 'Mr', 'Bethuel', 'Okelo', 'bethuel.okello@maseno.ac.ke', 723547858, '37267a49029c50f832ff1e3dc45bb44bcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:58:03'),
-(16, 'PF16', 'Mr', 'Michael', 'Wambwere', 'mwambwere@maseno.ac.ke', 712524789, '7b9b8b1311511a6bb0903dd2bdf5ef95cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:59:11'),
-(17, 'PF17', 'Mr', 'Moses', 'Wainaina', 'moses.wainaina@maseno.ac.ke', 798457585, '8a232e18e5696750da8543e323a1b363cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:00:17'),
-(18, 'PF18', 'Mrs', 'Yvonne', 'Mwajuma', 'ymwajuma@maseno.ac.ke', 741256585, '85db1de2e3d332b956969dbbd7d8a21acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:01:26'),
-(19, 'PF19', 'Mrs', 'Rose', 'Kapukha', 'rkapukha@maseno.ac.ke', 742789525, '8eb69cc52a93ea7b6281b674ecc65abacdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:02:23'),
-(20, 'PF20', 'Dr', 'Lilian', 'Wanzare', 'ldwanzare@maseno.ac.ke', 742156585, '2fa61c19d6975b56e0800bdca11358b6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:05:33'),
-(21, 'PF21', 'Dr', 'Sylvester', 'McOyowo', 'omcoyowo@maseno.ac.ke', 714257585, '64ff6aea6ca5f902a49fd8b387c55787cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:07:02'),
-(22, 'PF22', 'Dr', 'Henry', 'Okoyo', 'ookoyo@maseno.ac.ke', 712456257, 'd288a9980aaa616063101f3416b99dc4cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:08:45'),
-(23, 'PF23', 'Mr', 'Solomon', 'Nyabundi', 'solonyabs@gmail.com', 714256478, '3d5e0bb3323b7caf64dffce76a7bd092cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:09:42'),
-(24, 'PF24', 'Mr', 'Dickson', 'Omingo', 'omingodo@maseno.ac.ke', 762748595, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 12:10:30'),
-(25, 'PF25', 'Mrs', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, 'e80b69b8963a262c31c5e20650e35fd4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 12:11:20'),
-(26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:12:49'),
-(27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:02'),
-(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55'),
-(33, 'PF29', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:19:13'),
-(34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:25:40'),
-(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:51:25'),
-(37, 'PF52', 'Dr', 'Roxanne', 'Hawi', 'roxannehavi@maseno.ac.ke', 752457582, '733cf4ed6fc40042a9514cb42817a54fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 14:56:47'),
-(32, 'PF55', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 23:30:02'),
-(36, 'PF60', 'Mr', 'Thomas', 'Ojijo', 'ojijotom@maseno.ac.ke', 714758258, '7ed946148ae8b14c898fcefde7a03734cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 13:09:58');
+INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `password_reset_token`, `date_created`) VALUES
+(1, 'PF01', 'Dr', ' Titus', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 19:57:25'),
+(2, 'PF02', 'Mrs', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 19:58:26'),
+(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 20:49:58'),
+(4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 20:55:14'),
+(5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-02-16 20:17:16'),
+(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:25:05'),
+(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 10:32:21'),
+(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, 'e51ebb11e912d482972e91f5b2243849cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 11:47:42'),
+(9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:52:01'),
+(10, 'PF10', 'Mr', 'James', 'Chamwama', 'chamwama@maseno.ac.ke', 795824582, '31b90ee1a33da1431913c70021722926cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:52:56'),
+(11, 'PF11', 'Mr', 'Charles', 'Awuor', 'jumamark1234@gmail.com', 762854852, '511fae1765b80afceb29cf5fbcd15e17cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:54:16'),
+(12, 'PF12', 'Mr', 'Gabriel', 'Oliko', 'goliko2002@gmail.com', 752785245, '4f8977b865468be91c3cc666d03ee2f3cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:55:11'),
+(13, 'PF13', 'Mrs', 'Rennish', 'Mboya', 'rennishm@gmail.com', 752897412, '70642600a08efae11ab6d83b52e9a8e9cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:56:08'),
+(14, 'PF14', 'Mrs', 'Maurine', 'Awuor', 'cnyambuga@maseno.ac.ke', 741789547, '96777c2aa17ebbd8b84cfc25fd559714cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:57:06'),
+(15, 'PF15', 'Mr', 'Bethuel', 'Okelo', 'bethuel.okello@maseno.ac.ke', 723547858, '37267a49029c50f832ff1e3dc45bb44bcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:58:03'),
+(16, 'PF16', 'Mr', 'Michael', 'Wambwere', 'mwambwere@maseno.ac.ke', 712524789, '7b9b8b1311511a6bb0903dd2bdf5ef95cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:59:11'),
+(17, 'PF17', 'Mr', 'Moses', 'Wainaina', 'moses.wainaina@maseno.ac.ke', 798457585, '8a232e18e5696750da8543e323a1b363cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:00:17'),
+(18, 'PF18', 'Mrs', 'Yvonne', 'Mwajuma', 'ymwajuma@maseno.ac.ke', 741256585, '85db1de2e3d332b956969dbbd7d8a21acdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:01:26'),
+(19, 'PF19', 'Mrs', 'Rose', 'Kapukha', 'rkapukha@maseno.ac.ke', 742789525, '8eb69cc52a93ea7b6281b674ecc65abacdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:02:23'),
+(20, 'PF20', 'Dr', 'Lilian', 'Wanzare', 'ldwanzare@maseno.ac.ke', 742156585, '2fa61c19d6975b56e0800bdca11358b6cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:05:33'),
+(21, 'PF21', 'Dr', 'Sylvester', 'McOyowo', 'omcoyowo@maseno.ac.ke', 714257585, '64ff6aea6ca5f902a49fd8b387c55787cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:07:02'),
+(22, 'PF22', 'Dr', 'Henry', 'Okoyo', 'ookoyo@maseno.ac.ke', 712456257, 'd288a9980aaa616063101f3416b99dc4cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:08:45'),
+(23, 'PF23', 'Mr', 'Solomon', 'Nyabundi', 'solonyabs@gmail.com', 714256478, '3d5e0bb3323b7caf64dffce76a7bd092cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:09:42'),
+(24, 'PF24', 'Mr', 'Dickson', 'Omingo', 'omingodo@maseno.ac.ke', 762748595, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 12:10:30'),
+(25, 'PF25', 'Mrs', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, 'e80b69b8963a262c31c5e20650e35fd4cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 12:11:20'),
+(26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:12:49'),
+(27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:14:02'),
+(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:14:55'),
+(33, 'PF29', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-20 23:19:13'),
+(34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-20 23:25:40'),
+(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-20 23:51:25'),
+(37, 'PF52', 'Dr', 'Roxanne', 'Hawi', 'roxannehavi@maseno.ac.ke', 752457582, '733cf4ed6fc40042a9514cb42817a54fcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-25 14:56:47'),
+(32, 'PF55', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 23:30:02'),
+(36, 'PF60', 'Mr', 'Thomas', 'Ojijo', 'ojijotom@maseno.ac.ke', 714758258, '7ed946148ae8b14c898fcefde7a03734cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-25 13:09:58');
 
 -- --------------------------------------------------------
 
