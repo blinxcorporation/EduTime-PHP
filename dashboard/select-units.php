@@ -60,61 +60,62 @@ if (isset($_POST['submit-selected-units'])) {
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-  <title>Select Units| EDUTIME</title>
-  <?php
+
+<head>
+    <title>Select Units| EDUTIME</title>
+    <?php
 include '../assets/components/header.php';
 ?>
-  </head>
+</head>
 
-  <body>
+<body>
 
-      <!-- ============================================================== -->
-      <!-- Topbar header - style you can find in pages.scss -->
-      <!-- ============================================================== -->
-     <?php
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <?php
      include '../assets/components/topbar.php';
      ?>
-      <!-- ============================================================== -->
-      <!-- End Topbar header -->
-      <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
 
 
-      <!-- ============================================================== -->
-      <!-- Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <?php
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <?php
      include '../assets/components/sidebar.php';
      ?>
-      <!-- ============================================================== -->
-      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Page wrapper  -->
-      <!-- ============================================================== -->
-      <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <div class="page-breadcrumb pt-5">
-          <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Units Details</h4>
-              <div class="ms-auto text-end">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Units
-                    </li>
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Units Details</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Units
+                                </li>
 
-                  </ol>
-                </nav>
-              </div>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-  
+
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -122,73 +123,85 @@ include '../assets/components/header.php';
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-          <!-- ============================================================== -->
-          <!-- Start Page Content -->
-          <!-- ============================================================== -->
-    <div class="row mb-4">
-      <div class="col-12">
-            <div class="card">
-          <div class="card-body">
-            <form method="POST" action="">
-                <div class="row">
-            <div class="form-group col-md-3">
-            <label for="exampleInputPassword1" style="font-size:16px">Select Course:</label>
-            <select class="form-control form-control-lg" id="course_id" name="course_id" required>
-    <option value="">Select course..</option>
-    <?php 
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="POST" action="">
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputPassword1" style="font-size:16px">Select Course:</label>
+                                        <select class="form-control form-control-lg" id="course_id" name="course_id"
+                                            required>
+                                            <option value="">Select course..</option>
+                                            <?php 
     // Retrieve the semesters from the database
     $sql=mysqli_query($db,"select * from course_details INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_course_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE lecturer_department_details.lecturer_id= '$pfno'");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
-    <option value="<?php echo htmlentities($rw['course_id']);?>"><?php echo htmlentities($rw['course_name']);?></option>
-    <?php
+                                            <option value="<?php echo htmlentities($rw['course_id']);?>">
+                                                <?php echo htmlentities($rw['course_name']);?>
+                                                (<?php echo htmlentities($rw['course_shortform']);?>)
+                                            </option>
+                                            <?php
     }
     ?>
-  </select>
-            </div>
-            <div class="form-group col-md-3">
-            <label for="exampleInputPassword1" style="font-size:16px">Select Semester:</label>
-            <select class="form-control form-control-lg" id="uni_semester_id" name="uni_semester_id" required>
-    <option value="">Select Semester..</option>
-    <?php 
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputPassword1" style="font-size:16px">Select
+                                            Semester:</label>
+                                        <select class="form-control form-control-lg" id="uni_semester_id"
+                                            name="uni_semester_id" required>
+                                            <option value="">Select Semester..</option>
+                                            <?php 
     // Retrieve the semesters from the database
     $sql=mysqli_query($db,"select * from semester_details");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
-    <option value="<?php echo htmlentities($rw['semester_id']);?>"><?php echo htmlentities($rw['semester_name']);?></option>
-    <?php
+                                            <option value="<?php echo htmlentities($rw['semester_id']);?>">
+                                                <?php echo htmlentities($rw['semester_name']);?></option>
+                                            <?php
     }
     ?>
-  </select>
-            </div>
-            <div class="form-group col-md-3">
-            <label for="exampleInputPassword1" style="font-size:16px">Select Academic Year:</label>
-            <select class="form-control form-control-lg" id="academic_year_id" name="academic_year_id" required>
-    <option value="">Select Academic Year..</option>
-    <?php 
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputPassword1" style="font-size:16px">Study Group:</label>
+                                        <select class="form-control form-control-lg" id="academic_year_id"
+                                            name="academic_year_id" required>
+                                            <option value="">Select Study Group..</option>
+                                            <?php 
     // Retrieve the semesters from the database
-    $sql=mysqli_query($db,"select * from academic_year");
+    $sql=mysqli_query($db,"select * FROM  academic_year WHERE year_status='Active'");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
-    <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
-    <?php
+                                            <option value="<?php echo htmlentities($rw['academic_year_id']);?>">
+                                                <?php echo htmlentities($rw['Year']);?></option>
+                                            <?php
     }
     ?>
-  </select>
-            </div>
+                                        </select>
+                                    </div>
 
 
-            <div class="form-group col-md-3"> 
-            <label for="exampleInputPassword1" style="font-size:16px">*Submit to view active units</label></br>
-                <input type="submit" name="select-sem-btn" class="btn btn-outline-success form-control-lg" value="View Units"  style="font-size:16px; font-weight:bold;"></input>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputPassword1" style="font-size:16px">*Submit to view active
+                                            units</label></br>
+                                        <input type="submit" name="select-sem-btn"
+                                            class="btn btn-outline-success form-control-lg" value="View Units"
+                                            style="font-size:16px; font-weight:bold;"></input>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </form>
-        </div>
-    </div>
-  </div>
 
-  <?php
+                <?php
 if (isset($_POST['select-sem-btn'])) {
     if ($_SESSION['role_name'] == 'Chairperson' || $_SESSION['role_name'] == 'Dean' || $_SESSION['role_name'] == 'Lecturer'){
     $sem_id = $_POST['uni_semester_id'];
@@ -269,61 +282,67 @@ if (isset($_POST['select-sem-btn'])) {
           } 
           } 
 ?>
-   <hr>
-   <div class="col-md-3"> </div>
-   <div class="col-md-3"> </div>
-<div class="col-md-6"> 
-  <form method='POST' action=''>
-    <div class="row">
-  <div class="form-group col-md-6">
-            <label for="exampleInputPassword1" style="font-size:16px">Select Academic Year Group:</label>
-            <select class="form-control form-control-lg" id="academic_yr_id" name="academic_year_id" required>
-    <option value="">Select academic year..</option>
-    <?php 
+                <hr>
+                <div class="col-md-3"> </div>
+                <div class="col-md-3"> </div>
+                <div class="col-md-6">
+                    <form method='POST' action=''>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1" style="font-size:16px">Select Group:</label>
+                                <select class="form-control form-control-lg" id="academic_yr_id" name="academic_year_id"
+                                    required>
+                                    <option value="">Select group..</option>
+                                    <?php 
     // Retrieve the semesters from the database
     $sql=mysqli_query($db,"select * from academic_year");
     while ($rw=mysqli_fetch_array($sql)) {
     ?>
-    <option value="<?php echo htmlentities($rw['academic_year_id']);?>"><?php echo htmlentities($rw['academic_year']);?></option>
-    <?php
+                                    <option value="<?php echo htmlentities($rw['academic_year_id']);?>">
+                                        <?php echo htmlentities($rw['Year']);?></option>
+                                    <?php
     }
     ?>
-  </select>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" name="selected_units_ids" readonly hidden id="units_id">
+                                <input type="text" name="lec_id" readonly hidden id="lec_pf_number"
+                                    value="<?php echo $pfno; ?>">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputPassword1" style="font-size:16px">*Submit Selected
+                                    Units</label><br>
+                                <input type='submit' class='btn btn-success btn-block form-control-lg'
+                                    name='submit-selected-units' value='Submit Selected Units' />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-            <div class="form-group col-md-2">
-    <input type="text" name="selected_units_ids" readonly hidden id="units_id">
-    <input type="text" name="lec_id" readonly hidden id="lec_pf_number" value="<?php echo $pfno; ?>">
-  </div>
-  <div class="form-group col-md-4">
-  <label for="exampleInputPassword1" style="font-size:16px">*Submit Selected Units</label><br>
-    <input type='submit' class='btn btn-success btn-block form-control-lg' name='submit-selected-units' value='Submit Selected Units'/>
-  </div>
-  </div>
-  </form>
-</div>
 
-</div>
 
-    
-      
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
 
-        <hr class="m-4">
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-    <?php
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+
+            <hr class="m-4">
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <?php
     include '../assets/components/footer.php';
     ?>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!--end of container-->
         <!-- ============================================================== -->
-        <!-- End footer -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-      </div> <!--end of container-->
-      <!-- ============================================================== -->
-      <!-- End Page wrapper  -->
-      <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -348,37 +367,36 @@ if (isset($_POST['select-sem-btn'])) {
     <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
-<script>
-$(document).ready(function () {
-  $('#dtBasicExample').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-});
-
-//get values of units selected
-let unitCodesSelected = [];
-
-const checkboxes = document.querySelectorAll('input[name="unit-codes-selected[]"]');
-  const selectedUnits = [];
-
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        selectedUnits.push(checkbox.value);
-      } else {
-        const index = selectedUnits.indexOf(checkbox.value);
-        if (index > -1) {
-          selectedUnits.splice(index, 1);
-        }
-      }
-      // console.log(selectedUnits);
-
-      let unitsSelectedField = document.getElementById('units_id');
-      unitsSelectedField.value = selectedUnits;
+    <script>
+    $(document).ready(function() {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
     });
-  });
 
+    //get values of units selected
+    let unitCodesSelected = [];
 
-  </script>
+    const checkboxes = document.querySelectorAll('input[name="unit-codes-selected[]"]');
+    const selectedUnits = [];
 
-  </body>
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                selectedUnits.push(checkbox.value);
+            } else {
+                const index = selectedUnits.indexOf(checkbox.value);
+                if (index > -1) {
+                    selectedUnits.splice(index, 1);
+                }
+            }
+            // console.log(selectedUnits);
+
+            let unitsSelectedField = document.getElementById('units_id');
+            unitsSelectedField.value = selectedUnits;
+        });
+    });
+    </script>
+
+</body>
+
 </html>
