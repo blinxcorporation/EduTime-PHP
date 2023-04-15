@@ -472,7 +472,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     <h1 class="font-light text-white">
                                         <i class="fa fa-file-pdf"></i>
                                     </h1>
-                                    <h6 class="text-light">Departmental Timetable</h6>
+                                    <h6 class="text-light">Department Timetable</h6>
                                     <input type='text' readonly hidden value='<?php echo $pfno; ?>' name='lec_pf_num'>
                                     <input type="submit" name="download-department-tt-btn" class="btn btn-info"
                                         value="Download" />
