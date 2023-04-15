@@ -135,12 +135,11 @@ if (isset($_POST['download-personal-tt-btn'])) {
 //generate department TT
 if (isset($_POST['download-department-tt-btn'])) {
     $lec = $_POST['lec_pf_num'];
-    
+
     // Retrieve the department ID of the lecturer
     $sql_dept = "SELECT lecturer_department_details.department_id FROM lecturer_department_details 
     INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id
-    WHERE lecturer_id = '$lec' LIMIT 0, 25
-    ";
+    WHERE lecturer_id = '$lec' LIMIT 0, 25";
     $result_dept = mysqli_query($db, $sql_dept);
     $row_dept = mysqli_fetch_assoc($result_dept);
     $dept_id = $row_dept['department_id'];
@@ -155,45 +154,71 @@ if (isset($_POST['download-department-tt-btn'])) {
     WHERE department_details.department_id = '$dept_id'";
     $result = mysqli_query($db, $sql);
 
-    // Create a file pointer for the CSV file
-    $fp = fopen('department_timetable.csv', 'w');
-    
-    // Write the title for the CSV file
-    fputcsv($fp, array('', 'Maseno University', '', '', ''), ';');
-
-
-    fputcsv($fp, array('', 'Department Timetable', '', '', ''), ';');
-
-
-    // Write the headers for the CSV file
-    fputcsv($fp, array('Unit', 'Lecturer', 'Time', 'Room'));
-
-
-
-    // Shuffle the result data
-    $rows = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
+    // Shuffle the results
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     shuffle($rows);
 
-    // Loop through the shuffled rows and display the data
+    // Create a new PDF document
+    require('fpdf/fpdf.php');
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial', 'B', 16);
+
+    // Add the logo to the document
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 15, 10, 30, 0, 'PNG');
+
+            // Write the title of the document
+    $pdf->SetFont('Arial', 'B', 30);
+    $pdf->Cell(0, 30, '', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    $pdf->SetFont('Arial', 'B', 22);
+
+    //get department details
+    $sql_dpt = "SELECT * FROM department_details 
+    INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id
+    INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+    INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+     WHERE lecturer_department_details.lecturer_id = '$lec'";
+    $dpt_result = mysqli_query($db, $sql_dpt);
+
+    while ($row = mysqli_fetch_assoc($dpt_result)) {
+        // Do something with each row, for example:
+        $department_id = $row['department_id'];
+        $department_name = $row['department_name'];
+        $school_name = $row['school_name'];
+        $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
+        $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
+        $pdf->Cell(0, 10,"Department Timetable", 0, 1, 'C');
+    }
+    
+    $pdf->Ln();
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(50, 10, 'Unit', 1);
+    $pdf->Cell(50, 10, 'Lecturer', 1);
+    $pdf->Cell(40, 10, 'Time', 1);
+    $pdf->Cell(50, 10, 'Room', 1);
+    $pdf->Ln();
+
+    // Loop through the shuffled rows and add the data to the PDF
     foreach ($rows as $row) {
-        fputcsv($fp, array($row['unit_id'], $row['user_firstname']." ".$row['user_lastname'], $row['time_slot_id'], $row['room_name']));
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(50, 10, $row['unit_id'], 1);
+        $pdf->Cell(50, 10, $row['user_firstname']." ".$row['user_lastname'], 1);
+        $pdf->Cell(40, 10, $row['time_slot_id'], 1);
+        $pdf->Cell(50, 10, $row['room_name'], 1);
+        $pdf->Ln();
     }
 
-    // Close the file pointer
-    fclose($fp);
-
-    // Download the CSV file
-    header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename=department_timetable.csv;');
-    header('Pragma: no-cache');
-    readfile('department_timetable.csv');
+    // Output the PDF document
+    $pdf->Output('department_timetable.pdf', 'D');
     exit();
 
     mysqli_close($db);
 }
+
+
 
 
 
