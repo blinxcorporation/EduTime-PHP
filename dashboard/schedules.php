@@ -193,26 +193,44 @@ if (isset($_POST['download-department-tt-btn'])) {
         $pdf->Cell(0, 10,"Department Timetable", 0, 1, 'C');
     }
     
-    $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(50, 10, 'Unit', 1);
+    $pdf->Cell(30, 10, 'Unit', 1);
     $pdf->Cell(50, 10, 'Lecturer', 1);
-    $pdf->Cell(40, 10, 'Time', 1);
-    $pdf->Cell(50, 10, 'Room', 1);
+    $pdf->Cell(30, 10, 'Time', 1);
+    $pdf->Cell(30, 10, 'Day', 1);
+    $pdf->Cell(40, 10, 'Room', 1);
     $pdf->Ln();
 
     // Loop through the shuffled rows and add the data to the PDF
     foreach ($rows as $row) {
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(50, 10, $row['unit_id'], 1);
+        $pdf->Cell(30, 10, $row['unit_id'], 1);
         $pdf->Cell(50, 10, $row['user_firstname']." ".$row['user_lastname'], 1);
-        $pdf->Cell(40, 10, $row['time_slot_id'], 1);
-        $pdf->Cell(50, 10, $row['room_name'], 1);
+        $pdf->Cell(30, 10, $row['time_slot_id'], 1);
+        $pdf->Cell(30, 10, $row['weekday'], 1);
+        $pdf->Cell(40, 10, $row['room_name'], 1);
         $pdf->Ln();
     }
 
+
+    function slugify($text) {
+        // Replace spaces with hyphens
+        $text = str_replace(' ', '-', $text);
+      
+        // Remove special characters except hyphens
+        $text = preg_replace('/[^A-Za-z0-9\-]/', '', $text);
+      
+        // Convert to lowercase
+        $text = strtolower($text);
+      
+        return $text;
+      }
+      
+      // Usage:
+      $department_slug = slugify($department_name);
+
     // Output the PDF document
-    $pdf->Output('department_timetable.pdf', 'D');
+    $pdf->Output($department_slug."_timetable".".pdf", 'D');
     exit();
 
     mysqli_close($db);
