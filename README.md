@@ -39,3 +39,7 @@
 ## Assumptions
 
 - There are enough resources for efficient timetabling. (Lecturers,Rooms)
+
+## Issue
+
+- Generate aggregate reports for each department, course and academic year
