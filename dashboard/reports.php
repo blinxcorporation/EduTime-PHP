@@ -575,7 +575,7 @@ include '../assets/components/header.php';
                                     <h1 class="font-light text-white">
                                         <i class="fa fa-file-excel"></i>
                                     </h1>
-                                    <h6 class="text-light">Timetable</h6>
+                                    <h6 class="text-light">General Timetable</h6>
                                     <a href="timetable.csv" class="btn btn-success" download>Download</a>
                                 </div>
                             </div>
