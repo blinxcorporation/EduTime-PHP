@@ -453,7 +453,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     <h1 class="font-light text-white">
                                         <i class="fa fa-file-pdf"></i>
                                     </h1>
-                                    <h6 class="text-light">Personal Timetable</h6>
+                                    <h6 class="text-light">Personal Timetable (Create Aggregate Reports in a Table
+                                        formart)</h6>
                                     <input type='text' readonly hidden value='<?php echo $pfno; ?>' name='lec_pf'>
                                     <input type='text' readonly hidden value='<?php echo $name; ?>' name='lec_name'>
                                     <input type="submit" name="download-personal-tt-btn" class="btn btn-info"
