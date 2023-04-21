@@ -91,7 +91,6 @@ include '../assets/components/header.php';
             <!-- ============================================================== -->
             <div class="row">
                 <div class="col-12">
-
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">List of Courses</h5>
@@ -151,6 +150,7 @@ include '../assets/components/header.php';
                                 </tfoot>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
