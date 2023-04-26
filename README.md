@@ -40,3 +40,7 @@
 ## Issue
 
 - Generate aggregate reports for each department, course and academic year
+
+## Future Additions/ Recommendations
+
+- The lecturers should get notifications 2 hours before to remind them of classes they have.
