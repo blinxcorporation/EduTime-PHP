@@ -34,7 +34,8 @@
 
 ## Assumptions
 
-- There are enough resources for efficient timetabling. (Lecturers,Rooms)
+- There are enough resources for efficient timetabling. (Lecturers,Rooms).
+- The students will get the timetable from the university website
 
 ## Issue
 
