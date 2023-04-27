@@ -32,10 +32,6 @@
 - Select units to take for a specific semester.
 - Download personal Timetable and department Timetable.
 
-## Student
-
-- Download TT from university website
-
 ## Assumptions
 
 - There are enough resources for efficient timetabling. (Lecturers,Rooms)
