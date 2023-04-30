@@ -129,7 +129,116 @@ mysqli_close($db);
 $pdf->Output('D', $filename);
 }
 
-//generate department TT
+//Download Group TT
+if (isset($_POST['download-course-group-tt-btn'])) {
+
+    $lec = $_POST['lec_id'];
+    $crs_id = $_POST['course_identifier'];
+    $grp_year = $_POST['group_year'];
+    // Set the content type as a downloadable PDF file
+    header('Content-Type: application/pdf');
+    
+    // Set the file name
+    $filename = strtolower($crs_id) . 'timetable.pdf';
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    
+    // Include the necessary files for creating a PDF
+    require('fpdf/fpdf.php');
+
+    // Create a new PDF document
+    $pdf = new FPDF('L', 'mm', 'A4'); // 'L' for landscape orientation
+    $pdf->AddPage();
+
+    // Add the logo to the document
+    $pdf->Image('images/logo.png', $pdf->GetPageWidth()/2 - 15, 10, 30, 0, 'PNG');
+    
+    //get department details
+    $sql_dpt = "SELECT * FROM department_details 
+    INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_details.department_id
+    INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+    INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+     WHERE lecturer_department_details.lecturer_id = '$lec'";
+    $dpt_result = mysqli_query($db, $sql_dpt);
+
+    //get unit details
+    $sql_unit = "SELECT * FROM unit_details
+    INNER JOIN lecturer_unit_details ON lecturer_unit_details.unit_id = unit_details.unit_code
+    INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
+    INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = lecturer_unit_details.lecturer_id
+    INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id
+    WHERE unit_course_details.course_id = '$crs_id'";
+    $unit_result = mysqli_query($db, $sql_unit);
+
+    // Query to get the timetable details
+    $sql = "SELECT * FROM unit_room_time_day_allocation_details urtd1 
+    INNER JOIN lecturer_unit_details lud ON urtd1.unit_id = lud.unit_id 
+    INNER JOIN user_details ud ON lud.lecturer_id = ud.pf_number 
+    INNER JOIN unit_room_time_day_allocation_details urtd2 ON urtd1.unit_id = urtd2.unit_id 
+    INNER JOIN unit_course_details ucd ON ucd.unit_id = lud.unit_id 
+    INNER JOIN course_details cd ON cd.course_id = ucd.course_id
+    INNER JOIN lecturer_department_details ldd ON ldd.lecturer_id = lud.lecturer_id
+    INNER JOIN department_details dd ON dd.department_id = ldd.department_id
+    WHERE ucd.course_id = '$crs_id'";
+    $result = mysqli_query($db, $sql);
+
+    // Write the title of the document
+    $pdf->SetFont('Arial', 'B', 24);
+    $pdf->Cell(0, 30, '', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
+    while ($row = mysqli_fetch_assoc($dpt_result)) {
+        // Do something with each row, for example:
+        $department_id = $row['department_id'];
+        $department_name = $row['department_name'];
+        $school_name = $row['school_name'];
+        $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
+        $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
+    }
+    $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
+    $pdf->Cell(0, 10,$salutation."'s"." Personal Timetable", 0, 1, 'C');
+
+    // Set the font and font size for the table headers
+    $pdf->SetFont('Arial', 'B', 12);
+
+// create table header
+$pdf->Cell(40,10,'Day/Time',1);
+$pdf->Cell(40,10,'07:00-09:00',1);
+$pdf->Cell(40,10,'09:00-11:00',1);
+$pdf->Cell(40,10,'11:00-13:00',1);
+$pdf->Cell(40,10,'13:00-15:00',1);
+$pdf->Cell(40,10,'15:00-17:00',1);
+$pdf->Cell(40,10,'17:00-19:00',1);
+// set font for table content
+$pdf->SetFont('Arial','',12);
+
+// populate table with data
+$days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
+$times = array('07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00');
+foreach($days as $day) {
+    $pdf->Ln();
+    $pdf->Cell(40,10,$day,1);
+
+    foreach($times as $time) {
+        $unit_id = '';
+        mysqli_data_seek($result, 0); // reset the result set pointer
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($row['weekday'] === $day && $row['time_slot_id'] === $time) {
+                $unit_id = $row['unit_id']." ".$row['room_id'];
+                break;
+            }
+        }
+        $pdf->Cell(40,10,$unit_id,1);
+    }
+}
+
+
+// Close the database connection and output the PDF
+mysqli_close($db);
+$pdf->Output('D', $filename);
+}
+
+
 //generate department TT
 if (isset($_POST['download-department-tt-btn'])) {
     $lec = $_POST['lec_pf_num'];
@@ -438,7 +547,7 @@ include '../assets/components/header.php';
 if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lecturer' || $_SESSION['role_name'] === 'Dean'){
 // display the HTML code if the session variable 'role_name' is set to 'Admin'
 ?>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <a href="#" name="lecturer-form">
                         <form method="POST" action="">
                             <div class="card card-hover">
@@ -457,7 +566,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                     </a>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <a href="#" name="lecturer-form">
                         <form method="POST" action="">
                             <div class="card card-hover">
@@ -474,6 +583,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                         </form>
                     </a>
                 </div>
+
+                <div class="col-md-4"></div>
                 <?php
 }
 ?>
@@ -481,7 +592,65 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
 
             </div>
             <!--close row-->
+            <?php
+if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lecturer' || $_SESSION['role_name'] === 'Dean'){
+// display the HTML code if the session variable 'role_name' is set to 'Admin'
+?>
+            <div class="row mt-4 mb-4">
+                <form method="POST" action="">
+                    <input type='text' readonly hidden value='<?php echo $pfno; ?>' name='lec_id'>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1" style="font-size:16px">Select Course:</label>
+                            <select class="form-control form-control-lg" id="course_id" name="course_identifier"
+                                required>
+                                <option value="">Select course..</option>
+                                <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * from course_details INNER JOIN department_course_details ON department_course_details.course_id = course_details.course_id INNER JOIN lecturer_department_details ON lecturer_department_details.department_id = department_course_details.department_id INNER JOIN user_details ON user_details.pf_number = lecturer_department_details.lecturer_id WHERE lecturer_department_details.lecturer_id= '$pfno'");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+                                <option value="<?php echo htmlentities($rw['course_id']);?>">
+                                    <?php echo htmlentities($rw['course_name']);?>
+                                    (<?php echo htmlentities($rw['course_shortform']);?>)
+                                </option>
+                                <?php
+    }
+    ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1" style="font-size:16px">Select Group:</label>
+                            <select class="form-control form-control-lg" id="academic_year_id" name="group_year"
+                                required>
+                                <option value="">Select group..</option>
+                                <?php 
+    // Retrieve the semesters from the database
+    $sql=mysqli_query($db,"select * FROM  academic_year WHERE year_status='Active' ORDER BY Year ASC");
+    while ($rw=mysqli_fetch_array($sql)) {
+    ?>
+                                <option value="<?php echo htmlentities($rw['academic_year_id']);?>">
+                                    <?php echo htmlentities($rw['Year']);?></option>
+                                <?php
+    }
+    ?>
+                            </select>
+                        </div>
 
+
+                        <div class="form-group col-md-3">
+                            <label for="exampleInputPassword1" style="font-size:16px">*Submit to download
+                                Timetable</label></br>
+                            <input type="submit" name="download-course-group-tt-btn"
+                                class="btn btn-outline-success form-control-lg btn-block" value="Download Timetable"
+                                style="font-size:16px; font-weight:bold;"></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <?php
+}
+?>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -519,7 +688,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                 <tbody>
                                     <!-- monday -->
                                     <tr>
-                                        <td width="110" align="center"><span style="color:white;">1</span>MONDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">1</span>MONDAY
+                                        </td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -669,7 +839,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     </tr>
                                     <!-- tuesday -->
                                     <tr>
-                                        <td width="110" align="center"><span style="color:white;">2</span>TUESDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">2</span>TUESDAY
+                                        </td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -822,7 +993,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
 
                                     <!-- Wednesday -->
                                     <tr>
-                                        <td width="110" align="center"><span style="color:white;">3</span>WEDNESDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">3</span>WEDNESDAY
+                                        </td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -974,7 +1146,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     </tr>
                                     <!-- thursday -->
                                     <tr>
-                                        <td width="110" align="center"><span style="color:white;">4</span>THURSDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">4</span>THURSDAY
+                                        </td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -1127,7 +1300,8 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
 
                                     <!-- Friday -->
                                     <tr>
-                                        <td width="110" align="center"><span style="color:white;">5</span>FRIDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">5</span>FRIDAY
+                                        </td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
