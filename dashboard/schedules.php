@@ -239,8 +239,6 @@ $pdf->Output('D', $filename);
 }
 
 
-
-//generate department TT
 //generate department TT
 if (isset($_POST['download-department-tt-btn'])) {
     $lec = $_POST['lec_pf_num'];
