@@ -116,7 +116,7 @@ foreach($days as $day) {
         mysqli_data_seek($result, 0); // reset the result set pointer
         while ($row = mysqli_fetch_assoc($result)) {
             if ($row['weekday'] === $day && $row['time_slot_id'] === $time) {
-                $unit_id = $row['unit_id'];
+                $unit_id = $row['unit_id']." ".$row['room_id'];
                 break;
             }
         }
