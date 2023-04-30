@@ -489,7 +489,176 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
             </div>
             <!--close row-->
 
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Personal Timetable</h5>
+                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm"
+                                cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Time / Weekday
+                                        </th>
+                                        <th>
+                                            Monday
+                                        </th>
+                                        <th>
+                                            Tuesday
+                                        </th>
+                                        <th>
+                                            Wednesday
+                                        </th>
+                                        <th>
+                                            Thursday
+                                        </th>
 
+                                        <th>
+                                            Friday
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="110" align="center">07:00AM-09:00AM</td>
+                                        <td width="120" style="background-color:white;">
+                                            <font size="1">
+                                                <?php 
+                                        $query = "SELECT * FROM unit_room_time_day_allocation_details 
+                                        INNER JOIN user_details ON user_details.pf_number = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN department_course_details ON department_course_details.department_id = lecturer_department_details.department_id
+                                        INNER JOIN course_details ON course_details.course_id = department_course_details.course_id
+                                        INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id 
+                                        INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+                                        INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+                                        WHERE time_slot_id = '07:00-09:00' AND unit_room_time_day_allocation_details.lecturer_id ='$pfno' AND weekday='Monday' LIMIT 1 ";
+
+                                        $result = mysqli_query($db, $query);
+                                        $row = mysqli_fetch_array($result);
+                                        if($row > 0){
+                                        echo $row['unit_id'];
+                                        echo '<br>';
+                                        echo $row['lecturer_id']; 
+                                        echo '<br>';	 
+                                        echo $row['room_id'];
+                                        }
+                                        ?>
+                                            </font>
+                                        </td>
+                                        <td width="120" style="background-color:white;">
+                                            <font size="1">
+                                                <?php 
+                                        $query = "SELECT * FROM unit_room_time_day_allocation_details 
+                                        INNER JOIN user_details ON user_details.pf_number = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN department_course_details ON department_course_details.department_id = lecturer_department_details.department_id
+                                        INNER JOIN course_details ON course_details.course_id = department_course_details.course_id
+                                        INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id 
+                                        INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+                                        INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+                                        WHERE time_slot_id = '07:00-09:00' AND unit_room_time_day_allocation_details.lecturer_id ='$pfno' AND weekday='Tuesday' LIMIT 1 ";
+
+                                        $result = mysqli_query($db, $query);
+                                        $row = mysqli_fetch_array($result);
+                                        if($row > 0){
+                                        echo $row['unit_id'];
+                                        echo '<br>';
+                                        echo $row['lecturer_id']; 
+                                        echo '<br>';	 
+                                        echo $row['room_id'];
+                                        }
+                                        ?>
+                                            </font>
+                                        </td>
+                                        <td width="120" style="background-color:white;">
+                                            <font size="1">
+                                                <?php 
+                                        $query = "SELECT * FROM unit_room_time_day_allocation_details 
+                                        INNER JOIN user_details ON user_details.pf_number = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN department_course_details ON department_course_details.department_id = lecturer_department_details.department_id
+                                        INNER JOIN course_details ON course_details.course_id = department_course_details.course_id
+                                        INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id 
+                                        INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+                                        INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+                                        WHERE time_slot_id = '07:00-09:00' AND unit_room_time_day_allocation_details.lecturer_id ='$pfno' AND weekday='Wednesday' LIMIT 1 ";
+
+                                        $result = mysqli_query($db, $query);
+                                        $row = mysqli_fetch_array($result);
+                                        if($row > 0){
+                                        echo $row['unit_id'];
+                                        echo '<br>';
+                                        echo $row['lecturer_id']; 
+                                        echo '<br>';	 
+                                        echo $row['room_id'];
+                                        }
+                                        ?>
+                                            </font>
+                                        </td>
+
+                                        <td width="120" style="background-color:white;">
+                                            <font size="1">
+                                                <?php 
+                                        $query = "SELECT * FROM unit_room_time_day_allocation_details 
+                                        INNER JOIN user_details ON user_details.pf_number = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN department_course_details ON department_course_details.department_id = lecturer_department_details.department_id
+                                        INNER JOIN course_details ON course_details.course_id = department_course_details.course_id
+                                        INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id 
+                                        INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+                                        INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+                                        WHERE time_slot_id = '07:00-09:00' AND unit_room_time_day_allocation_details.lecturer_id ='$pfno' AND weekday='Thursday' LIMIT 1 ";
+
+                                        $result = mysqli_query($db, $query);
+                                        $row = mysqli_fetch_array($result);
+                                        if($row > 0){
+                                        echo $row['unit_id'];
+                                        echo '<br>';
+                                        echo $row['lecturer_id']; 
+                                        echo '<br>';	 
+                                        echo $row['room_id'];
+                                        }
+                                        ?>
+                                            </font>
+                                        </td>
+
+                                        <td width="120" style="background-color:white;">
+                                            <font size="1">
+                                                <?php 
+                                        $query = "SELECT * FROM unit_room_time_day_allocation_details 
+                                        INNER JOIN user_details ON user_details.pf_number = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = unit_room_time_day_allocation_details.lecturer_id 
+                                        INNER JOIN department_course_details ON department_course_details.department_id = lecturer_department_details.department_id
+                                        INNER JOIN course_details ON course_details.course_id = department_course_details.course_id
+                                        INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id 
+                                        INNER JOIN school_department_details ON school_department_details.department_id = department_details.department_id
+                                        INNER JOIN school_details ON school_details.school_id = school_department_details.school_id
+                                        WHERE time_slot_id = '07:00-09:00' AND unit_room_time_day_allocation_details.lecturer_id ='$pfno' AND weekday='Friday' LIMIT 1 ";
+
+                                        $result = mysqli_query($db, $query);
+                                        $row = mysqli_fetch_array($result);
+                                        if($row > 0){
+                                        echo $row['unit_id'];
+                                        echo '<br>';
+                                        echo $row['lecturer_id']; 
+                                        echo '<br>';	 
+                                        echo $row['room_id'];
+                                        }
+                                        ?>
+                                            </font>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
