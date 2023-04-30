@@ -520,7 +520,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                 <tbody>
                                     <!-- monday -->
                                     <tr>
-                                        <td width="110" align="center">MONDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">1</span>MONDAY</td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -670,7 +670,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     </tr>
                                     <!-- tuesday -->
                                     <tr>
-                                        <td width="110" align="center">TUESDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">2</span>TUESDAY</td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -823,7 +823,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
 
                                     <!-- Wednesday -->
                                     <tr>
-                                        <td width="110" align="center">WEDNESDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">3</span>WEDNESDAY</td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -975,7 +975,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
                                     </tr>
                                     <!-- thursday -->
                                     <tr>
-                                        <td width="110" align="center">THURSDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">4</span>THURSDAY</td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
@@ -1128,7 +1128,7 @@ if ($_SESSION['role_name'] === 'Chairperson' || $_SESSION['role_name'] === 'Lect
 
                                     <!-- Friday -->
                                     <tr>
-                                        <td width="110" align="center">FRIDAY</td>
+                                        <td width="110" align="center"><span style="color:white;">5</span>FRIDAY</td>
                                         <td width="120" style="background-color:white;">
                                             <font size="4">
                                                 <?php 
