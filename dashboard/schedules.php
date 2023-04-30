@@ -104,21 +104,30 @@ $pdf->Cell(40,10,'17:00-19:00',1);
 $pdf->SetFont('Arial','',12);
 
 // populate table with data
+// populate table with data
 $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
+$times = array('07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00');
 foreach($days as $day) {
     $pdf->Ln();
     $pdf->Cell(40,10,$day,1);
-    $pdf->Cell(40,10,'',1);
-    $pdf->Cell(40,10,'',1);
-    $pdf->Cell(40,10,'',1);
-    $pdf->Cell(40,10,'',1);
-    $pdf->Cell(40,10,'',1);
-    $pdf->Cell(40,10,'',1);
+
+    foreach($times as $time) {
+        $unit_id = '';
+        mysqli_data_seek($result, 0); // reset the result set pointer
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($row['weekday'] === $day && $row['time_slot_id'] === $time) {
+                $unit_id = $row['unit_id'];
+                break;
+            }
+        }
+        $pdf->Cell(40,10,$unit_id,1);
+    }
 }
 
-    // Close the database connection and output the PDF
-    mysqli_close($db);
-    $pdf->Output('D', $filename);
+
+// Close the database connection and output the PDF
+mysqli_close($db);
+$pdf->Output('D', $filename);
 }
 
 //generate department TT
