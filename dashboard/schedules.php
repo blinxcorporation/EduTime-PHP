@@ -104,7 +104,6 @@ $pdf->Cell(40,10,'17:00-19:00',1);
 $pdf->SetFont('Arial','',12);
 
 // populate table with data
-// populate table with data
 $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 $times = array('07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00');
 foreach($days as $day) {
@@ -130,6 +129,7 @@ mysqli_close($db);
 $pdf->Output('D', $filename);
 }
 
+//generate department TT
 //generate department TT
 if (isset($_POST['download-department-tt-btn'])) {
     $lec = $_POST['lec_pf_num'];
@@ -232,6 +232,7 @@ if (isset($_POST['download-department-tt-btn'])) {
     exit();
 
     mysqli_close($db);
+
 }
 
 ?>
