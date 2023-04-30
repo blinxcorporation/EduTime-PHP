@@ -382,13 +382,11 @@ include '../assets/components/header.php';
                         <div class="card-body">
                             <form method="POST" action="">
                                 <div class="row mb-4">
-                                    <div class="col"></div>
-                                    <div class="col mt-4">
+                                    <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block"
                                             name="generate-timetable-btn" style="font-size:20px">Generate
                                             Timetable <i class="fa fa-refresh"></i></button>
                                     </div>
-                                    <div class="col"></div>
                                 </div>
                             </form>
                         </div>
