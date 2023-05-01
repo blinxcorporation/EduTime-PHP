@@ -203,8 +203,9 @@ if (isset($_POST['download-course-group-tt-btn'])) {
     if ($row = mysqli_fetch_assoc($unit_result)) {
         $crs_name = $row['course_name'];
         $year = $row['Year'];
+
         $pdf->Cell(0, 10, $crs_name, 0, 1, 'C');
-        $pdf->Cell(0, 10,  $year, 0, 1, 'C');
+        $pdf->Cell(0, 10, $year, 0, 1, 'C');
     }
     
     // Set the font and font size for the table headers
