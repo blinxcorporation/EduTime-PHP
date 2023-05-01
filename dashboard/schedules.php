@@ -186,18 +186,18 @@ if (isset($_POST['download-course-group-tt-btn'])) {
     $pdf->SetFont('Arial', 'B', 24);
     $pdf->Cell(0, 30, '', 0, 1, 'C');
     $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
-    // while ($row = mysqli_fetch_assoc($dpt_result)) {
-    //     // Do something with each row, for example:
-    //     $department_id = $row['department_id'];
-    //     $department_name = $row['department_name'];
-    //     $school_name = $row['school_name'];
-    //     $course_name = $row['course_shortform'];
-    //     // $year = $row['Year'];
-    //     $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
-    //     $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
-    //     $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
-    //     $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
-    // }
+    while ($row = mysqli_fetch_assoc($dpt_result)) {
+        // Do something with each row, for example:
+        $department_id = $row['department_id'];
+        $department_name = $row['department_name'];
+        // $school_name = $row['school_name'];
+        // $course_name = $row['course_shortform'];
+        // $year = $row['Year'];
+        $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
+        // $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
+        $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
+        $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
+    }
     $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
     // $pdf->Cell(0, 10,$course_name, 0, 1, 'C');
 
