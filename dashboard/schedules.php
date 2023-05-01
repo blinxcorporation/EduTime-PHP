@@ -166,6 +166,8 @@ if (isset($_POST['download-course-group-tt-btn'])) {
     INNER JOIN unit_course_details ON unit_course_details.unit_id = lecturer_unit_details.unit_id
     INNER JOIN lecturer_department_details ON lecturer_department_details.lecturer_id = lecturer_unit_details.lecturer_id
     INNER JOIN department_details ON department_details.department_id = lecturer_department_details.department_id
+    INNER JOIN course_details ON course_details.course_id = unit_course_details.course_id
+    INNER JOIN academic_year ON academic_year.academic_year_id = lecturer_unit_details.academic_year_id
     WHERE unit_course_details.course_id = '$crs_id'";
     $unit_result = mysqli_query($db, $sql_unit);
 
@@ -178,7 +180,8 @@ if (isset($_POST['download-course-group-tt-btn'])) {
     INNER JOIN course_details cd ON cd.course_id = ucd.course_id
     INNER JOIN lecturer_department_details ldd ON ldd.lecturer_id = lud.lecturer_id
     INNER JOIN department_details dd ON dd.department_id = ldd.department_id
-    WHERE ucd.course_id = '$crs_id'";
+    INNER JOIN academic_year on academic_year.academic_year_id = lud.academic_year_id
+    WHERE ucd.course_id = '$crs_id' AND lud.academic_year_id='$grp_year'";
     $result = mysqli_query($db, $sql);
 
     // Write the title of the document
@@ -195,9 +198,15 @@ if (isset($_POST['download-course-group-tt-btn'])) {
         $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
         $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
     }
-    $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
-    $pdf->Cell(0, 10,$salutation."'s"." Personal Timetable", 0, 1, 'C');
 
+    $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
+    if ($row = mysqli_fetch_assoc($unit_result)) {
+        $crs_name = $row['course_name'];
+        $yr = $row['Year'];
+        $pdf->Cell(0, 10, $crs_name, 0, 1, 'C');
+        $pdf->Cell(0, 10, $yr, 0, 1, 'C');
+    }
+    
     // Set the font and font size for the table headers
     $pdf->SetFont('Arial', 'B', 12);
 
