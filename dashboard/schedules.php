@@ -178,25 +178,28 @@ if (isset($_POST['download-course-group-tt-btn'])) {
     INNER JOIN course_details cd ON cd.course_id = ucd.course_id
     INNER JOIN lecturer_department_details ldd ON ldd.lecturer_id = lud.lecturer_id
     INNER JOIN department_details dd ON dd.department_id = ldd.department_id
-    WHERE ucd.course_id = '$crs_id'";
+    INNER JOIN academic_year on academic_year.academic_year_id = lud.academic_year_id
+    WHERE ucd.course_id = '$crs_id' AND lud.academic_year_id='$grp_year'";
     $result = mysqli_query($db, $sql);
 
     // Write the title of the document
     $pdf->SetFont('Arial', 'B', 24);
     $pdf->Cell(0, 30, '', 0, 1, 'C');
     $pdf->Cell(0, 10, 'Maseno University', 0, 1, 'C');
-    while ($row = mysqli_fetch_assoc($dpt_result)) {
-        // Do something with each row, for example:
-        $department_id = $row['department_id'];
-        $department_name = $row['department_name'];
-        $school_name = $row['school_name'];
-        $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
-        $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
-        $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
-        $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
-    }
+    // while ($row = mysqli_fetch_assoc($dpt_result)) {
+    //     // Do something with each row, for example:
+    //     $department_id = $row['department_id'];
+    //     $department_name = $row['department_name'];
+    //     $school_name = $row['school_name'];
+    //     $course_name = $row['course_shortform'];
+    //     // $year = $row['Year'];
+    //     $pdf->SetFont('Arial', 'B', 18); // set font to Arial, bold, size 18
+    //     $pdf->Cell(0, 10,"Faculty of ".$school_name, 0, 1, 'C');
+    //     $pdf->SetFont('Arial', 'B', 15); // set font to Arial, bold, size 18
+    //     $pdf->Cell(0, 10,"Department of ".$department_name, 0, 1, 'C');
+    // }
     $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
-    $pdf->Cell(0, 10,$salutation."'s"." Personal Timetable", 0, 1, 'C');
+    // $pdf->Cell(0, 10,$course_name, 0, 1, 'C');
 
     // Set the font and font size for the table headers
     $pdf->SetFont('Arial', 'B', 12);
