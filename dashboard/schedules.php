@@ -202,9 +202,10 @@ if (isset($_POST['download-course-group-tt-btn'])) {
     $pdf->SetFont('Arial', 'B', 14); // set font to Arial, bold, size 18
     if ($row = mysqli_fetch_assoc($unit_result)) {
         $crs_name = $row['course_name'];
-        $yr = $row['Year'];
+        $year = $row['Year'];
+
         $pdf->Cell(0, 10, $crs_name, 0, 1, 'C');
-        $pdf->Cell(0, 10, $yr, 0, 1, 'C');
+        $pdf->Cell(0, 10, $year, 0, 1, 'C');
     }
     
     // Set the font and font size for the table headers
