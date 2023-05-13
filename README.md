@@ -29,9 +29,10 @@
 - Generate aggregate Reports/Timetables e.g Timetable for IT group, which is in fourth year.
 - Download personal Timetable.
 
-## Lecturers ( Dean,chairperson and regular lecturer)
+## Lecturers (Dean,chairperson and regular lecturer)
 
 - Select units to take for a specific semester.
+- Generate aggregate Reports/Timetables e.g Timetable for IT group, which is in fourth year.
 - Download personal Timetable and department Timetable.
 
 ## Assumptions
