@@ -15,16 +15,18 @@
 - Add lecturers/professors
 - Generate Timetable
 
-## Dean's Functions:Roles
+## Dean's Functions/Roles
 
 - Download school/faculty TT
 - Download their departmental timetable
+- Generate aggregate Reports/Timetables e.g Timetable for IT group, which is in fourth year.
 - Download personal timetable
 
-## Chairperson
+## Chairperson's Roles/Functions
 
-- Update unit status( whether it's active or in active for a specific semester)
+- Publish active units for the courses in their department for certain semesters.
 - Download department simplified Timetable
+- Generate aggregate Reports/Timetables e.g Timetable for IT group, which is in fourth year.
 - Download personal Timetable.
 
 ## Lecturers ( Dean,chairperson and regular lecturer)
