@@ -1,6 +1,6 @@
 # University Timetabling System
 
-##### Note: Chairperson(Department Chair) and and Dean are still lecturers.
+##### Note: Chairperson(Department Chairperson) and and Dean are still lecturers/professors
 
 ## Admin (Registrar's) Functions/Roles:
 
@@ -15,11 +15,11 @@
 - Add lecturers/professors
 - Generate Timetable
 
-## Dean
+## Dean's Functions:Roles
 
-- Download school TT
+- Download school/faculty TT
 - Download their departmental timetable
-- Download personal timetablei
+- Download personal timetable
 
 ## Chairperson
 
