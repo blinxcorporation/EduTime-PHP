@@ -2,18 +2,18 @@
 
 ##### Note: Chairperson(Department Chair) and and Dean are still lecturers.
 
-## Admin (Registrar)
+## Admin (Registrar's) Functions/Roles:
 
-- Add schools
+- Add schools/faculties
 - Add departments
-- Add courses
-- Add units
-- Add rooms
+- Add courses offered in different departments
+- Add units for each course
+- Add rooms - their names, capacities and typee
 - Add timeslots
-- Add academic years
-- add semestera
-- Add lecturers
-- generateVarsityTimetable()
+- Add academic years (e.g 2019/2020)
+- add semesters (e.g Y1S1)
+- Add lecturers/professors
+- Generate Timetable
 
 ## Dean
 
