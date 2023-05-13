@@ -38,12 +38,8 @@
 ## Assumptions
 
 - There are enough resources for efficient timetabling. (Lecturers,Rooms).
-- The students will get the timetable from the university website
-
-## Issue
-
-- Generate aggregate reports for each department, course and academic year
+- The students will get the timetable from the university website.
 
 ## Future Additions/ Recommendations
 
-- The lecturers should get notifications 2 hours before to remind them of classes they have.
+- The lecturers should get notifications 2 hours before a `lecture` to remind them of classes they have.
