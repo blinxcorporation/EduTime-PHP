@@ -32,10 +32,15 @@
 - Select units to take for a specific semester.
 - Download personal Timetable and department Timetable.
 
-## Student
-
-- Download TT from university website
-
 ## Assumptions
 
-- There are enough resources for efficient timetabling. (Lecturers,Rooms)
+- There are enough resources for efficient timetabling. (Lecturers,Rooms).
+- The students will get the timetable from the university website
+
+## Issue
+
+- Generate aggregate reports for each department, course and academic year
+
+## Future Additions/ Recommendations
+
+- The lecturers should get notifications 2 hours before to remind them of classes they have.

@@ -104,7 +104,7 @@ function generateTimetable() {
 
             // Loop through the results and write each row to the CSV file
             foreach ($units as $unit) {
-                fputcsv($fp, array($unit['unit_code'], $unit['unit_name'], $unit['pf_number'], $unit['user_firstname']." ".$unit['user_lastname'], $unit['semester_id'], $unit['course_shortform'], $unit['academic_year_id']));
+                fputcsv($fp, array($unit['unit_id'], $unit['unit_name'], $unit['pf_number'], $unit['user_firstname']." ".$unit['user_lastname'], $unit['semester_id'], $unit['course_shortform'], $unit['academic_year_id']));
             }
 
             // Close the file pointer
@@ -134,7 +134,7 @@ function generateTimetable() {
         // loop through each unit and assign to a timeslot, room, and day
         foreach ($units as $unit) {
             // check if the unit has already been assigned
-            if (in_array($unit['unit_code'], $assigned_units)) {
+            if (in_array($unit['unit_id'], $assigned_units)) {
                 continue;
             }
             
@@ -172,7 +172,7 @@ function generateTimetable() {
 
                         // assign the unit to the timeslot, room, and day
                         $assignment = array(
-                            'code' => $unit['unit_code'],
+                            'code' => $unit['unit_id'],
                             'unit' => $unit['unit_name'],
                             'unit_type'=> $unit['unit_type'],
                             'lecturer' => $unit['lecturer_id'],
@@ -189,13 +189,14 @@ function generateTimetable() {
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
                         $lec = $assignment['lecturer_name'];
+                        $lec_id =  $assignment['lecturer'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
                         // save the assignment to the database or elsewhere
                         $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
-                                            VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                                            VALUES ('$unit_id','$lec_id','$room','$timeslot','$day')";
                         $assignment_results = mysqli_query($db, $assignment_query);
 
                         // add the assigned unit to the array of assigned units
@@ -228,13 +229,14 @@ function generateTimetable() {
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
                         $lec = $assignment['lecturer_name'];
+                        $lec_id =  $assignment['lecturer'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
                         // save the assignment to the database or elsewhere
                         $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
-                                            VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                                            VALUES ('$unit_id','$lec_id','$room','$timeslot','$day')";
                         $assignment_results = mysqli_query($db, $assignment_query);
 
                         // add the assigned unit to the array of assigned units
@@ -267,13 +269,14 @@ function generateTimetable() {
                         $timeslot = $assignment['timeslot'];
                         $room = $assignment['room'];
                         $lec = $assignment['lecturer_name'];
+                        $lec_id =  $assignment['lecturer'];
 
                         // save the assignment to the CSV file
                         fputcsv($csv_file, array($unit_id, $unit_name,$lec, $day, $timeslot, $room));
 
                         // save the assignment to the database or elsewhere
                         $assignment_query = "INSERT INTO `unit_room_time_day_allocation_details`(`unit_id`,`lecturer_id`, `room_id`, `time_slot_id`, `weekday`)
-                                            VALUES ('$unit_id','$lec','$room','$timeslot','$day')";
+                                            VALUES ('$unit_id','$lec_id','$room','$timeslot','$day')";
                         $assignment_results = mysqli_query($db, $assignment_query);
 
                         // add the assigned unit to the array of assigned units
@@ -379,13 +382,11 @@ include '../assets/components/header.php';
                         <div class="card-body">
                             <form method="POST" action="">
                                 <div class="row mb-4">
-                                    <div class="col"></div>
-                                    <div class="col mt-4">
+                                    <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block"
                                             name="generate-timetable-btn" style="font-size:20px">Generate
                                             Timetable <i class="fa fa-refresh"></i></button>
                                     </div>
-                                    <div class="col"></div>
                                 </div>
                             </form>
                         </div>

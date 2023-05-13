@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2023 at 11:24 PM
+-- Generation Time: May 01, 2023 at 01:43 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -31,6 +31,8 @@ CREATE TABLE `academic_year` (
   `id` int(11) NOT NULL,
   `academic_year_id` varchar(100) NOT NULL,
   `academic_year` varchar(100) NOT NULL,
+  `Year` varchar(255) DEFAULT NULL,
+  `year_status` varchar(100) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,11 +40,11 @@ CREATE TABLE `academic_year` (
 -- Dumping data for table `academic_year`
 --
 
-INSERT INTO `academic_year` (`id`, `academic_year_id`, `academic_year`, `date_added`) VALUES
-(1, 'YR_2019_2020', '2019/2020', '2023-03-02 11:51:27'),
-(2, 'YR_2020_2021', '2020/2021', '2023-03-02 11:51:27'),
-(4, 'YR_2021_2022', '2021/2022', '2023-03-06 12:34:36'),
-(5, 'YR_2022_2023', '2022/2023', '2023-03-06 12:34:46');
+INSERT INTO `academic_year` (`id`, `academic_year_id`, `academic_year`, `Year`, `year_status`, `date_added`) VALUES
+(1, 'YR_2019_2020', '2019/2020', 'Year 4', 'Active', '2023-03-02 11:51:27'),
+(2, 'YR_2020_2021', '2020/2021', 'Year 3', 'Active', '2023-03-02 11:51:27'),
+(4, 'YR_2021_2022', '2021/2022', 'Year 2', 'Active', '2023-03-06 12:34:36'),
+(5, 'YR_2022_2023', '2022/2023', 'Year 1', 'Active', '2023-03-06 12:34:46');
 
 -- --------------------------------------------------------
 
@@ -226,7 +228,6 @@ CREATE TABLE `lecturer_unit_details` (
 
 INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_year_id`, `date_updated`) VALUES
 (1, 'PF01', 'CIS 212', 'YR_2021_2022', '2023-03-16 06:28:05'),
-(10, 'PF02', 'CIT 402', 'YR_2019_2020', '2023-03-16 06:37:20'),
 (11, 'PF02', 'CIM 312', 'YR_2020_2021', '2023-03-16 06:39:33'),
 (12, 'PF01', 'CIT 322', 'YR_2020_2021', '2023-03-16 06:56:31'),
 (18, 'PF01', 'CIT 204', 'YR_2021_2022', '2023-03-16 07:17:08'),
@@ -375,7 +376,8 @@ INSERT INTO `lecturer_unit_details` (`id`, `lecturer_id`, `unit_id`, `academic_y
 (165, 'PF25', 'CCT 110', 'YR_2022_2023', '2023-03-27 05:25:31'),
 (166, 'PF25', 'CCS 408', 'YR_2019_2020', '2023-03-27 05:26:12'),
 (167, 'PF20', 'CCT 216', 'YR_2021_2022', '2023-03-27 05:27:52'),
-(168, 'PF30', 'CCT 406', 'YR_2019_2020', '2023-03-27 05:33:26');
+(168, 'PF30', 'CCT 406', 'YR_2019_2020', '2023-03-27 05:33:26'),
+(169, 'PF10', 'CIT 402', 'YR_2019_2020', '2023-04-30 11:59:14');
 
 -- --------------------------------------------------------
 
@@ -421,14 +423,18 @@ CREATE TABLE `room_details` (
 INSERT INTO `room_details` (`id`, `room_id`, `room_name`, `room_type_id`, `room_capacity`, `date_added`) VALUES
 (1, 'RM-ELECTRONICS-LAB-I', 'Electronics LAB I', 'RM_ELECTRONIC_LAB', 90, '2023-03-26 08:54:20'),
 (2, 'RM-ELECTRONICS-LAB-II', 'Electronics LAB II', 'RM_ELECTRONIC_LAB', 110, '2023-04-02 12:37:22'),
+(22, 'RM-ELECTRONICS-LAB-III', 'Electronics LAB III', 'RM_ELECTRONIC_LAB', 115, '2023-04-14 22:00:12'),
 (3, 'RM-LAB-I', 'LAB I', 'RM_ICT_LAB', 55, '2023-03-06 12:02:32'),
 (4, 'RM-LAB-II', 'LAB II', 'RM_ICT_LAB', 70, '2023-03-06 12:02:51'),
 (5, 'RM-LAB-III', 'LAB III', 'RM_ICT_LAB', 85, '2023-03-06 12:03:10'),
 (6, 'RM-LAB-IV', 'LAB IV', 'RM_ICT_LAB', 55, '2023-03-06 12:03:24'),
+(19, 'RM-LAB-IX', 'LAB IX', 'RM_ICT_LAB', 100, '2023-04-14 21:58:59'),
 (7, 'RM-LAB-V', 'LAB V', 'RM_ICT_LAB', 200, '2023-03-06 12:03:38'),
 (8, 'RM-LAB-VI', 'LAB VI', 'RM_ICT_LAB', 85, '2023-03-30 11:49:57'),
 (9, 'RM-LAB-VII', 'LAB VII', 'RM_ICT_LAB', 120, '2023-03-30 11:50:12'),
 (10, 'RM-TB-1', 'TB 1', 'RM_STD', 100, '2023-03-06 12:00:39'),
+(20, 'RM-TB-10', 'TB 10', 'RM_STD', 90, '2023-04-14 21:59:43'),
+(21, 'RM-TB-11', 'TB 11', 'RM_STD', 80, '2023-04-14 21:59:55'),
 (11, 'RM-TB-2', 'TB 2', 'RM_STD', 150, '2023-03-06 12:00:54'),
 (12, 'RM-TB-3', 'TB 3', 'RM_STD', 75, '2023-03-06 12:01:09'),
 (13, 'RM-TB-4', 'TB 4', 'RM_STD', 90, '2023-03-06 12:01:24'),
@@ -544,32 +550,6 @@ INSERT INTO `semester_details` (`id`, `semester_id`, `semester_name`, `date_adde
 (6, 'Y3S2', 'Year 3 Semester 2', '2023-02-17 05:20:16'),
 (7, 'Y4S1', 'Year 4 Semester 1', '2023-02-17 05:20:39'),
 (8, 'Y4S2', 'Year 4 Semester 2', '2023-02-17 05:20:39');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `time_slot_details`
---
-
-CREATE TABLE `time_slot_details` (
-  `id` int(11) NOT NULL,
-  `slot_id` varchar(20) NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `time_slot_details`
---
-
-INSERT INTO `time_slot_details` (`id`, `slot_id`, `start_time`, `end_time`, `date_added`) VALUES
-(1, 'TM_0700_0900', '07:00:00', '09:00:00', '2023-03-06 19:45:30'),
-(2, 'TM_0900_1100', '09:00:00', '11:00:00', '2023-03-06 21:09:35'),
-(3, 'TM_1100_1300', '11:00:00', '13:00:00', '2023-03-06 21:17:04'),
-(4, 'TM_1300_1500', '13:00:00', '15:00:00', '2023-03-09 08:49:13'),
-(5, 'TM_1500_1700', '15:00:00', '17:00:00', '2023-03-09 08:49:44'),
-(6, 'TM_1700_1900', '17:00:00', '19:00:00', '2023-03-09 08:58:20');
 
 -- --------------------------------------------------------
 
@@ -1326,157 +1306,157 @@ CREATE TABLE `unit_room_time_day_allocation_details` (
 --
 
 INSERT INTO `unit_room_time_day_allocation_details` (`id`, `unit_id`, `lecturer_id`, `room_id`, `time_slot_id`, `weekday`, `date_allocated`) VALUES
-(1, 'CCT 118', 'Mr Dickson Omingo', 'Electronics LAB I', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:09'),
-(2, 'CCT 110', 'Mrs Vivian Oloo', 'Electronics LAB II', '13:00-15:00', 'Tuesday', '2023-04-06 10:30:09'),
-(3, 'CCS 412', 'Dr Lilian Wanzare', 'TB 4', '17:00-19:00', 'Tuesday', '2023-04-06 10:30:09'),
-(4, 'CCS 302', 'Mr M O Adongo', 'TB 4', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:09'),
-(5, 'CIT 304', 'Mr Moses Wainaina', 'TB 9', '13:00-15:00', 'Monday', '2023-04-06 10:30:10'),
-(6, 'CIT 308', 'Mr David Saka', 'LAB VI', '17:00-19:00', 'Friday', '2023-04-06 10:30:10'),
-(7, 'CCT 306', 'Mr John Alwala', 'TB 6', '17:00-19:00', 'Thursday', '2023-04-06 10:30:10'),
-(8, 'CIT 106', 'Mrs Rose Kapukha', 'TB 4', '11:00-13:00', 'Friday', '2023-04-06 10:30:10'),
-(9, 'CIM 302', 'Mrs Yvonne Mwajuma', 'TB 1', '13:00-15:00', 'Friday', '2023-04-06 10:30:10'),
-(10, 'CCS 416', 'Dr James Obuhuma', 'TB 2', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:10'),
-(11, 'CIM 416', 'Mrs Rose Kapukha', 'TB 8', '15:00-17:00', 'Friday', '2023-04-06 10:30:10'),
-(12, 'CIS 204', 'Mr Gabriel Oliko', 'LAB VII', '07:00-09:00', 'Wednesday', '2023-04-06 10:30:10'),
-(13, 'CIM 312', 'Mrs Violet Settim', 'LAB V', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:10'),
-(14, 'CCT 215', 'Mr Solomon Nyabundi', 'TB 8', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:10'),
-(15, 'CCS 104', 'Dr James Obuhuma', 'LAB V', '07:00-09:00', 'Thursday', '2023-04-06 10:30:10'),
-(16, 'CIT 210', 'Mrs Yvonne Mwajuma', 'TB 6', '13:00-15:00', 'Monday', '2023-04-06 10:30:10'),
-(17, 'CIS 310', 'Mr Isaac Owino', 'TB 2', '13:00-15:00', 'Wednesday', '2023-04-06 10:30:10'),
-(18, 'CCT 402', 'Dr Henry Okoyo', 'LAB V', '07:00-09:00', 'Friday', '2023-04-06 10:30:10'),
-(19, 'CIS 106', 'Mrs Rose Kapukha', 'TB 2', '07:00-09:00', 'Thursday', '2023-04-06 10:30:10'),
-(20, 'CCS 114', 'Mr Michael Ondeja', 'LAB III', '17:00-19:00', 'Friday', '2023-04-06 10:30:10'),
-(21, 'CCS 314', 'Mr John Alwala', 'LAB III', '13:00-15:00', 'Monday', '2023-04-06 10:30:10'),
-(22, 'CIS 208', 'Mrs Yvonne Mwajuma', 'TB 4', '07:00-09:00', 'Tuesday', '2023-04-06 10:30:11'),
-(23, 'CIT 212', 'Dr  Titus Muhambe', 'LAB V', '15:00-17:00', 'Monday', '2023-04-06 10:30:11'),
-(24, 'CIM 308', 'Mr Isaac Owino', 'TB 1', '15:00-17:00', 'Thursday', '2023-04-06 10:30:11'),
-(25, 'CIT 314', 'Mrs Rennish Mboya', 'LAB V', '07:00-09:00', 'Friday', '2023-04-06 10:30:11'),
-(26, 'CIM 412', 'Mr Thomas Ojijo', 'TB 7', '13:00-15:00', 'Friday', '2023-04-06 10:30:11'),
-(27, 'CIS 108', 'Mrs Yvonne Mwajuma', 'TB 1', '11:00-13:00', 'Monday', '2023-04-06 10:30:11'),
-(28, 'CIM 322', 'Mr David Saka', 'TB 1', '17:00-19:00', 'Wednesday', '2023-04-06 10:30:11'),
-(29, 'CIM 320', 'Mrs Yvonne Mwajuma', 'TB 4', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:11'),
-(30, 'CIS 404', 'Mr Isaac Owino', 'TB 9', '13:00-15:00', 'Thursday', '2023-04-06 10:30:11'),
-(31, 'ABS 424', 'Mr Thomas Ojijo', 'TB 6', '07:00-09:00', 'Wednesday', '2023-04-06 10:30:11'),
-(32, 'CCT 214', 'Mr John Konyino', 'TB 7', '15:00-17:00', 'Monday', '2023-04-06 10:30:11'),
-(33, 'CIM 408', 'Mr Michael Wambwere', 'TB 7', '11:00-13:00', 'Thursday', '2023-04-06 10:30:12'),
-(34, 'CIT 206', 'Mr Michael Wambwere', 'TB 7', '15:00-17:00', 'Wednesday', '2023-04-06 10:30:12'),
-(35, 'CCT 106', 'Mr Michael Ondeja', 'TB 1', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:12'),
-(36, 'CIS 302', 'Mr Isaac Owino', 'TB 9', '13:00-15:00', 'Tuesday', '2023-04-06 10:30:12'),
-(37, 'CCT 420', 'Mr John Konyino', 'TB 8', '15:00-17:00', 'Tuesday', '2023-04-06 10:30:12'),
-(38, 'CCT 112', 'Mr John Konyino', 'TB 9', '17:00-19:00', 'Thursday', '2023-04-06 10:30:12'),
-(39, 'CIS 308', 'Mr David Saka', 'TB 2', '17:00-19:00', 'Thursday', '2023-04-06 10:30:12'),
-(40, 'CIM 206', 'Mr Bethuel Okelo', 'TB 8', '07:00-09:00', 'Friday', '2023-04-06 10:30:12'),
-(41, 'CIT 312', 'Mrs Rose Kapukha', 'LAB VII', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:12'),
-(42, 'CIS 408', 'Dr Roxanne Hawi', 'LAB VI', '07:00-09:00', 'Tuesday', '2023-04-06 10:30:13'),
-(43, 'CCS 112', 'Mr Michael Ondeja', 'TB 9', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:13'),
-(44, 'CIM 204', 'Mr Thomas Ojijo', 'TB 9', '09:00-11:00', 'Thursday', '2023-04-06 10:30:13'),
-(45, 'CIT 216', 'Mr Gabriel Oliko', 'TB 6', '07:00-09:00', 'Tuesday', '2023-04-06 10:30:13'),
-(46, 'CIT 208', 'Dr Roxanne Hawi', 'LAB VI', '13:00-15:00', 'Tuesday', '2023-04-06 10:30:13'),
-(47, 'CIM 402', 'Mr Moses Wainaina', 'TB 1', '13:00-15:00', 'Thursday', '2023-04-06 10:30:13'),
-(48, 'CIT 318', 'Mr Gabriel Oliko', 'TB 7', '17:00-19:00', 'Tuesday', '2023-04-06 10:30:13'),
-(49, 'CIT 204', 'Dr  Titus Muhambe', 'TB 8', '17:00-19:00', 'Tuesday', '2023-04-06 10:30:13'),
-(50, 'CCS 308', 'Dr Sylvester McOyowo', 'TB 4', '07:00-09:00', 'Tuesday', '2023-04-06 10:30:13'),
-(51, 'CCT 302', 'Dr Henry Okoyo', 'TB 1', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:13'),
-(52, 'CCT 210', 'Mr Solomon Nyabundi', 'TB 6', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:13'),
-(53, 'CIM 316', 'Mr Gabriel Oliko', 'TB 1', '17:00-19:00', 'Thursday', '2023-04-06 10:30:13'),
-(54, 'CIS 412', 'Mr George Omuono', 'TB 8', '17:00-19:00', 'Wednesday', '2023-04-06 10:30:13'),
-(55, 'CIT 214', 'Mrs Yvonne Mwajuma', 'TB 9', '15:00-17:00', 'Wednesday', '2023-04-06 10:30:14'),
-(56, 'CIT 322', 'Dr  Titus Muhambe', 'LAB VI', '09:00-11:00', 'Monday', '2023-04-06 10:30:14'),
-(57, 'CCS 404', 'Mrs Vivian Oloo', 'TB 1', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:14'),
-(58, 'CCS 216', 'Dr Lilian Wanzare', 'LAB VII', '13:00-15:00', 'Friday', '2023-04-06 10:30:14'),
-(59, 'CIM 404', 'Mr Michael Wambwere', 'TB 6', '15:00-17:00', 'Tuesday', '2023-04-06 10:30:14'),
-(60, 'CCS 214', 'Mr John Alwala', 'LAB VI', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:14'),
-(61, 'CIT 120', 'Mr George Omuono', 'TB 8', '15:00-17:00', 'Friday', '2023-04-06 10:30:14'),
-(62, 'CIM 420', 'Dr  Samuel Oonge', 'TB 2', '09:00-11:00', 'Monday', '2023-04-06 10:30:14'),
-(63, 'CIM 120', 'Mr George Omuono', 'TB 1', '15:00-17:00', 'Thursday', '2023-04-06 10:30:14'),
-(64, 'CIT 316', 'Mr Bethuel Okelo', 'TB 9', '09:00-11:00', 'Friday', '2023-04-06 10:30:14'),
-(65, 'CIS 104', 'Mr Michael Wambwere', 'LAB III', '11:00-13:00', 'Tuesday', '2023-04-06 10:30:14'),
-(66, 'CCS 102', 'Mr Dickson Omingo', 'TB 4', '07:00-09:00', 'Monday', '2023-04-06 10:30:14'),
-(67, 'CCT 316', 'Dr Sylvester McOyowo', 'TB 1', '17:00-19:00', 'Monday', '2023-04-06 10:30:15'),
-(68, 'CIM 210', 'Mr Moses Wainaina', 'TB 7', '17:00-19:00', 'Friday', '2023-04-06 10:30:15'),
-(69, 'CIS 202', 'Mr Charles Awuor', 'TB 1', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:15'),
-(70, 'CIT 402', 'Mrs Violet Settim', 'LAB V', '09:00-11:00', 'Friday', '2023-04-06 10:30:15'),
-(71, 'CCS 306', 'Dr Calvins Otieno', 'TB 6', '15:00-17:00', 'Friday', '2023-04-06 10:30:15'),
-(72, 'CCT 202', 'Mr Dickson Omingo', 'Electronics LAB I', '07:00-09:00', 'Monday', '2023-04-06 10:30:15'),
-(73, 'CCS 406', 'Mrs Vivian Oloo', 'LAB VII', '07:00-09:00', 'Wednesday', '2023-04-06 10:30:15'),
-(74, 'CIT 108', 'Mrs Yvonne Mwajuma', 'LAB III', '15:00-17:00', 'Thursday', '2023-04-06 10:30:15'),
-(75, 'ABA 424', 'Mr Thomas Ojijo', 'TB 9', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:15'),
-(76, 'CCS 110', 'Mr Michael Ondeja', 'TB 1', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:15'),
-(77, 'CCS 418', 'Dr Calvins Otieno', 'TB 6', '15:00-17:00', 'Tuesday', '2023-04-06 10:30:15'),
-(78, 'CCT 418', 'Dr Lilian Wanzare', 'TB 2', '07:00-09:00', 'Wednesday', '2023-04-06 10:30:15'),
-(79, 'CIM 304', 'Mr Gabriel Oliko', 'TB 9', '13:00-15:00', 'Friday', '2023-04-06 10:30:15'),
-(80, 'CCS 108', 'Dr Henry Okoyo', 'Electronics LAB I', '15:00-17:00', 'Monday', '2023-04-06 10:30:15'),
-(81, 'CIS 312', 'Mr Thomas Ojijo', 'TB 2', '09:00-11:00', 'Monday', '2023-04-06 10:30:15'),
-(82, 'CIM 202', 'Mr George Omuono', 'TB 2', '15:00-17:00', 'Thursday', '2023-04-06 10:30:16'),
-(83, 'CIM 106', 'Mrs Rose Kapukha', 'TB 2', '17:00-19:00', 'Thursday', '2023-04-06 10:30:16'),
-(84, 'CIT 302', 'Mrs Maurine Awuor', 'TB 1', '07:00-09:00', 'Friday', '2023-04-06 10:30:16'),
-(85, 'CIT 418', 'Dr  Samuel Oonge', 'TB 7', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:16'),
-(86, 'CIS 314', 'Mr Bethuel Okelo', 'LAB VII', '11:00-13:00', 'Thursday', '2023-04-06 10:30:16'),
-(87, 'CCT 102', 'Mr Michael Ondeja', 'TB 1', '13:00-15:00', 'Friday', '2023-04-06 10:30:16'),
-(88, 'CIM 108', 'Mrs Yvonne Mwajuma', 'TB 9', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:16'),
-(89, 'CCS 318', 'Dr Calvins Otieno', 'TB 7', '17:00-19:00', 'Tuesday', '2023-04-06 10:30:16'),
-(90, 'CIM 418', 'Mrs Violet Settim', 'TB 4', '07:00-09:00', 'Friday', '2023-04-06 10:30:16'),
-(91, 'CIM 306', 'Mr George Omuono', 'TB 8', '07:00-09:00', 'Friday', '2023-04-06 10:30:16'),
-(92, 'CIM 208', 'Mr Bethuel Okelo', 'TB 8', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:16'),
-(93, 'CCS 204', 'Mr Solomon Nyabundi', 'LAB III', '09:00-11:00', 'Friday', '2023-04-06 10:30:16'),
-(94, 'CIM 422', 'Mrs Rose Kapukha', 'TB 2', '07:00-09:00', 'Tuesday', '2023-04-06 10:30:16'),
-(95, 'CIS 306', 'Dr  Samuel Oonge', 'LAB VI', '17:00-19:00', 'Monday', '2023-04-06 10:30:16'),
-(96, 'CIT 404', 'Dr  Samuel Oonge', 'TB 6', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:17'),
-(97, 'CCT 320', 'Dr Calvins Otieno', 'LAB V', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:17'),
-(98, 'CCS 304', 'Mr M O Adongo', 'LAB VII', '07:00-09:00', 'Friday', '2023-04-06 10:30:17'),
-(99, 'CIS 406', 'Mrs Yvonne Mwajuma', 'TB 1', '13:00-15:00', 'Monday', '2023-04-06 10:30:17'),
-(100, 'CIT 416', 'Mr Michael Wambwere', 'TB 2', '13:00-15:00', 'Friday', '2023-04-06 10:30:17'),
-(101, 'CCT 104', 'Dr James Obuhuma', 'LAB VI', '09:00-11:00', 'Monday', '2023-04-06 10:30:17'),
-(102, 'CCT 322', 'Mr John Alwala', 'LAB VII', '15:00-17:00', 'Thursday', '2023-04-06 10:30:17'),
-(103, 'CIM 104', 'Mr Michael Wambwere', 'LAB VII', '07:00-09:00', 'Thursday', '2023-04-06 10:30:17'),
-(104, 'CCT 216', 'Dr Lilian Wanzare', 'TB 4', '17:00-19:00', 'Monday', '2023-04-06 10:30:17'),
-(105, 'CIS 416', 'Mr Moses Wainaina', 'TB 9', '09:00-11:00', 'Thursday', '2023-04-06 10:30:17'),
-(106, 'CIT 202', 'Mr Isaac Owino', 'LAB VI', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:17'),
-(107, 'CCT 116', 'Mr John Konyino', 'Electronics LAB II', '13:00-15:00', 'Wednesday', '2023-04-06 10:30:17'),
-(108, 'CIS 210', 'Mrs Maurine Awuor', 'TB 2', '15:00-17:00', 'Wednesday', '2023-04-06 10:30:17'),
-(109, 'CCS 122', 'Mr Dickson Omingo', 'TB 1', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:17'),
-(110, 'CCS 408', 'Mrs Vivian Oloo', 'LAB VI', '11:00-13:00', 'Thursday', '2023-04-06 10:30:18'),
-(111, 'CCS 316', 'Mr John Alwala', 'TB 2', '13:00-15:00', 'Thursday', '2023-04-06 10:30:18'),
-(112, 'CCS 208', 'Mr Solomon Nyabundi', 'TB 9', '11:00-13:00', 'Monday', '2023-04-06 10:30:18'),
-(113, 'CCT 206', 'Mr Solomon Nyabundi', 'TB 9', '11:00-13:00', 'Friday', '2023-04-06 10:30:18'),
-(114, 'CCS 422', 'Dr Henry Okoyo', 'TB 8', '15:00-17:00', 'Tuesday', '2023-04-06 10:30:18'),
-(115, 'CCT 114', 'Mrs Vivian Oloo', 'TB 8', '15:00-17:00', 'Monday', '2023-04-06 10:30:18'),
-(116, 'CCT 318', 'Mr Dickson Omingo', 'TB 4', '13:00-15:00', 'Thursday', '2023-04-06 10:30:18'),
-(117, 'CCS 206', 'Dr James Obuhuma', 'TB 7', '13:00-15:00', 'Thursday', '2023-04-06 10:30:18'),
-(118, 'CIT 306', 'Mr Isaac Owino', 'TB 4', '07:00-09:00', 'Tuesday', '2023-04-06 10:30:18'),
-(119, 'CIM 410', 'Mrs Yvonne Mwajuma', 'TB 9', '17:00-19:00', 'Wednesday', '2023-04-06 10:30:18'),
-(120, 'CIS 304', 'Mrs Yvonne Mwajuma', 'TB 2', '15:00-17:00', 'Friday', '2023-04-06 10:30:18'),
-(121, 'CIS 212', 'Dr  Titus Muhambe', 'LAB VII', '11:00-13:00', 'Monday', '2023-04-06 10:30:18'),
-(122, 'CCS 202', 'Mrs Vivian Oloo', 'TB 9', '13:00-15:00', 'Monday', '2023-04-06 10:30:18'),
-(123, 'CIM 118', 'Dr  Titus Muhambe', 'TB 9', '11:00-13:00', 'Friday', '2023-04-06 10:30:18'),
-(124, 'CCT 108', 'Dr Henry Okoyo', 'TB 9', '13:00-15:00', 'Wednesday', '2023-04-06 10:30:19'),
-(125, 'CIT 118', 'Dr  Titus Muhambe', 'TB 7', '09:00-11:00', 'Monday', '2023-04-06 10:30:19'),
-(126, 'CCT 304', 'Mr M O Adongo', 'TB 9', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:19'),
-(127, 'CCS 212', 'Mr M O Adongo', 'TB 6', '17:00-19:00', 'Wednesday', '2023-04-06 10:30:19'),
-(128, 'CIS 214', 'Mr Michael Wambwere', 'TB 6', '11:00-13:00', 'Thursday', '2023-04-06 10:30:19'),
-(129, 'CIS 402', 'Mr Thomas Ojijo', 'TB 7', '15:00-17:00', 'Thursday', '2023-04-06 10:30:19'),
-(130, 'CIT 310', 'Dr  Samuel Oonge', 'TB 2', '07:00-09:00', 'Wednesday', '2023-04-06 10:30:19'),
-(131, 'CCS 310', 'Dr Henry Okoyo', 'TB 1', '15:00-17:00', 'Wednesday', '2023-04-06 10:30:19'),
-(132, 'CCT 212', 'Dr Lilian Wanzare', 'TB 1', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:19'),
-(133, 'CIM 212', 'Mr Michael Wambwere', 'TB 1', '11:00-13:00', 'Thursday', '2023-04-06 10:30:19'),
-(134, 'CIM 216', 'Dr  Titus Muhambe', 'TB 9', '09:00-11:00', 'Tuesday', '2023-04-06 10:30:19'),
-(135, 'CCT 312', 'Dr James Obuhuma', 'TB 9', '11:00-13:00', 'Monday', '2023-04-06 10:30:19'),
-(136, 'CIT 104', 'Mr Michael Wambwere', 'TB 2', '17:00-19:00', 'Tuesday', '2023-04-06 10:30:19'),
-(137, 'CCT 412', 'Dr Sylvester McOyowo', 'TB 4', '15:00-17:00', 'Tuesday', '2023-04-06 10:30:19'),
-(138, 'CCS 106', 'Mr Michael Ondeja', 'TB 9', '11:00-13:00', 'Wednesday', '2023-04-06 10:30:20'),
-(139, 'CCS 414', 'Mr John Konyino', 'TB 6', '15:00-17:00', 'Monday', '2023-04-06 10:30:20'),
-(140, 'CIS 206', 'Mr Charles Awuor', 'TB 8', '07:00-09:00', 'Monday', '2023-04-06 10:30:20'),
-(141, 'CIM 214', 'Mr Moses Wainaina', 'TB 1', '13:00-15:00', 'Wednesday', '2023-04-06 10:30:20'),
-(142, 'CCT 406', 'Mr M O Adongo', 'TB 2', '07:00-09:00', 'Monday', '2023-04-06 10:30:20'),
-(143, 'CCS 312', 'Mr John Alwala', 'TB 4', '11:00-13:00', 'Friday', '2023-04-06 10:30:20'),
-(144, 'CIT 406', 'Mrs Maurine Awuor', 'TB 2', '13:00-15:00', 'Monday', '2023-04-06 10:30:20'),
-(145, 'CIT 408', 'Mr Moses Wainaina', 'TB 8', '17:00-19:00', 'Friday', '2023-04-06 10:30:20'),
-(146, 'CIS 414', 'Mr George Omuono', 'TB 2', '15:00-17:00', 'Wednesday', '2023-04-06 10:30:20'),
-(147, 'CIT 414', 'Mr George Omuono', 'TB 6', '09:00-11:00', 'Wednesday', '2023-04-06 10:30:20'),
-(148, 'CIS 120', 'Dr  Titus Muhambe', 'TB 8', '13:00-15:00', 'Friday', '2023-04-06 10:30:20'),
-(149, 'CCT 308', 'Dr Calvins Otieno', 'TB 2', '09:00-11:00', 'Friday', '2023-04-06 10:30:20'),
-(150, 'CCS 210', 'Dr Lilian Wanzare', 'TB 6', '15:00-17:00', 'Monday', '2023-04-06 10:30:20'),
-(151, 'CIM 406', 'Mr Thomas Ojijo', 'TB 6', '11:00-13:00', 'Monday', '2023-04-06 10:30:20');
+(1, 'CIM 214', 'PF17', 'TB 1', '13:00-15:00', 'Thursday', '2023-04-30 13:20:55'),
+(2, 'CCT 116', 'PF26', 'Electronics LAB I', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:55'),
+(3, 'CIS 214', 'PF16', 'TB 4', '13:00-15:00', 'Wednesday', '2023-04-30 13:20:55'),
+(4, 'CIS 306', 'PF03', 'LAB III', '13:00-15:00', 'Tuesday', '2023-04-30 13:20:55'),
+(5, 'CCT 110', 'PF25', 'Electronics LAB I', '09:00-11:00', 'Friday', '2023-04-30 13:20:55'),
+(6, 'CCS 212', 'PF30', 'TB 11', '13:00-15:00', 'Wednesday', '2023-04-30 13:20:55'),
+(7, 'CIS 206', 'PF11', 'TB 7', '09:00-11:00', 'Thursday', '2023-04-30 13:20:55'),
+(8, 'CCS 416', 'PF29', 'TB 7', '07:00-09:00', 'Friday', '2023-04-30 13:20:55'),
+(9, 'CIS 204', 'PF12', 'LAB VII', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:55'),
+(10, 'CIM 408', 'PF16', 'TB 1', '09:00-11:00', 'Friday', '2023-04-30 13:20:55'),
+(11, 'CCT 308', 'PF06', 'TB 8', '09:00-11:00', 'Tuesday', '2023-04-30 13:20:55'),
+(12, 'CCT 108', 'PF22', 'TB 1', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:55'),
+(13, 'CIT 210', 'PF18', 'TB 2', '15:00-17:00', 'Monday', '2023-04-30 13:20:55'),
+(14, 'CIT 306', 'PF04', 'TB 8', '07:00-09:00', 'Tuesday', '2023-04-30 13:20:55'),
+(15, 'CIM 206', 'PF15', 'TB 1', '17:00-19:00', 'Thursday', '2023-04-30 13:20:55'),
+(16, 'CIT 204', 'PF01', 'TB 7', '09:00-11:00', 'Thursday', '2023-04-30 13:20:55'),
+(17, 'CIM 216', 'PF01', 'TB 2', '09:00-11:00', 'Monday', '2023-04-30 13:20:55'),
+(18, 'CCS 202', 'PF25', 'TB 1', '09:00-11:00', 'Tuesday', '2023-04-30 13:20:56'),
+(19, 'CCT 312', 'PF29', 'TB 2', '07:00-09:00', 'Monday', '2023-04-30 13:20:56'),
+(20, 'CIS 406', 'PF18', 'TB 10', '17:00-19:00', 'Monday', '2023-04-30 13:20:56'),
+(21, 'CIM 420', 'PF03', 'TB 11', '13:00-15:00', 'Tuesday', '2023-04-30 13:20:56'),
+(22, 'CCS 210', 'PF20', 'TB 1', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:56'),
+(23, 'CIT 304', 'PF17', 'TB 1', '07:00-09:00', 'Wednesday', '2023-04-30 13:20:56'),
+(24, 'CIT 418', 'PF03', 'TB 8', '09:00-11:00', 'Friday', '2023-04-30 13:20:56'),
+(25, 'CIS 304', 'PF18', 'TB 4', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:56'),
+(26, 'ABA 424', 'PF60', 'TB 1', '09:00-11:00', 'Monday', '2023-04-30 13:20:56'),
+(27, 'CIT 416', 'PF16', 'TB 11', '07:00-09:00', 'Wednesday', '2023-04-30 13:20:56'),
+(28, 'CIS 402', 'PF60', 'TB 6', '07:00-09:00', 'Monday', '2023-04-30 13:20:56'),
+(29, 'CIS 408', 'PF52', 'LAB V', '07:00-09:00', 'Tuesday', '2023-04-30 13:20:56'),
+(30, 'CIT 202', 'PF04', 'LAB VII', '09:00-11:00', 'Monday', '2023-04-30 13:20:56'),
+(31, 'CCS 122', 'PF24', 'TB 4', '17:00-19:00', 'Thursday', '2023-04-30 13:20:56'),
+(32, 'CCT 418', 'PF20', 'TB 1', '17:00-19:00', 'Monday', '2023-04-30 13:20:56'),
+(33, 'CIM 108', 'PF18', 'TB 10', '13:00-15:00', 'Wednesday', '2023-04-30 13:20:56'),
+(34, 'CIM 316', 'PF12', 'TB 11', '13:00-15:00', 'Thursday', '2023-04-30 13:20:56'),
+(35, 'CCT 212', 'PF20', 'TB 7', '13:00-15:00', 'Tuesday', '2023-04-30 13:20:57'),
+(36, 'CCT 306', 'PF27', 'TB 7', '11:00-13:00', 'Wednesday', '2023-04-30 13:20:57'),
+(37, 'CCT 106', 'PF28', 'TB 1', '17:00-19:00', 'Monday', '2023-04-30 13:20:57'),
+(38, 'CIS 308', 'PF07', 'TB 7', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:57'),
+(39, 'CCS 312', 'PF27', 'TB 2', '13:00-15:00', 'Tuesday', '2023-04-30 13:20:57'),
+(40, 'CCT 104', 'PF29', 'LAB VI', '11:00-13:00', 'Friday', '2023-04-30 13:20:57'),
+(41, 'CIS 106', 'PF19', 'TB 9', '07:00-09:00', 'Tuesday', '2023-04-30 13:20:57'),
+(42, 'CCT 114', 'PF25', 'TB 9', '11:00-13:00', 'Thursday', '2023-04-30 13:20:57'),
+(43, 'CCT 214', 'PF26', 'TB 6', '17:00-19:00', 'Thursday', '2023-04-30 13:20:57'),
+(44, 'CCT 318', 'PF24', 'TB 6', '15:00-17:00', 'Monday', '2023-04-30 13:20:57'),
+(45, 'CIM 308', 'PF04', 'TB 1', '13:00-15:00', 'Tuesday', '2023-04-30 13:20:57'),
+(46, 'CCS 102', 'PF24', 'TB 4', '17:00-19:00', 'Friday', '2023-04-30 13:20:57'),
+(47, 'CIM 412', 'PF60', 'TB 8', '13:00-15:00', 'Friday', '2023-04-30 13:20:57'),
+(48, 'CIM 422', 'PF19', 'TB 8', '07:00-09:00', 'Tuesday', '2023-04-30 13:20:57'),
+(49, 'CIM 312', 'PF02', 'LAB III', '07:00-09:00', 'Monday', '2023-04-30 13:20:57'),
+(50, 'CCT 420', 'PF26', 'TB 6', '13:00-15:00', 'Friday', '2023-04-30 13:20:58'),
+(51, 'CCT 320', 'PF06', 'LAB IX', '11:00-13:00', 'Friday', '2023-04-30 13:20:58'),
+(52, 'CIT 406', 'PF14', 'TB 2', '17:00-19:00', 'Friday', '2023-04-30 13:20:58'),
+(53, 'CIS 416', 'PF17', 'TB 8', '11:00-13:00', 'Wednesday', '2023-04-30 13:20:58'),
+(54, 'CIT 214', 'PF18', 'TB 8', '09:00-11:00', 'Monday', '2023-04-30 13:20:58'),
+(55, 'CCS 206', 'PF29', 'TB 1', '11:00-13:00', 'Monday', '2023-04-30 13:20:58'),
+(56, 'CIM 212', 'PF16', 'TB 11', '13:00-15:00', 'Thursday', '2023-04-30 13:20:58'),
+(57, 'CIT 316', 'PF15', 'TB 2', '07:00-09:00', 'Thursday', '2023-04-30 13:20:58'),
+(58, 'CIS 312', 'PF60', 'TB 9', '07:00-09:00', 'Monday', '2023-04-30 13:20:58'),
+(59, 'CCS 104', 'PF29', 'LAB VI', '11:00-13:00', 'Tuesday', '2023-04-30 13:20:58'),
+(60, 'CIT 108', 'PF18', 'LAB IX', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:58'),
+(61, 'CCS 314', 'PF27', 'LAB IX', '11:00-13:00', 'Monday', '2023-04-30 13:20:58'),
+(62, 'CIM 410', 'PF18', 'TB 1', '07:00-09:00', 'Tuesday', '2023-04-30 13:20:58'),
+(63, 'CCT 210', 'PF23', 'TB 1', '09:00-11:00', 'Friday', '2023-04-30 13:20:58'),
+(64, 'CCT 216', 'PF20', 'TB 6', '07:00-09:00', 'Monday', '2023-04-30 13:20:58'),
+(65, 'CIM 118', 'PF01', 'TB 2', '13:00-15:00', 'Monday', '2023-04-30 13:20:59'),
+(66, 'CIT 310', 'PF03', 'TB 8', '09:00-11:00', 'Monday', '2023-04-30 13:20:59'),
+(67, 'CCS 408', 'PF25', 'LAB IX', '13:00-15:00', 'Monday', '2023-04-30 13:20:59'),
+(68, 'CCS 112', 'PF28', 'TB 9', '09:00-11:00', 'Tuesday', '2023-04-30 13:20:59'),
+(69, 'CIT 402', 'PF10', 'LAB VI', '17:00-19:00', 'Friday', '2023-04-30 13:20:59'),
+(70, 'CCT 316', 'PF21', 'TB 1', '09:00-11:00', 'Thursday', '2023-04-30 13:20:59'),
+(71, 'CCT 322', 'PF27', 'LAB V', '11:00-13:00', 'Thursday', '2023-04-30 13:20:59'),
+(72, 'CCS 418', 'PF06', 'TB 11', '17:00-19:00', 'Thursday', '2023-04-30 13:20:59'),
+(73, 'CIS 404', 'PF04', 'TB 11', '11:00-13:00', 'Wednesday', '2023-04-30 13:20:59'),
+(74, 'CCS 214', 'PF27', 'LAB V', '09:00-11:00', 'Wednesday', '2023-04-30 13:20:59'),
+(75, 'CIT 318', 'PF12', 'TB 10', '15:00-17:00', 'Wednesday', '2023-04-30 13:20:59'),
+(76, 'CCT 412', 'PF21', 'TB 10', '15:00-17:00', 'Thursday', '2023-04-30 13:20:59'),
+(77, 'CIM 106', 'PF19', 'TB 11', '09:00-11:00', 'Thursday', '2023-04-30 13:20:59'),
+(78, 'CIM 416', 'PF19', 'TB 10', '17:00-19:00', 'Thursday', '2023-04-30 13:20:59'),
+(79, 'CCS 114', 'PF28', 'LAB V', '11:00-13:00', 'Monday', '2023-04-30 13:20:59'),
+(80, 'CCS 308', 'PF21', 'TB 7', '07:00-09:00', 'Thursday', '2023-04-30 13:20:59'),
+(81, 'CIM 418', 'PF02', 'TB 1', '17:00-19:00', 'Monday', '2023-04-30 13:21:00'),
+(82, 'CIS 208', 'PF18', 'TB 10', '13:00-15:00', 'Wednesday', '2023-04-30 13:21:00'),
+(83, 'CIM 402', 'PF17', 'TB 8', '13:00-15:00', 'Tuesday', '2023-04-30 13:21:00'),
+(84, 'CIT 104', 'PF16', 'TB 4', '11:00-13:00', 'Tuesday', '2023-04-30 13:21:00'),
+(85, 'CIT 206', 'PF16', 'TB 7', '17:00-19:00', 'Tuesday', '2023-04-30 13:21:00'),
+(86, 'CIT 120', 'PF08', 'TB 1', '09:00-11:00', 'Tuesday', '2023-04-30 13:21:00'),
+(87, 'CIM 306', 'PF08', 'TB 11', '15:00-17:00', 'Tuesday', '2023-04-30 13:21:00'),
+(88, 'CCS 310', 'PF22', 'TB 6', '13:00-15:00', 'Thursday', '2023-04-30 13:21:00'),
+(89, 'CCS 406', 'PF25', 'LAB VI', '15:00-17:00', 'Monday', '2023-04-30 13:21:00'),
+(90, 'ABS 424', 'PF60', 'TB 2', '15:00-17:00', 'Thursday', '2023-04-30 13:21:00'),
+(91, 'CCS 204', 'PF23', 'LAB V', '13:00-15:00', 'Monday', '2023-04-30 13:21:00'),
+(92, 'CCS 306', 'PF06', 'TB 10', '07:00-09:00', 'Wednesday', '2023-04-30 13:21:00'),
+(93, 'CIT 212', 'PF01', 'LAB VI', '07:00-09:00', 'Tuesday', '2023-04-30 13:21:00'),
+(94, 'CIT 118', 'PF01', 'TB 1', '11:00-13:00', 'Friday', '2023-04-30 13:21:00'),
+(95, 'CCT 215', 'PF23', 'TB 11', '13:00-15:00', 'Friday', '2023-04-30 13:21:01'),
+(96, 'CIS 414', 'PF08', 'TB 1', '11:00-13:00', 'Tuesday', '2023-04-30 13:21:01'),
+(97, 'CIS 310', 'PF04', 'TB 2', '11:00-13:00', 'Friday', '2023-04-30 13:21:01'),
+(98, 'CIS 212', 'PF01', 'LAB IX', '11:00-13:00', 'Wednesday', '2023-04-30 13:21:01'),
+(99, 'CCS 412', 'PF20', 'TB 1', '11:00-13:00', 'Monday', '2023-04-30 13:21:01'),
+(100, 'CIT 106', 'PF19', 'TB 11', '09:00-11:00', 'Wednesday', '2023-04-30 13:21:01'),
+(101, 'CIS 104', 'PF16', 'LAB V', '15:00-17:00', 'Wednesday', '2023-04-30 13:21:01'),
+(102, 'CCS 208', 'PF23', 'TB 8', '11:00-13:00', 'Monday', '2023-04-30 13:21:01'),
+(103, 'CIT 408', 'PF17', 'TB 4', '13:00-15:00', 'Friday', '2023-04-30 13:21:01'),
+(104, 'CCT 304', 'PF30', 'TB 1', '11:00-13:00', 'Thursday', '2023-04-30 13:21:01'),
+(105, 'CIM 322', 'PF07', 'TB 1', '13:00-15:00', 'Thursday', '2023-04-30 13:21:01'),
+(106, 'CCT 118', 'PF24', 'Electronics LAB III', '11:00-13:00', 'Friday', '2023-04-30 13:21:01'),
+(107, 'CIT 314', 'PF13', 'LAB VI', '17:00-19:00', 'Thursday', '2023-04-30 13:21:01'),
+(108, 'CCS 216', 'PF20', 'LAB VII', '07:00-09:00', 'Tuesday', '2023-04-30 13:21:01'),
+(109, 'CCS 404', 'PF25', 'TB 9', '13:00-15:00', 'Thursday', '2023-04-30 13:21:01'),
+(110, 'CCT 102', 'PF28', 'TB 8', '11:00-13:00', 'Monday', '2023-04-30 13:21:01'),
+(111, 'CCS 318', 'PF06', 'TB 10', '15:00-17:00', 'Wednesday', '2023-04-30 13:21:01'),
+(112, 'CIT 216', 'PF12', 'TB 9', '17:00-19:00', 'Wednesday', '2023-04-30 13:21:01'),
+(113, 'CIM 406', 'PF60', 'TB 9', '17:00-19:00', 'Wednesday', '2023-04-30 13:21:02'),
+(114, 'CIT 302', 'PF14', 'TB 8', '13:00-15:00', 'Monday', '2023-04-30 13:21:02'),
+(115, 'CCS 302', 'PF30', 'TB 10', '13:00-15:00', 'Tuesday', '2023-04-30 13:21:02'),
+(116, 'CCT 206', 'PF23', 'TB 2', '09:00-11:00', 'Friday', '2023-04-30 13:21:02'),
+(117, 'CIM 320', 'PF18', 'TB 10', '15:00-17:00', 'Tuesday', '2023-04-30 13:21:02'),
+(118, 'CIM 210', 'PF17', 'TB 7', '11:00-13:00', 'Thursday', '2023-04-30 13:21:02'),
+(119, 'CIS 302', 'PF04', 'TB 6', '13:00-15:00', 'Tuesday', '2023-04-30 13:21:02'),
+(120, 'CCS 108', 'PF22', 'Electronics LAB III', '07:00-09:00', 'Tuesday', '2023-04-30 13:21:02'),
+(121, 'CIM 302', 'PF18', 'TB 4', '13:00-15:00', 'Monday', '2023-04-30 13:21:02'),
+(122, 'CIT 208', 'PF52', 'LAB VI', '17:00-19:00', 'Wednesday', '2023-04-30 13:21:02'),
+(123, 'CCT 302', 'PF22', 'TB 11', '13:00-15:00', 'Wednesday', '2023-04-30 13:21:02'),
+(124, 'CIT 414', 'PF08', 'TB 6', '17:00-19:00', 'Friday', '2023-04-30 13:21:02'),
+(125, 'CCT 202', 'PF24', 'Electronics LAB III', '15:00-17:00', 'Monday', '2023-04-30 13:21:02'),
+(126, 'CCS 304', 'PF30', 'LAB III', '13:00-15:00', 'Tuesday', '2023-04-30 13:21:02'),
+(127, 'CIM 120', 'PF08', 'TB 2', '17:00-19:00', 'Tuesday', '2023-04-30 13:21:02'),
+(128, 'CIM 404', 'PF16', 'TB 8', '13:00-15:00', 'Friday', '2023-04-30 13:21:03'),
+(129, 'CIS 314', 'PF15', 'LAB VI', '09:00-11:00', 'Thursday', '2023-04-30 13:21:03'),
+(130, 'CCS 414', 'PF26', 'TB 2', '13:00-15:00', 'Wednesday', '2023-04-30 13:21:03'),
+(131, 'CIT 322', 'PF01', 'LAB VII', '17:00-19:00', 'Friday', '2023-04-30 13:21:03'),
+(132, 'CCS 106', 'PF28', 'TB 9', '13:00-15:00', 'Friday', '2023-04-30 13:21:03'),
+(133, 'CIM 104', 'PF16', 'LAB VII', '13:00-15:00', 'Tuesday', '2023-04-30 13:21:03'),
+(134, 'CIM 208', 'PF15', 'TB 7', '17:00-19:00', 'Tuesday', '2023-04-30 13:21:03'),
+(135, 'CCT 406', 'PF30', 'TB 6', '13:00-15:00', 'Thursday', '2023-04-30 13:21:03'),
+(136, 'CIM 202', 'PF08', 'TB 1', '15:00-17:00', 'Tuesday', '2023-04-30 13:21:03'),
+(137, 'CCT 402', 'PF22', 'LAB VII', '11:00-13:00', 'Tuesday', '2023-04-30 13:21:03'),
+(138, 'CCS 422', 'PF22', 'TB 11', '11:00-13:00', 'Friday', '2023-04-30 13:21:03'),
+(139, 'CIT 308', 'PF07', 'LAB VII', '07:00-09:00', 'Wednesday', '2023-04-30 13:21:03'),
+(140, 'CCS 110', 'PF28', 'TB 8', '13:00-15:00', 'Thursday', '2023-04-30 13:21:03'),
+(141, 'CIS 210', 'PF14', 'TB 8', '17:00-19:00', 'Tuesday', '2023-04-30 13:21:03'),
+(142, 'CIM 204', 'PF60', 'TB 7', '15:00-17:00', 'Friday', '2023-04-30 13:21:03'),
+(143, 'CIS 120', 'PF01', 'TB 7', '17:00-19:00', 'Thursday', '2023-04-30 13:21:03'),
+(144, 'CIS 202', 'PF11', 'TB 11', '11:00-13:00', 'Friday', '2023-04-30 13:21:03'),
+(145, 'CCT 112', 'PF26', 'TB 7', '11:00-13:00', 'Thursday', '2023-04-30 13:21:04'),
+(146, 'CIT 404', 'PF03', 'TB 11', '11:00-13:00', 'Friday', '2023-04-30 13:21:04'),
+(147, 'CIM 304', 'PF12', 'TB 10', '13:00-15:00', 'Friday', '2023-04-30 13:21:04'),
+(148, 'CIS 108', 'PF18', 'TB 10', '15:00-17:00', 'Thursday', '2023-04-30 13:21:04'),
+(149, 'CIT 312', 'PF19', 'LAB V', '17:00-19:00', 'Thursday', '2023-04-30 13:21:04'),
+(150, 'CCS 316', 'PF27', 'TB 2', '11:00-13:00', 'Friday', '2023-04-30 13:21:04'),
+(151, 'CIS 412', 'PF08', 'TB 4', '17:00-19:00', 'Monday', '2023-04-30 13:21:04');
 
 -- --------------------------------------------------------
 
@@ -1863,6 +1843,7 @@ CREATE TABLE `user_details` (
   `user_email` varchar(50) NOT NULL,
   `user_phone` int(20) NOT NULL,
   `user_password` varchar(255) NOT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1870,41 +1851,41 @@ CREATE TABLE `user_details` (
 -- Dumping data for table `user_details`
 --
 
-INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `date_created`) VALUES
-(1, 'PF01', 'Dr', ' Titus', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:57:25'),
-(2, 'PF02', 'Mrs', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 19:58:26'),
-(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:49:58'),
-(4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', '2022-12-16 20:55:14'),
-(5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-02-16 20:17:16'),
-(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:25:05'),
-(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 10:32:21'),
-(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, 'e51ebb11e912d482972e91f5b2243849cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 11:47:42'),
-(9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:01'),
-(10, 'PF10', 'Mr', 'James', 'Chamwama', 'chamwama@maseno.ac.ke', 795824582, '31b90ee1a33da1431913c70021722926cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:52:56'),
-(11, 'PF11', 'Mr', 'Charles', 'Awuor', 'jumamark1234@gmail.com', 762854852, '511fae1765b80afceb29cf5fbcd15e17cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:54:16'),
-(12, 'PF12', 'Mr', 'Gabriel', 'Oliko', 'goliko2002@gmail.com', 752785245, '4f8977b865468be91c3cc666d03ee2f3cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:55:11'),
-(13, 'PF13', 'Mrs', 'Rennish', 'Mboya', 'rennishm@gmail.com', 752897412, '70642600a08efae11ab6d83b52e9a8e9cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:56:08'),
-(14, 'PF14', 'Mrs', 'Maurine', 'Awuor', 'cnyambuga@maseno.ac.ke', 741789547, '96777c2aa17ebbd8b84cfc25fd559714cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:57:06'),
-(15, 'PF15', 'Mr', 'Bethuel', 'Okelo', 'bethuel.okello@maseno.ac.ke', 723547858, '37267a49029c50f832ff1e3dc45bb44bcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:58:03'),
-(16, 'PF16', 'Mr', 'Michael', 'Wambwere', 'mwambwere@maseno.ac.ke', 712524789, '7b9b8b1311511a6bb0903dd2bdf5ef95cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 11:59:11'),
-(17, 'PF17', 'Mr', 'Moses', 'Wainaina', 'moses.wainaina@maseno.ac.ke', 798457585, '8a232e18e5696750da8543e323a1b363cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:00:17'),
-(18, 'PF18', 'Mrs', 'Yvonne', 'Mwajuma', 'ymwajuma@maseno.ac.ke', 741256585, '85db1de2e3d332b956969dbbd7d8a21acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:01:26'),
-(19, 'PF19', 'Mrs', 'Rose', 'Kapukha', 'rkapukha@maseno.ac.ke', 742789525, '8eb69cc52a93ea7b6281b674ecc65abacdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:02:23'),
-(20, 'PF20', 'Dr', 'Lilian', 'Wanzare', 'ldwanzare@maseno.ac.ke', 742156585, '2fa61c19d6975b56e0800bdca11358b6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:05:33'),
-(21, 'PF21', 'Dr', 'Sylvester', 'McOyowo', 'omcoyowo@maseno.ac.ke', 714257585, '64ff6aea6ca5f902a49fd8b387c55787cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:07:02'),
-(22, 'PF22', 'Dr', 'Henry', 'Okoyo', 'ookoyo@maseno.ac.ke', 712456257, 'd288a9980aaa616063101f3416b99dc4cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:08:45'),
-(23, 'PF23', 'Mr', 'Solomon', 'Nyabundi', 'solonyabs@gmail.com', 714256478, '3d5e0bb3323b7caf64dffce76a7bd092cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:09:42'),
-(24, 'PF24', 'Mr', 'Dickson', 'Omingo', 'omingodo@maseno.ac.ke', 762748595, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 12:10:30'),
-(25, 'PF25', 'Mrs', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, 'e80b69b8963a262c31c5e20650e35fd4cdb766c260dc4efc766965d1711a8f710b3f7261', '2023-03-09 12:11:20'),
-(26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:12:49'),
-(27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:02'),
-(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 12:14:55'),
-(33, 'PF29', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:19:13'),
-(34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:25:40'),
-(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-20 23:51:25'),
-(37, 'PF52', 'Dr', 'Roxanne', 'Hawi', 'roxannehavi@maseno.ac.ke', 752457582, '733cf4ed6fc40042a9514cb42817a54fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 14:56:47'),
-(32, 'PF55', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-09 23:30:02'),
-(36, 'PF60', 'Mr', 'Thomas', 'Ojijo', 'ojijotom@maseno.ac.ke', 714758258, '7ed946148ae8b14c898fcefde7a03734cdb766c260dc4efc766965d1711a8f710b3f7261 ', '2023-03-25 13:09:58');
+INSERT INTO `user_details` (`id`, `pf_number`, `user_title`, `user_firstname`, `user_lastname`, `user_email`, `user_phone`, `user_password`, `password_reset_token`, `date_created`) VALUES
+(1, 'PF01', 'Dr', ' Titus', 'Muhambe', 'muhambe@maseno.ac.ke', 785412562, '41183fc34c443b5ef29622b5bad9021bcdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 19:57:25'),
+(2, 'PF02', 'Mrs', 'Violet', 'Settim', 'vsettim@maseno.ac.ke', 752452868, '58b94b70faccb444ca0ae2a5dba9be2acdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 19:58:26'),
+(3, 'PF03', 'Dr', ' Samuel', 'Oonge', 'soonge@maseno.ac.ke', 752452868, 'eb0434fee150ffbac0777c820714fb1bcdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 20:49:58'),
+(4, 'PF04', 'Mr', 'Isaac', 'Owino', ' iowino@maseno.ac.ke', 785412541, 'a9750013af3699fe09e7ef855cc73b26cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2022-12-16 20:55:14'),
+(5, 'PF05', 'Mr', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', 758413462, 'fa34efef1fbcadf4c6f2fbdda9e7bad4cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-02-16 20:17:16'),
+(6, 'PF06', 'Dr', 'Calvins', 'Otieno', 'cotieno@maseno.ac.ke', 741258795, '318216c3766e84bd7dbc11850ec39d7acdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:25:05'),
+(7, 'PF07', 'Mr', 'David', 'Saka', 'sakad2011@gmail.com', 785785689, '9cd3c90d8a8d9402e256c668ccde5e11cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 10:32:21'),
+(8, 'PF08', 'Mr', 'George', 'Omuono', 'omuono@maseno.ac.ke', 752458256, 'e51ebb11e912d482972e91f5b2243849cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 11:47:42'),
+(9, 'PF09', 'Dr', 'Erick', 'Obare', 'oteyo@maseno.ac.ke', 752658575, '34934ea8ec5dd876f829adbe07b65961cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:52:01'),
+(10, 'PF10', 'Mr', 'James', 'Chamwama', 'chamwama@maseno.ac.ke', 795824582, '31b90ee1a33da1431913c70021722926cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:52:56'),
+(11, 'PF11', 'Mr', 'Charles', 'Awuor', 'jumamark1234@gmail.com', 762854852, '511fae1765b80afceb29cf5fbcd15e17cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:54:16'),
+(12, 'PF12', 'Mr', 'Gabriel', 'Oliko', 'goliko2002@gmail.com', 752785245, '4f8977b865468be91c3cc666d03ee2f3cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:55:11'),
+(13, 'PF13', 'Mrs', 'Rennish', 'Mboya', 'rennishm@gmail.com', 752897412, '70642600a08efae11ab6d83b52e9a8e9cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:56:08'),
+(14, 'PF14', 'Mrs', 'Maurine', 'Awuor', 'cnyambuga@maseno.ac.ke', 741789547, '96777c2aa17ebbd8b84cfc25fd559714cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:57:06'),
+(15, 'PF15', 'Mr', 'Bethuel', 'Okelo', 'bethuel.okello@maseno.ac.ke', 723547858, '37267a49029c50f832ff1e3dc45bb44bcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:58:03'),
+(16, 'PF16', 'Mr', 'Michael', 'Wambwere', 'mwambwere@maseno.ac.ke', 712524789, '7b9b8b1311511a6bb0903dd2bdf5ef95cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 11:59:11'),
+(17, 'PF17', 'Mr', 'Moses', 'Wainaina', 'moses.wainaina@maseno.ac.ke', 798457585, '8a232e18e5696750da8543e323a1b363cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:00:17'),
+(18, 'PF18', 'Mrs', 'Yvonne', 'Mwajuma', 'ymwajuma@maseno.ac.ke', 741256585, '85db1de2e3d332b956969dbbd7d8a21acdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:01:26'),
+(19, 'PF19', 'Mrs', 'Rose', 'Kapukha', 'rkapukha@maseno.ac.ke', 742789525, '8eb69cc52a93ea7b6281b674ecc65abacdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:02:23'),
+(20, 'PF20', 'Dr', 'Lilian', 'Wanzare', 'ldwanzare@maseno.ac.ke', 742156585, '2fa61c19d6975b56e0800bdca11358b6cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:05:33'),
+(21, 'PF21', 'Dr', 'Sylvester', 'McOyowo', 'omcoyowo@maseno.ac.ke', 714257585, '64ff6aea6ca5f902a49fd8b387c55787cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:07:02'),
+(22, 'PF22', 'Dr', 'Henry', 'Okoyo', 'ookoyo@maseno.ac.ke', 712456257, 'd288a9980aaa616063101f3416b99dc4cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:08:45'),
+(23, 'PF23', 'Mr', 'Solomon', 'Nyabundi', 'solonyabs@gmail.com', 714256478, '3d5e0bb3323b7caf64dffce76a7bd092cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:09:42'),
+(24, 'PF24', 'Mr', 'Dickson', 'Omingo', 'omingodo@maseno.ac.ke', 762748595, '2668f88fa219d86cd20965b9008a29a3cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 12:10:30'),
+(25, 'PF25', 'Mrs', 'Vivian', 'Oloo', 'voloo@maseno.ac.ke', 724758565, 'e80b69b8963a262c31c5e20650e35fd4cdb766c260dc4efc766965d1711a8f710b3f7261', NULL, '2023-03-09 12:11:20'),
+(26, 'PF26', 'Mr', 'John', 'Konyino', 'okonyino@yahoo.com', 745278954, 'fb92e67516c0eb29f12b7e72eb8248dfcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:12:49'),
+(27, 'PF27', 'Mr', 'John', 'Alwala', 'alwala@maseno.ac.ke', 732452578, 'bc8a41d8128e770a768d7048602df34acdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:14:02'),
+(28, 'PF28', 'Mr', 'Michael', 'Ondeja', 'michaelondeja@gmail.com', 742657585, 'b9247041b1890c1e721c39eb7e924ce6cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 12:14:55'),
+(33, 'PF29', 'Dr', 'James', 'Obuhuma', 'obuhumajames12@gmail.com', 745859575, '58afc8013559b43b6549e08f282adeafcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-20 23:19:13'),
+(34, 'PF30', 'Mr', 'M O', 'Adongo', 'adongo@maseno.ac.ke', 741254789, 'b0f2759ec860ccc3195840db56358922cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-20 23:25:40'),
+(35, 'PF31', 'Mr', 'Tomas', 'Ojijo', 'ojijotom@gmail.com', 723459127, 'fe5da4e501fd0f38f34a4aecad380808cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-20 23:51:25'),
+(37, 'PF52', 'Dr', 'Roxanne', 'Hawi', 'roxannehavi@maseno.ac.ke', 752457582, '733cf4ed6fc40042a9514cb42817a54fcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-25 14:56:47'),
+(32, 'PF55', 'Ms', 'Ruth', 'Daphne', 'daphneruth304@gmail.com', 710323547, 'afe4cc51d030b9b23b0aeec793cdc96fcdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-09 23:30:02'),
+(36, 'PF60', 'Mr', 'Thomas', 'Ojijo', 'ojijotom@maseno.ac.ke', 714758258, '7ed946148ae8b14c898fcefde7a03734cdb766c260dc4efc766965d1711a8f710b3f7261 ', NULL, '2023-03-25 13:09:58');
 
 -- --------------------------------------------------------
 
@@ -1958,30 +1939,6 @@ INSERT INTO `user_role_details` (`id`, `user_id`, `role_id`, `date_created`) VAL
 (35, 'PF31', 'role002', '2023-03-20 20:51:25'),
 (36, 'PF60', 'role002', '2023-03-25 10:09:58'),
 (37, 'PF52', 'role002', '2023-03-25 11:56:47');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `week_day_details`
---
-
-CREATE TABLE `week_day_details` (
-  `id` int(11) NOT NULL,
-  `week_day_id` varchar(20) NOT NULL,
-  `week_day` varchar(20) NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `week_day_details`
---
-
-INSERT INTO `week_day_details` (`id`, `week_day_id`, `week_day`, `date_added`) VALUES
-(1, 'DAY01', 'Monday', '2023-02-16 20:07:00'),
-(2, 'DAY02', 'Tuesday', '2023-02-16 20:07:00'),
-(3, 'DAY03', 'Wednesday', '2023-02-16 20:07:49'),
-(4, 'DAY04', 'Thursday', '2023-02-16 20:07:49'),
-(5, 'DAY05', 'Friday', '2023-02-16 20:08:00');
 
 --
 -- Indexes for dumped tables
@@ -2060,7 +2017,8 @@ ALTER TABLE `role_details`
 ALTER TABLE `room_details`
   ADD PRIMARY KEY (`room_id`),
   ADD KEY `rm_typ_iddd` (`room_type_id`),
-  ADD KEY `dgfif` (`id`);
+  ADD KEY `dgfif` (`id`),
+  ADD KEY `room_name` (`room_name`);
 
 --
 -- Indexes for table `room_type_details`
@@ -2092,13 +2050,6 @@ ALTER TABLE `semester_details`
   ADD KEY `sid` (`id`);
 
 --
--- Indexes for table `time_slot_details`
---
-ALTER TABLE `time_slot_details`
-  ADD PRIMARY KEY (`slot_id`),
-  ADD KEY `iddd` (`id`);
-
---
 -- Indexes for table `unit_course_details`
 --
 ALTER TABLE `unit_course_details`
@@ -2121,7 +2072,8 @@ ALTER TABLE `unit_room_time_day_allocation_details`
   ADD KEY `room` (`room_id`),
   ADD KEY `day_of_the_week` (`weekday`),
   ADD KEY `weekday_id` (`weekday`),
-  ADD KEY `unit_id` (`unit_id`);
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `lecturer_id` (`lecturer_id`);
 
 --
 -- Indexes for table `unit_semester_details`
@@ -2146,14 +2098,6 @@ ALTER TABLE `user_role_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userid` (`user_id`),
   ADD KEY `roleid` (`role_id`);
-
---
--- Indexes for table `week_day_details`
---
-ALTER TABLE `week_day_details`
-  ADD PRIMARY KEY (`week_day_id`),
-  ADD KEY `idd` (`id`),
-  ADD KEY `week_day` (`week_day`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -2199,7 +2143,7 @@ ALTER TABLE `lecturer_department_details`
 -- AUTO_INCREMENT for table `lecturer_unit_details`
 --
 ALTER TABLE `lecturer_unit_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -2211,7 +2155,7 @@ ALTER TABLE `role_details`
 -- AUTO_INCREMENT for table `room_details`
 --
 ALTER TABLE `room_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `room_type_details`
@@ -2236,12 +2180,6 @@ ALTER TABLE `school_details`
 --
 ALTER TABLE `semester_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `time_slot_details`
---
-ALTER TABLE `time_slot_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `unit_course_details`
@@ -2278,12 +2216,6 @@ ALTER TABLE `user_details`
 --
 ALTER TABLE `user_role_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT for table `week_day_details`
---
-ALTER TABLE `week_day_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -2337,6 +2269,14 @@ ALTER TABLE `school_department_details`
 ALTER TABLE `unit_course_details`
   ADD CONSTRAINT `crsids` FOREIGN KEY (`course_id`) REFERENCES `course_details` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `unitsidddd` FOREIGN KEY (`unit_id`) REFERENCES `unit_details` (`unit_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `unit_room_time_day_allocation_details`
+--
+ALTER TABLE `unit_room_time_day_allocation_details`
+  ADD CONSTRAINT `LC` FOREIGN KEY (`lecturer_id`) REFERENCES `user_details` (`pf_number`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `RM` FOREIGN KEY (`room_id`) REFERENCES `room_details` (`room_name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `UNT` FOREIGN KEY (`unit_id`) REFERENCES `lecturer_unit_details` (`unit_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unit_semester_details`

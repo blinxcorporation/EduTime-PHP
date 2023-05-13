@@ -155,9 +155,9 @@ include '../assets/components/header.php';
                         <div class="card card-hover">
                             <div class="box bg-secondary text-center">
                                 <h1 class="font-light text-white">
-                                    <i class="mdi mdi-calendar"></i>
+                                    <i class="fa fa-file-alt"></i>
                                 </h1>
-                                <h6 class="text-white">Timetables</h6>
+                                <h6 class="text-white">Reports</h6>
                             </div>
                         </div>
                     </a>

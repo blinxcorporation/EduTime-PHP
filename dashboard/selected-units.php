@@ -154,7 +154,7 @@ include '../assets/components/header.php';
               $course_short_name = $row['course_shortform'];
               $date_added = $row['date_added'];
               $semester_id = $row['semester_id'];
-              $semester_name = $row['semester_name'];
+            //   $semester_name = $row['semester_name'];
               $academic_yr = $row['academic_year'];
 
 
@@ -168,7 +168,7 @@ include '../assets/components/header.php';
                 echo "<td>
                 <form method ='POST' action=''>
                 <input  type='text' hidden name='unit_id' value='$unit_id'>
-                <input type='submit' data-id= '$unit_id' value='De-select Unit'  class='btn btn-info deleteUnitBtn'>
+                <input type='submit' data-id= '$unit_id' value='Delete'  class='btn btn-danger deleteUnitBtn'>
                 </form>
                 </td> </tr>";
       }
