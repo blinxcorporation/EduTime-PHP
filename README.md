@@ -4,15 +4,15 @@
 
 ## Admin (Registrar)
 
-- Add schools
+- Add schools (Faculties)
 - Add departments
 - Add courses
 - Add units
 - Add rooms
 - Add timeslots
 - Add academic years
-- add semestera
-- Add lecturers
+- add semesters
+- Add lecturers (Deans, Department Chairpersons, normal lecturers)
 - generateVarsityTimetable()
 
 ## Dean
