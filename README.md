@@ -5,26 +5,19 @@
 ## Admin (Registrar's) Functions/Roles:
 
 <<<<<<< HEAD
-- Add schools (Faculties)
-=======
+
+- # Add schools (Faculties)
 - Add schools/faculties
->>>>>>> 66264d27f4582e0d8b187d7b2a5b3fd63d1474bf
+  > > > > > > > 66264d27f4582e0d8b187d7b2a5b3fd63d1474bf
 - Add departments
 - Add courses offered in different departments
 - Add units for each course
 - Add rooms - their names, capacities and typee
 - Add timeslots
-<<<<<<< HEAD
 - Add academic years
 - add semesters
 - Add lecturers (Deans, Department Chairpersons, normal lecturers)
 - generateVarsityTimetable()
-=======
-- Add academic years (e.g 2019/2020)
-- add semesters (e.g Y1S1)
-- Add lecturers/professors
-- Generate Timetable
->>>>>>> 66264d27f4582e0d8b187d7b2a5b3fd63d1474bf
 
 ## Dean's Functions/Roles
 
@@ -53,8 +46,13 @@
 
 ## Future Additions/ Recommendations
 
-- The lecturers should get notifications 2 hours before a `lecture` to remind them of classes they have.
+- The lecturers should get notifications (SMS and Email) 2 hours before a `lecture` to remind them of classes they have.
+
+## Other Features that need to be fixed/added
+
+- Forgot password
+- Reset password
 
 ## Issues
 
-- The system seems to be getting a few conflicts, the code needs to be modified to #bugfix this
+- The system seems to be getting a few conflicts, the code needs to be modified to `#bugfix` this
